@@ -4,3 +4,5 @@ pymupdf
 PyYAML
 langchain-core
 langchain-text-splitters
+langchain-community
+rank-bm25
