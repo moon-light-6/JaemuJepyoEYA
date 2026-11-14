@@ -2,3 +2,5 @@ requests
 python-dotenv
 pymupdf
 PyYAML
+langchain-core
+langchain-text-splitters
