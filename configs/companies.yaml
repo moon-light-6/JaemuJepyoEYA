@@ -11,3 +11,6 @@ companies:
         disclosure_end: "2026-12-31"
         # OpenDART에서 확인한 2025 사업보고서 접수번호. 재실행 시 이 공시만 수집한다.
         rcept_no: "20260310002820"
+        official_pdf:
+          provider: "dart"
+          dcm_no: "11104488"
