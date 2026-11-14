@@ -9,7 +9,7 @@ from pathlib import Path
 from typing import Any
 from urllib.parse import urlparse
 
-import fitz
+import pymupdf as fitz
 import requests
 
 
@@ -95,10 +95,15 @@ def download_official_pdf(
             if not document.is_pdf or document.page_count == 0:
                 raise PdfDocumentError("다운로드한 파일이 비어 있거나 정상 PDF가 아닙니다.")
         temporary_path.replace(output_path)
-    except (OSError, RuntimeError, fitz.FileDataError) as error:
+    except PdfDocumentError:
+        # PDF 자체가 유효하지 않으면 임시 파일 삭제 후 오류 전달
         temporary_path.unlink(missing_ok=True)
-        if isinstance(error, PdfDocumentError):
-            raise
+        raise
+
+    except (OSError, RuntimeError, fitz.FileDataError) as error:
+        # 파일 저장 또는 PDF 해석 과정의 오류 처리
+        temporary_path.unlink(missing_ok=True)
+
         raise PdfDocumentError(f"PDF 파일 검증 또는 저장에 실패했습니다: {error}") from error
 
     return {

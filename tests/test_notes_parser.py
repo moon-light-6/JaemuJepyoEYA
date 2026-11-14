@@ -12,8 +12,15 @@ from xml.etree import ElementTree
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT_ROOT / "src"))
 
-from fin_research.ingestion.notes_parser import extract_consolidated_notes
-from fin_research.ingestion.report_parser import compact_text, normalize_xml_text
+from fin_research.ingestion.notes_parser import (
+    extract_consolidated_notes,
+    extract_notes_from_container,
+)
+from fin_research.ingestion.report_parser import (
+    build_locations,
+    compact_text,
+    normalize_xml_text,
+)
 from fin_research.ingestion.table_parser import find_by_xpath, raw_cell_text
 
 
@@ -95,6 +102,45 @@ class NotesParserTest(unittest.TestCase):
         self.assertEqual(note_34["items"][0]["kind"], "paragraph")
         self.assertEqual(note_34["items"][0]["source"]["xpath"], note_34["source"]["xpath"])
 
+    # 테스트 함수 추가
+    def test_ignores_numbered_paragraph_before_notes_heading(self):
+        """주석 제목 이전의 번호 문단은 주석으로 추출하지 않는다."""
 
+        xml = """
+        <SECTION-2>
+            <P>1. 주석 이전 안내문</P>
+            <TITLE>주석</TITLE>
+            <P>1. 실제 주석</P>
+            <P>주석 본문입니다.</P>
+        </SECTION-2>
+        """
+
+        root = ElementTree.fromstring(xml)
+        _, locations = build_locations(root)
+
+        heading = root.find("TITLE")
+
+        preamble, notes = extract_notes_from_container(
+            container=root,
+            heading=heading,
+            filename="test.xml",
+            rcept_no="20260310002820",
+            locations=locations,
+            business_titles=[],
+        )
+
+        # 주석 제목 이전의 '1. 안내문'은 제외
+        self.assertEqual(len(notes), 1)
+        self.assertEqual(notes[0]["number"], 1)
+
+        # 주석 제목 이후의 실제 본문만 추출
+        self.assertEqual(len(notes[0]["items"]), 1)
+        self.assertEqual(
+            notes[0]["items"][0]["text"],
+            "주석 본문입니다.",
+        )
+
+        self.assertEqual(preamble, [])
+        
 if __name__ == "__main__":
     unittest.main()

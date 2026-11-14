@@ -2,15 +2,19 @@
 
 from __future__ import annotations
 
+import json
 import sys
+import tempfile
 import unittest
 from pathlib import Path
-
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT_ROOT / "src"))
 
-from fin_research.ingestion.document_check import inspect_xml_scope
+from fin_research.ingestion.document_check import (
+    DocumentCheckError,
+    inspect_xml_scope,
+)
 
 
 BASE = PROJECT_ROOT / "data"
@@ -54,6 +58,53 @@ class DocumentCheckTest(unittest.TestCase):
         self.assertIn("SECTION-1[3]", topics["business_overview"]["source"]["xpath"])
         self.assertIn("SECTION-1[6]", topics["audit_opinion"]["source"]["xpath"])
 
+    # 사업연도 틀리면 원본 XML 처리 전 오류 발생시키는지 확인용
+    def test_rejects_mismatched_report_sources(self):
+        """서로 다른 공시의 JSON이 섞이면 검증을 중단한다."""
+
+        source = {
+            "company_code": "00126380",
+            "fiscal_year": 2025,
+            "rcept_no": "20260310002820",
+        }
+
+        with tempfile.TemporaryDirectory() as temp_dir:
+            folder = Path(temp_dir)
+
+            structure_path = folder / "structure.json"
+            tables_path = folder / "tables.json"
+            notes_path = folder / "notes.json"
+
+            structure_path.write_text(
+                json.dumps({"source": source}),
+                encoding="utf-8",
+            )
+
+            # 잘못된 연도가 포함된 재무제표
+            wrong_source = {
+                **source,
+                "fiscal_year": 2024,
+            }
+
+            tables_path.write_text(
+                json.dumps({"source": wrong_source}),
+                encoding="utf-8",
+            )
+
+            notes_path.write_text(
+                json.dumps({"source": source}),
+                encoding="utf-8",
+            )
+
+            with self.assertRaisesRegex(
+                DocumentCheckError, "fiscal_year"
+            ):
+                inspect_xml_scope(
+                    folder / "unused.zip",
+                    structure_path,
+                    tables_path,
+                    notes_path,
+                )
 
 if __name__ == "__main__":
     unittest.main()

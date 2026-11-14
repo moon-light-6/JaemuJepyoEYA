@@ -17,29 +17,98 @@ XML의 출처 위치는 `xpath`, PDF의 출처 위치는 1부터 시작하는 `p
 두 형식의 내용이 같다고 가정하지 않으며, 각 결과 JSON의 `format_validation`에서
 상호 비교 수행 여부를 확인한다.
 
-## 실행
+## 실행 순서
 
-먼저 기존 XML 결과를 최종 점검한다.
+프로젝트 루트에서 실행한다.
 
-```powershell
-.\.venv\Scripts\python.exe scripts\check_documents.py `
-  --zip-path data\raw\dart\00126380\2025\20260310002820.zip `
-  --structure-path data\processed\dart\00126380\2025\20260310002820_structure.json `
-  --tables-path data\processed\dart\00126380\2025\20260310002820_consolidated_tables.json `
-  --notes-path data\processed\dart\00126380\2025\20260310002820_consolidated_notes.json `
-  --output-path data\processed\dart\00126380\2025\20260310002820_document_scope.json
-```
+### 1. 실행 환경 준비
 
-그다음 설정된 DART의 공식 PDF를 수집하고 PyMuPDF로 페이지별 텍스트를 점검한다.
+필요한 패키지를 설치한다.
 
 ```powershell
-.\.venv\Scripts\python.exe scripts\collect_pdf.py `
-  --corp-code 00126380 --fiscal-year 2025
+python -m pip install -r requirements.txt
 ```
 
-PDF 수집은 DART 공식 HTTPS 도메인, PDF 파일 서명, PyMuPDF 개방 여부를 확인한다.
-이미 있는 PDF는 URL과 SHA-256이 메타데이터와 모두 일치할 때만 재사용한다. 일치하지
-않는 기존 파일은 덮어쓰지 않는다.
+프로젝트 루트의 `.env`에 OpenDART API 키를 설정한다.
+
+```dotenv
+DART_API_KEY=발급받은_API_KEY
+```
+
+API 키와 원본 공시 데이터는 Git에 커밋하지 않는다.
+
+### 2. OpenDART XML 수집
+
+```powershell
+python scripts/collect.py --corp-code 00126380 --fiscal-year 2025
+```
+
+### 3. XML 구조 분석
+
+```powershell
+python src/fin_research/ingestion/report_parser.py `
+  --zip-path data/raw/dart/00126380/2025/20260310002820.zip `
+  --corp-code 00126380 `
+  --fiscal-year 2025 `
+  --rcept-no 20260310002820
+```
+
+### 4. 연결재무제표 추출
+
+```powershell
+python src/fin_research/ingestion/table_parser.py `
+  --zip-path data/raw/dart/00126380/2025/20260310002820.zip `
+  --structure-path data/processed/dart/00126380/2025/20260310002820_structure.json
+```
+
+### 5. 연결재무제표 주석 추출
+
+```powershell
+python src/fin_research/ingestion/notes_parser.py `
+  --zip-path data/raw/dart/00126380/2025/20260310002820.zip `
+  --structure-path data/processed/dart/00126380/2025/20260310002820_structure.json
+```
+
+### 6. XML 최종 점검
+
+```powershell
+python scripts/check_documents.py `
+  --zip-path data/raw/dart/00126380/2025/20260310002820.zip `
+  --structure-path data/processed/dart/00126380/2025/20260310002820_structure.json `
+  --tables-path data/processed/dart/00126380/2025/20260310002820_consolidated_tables.json `
+  --notes-path data/processed/dart/00126380/2025/20260310002820_consolidated_notes.json `
+  --output-path data/processed/dart/00126380/2025/20260310002820_document_scope.json
+```
+
+### 7. 공식 PDF 수집 및 페이지별 텍스트 추출
+
+```powershell
+python scripts/collect_pdf.py `
+  --corp-code 00126380 `
+  --fiscal-year 2025
+```
+
+### 8. 전체 테스트
+
+```powershell
+python -m unittest discover -s tests -v
+```
+
+테스트 결과는 통과·실패·건너뜀을 구분해서 확인한다.
+
+실제 원본 PDF 또는 XML이 없는 환경에서는
+일부 테스트가 건너뛰어질 수 있다.
+
+## 후속 담당자 참고
+
+- PDF 텍스트: `*_pdf_pages.json`의 `pages[].text`
+- PDF 페이지: `pages[].source.page_number` (1부터 시작)
+- XML 출처: 각 JSON의 `xpath`
+- PDF와 XML의 내용 전체 동일성은 검증하지 않음
+- PDF 표의 행·열 순서와 금액은 필요 시 원본 화면과 대조
+- 여러 기업을 함께 검색할 경우 파일명·접수번호·사업연도·연결/별도 기준을 메타데이터로 관리
+- 청킹, BM25, Chroma, RAG는 후속 단계에서 구현
+
 
 ## 삼성전자 2025 최종 확인 기록
 

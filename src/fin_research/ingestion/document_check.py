@@ -1,4 +1,4 @@
-"""Day 1 범위의 XML 원문·추출 결과를 재점검하는 도구다."""
+# [XML 원문·추출 결과 재점검하는 도구]
 
 from __future__ import annotations
 
@@ -125,11 +125,25 @@ def inspect_xml_scope(
     tables_path: Path,
     notes_path: Path,
 ) -> dict[str, Any]:
-    """기존 XML 구조·표·주석 결과를 함께 대조해 Day 1 완료 범위를 기록한다."""
+    """기존 XML 구조·표·주석 결과 대조해서 기록"""
     structure = read_json(structure_path)
     tables = read_json(tables_path)
     notes = read_json(notes_path)
     source = structure["source"]
+
+    # 구조 분석, 재무제표, 주석이 동일한 공시 자료인지 확인
+    for name, data in [("tables", tables), ("notes", notes)]:
+        for key in ("company_code", "fiscal_year", "rcept_no"):
+            expected = source.get(key)
+            actual = data.get("source", {}).get(key)
+
+            if expected is None or actual is None or str(expected) != str(actual):
+                raise DocumentCheckError(
+                    f"{name}의 {key}가 구조 분석 자료와 일치하지 않습니다. "
+                    f"기준: {expected}, 입력: {actual}"
+                )
+
+            
     fiscal_year = int(source["fiscal_year"])
     previous_year = fiscal_year - 1
     expected_statement_keys = set(CONSOLIDATED_STATEMENTS)

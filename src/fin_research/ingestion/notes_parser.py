@@ -298,9 +298,9 @@ def extract_notes_from_container(
             f"주석 번호가 중복되었습니다: {note_numbers}"
         )
     
-    positions = note_heading_positions(container)
-    if not positions:
-        raise NotesParseError("주석 컨테이너에서 번호가 있는 주석 제목을 찾지 못했습니다.")
+    # positions = note_heading_positions(container)
+    # if not positions:
+    #     raise NotesParseError("주석 컨테이너에서 번호가 있는 주석 제목을 찾지 못했습니다.")
 
     preamble = [
         extract_item(child, filename, rcept_no, locations, sequence)
