@@ -1,4 +1,5 @@
-""" """
+"""BM25 키워드 검색기의 기본 기능 및 예외 처리 단위 테스트."""
+
 import json
 import sys
 import tempfile
