@@ -2,7 +2,7 @@
 
 > 공식 PDF 청킹 이후 BM25·Chroma·MMR·Hybrid-RRF 검색기를 만들고, 검색 성능을 검증하는 과정을 다룬다.
 
-이 문서는 `docs/chunking_document.md`에서 준비한 검색용 청크와 평가셋을 입력으로 사용한다. 현재는 **BM25 키워드 검색기와 Chroma 벡터 검색기의 구현·테스트** 까지 기록했다. MMR·Hybrid-RRF 및 20문항 전체 평가는 후속 단계에서 추가한다.
+이 문서는 `docs/chunking_document.md`에서 준비한 검색용 청크와 평가셋을 입력으로 사용한다. 현재는 **BM25, Chroma, MMR·Hybrid-RRF 검색기의 구현·테스트** 까지 기록했다. 20문항 전체 검색 성능 평가는 후속 단계에서 추가한다.
 
 현재 MVP 검색 대상은 삼성전자 2025년 사업보고서의 **연결재무제표·연결 주석(PDF 물리 페이지 83~195)** 이다.
 
@@ -21,6 +21,11 @@
 | `scripts/search_chroma.py` | Chroma Top-K 유사도 검색 CLI |
 | `tests/test_chroma_retriever.py` | 가짜 임베딩·메모리 Chroma 기반 단위 테스트 9개 |
 | `data/chroma_samsung/` | 로컬 Chroma 영구 저장소(Git 커밋 대상 아님) |
+| `src/fin_research/retrieval/hybrid_retriever.py` | BM25와 Chroma 검색 결과를 `chunk_id` 기준으로 RRF 병합 |
+| `scripts/search_mmr.py` | Chroma MMR 검색 실행 CLI |
+| `scripts/search_hybrid.py` | BM25 + Chroma Hybrid-RRF 검색 실행 CLI |
+| `tests/test_mmr_retriever.py` | MMR 옵션·결과·입력 검증 단위 테스트 7개 |
+| `tests/test_hybrid_retriever.py` | RRF 점수·중복·통합 검색 단위 테스트 9개 |
 
 `pdf_page`는 PDF 내부에 인쇄된 번호가 아니라 실제 PDF 파일의 **물리 페이지 번호**다. 검색 결과의 출처를 비교할 때는 `source_file`과 `pdf_page`를 함께 확인한다.
 
@@ -302,11 +307,154 @@ OK
 - 전체 회귀 테스트: 36개 통과
 - 정량 검색 평가·자동 재색인: 미구현, 후속 단계에서 검토
 
+## 5. MMR 검색기
+
+MMR(Maximal Marginal Relevance)은 질문과의 관련성뿐 아니라 검색 결과 간 다양성을 고려해 청크를 선택한다. 8번에서 생성한 Chroma 컬렉션을 재사용하므로 새로운 색인이나 문서 임베딩은 필요하지 않다.
+
+### 5-1. 구현 방식과 설정
+
+`chroma_retriever.py`의 `search_mmr()`에서 Chroma의 `as_retriever(search_type="mmr")`를 호출한다. 수업 `2_Retriever.ipynb`의 MMR 검색 예제를 기반으로 구현했다.
+
+| 설정 | 기본값 | 의미 |
+| --- | ---: | --- |
+| `k` | 5 | 최종 반환 청크 개수 |
+| `fetch_k` | 20 | 다양성을 고려하기 전에 수집하는 후보 청크 개수 |
+| `lambda_mult` | 0.5 | 관련성과 다양성의 균형(0~1) |
+
+질문 공백, `k <= 0`, `fetch_k < k`, `lambda_mult` 범위 이탈 또는 미색인 Chroma 컬렉션은 오류로 처리한다. 검색 결과는 기존 검색기와 같이 `rank`, `chunk_id`, `text`, `source_file`, `pdf_page`, `metadata`를 반환한다.
+
+### 5-2. 실행 명령 및 결과
+
+```powershell
+python scripts/search_mmr.py --question "2025년 연결 기준 매출액은 얼마인가?" --top-k 5 --fetch-k 20 --lambda-mult 0.5
+```
+
+실제 실행 결과의 상위 5개 PDF 물리 페이지는 다음과 같다.
+
+| 순위 | PDF 물리 페이지 | 검색 내용 |
+| ---: | ---: | --- |
+| 1 | 85 | 연결 손익계산서·매출액 |
+| 2 | 146 | 인수·약정 관련 설명 |
+| 3 | 195 | 보고기간 후 사건 |
+| 4 | 193 | 사업결합 관련 주석 |
+| 5 | 151 | 주식기준보상 관련 주석 |
+
+매출액 질문의 Gold page **85쪽을 1위로 검색**하여 이 질문에서는 Hit@3·Hit@5에 모두 성공했다. 다만 나머지 결과에는 질문과 직접 관련성이 낮은 주석도 포함됐다. 다양성 설정의 장단점은 10번 전체 평가 후 11번에서 검토한다.
+
+### 5-3. 단위 테스트
+
+`tests/test_mmr_retriever.py`에서는 `MagicMock`으로 실제 Chroma와 임베딩 모델 로드를 대체한다. MMR 옵션 전달, 반환 필드, 빈 질문·잘못된 `k`·`fetch_k`·`lambda_mult`, 미색인 컬렉션 처리를 확인한다.
+
+```powershell
+python -m unittest discover -s tests -p "test_mmr_retriever.py" -v
+```
+
+```text
+Ran 7 tests in 0.005s
+
+OK
+```
+
+이 테스트는 MMR 검색 호출과 반환 형식의 검증이며, MMR 알고리즘의 의미 검색 성능을 증명하지는 않는다.
+
+## 6. Hybrid-RRF 검색기
+
+Hybrid-RRF는 BM25 키워드 검색과 Chroma 벡터 유사도 검색을 각각 실행한 다음, 두 결과의 **순위**를 결합한다. 검색 점수의 척도가 서로 달라도 병합할 수 있도록 Reciprocal Rank Fusion(RRF)을 사용한다.
+
+### 6-1. 구현 방식과 설정
+
+`hybrid_retriever.py`는 `search_hybrid()`와 `rrf_merge()`로 구성한다.
+
+1. `*_chunks.json`에서 BM25 검색기를 생성한다.
+2. BM25와 기존 Chroma 컬렉션에서 각각 후보 청크를 검색한다.
+3. 동일한 `chunk_id`를 하나의 청크로 합치고 검색 순위별 RRF 점수를 더한다.
+4. RRF 점수 내림차순, 동점이면 `chunk_id` 오름차순으로 정렬해 Top-K를 반환한다.
+
+RRF 점수는 `score(d) = Σ[1 / (rank_constant + rank_i(d))]`로 계산한다. 검색기 내부에 같은 청크 ID가 중복 등장하면 해당 검색기의 점수는 한 번만 반영한다.
+
+| 설정 | 기본값 | 의미 |
+| --- | ---: | --- |
+| `k` | 5 | 최종 반환 청크 개수 |
+| `candidate_k` | 10 | BM25와 Chroma 각각의 후보 검색 개수 |
+| `rank_constant` | 60 | 순위별 가산 점수 계산 상수 |
+
+RRF 결과에는 공통 출처 필드와 `rrf_score`를 반환한다. 점수는 검색 순위 융합을 위한 상대값이며 정답 확률이 아니다.
+
+### 6-2. 실행 명령 및 결과
+
+```powershell
+python scripts/search_hybrid.py --question "2025년 연결 기준 매출액은 얼마인가?" --top-k 5 --candidate-k 10
+```
+
+실제 실행 결과는 다음과 같다.
+
+| 순위 | PDF 물리 페이지 | RRF 점수 | 검색 내용 |
+| ---: | ---: | ---: | --- |
+| 1 | 85 | 0.016393 | 연결 손익계산서·매출액 |
+| 2 | 125 | 0.016393 | 관계기업 투자 현황 |
+| 3 | 86 | 0.016129 | 연결 포괄손익계산서 |
+| 4 | 129 | 0.016129 | 유형자산 관련 소송 |
+| 5 | 89 | 0.015873 | 연결 현금흐름표 |
+
+매출액 질문의 Gold page **85쪽을 1위로 검색**했다. 85쪽과 125쪽의 점수가 같은 이유는 각 청크가 서로 다른 검색기에서 1위로 검색됐기 때문이다. 이때 `chunk_id` 기준의 동점 정렬 때문에 85쪽이 먼저 나타난 것으로, RRF가 본문을 읽어 85쪽의 관련성이 더 높다고 판단한 것은 아니다.
+
+현재 결과에는 BM25가 찾은 직접 관련성이 낮은 문서도 포함돼 있다. Hybrid가 다른 전략보다 우수한지는 20문항 평가가 필요하다.
+
+### 6-3. 단위 테스트
+
+`tests/test_hybrid_retriever.py`에서는 RRF 계산 함수를 직접 검증하고, BM25·Chroma 호출은 Mock 결과로 대체한다.
+
+- 중복 청크의 점수 합산과 중복 제거
+- 순위별 RRF 점수 및 정렬
+- 점수 동점 시 `chunk_id` 정렬
+- Top-K 적용 및 잘못된 매개변수 처리
+- BM25·Chroma 검색기 호출과 결과 병합
+
+```powershell
+python -m unittest discover -s tests -p "test_hybrid_retriever.py" -v
+```
+
+```text
+Ran 9 tests in 0.002s
+
+OK
+```
+
+## 7. 네 가지 검색 방식 비교 및 9번 최종 검증
+
+동일 질문 `2025년 연결 기준 매출액은 얼마인가?`를 대상으로 수동 검색 결과를 비교했다.
+
+| 순위 | BM25 | Chroma Similarity | MMR | Hybrid-RRF |
+| ---: | ---: | ---: | ---: | ---: |
+| 1 | 125 | **85** | **85** | **85** |
+| 2 | 129 | 86 | 146 | 125 |
+| 3 | 149 | 89 | 195 | 86 |
+| 4 | 129 | 146 | 193 | 129 |
+| 5 | 149 | 87 | 151 | 89 |
+
+Gold page는 **PDF 물리 페이지 85쪽**이다. 이 질문에서는 BM25가 Hit@3·Hit@5에 실패했고, Chroma Similarity·MMR·Hybrid-RRF는 모두 성공했다. **한 질문의 관찰 결과로 전체 검색기 우열을 단정하지 않는다.**
+
+MMR·Hybrid 테스트 추가 후 전체 회귀 테스트를 실행했다.
+
+```powershell
+python -m unittest discover -s tests -v
+```
+
+```text
+Ran 52 tests in 2.515s
+
+OK
+```
+
+- MMR 단위 테스트: 7개 통과
+- Hybrid-RRF 단위 테스트: 9개 통과
+- 전체 회귀 테스트: 52개 통과
+- 전체 평가 질문 20개에 대한 정량 평가는 미실시
+
 ## 다음 작업
 
-1. **9번 MMR·Hybrid-RRF**: BM25·벡터 유사도·MMR·Hybrid-RRF 검색 결과를 비교한다.
-2. **10번 Hit@3·Hit@5 평가**: `eval_retrieval.json`의 20개 질문을 동일 조건에서 실행해 Gold page 검색 성공률을 계산한다.
-3. **11번 검색 실패 개선**: 토큰화·청킹·검색 전략을 수정하고 개선 전후 결과를 비교한다.
-4. **12번 문서화**: 모델·검색 설정, 실행 순서, 검색 품질 비교표, 실패 사례, 테스트 결과를 최종 정리한다.
+1. **10번 Hit@3·Hit@5 평가**: `eval_retrieval.json`의 20개 질문을 동일 조건에서 실행해 Gold page 검색 성공률을 계산한다.
+2. **11번 검색 실패 개선**: 토큰화·청킹·검색 전략을 수정하고 개선 전후 결과를 비교한다.
+3. **12번 문서화**: 모델·검색 설정, 실행 순서, 검색 품질 비교표, 실패 사례, 테스트 결과를 최종 정리한다.
 
 검색 성능을 비교할 때는 `evaluation/dataset/annotation_guide.md`의 기준에 따라 검색 결과의 `source_file + pdf_page`가 `gold_sources` 중 하나와 일치하는지 확인한다.
