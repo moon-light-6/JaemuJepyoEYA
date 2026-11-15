@@ -157,3 +157,61 @@ def search_chroma(
         })
 
     return results
+
+
+def search_mmr(
+    persist_directory: str | Path,
+    question: str,
+    k: int = 5,
+    fetch_k: int = 20,
+    lambda_mult: float = 0.5,
+) -> list[dict]:
+    """Chroma에서 관련성과 다양성을 고려해 MMR 검색한다."""
+
+    if not question.strip():
+        raise ValueError("검색 질문이 비어 있습니다.")
+
+    if k <= 0:
+        raise ValueError("k는 1 이상이어야 합니다.")
+
+    if fetch_k < k:
+        raise ValueError("fetch_k는 k 이상이어야 합니다.")
+
+    if not 0.0 <= lambda_mult <= 1.0:
+        raise ValueError("lambda_mult는 0~1 사이여야 합니다.")
+
+    vectorstore = create_chroma(persist_directory)
+
+    if vectorstore._collection.count() == 0:
+        raise ValueError(
+            "Chroma에 저장된 청크가 없습니다. "
+            "먼저 python scripts/build_chroma.py를 실행하세요."
+        )
+
+    # 수업에서 사용한 MMR Retriever 방식
+    retriever = vectorstore.as_retriever(
+        search_type="mmr",
+        search_kwargs={
+            "k": k,
+            "fetch_k": fetch_k,
+            "lambda_mult": lambda_mult,
+        },
+    )
+
+    hits = retriever.invoke(question)
+
+    results = []
+
+    for rank, document in enumerate(hits, start=1):
+        metadata = document.metadata
+
+        results.append({
+            "rank": rank,
+            "chunk_id": metadata["chunk_id"],
+            "text": document.page_content,
+            "source_file": metadata["source_file"],
+            "pdf_page": metadata["pdf_page"],
+            "metadata": metadata,
+        })
+
+    return results
