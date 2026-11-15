@@ -6,3 +6,7 @@ langchain-core
 langchain-text-splitters
 langchain-community
 rank-bm25
+chromadb
+langchain-chroma
+langchain-huggingface
+sentence-transformers
