@@ -2,7 +2,7 @@
 
 > 공식 PDF 청킹 이후 BM25·Chroma·MMR·Hybrid-RRF 검색기를 만들고, 검색 성능을 검증하는 과정을 다룬다.
 
-이 문서는 `docs/chunking_document.md`에서 준비한 검색용 청크와 평가셋을 입력으로 사용한다. 현재는 **BM25, Chroma, MMR·Hybrid-RRF 검색기의 구현·테스트** 까지 기록했다. 20문항 전체 검색 성능 평가는 후속 단계에서 추가한다.
+이 문서는 `docs/chunking_document.md`에서 준비한 검색용 청크와 평가셋을 입력으로 사용한다. 현재는 **BM25, Chroma, MMR·Hybrid-RRF 검색기 구현과 검색 성능 평가** 까지 기록했다. 검색 실패 원인 분석과 개선은 후속 단계에서 진행한다.
 
 현재 MVP 검색 대상은 삼성전자 2025년 사업보고서의 **연결재무제표·연결 주석(PDF 물리 페이지 83~195)** 이다.
 
@@ -26,6 +26,11 @@
 | `scripts/search_hybrid.py` | BM25 + Chroma Hybrid-RRF 검색 실행 CLI |
 | `tests/test_mmr_retriever.py` | MMR 옵션·결과·입력 검증 단위 테스트 7개 |
 | `tests/test_hybrid_retriever.py` | RRF 점수·중복·통합 검색 단위 테스트 9개 |
+| `evaluation/retrieval_metrics.py` | 평가셋 로드, 출처 일치 판정, Hit@K 집계 |
+| `scripts/evaluate_retrieval.py` | 네 가지 검색 방식의 20문항 자동 평가·결과 저장 |
+| `tests/test_retrieval_metrics.py` | 평가 지표 계산 단위 테스트 7개 |
+| `tests/test_evaluate_retrieval.py` | 평가 실행 흐름·JSON 저장 단위 테스트 5개 |
+| `evaluation/results/retrieval_baseline.json` | 개선 전 기준선: 검색 방식별 성능·문항별 결과 |
 
 `pdf_page`는 PDF 내부에 인쇄된 번호가 아니라 실제 PDF 파일의 **물리 페이지 번호**다. 검색 결과의 출처를 비교할 때는 `source_file`과 `pdf_page`를 함께 확인한다.
 
@@ -449,12 +454,116 @@ OK
 - MMR 단위 테스트: 7개 통과
 - Hybrid-RRF 단위 테스트: 9개 통과
 - 전체 회귀 테스트: 52개 통과
-- 전체 평가 질문 20개에 대한 정량 평가는 미실시
+- 전체 평가 질문 20개에 대한 정량 평가는 10번에서 별도로 진행
+
+## 8. Hit@3·Hit@5 검색 성능 평가
+
+`evaluation/dataset/eval_retrieval.json`의 검증 완료 질문 20개를 사용해 BM25, Chroma Similarity, MMR, Hybrid-RRF를 동일한 청크 데이터에서 평가했다. 이는 **정답 근거 페이지를 검색하는 성능**을 측정하는 단계이며, 생성된 답변이나 금액의 정확도를 측정하는 단계는 아니다.
+
+### 8-1. 평가 데이터와 판정 기준
+
+- 검색 데이터: 삼성전자 2025 사업보고서의 연결재무제표·연결 주석 294개 청크
+- 평가 질문: 20개, 모두 `annotation_status: verified`
+- 질문 구성: 수치형 8개, 비교형 4개, 주석 세부 4개, 서술형 4개
+- 근거 판정: 검색 결과의 `source_file + pdf_page`와 `gold_sources` 비교
+- 평가 지표: Hit@3, Hit@5
+
+질문별 Gold source 중 하나가 상위 K개 **청크 검색 결과**에 포함되면 해당 질문을 Hit로 판정한다. Gold page가 여러 개인 경우에도 일치하는 페이지가 하나 이상 있으면 성공으로 처리한다. `pdf_page`는 PDF 물리 페이지 번호다.
+
+`Hit@K = 정답 근거를 Top-K에서 찾은 질문 수 / 전체 평가 질문 수`
+
+예를 들어 S04(2025년 연결 매출액)의 Gold source는 `20260310002820.pdf`의 85쪽이다. 검색 결과 상위 3개 청크 중 해당 출처가 있으면 Hit@3 성공이다.
+
+### 8-2. 평가 지표 구현과 테스트
+
+`evaluation/retrieval_metrics.py`에 다음 함수를 구현했다.
+
+| 함수 | 역할 |
+| --- | --- |
+| `load_eval_dataset()` | JSON 평가셋 로드 및 `verified` 질문 검증 |
+| `is_hit()` | 결과 상위 K개의 `source_file + pdf_page`가 Gold source와 일치하는지 판정 |
+| `calculate_hit_rate()` | 질문별 Hit 결과를 집계하여 전체 성공률 계산 |
+
+평가 지표 단위 테스트:
+
+```powershell
+python -m unittest discover -s tests -p "test_retrieval_metrics.py" -v
+```
+
+로컬 검증 결과 **7개 통과**. 평가셋 원본에서도 `verified` 질문 **20개를 정상 로드**했다. 해당 단계까지 전체 회귀 테스트는 **59개 통과**했다.
+
+### 8-3. 네 가지 검색 방식 자동 평가
+
+`scripts/evaluate_retrieval.py`는 평가셋의 질문을 네 가지 검색기에 순서대로 입력한다. BM25 검색기와 KURE-v1 임베딩 모델·Chroma 저장소는 평가 시작 시 각각 한 번 생성하거나 로드하고, 질문마다 재사용한다.
+
+| 검색 방식 | 평가 설정 |
+| --- | --- |
+| BM25 | Top-5 (Hybrid용 후보 Top-10 별도 확보) |
+| Chroma Similarity | Top-5 (Hybrid용 후보 Top-10 별도 확보) |
+| MMR | `k=5`, `fetch_k=20`, `lambda_mult=0.5` |
+| Hybrid-RRF | `k=5`, `candidate_k=10`, `rank_constant=60` |
+
+각 검색기는 기존의 동일한 294개 청크를 사용한다. 평가 전에 Chroma 컬렉션의 문서 수와 `chunk_id` 집합이 입력 데이터와 일치하는지 확인한다. 다만 같은 ID로 본문이 수정된 경우까지 감지하는 기능은 아직 없다.
+
+실행 명령:
+
+```powershell
+python scripts/evaluate_retrieval.py
+```
+
+결과는 `evaluation/results/retrieval_baseline.json`에 기록한다.
+
+- `config`: 임베딩 모델과 검색 매개변수
+- `summary`: 검색 방식별 Hit@3·Hit@5, 성공 질문 수, 전체 질문 수
+- `details`: 질문별 Hit 여부 및 상위 청크의 ID·출처 파일·PDF 페이지
+
+### 8-4. 삼성전자 2025 베이스라인 평가 결과
+
+로컬에서 20개 질문을 평가한 실제 결과는 다음과 같다.
+
+| 검색 방식 | Hit@3 | Hit@5 | Hit@3 성공 | Hit@5 성공 |
+| --- | ---: | ---: | ---: | ---: |
+| BM25 | 30.0% | 35.0% | 6/20 | 7/20 |
+| Chroma Similarity | **90.0%** | **90.0%** | **18/20** | **18/20** |
+| MMR | 75.0% | 75.0% | 15/20 | 15/20 |
+| Hybrid-RRF | 85.0% | **90.0%** | 17/20 | **18/20** |
+
+현재 평가셋에서는 Chroma Similarity가 Hit@3·Hit@5에서 가장 높은 수치를 보였다. Hybrid-RRF는 Hit@5에서 Chroma와 같았지만 Hit@3에서 5%p 낮았고, BM25의 성능은 상대적으로 낮았다.
+
+이 수치는 **삼성전자 2025년 자료·검증된 20문항·현재 검색 설정**에 한정된다. 다른 기업이나 문서에서도 같은 결과가 나온다고 일반화하지 않는다.
+
+### 8-5. 평가 스크립트 테스트 및 최종 회귀 테스트
+
+`tests/test_evaluate_retrieval.py`는 실제 KURE-v1을 로드하지 않고 Mock 검색 결과로 평가 실행 흐름을 검증한다.
+
+- 네 검색 방식이 모두 평가되고 문항 수가 집계되는지
+- Hit@3·Hit@5 비율 및 성공 개수가 정확한지
+- Chroma 청크 수·ID 불일치 시 오류가 발생하는지
+- 결과 JSON이 지정 경로에 저장되고 내용이 유지되는지
+
+```powershell
+python -m unittest discover -s tests -p "test_evaluate_retrieval.py" -v
+python -m unittest discover -s tests -v
+```
+
+로컬 실행 결과:
+
+```text
+평가 실행 스크립트 단위 테스트: 5개 통과
+전체 회귀 테스트: 64개 통과
+```
+
+단위 테스트는 평가 코드의 동작을 검증한다. 실제 검색 성능은 앞의 20문항 평가 결과로 별도 확인했다.
+
+### 8-6. 기준선 보존 및 남은 한계
+
+- `evaluation/results/retrieval_baseline.json`은 11번 개선 실험 이전 결과로 Git에 보존한다.
+- 개선 후 평가는 별도 파일(예: `retrieval_improved.json`)로 저장하고, 기준선 파일을 덮어쓰지 않는다.
+- 현재 Hit@K는 **청크 순위 기준**이다. 동일 페이지에서 나온 복수 청크를 하나의 페이지로 합쳐 평가하지 않는다.
+- 정답 페이지 검색 여부와 실제 답변의 수치·기간·연결 기준 정확성은 구분해서 평가해야 한다.
+- 검색 실패의 구체적인 원인은 아직 확정하지 않았다. 11번에서 문항별 결과와 원문을 대조해 분석한다.
 
 ## 다음 작업
 
-1. **10번 Hit@3·Hit@5 평가**: `eval_retrieval.json`의 20개 질문을 동일 조건에서 실행해 Gold page 검색 성공률을 계산한다.
-2. **11번 검색 실패 개선**: 토큰화·청킹·검색 전략을 수정하고 개선 전후 결과를 비교한다.
-3. **12번 문서화**: 모델·검색 설정, 실행 순서, 검색 품질 비교표, 실패 사례, 테스트 결과를 최종 정리한다.
-
-검색 성능을 비교할 때는 `evaluation/dataset/annotation_guide.md`의 기준에 따라 검색 결과의 `source_file + pdf_page`가 `gold_sources` 중 하나와 일치하는지 확인한다.
+1. **11번 검색 실패 분석 및 개선**: `retrieval_baseline.json`에서 실패 문항을 추출하고, 토큰화·청킹·검색 전략·출처 기준 문제를 구분해 개선 실험을 수행한다.
+2. **12번 최종 정리**: 개선 전후 지표, 실패 사례, 실행 명령, 모델·검색 설정, 최종 회귀 테스트를 문서와 README에 정리한다.
