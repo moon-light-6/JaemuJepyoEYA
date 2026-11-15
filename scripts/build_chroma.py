@@ -1,3 +1,4 @@
+"""KURE-v1 임베딩 기반 Chroma 벡터 DB 색인 스크립트."""
 
 import argparse
 import sys

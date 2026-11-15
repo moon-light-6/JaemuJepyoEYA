@@ -1,3 +1,4 @@
+"""BM25 키워드 검색 실행 스크립트."""
 
 import argparse
 import sys
