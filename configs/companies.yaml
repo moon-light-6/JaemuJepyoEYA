@@ -1,4 +1,5 @@
 companies:
+  # 종목코드: 005930
   - name: "삼성전자"
     corp_code: "00126380"
     reports:
@@ -14,3 +15,336 @@ companies:
         official_pdf:
           provider: "dart"
           dcm_no: "11104488"
+
+  # 종목코드: 000660
+  - name: "SK하이닉스"
+    corp_code: "00164779"
+    reports:
+      "2025":
+        report_type: "business"
+        fiscal_year: 2025
+        fiscal_month: 12
+        disclosure_start: "2026-01-01"
+        disclosure_end: "2026-12-31"
+
+  # 종목코드: 005380
+  - name: "현대자동차"
+    corp_code: "00164742"
+    reports:
+      "2025":
+        report_type: "business"
+        fiscal_year: 2025
+        fiscal_month: 12
+        disclosure_start: "2026-01-01"
+        disclosure_end: "2026-12-31"
+
+  # 종목코드: 051910
+  - name: "LG화학"
+    corp_code: "00356361"
+    reports:
+      "2025":
+        report_type: "business"
+        fiscal_year: 2025
+        fiscal_month: 12
+        disclosure_start: "2026-01-01"
+        disclosure_end: "2026-12-31"
+
+  # 종목코드: 005490
+  - name: "POSCO홀딩스"
+    corp_code: "00155319"
+    reports:
+      "2025":
+        report_type: "business"
+        fiscal_year: 2025
+        fiscal_month: 12
+        disclosure_start: "2026-01-01"
+        disclosure_end: "2026-12-31"
+
+  # 종목코드: 105560
+  - name: "KB금융"
+    corp_code: "00688996"
+    reports:
+      "2025":
+        report_type: "business"
+        fiscal_year: 2025
+        fiscal_month: 12
+        disclosure_start: "2026-01-01"
+        disclosure_end: "2026-12-31"
+
+  # 종목코드: 017670
+  - name: "SK텔레콤"
+    corp_code: "00159023"
+    reports:
+      "2025":
+        report_type: "business"
+        fiscal_year: 2025
+        fiscal_month: 12
+        disclosure_start: "2026-01-01"
+        disclosure_end: "2026-12-31"
+
+  # 종목코드: 035420
+  - name: "NAVER"
+    corp_code: "00266961"
+    reports:
+      "2025":
+        report_type: "business"
+        fiscal_year: 2025
+        fiscal_month: 12
+        disclosure_start: "2026-01-01"
+        disclosure_end: "2026-12-31"
+
+
+  # 종목코드: 000720
+  - name: "현대건설"
+    corp_code: "00164478"
+    reports:
+      "2025":
+        report_type: "business"
+        fiscal_year: 2025
+        fiscal_month: 12
+        disclosure_start: "2026-01-01"
+        disclosure_end: "2026-12-31"
+
+  # 종목코드: 139480
+  - name: "이마트"
+    corp_code: "00872984"
+    reports:
+      "2025":
+        report_type: "business"
+        fiscal_year: 2025
+        fiscal_month: 12
+        disclosure_start: "2026-01-01"
+        disclosure_end: "2026-12-31"
+
+  # 종목코드: 247540
+  - name: "에코프로비엠"
+    corp_code: "01160363"
+    reports:
+      "2025":
+        report_type: "business"
+        fiscal_year: 2025
+        fiscal_month: 12
+        disclosure_start: "2026-01-01"
+        disclosure_end: "2026-12-31"
+        rcept_no: "20260318001622"
+        official_pdf:
+          provider: "dart"
+          dcm_no: "11144261"
+
+  # 종목코드: 086520
+  - name: "에코프로"
+    corp_code: "00536541"
+    reports:
+      "2025":
+        report_type: "business"
+        fiscal_year: 2025
+        fiscal_month: 12
+        disclosure_start: "2026-01-01"
+        disclosure_end: "2026-12-31"
+        rcept_no: "20260318001612"
+        official_pdf:
+          provider: "dart"
+          dcm_no: "11144186"
+
+  # 종목코드: 196170
+  - name: "알테오젠"
+    corp_code: "00989619"
+    reports:
+      "2025":
+        report_type: "business"
+        fiscal_year: 2025
+        fiscal_month: 12
+        disclosure_start: "2026-01-01"
+        disclosure_end: "2026-12-31"
+        rcept_no: "20260323001596"
+        official_pdf:
+          provider: "dart"
+          dcm_no: "11168903"
+        
+
+  # 종목코드: 028300
+  - name: "HLB"
+    corp_code: "00199252"
+    reports:
+      "2025":
+        report_type: "business"
+        fiscal_year: 2025
+        fiscal_month: 12
+        disclosure_start: "2026-01-01"
+        disclosure_end: "2026-12-31"
+
+  # 종목코드: 058470
+  - name: "리노공업"
+    corp_code: "00369657"
+    reports:
+      "2025":
+        report_type: "business"
+        fiscal_year: 2025
+        fiscal_month: 12
+        disclosure_start: "2026-01-01"
+        disclosure_end: "2026-12-31"
+
+  # 종목코드: 036930
+  - name: "주성엔지니어링"
+    corp_code: "00252135"
+    reports:
+      "2025":
+        report_type: "business"
+        fiscal_year: 2025
+        fiscal_month: 12
+        disclosure_start: "2026-01-01"
+        disclosure_end: "2026-12-31"
+
+  # 종목코드: 222800
+  - name: "심텍"
+    corp_code: "01095722"
+    reports:
+      "2025":
+        report_type: "business"
+        fiscal_year: 2025
+        fiscal_month: 12
+        disclosure_start: "2026-01-01"
+        disclosure_end: "2026-12-31"
+
+  # 종목코드: 277810
+  - name: "레인보우로보틱스"
+    corp_code: "01261644"
+    reports:
+      "2025":
+        report_type: "business"
+        fiscal_year: 2025
+        fiscal_month: 12
+        disclosure_start: "2026-01-01"
+        disclosure_end: "2026-12-31"
+
+  # 종목코드: 214150
+  - name: "클래시스"
+    corp_code: "01061327"
+    reports:
+      "2025":
+        report_type: "business"
+        fiscal_year: 2025
+        fiscal_month: 12
+        disclosure_start: "2026-01-01"
+        disclosure_end: "2026-12-31"
+
+  # 종목코드: 214450
+  - name: "파마리서치"
+    corp_code: "00970453"
+    reports:
+      "2025":
+        report_type: "business"
+        fiscal_year: 2025
+        fiscal_month: 12
+        disclosure_start: "2026-01-01"
+        disclosure_end: "2026-12-31"
+
+  # 종목코드: 035900
+  - name: "JYP Ent."
+    corp_code: "00258689"
+    reports:
+      "2025":
+        report_type: "business"
+        fiscal_year: 2025
+        fiscal_month: 12
+        disclosure_start: "2026-01-01"
+        disclosure_end: "2026-12-31"
+
+  # 종목코드: 041510
+  - name: "에스엠"
+    corp_code: "00260930"
+    reports:
+      "2025":
+        report_type: "business"
+        fiscal_year: 2025
+        fiscal_month: 12
+        disclosure_start: "2026-01-01"
+        disclosure_end: "2026-12-31"
+
+  # 종목코드: 263750
+  - name: "펄어비스"
+    corp_code: "01152470"
+    reports:
+      "2025":
+        report_type: "business"
+        fiscal_year: 2025
+        fiscal_month: 12
+        disclosure_start: "2026-01-01"
+        disclosure_end: "2026-12-31"
+
+  # 종목코드: 078340
+  - name: "컴투스"
+    corp_code: "00476498"
+    reports:
+      "2025":
+        report_type: "business"
+        fiscal_year: 2025
+        fiscal_month: 12
+        disclosure_start: "2026-01-01"
+        disclosure_end: "2026-12-31"
+
+  # 종목코드: 042000
+  - name: "카페24"
+    corp_code: "00260879"
+    reports:
+      "2025":
+        report_type: "business"
+        fiscal_year: 2025
+        fiscal_month: 12
+        disclosure_start: "2026-01-01"
+        disclosure_end: "2026-12-31"
+
+  # 종목코드: 304100
+  - name: "솔트룩스"
+    corp_code: "01050738"
+    reports:
+      "2025":
+        report_type: "business"
+        fiscal_year: 2025
+        fiscal_month: 12
+        disclosure_start: "2026-01-01"
+        disclosure_end: "2026-12-31"
+
+  # 종목코드: 035760
+  - name: "CJ ENM"
+    corp_code: "00265324"
+    reports:
+      "2025":
+        report_type: "business"
+        fiscal_year: 2025
+        fiscal_month: 12
+        disclosure_start: "2026-01-01"
+        disclosure_end: "2026-12-31"
+
+  # 종목코드: 005290
+  - name: "동진쎄미켐"
+    corp_code: "00118804"
+    reports:
+      "2025":
+        report_type: "business"
+        fiscal_year: 2025
+        fiscal_month: 12
+        disclosure_start: "2026-01-01"
+        disclosure_end: "2026-12-31"
+
+  # 종목코드: 098460
+  - name: "고영"
+    corp_code: "00579999"
+    reports:
+      "2025":
+        report_type: "business"
+        fiscal_year: 2025
+        fiscal_month: 12
+        disclosure_start: "2026-01-01"
+        disclosure_end: "2026-12-31"
+
+  # 종목코드: 178320
+  - name: "서진시스템"
+    corp_code: "00838005"
+    reports:
+      "2025":
+        report_type: "business"
+        fiscal_year: 2025
+        fiscal_month: 12
+        disclosure_start: "2026-01-01"
+        disclosure_end: "2026-12-31"
