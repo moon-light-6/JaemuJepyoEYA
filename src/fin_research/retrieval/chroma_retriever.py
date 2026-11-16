@@ -16,7 +16,15 @@ COLLECTION_NAME = "samsung_2025_consolidated_kure_v1"
 def create_embedding_model():
     """KURE-v1 임베딩 모델을 로드한다."""
 
-    device = "cuda" if torch.cuda.is_available() else "cpu"
+    if torch.cuda.is_available():
+        device = "cuda"
+    elif torch.backends.mps.is_available():
+        device = "mps"
+    elif hasattr(torch, "xpu") and torch.xpu.is_available():
+        device = "xpu"
+    else:
+        device = "cpu"
+
     print(f"임베딩 실행 장치: {device}")
 
     return HuggingFaceEmbeddings(
