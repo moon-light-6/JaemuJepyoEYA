@@ -1,4 +1,5 @@
 companies:
+  # 종목코드: 005930
   - name: "삼성전자"
     corp_code: "00126380"
     reports:
@@ -14,3 +15,80 @@ companies:
         official_pdf:
           provider: "dart"
           dcm_no: "11104488"
+
+  # 종목코드: 000660
+  - name: "SK하이닉스"
+    corp_code: "00164779"
+    reports:
+      "2025":
+        report_type: "business"
+        fiscal_year: 2025
+        fiscal_month: 12
+        disclosure_start: "2026-01-01"
+        disclosure_end: "2026-12-31"
+
+  # 종목코드: 005380
+  - name: "현대자동차"
+    corp_code: "00164742"
+    reports:
+      "2025":
+        report_type: "business"
+        fiscal_year: 2025
+        fiscal_month: 12
+        disclosure_start: "2026-01-01"
+        disclosure_end: "2026-12-31"
+
+  # 종목코드: 051910
+  - name: "LG화학"
+    corp_code: "00356361"
+    reports:
+      "2025":
+        report_type: "business"
+        fiscal_year: 2025
+        fiscal_month: 12
+        disclosure_start: "2026-01-01"
+        disclosure_end: "2026-12-31"
+
+  # 종목코드: 005490
+  - name: "POSCO홀딩스"
+    corp_code: "00155319"
+    reports:
+      "2025":
+        report_type: "business"
+        fiscal_year: 2025
+        fiscal_month: 12
+        disclosure_start: "2026-01-01"
+        disclosure_end: "2026-12-31"
+
+  # 종목코드: 105560
+  - name: "KB금융"
+    corp_code: "00688996"
+    reports:
+      "2025":
+        report_type: "business"
+        fiscal_year: 2025
+        fiscal_month: 12
+        disclosure_start: "2026-01-01"
+        disclosure_end: "2026-12-31"
+
+  # 종목코드: 017670
+  - name: "SK텔레콤"
+    corp_code: "00159023"
+    reports:
+      "2025":
+        report_type: "business"
+        fiscal_year: 2025
+        fiscal_month: 12
+        disclosure_start: "2026-01-01"
+        disclosure_end: "2026-12-31"
+
+  # 종목코드: 035420
+  - name: "NAVER"
+    corp_code: "00266961"
+    reports:
+      "2025":
+        report_type: "business"
+        fiscal_year: 2025
+        fiscal_month: 12
+        disclosure_start: "2026-01-01"
+        disclosure_end: "2026-12-31"
