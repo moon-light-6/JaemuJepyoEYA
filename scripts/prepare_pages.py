@@ -15,10 +15,82 @@ SECTION_RANGE_PATTERN = re.compile(r"^\s*(\d+)\s*-\s*(\d+)\s*:\s*(.+?)\s*$")
 
 
 @dataclass(frozen=True)
-class SectionRange: # 페이지 범위 
+class SectionRange: # 페이지 범위
     start_page: int
     end_page: int
     section: str
+
+
+CUT_PATTERN = re.compile(r"^\s*(\d+)\s*:\s*(.+?)\s*$")
+
+
+@dataclass(frozen=True)
+class PageCut:  # 경계 쪽에서 제목 위치를 기준으로 한쪽만 남기는 설정
+    page_number: int
+    heading: str
+    keep: str  # "above": 제목 위쪽만, "below": 제목부터 아래쪽만
+
+
+def parse_cut(value: str, keep: str) -> PageCut:
+    """'쪽번호:제목' 형식을 읽는다. 예: 141:4. 재무제표"""
+
+    match = CUT_PATTERN.match(value)
+    if not match:
+        raise argparse.ArgumentTypeError(
+            "형식은 '쪽번호:제목'이어야 합니다. 예: 141:4. 재무제표"
+        )
+    return PageCut(int(match.group(1)), match.group(2), keep)
+
+
+def parse_cut_above(value: str) -> PageCut:
+    return parse_cut(value, "above")
+
+
+def parse_cut_below(value: str) -> PageCut:
+    return parse_cut(value, "below")
+
+
+def validate_cuts(cuts: list[PageCut], ranges: list[SectionRange]) -> dict[int, PageCut]:
+    """쪽당 자르기는 하나만 허용하고, 선택한 범위 안의 쪽만 지정할 수 있다."""
+
+    by_page: dict[int, PageCut] = {}
+    for cut in cuts:
+        if cut.page_number in by_page:
+            raise ValueError(f"{cut.page_number}쪽에 자르기가 두 번 지정되었습니다.")
+        if section_for_page(cut.page_number, ranges) is None:
+            raise ValueError(
+                f"{cut.page_number}쪽은 --section-range에 포함되지 않아 자를 수 없습니다."
+            )
+        by_page[cut.page_number] = cut
+    return by_page
+
+
+def clipped_page_text(pdf_path: Path, cut: PageCut) -> str:
+    """원본 PDF에서 제목 위치(y좌표)를 찾아 위쪽 또는 아래쪽 텍스트만 읽는다.
+
+    pdf_pages.json의 텍스트는 제목이 맨 앞에 먼저 추출되어 글자 순서로는
+    경계를 알 수 없으므로, 좌표가 있는 원본 PDF를 사용한다.
+    """
+
+    import pymupdf as fitz
+
+    with fitz.open(pdf_path) as document:
+        if not 1 <= cut.page_number <= document.page_count:
+            raise ValueError(f"{cut.page_number}쪽이 PDF 범위를 벗어났습니다.")
+        page = document[cut.page_number - 1]
+        matches = page.search_for(cut.heading)
+        if len(matches) != 1:
+            raise ValueError(
+                f"{cut.page_number}쪽에서 제목 '{cut.heading}'이(가) {len(matches)}번 발견되었습니다. "
+                "정확히 한 번 나오는 제목을 지정하세요."
+            )
+        y = matches[0].y0
+        width, height = page.rect.width, page.rect.height
+        if cut.keep == "above":
+            clip = fitz.Rect(0, 0, width, y)
+        else:
+            clip = fitz.Rect(0, y, width, height)
+        return page.get_text("text", clip=clip)
 
 # 사람이 쓴 범위 읽기
 def parse_section_range(value: str) -> SectionRange: 
@@ -81,6 +153,21 @@ def parse_args() -> argparse.Namespace:
         type=parse_section_range,
         help="선택할 페이지 범위. 여러 번 지정 가능. 예: 83-90:연결재무제표",
     )
+    parser.add_argument(
+        "--cut-above",
+        action="append",
+        default=[],
+        type=parse_cut_above,
+        help="경계 쪽에서 제목 위쪽만 사용. 예: 141:4. 재무제표 (연결 주석 끝부분만 남김)",
+    )
+    parser.add_argument(
+        "--cut-below",
+        action="append",
+        default=[],
+        type=parse_cut_below,
+        help="경계 쪽에서 제목부터 아래쪽만 사용. 예: 54:2. 연결재무제표 (별도 요약 제외)",
+    )
+    parser.add_argument("--pdf-path", type=Path, help="원본 PDF 경로 (자르기 옵션 사용 시)")
     parser.add_argument("--input-path", type=Path, help="PDF 페이지 추출 JSON 경로")
     parser.add_argument("--output-path", type=Path, help="출력 JSON 경로")
     return parser.parse_args()
@@ -89,8 +176,18 @@ def parse_args() -> argparse.Namespace:
 def main() -> None:
     args = parse_args()
     validate_ranges(args.section_range)
+    cuts = validate_cuts(args.cut_above + args.cut_below, args.section_range)
+    pdf_path = args.pdf_path or (
+        PROJECT_ROOT
+        / "data"
+        / "raw"
+        / "dart"
+        / args.corp_code
+        / str(args.fiscal_year)
+        / f"{args.rcept_no}.pdf"
+    )
 
-    # 입력 파일 경로를 정하기 
+    # 입력 파일 경로를 정하기
     input_path = args.input_path or (
         PROJECT_ROOT
         / "data"
@@ -120,6 +217,16 @@ def main() -> None:
             continue
         if not isinstance(text, str) or not text.strip():
             raise ValueError(f"{page_number}쪽의 텍스트가 비어 있습니다.")
+
+        cut = cuts.get(page_number)
+        if cut is not None:
+            text = clipped_page_text(pdf_path, cut)
+            if not text.strip():
+                raise ValueError(f"{page_number}쪽을 자른 뒤 텍스트가 비어 있습니다.")
+            print(
+                f"{page_number}쪽 자르기: '{cut.heading}' 기준 "
+                f"{'위쪽' if cut.keep == 'above' else '아래쪽'}만 사용 ({len(text)}자)"
+            )
 
         records.append(
             {
