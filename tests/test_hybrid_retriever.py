@@ -14,6 +14,9 @@ from fin_research.retrieval.hybrid_retriever import (
     search_hybrid,
 )
 
+from langchain_core.documents import Document
+from fin_research.retrieval.search_target import SearchTarget
+
 
 def make_result(chunk_id, pdf_page):
     """테스트용 검색 결과를 생성한다."""
@@ -37,6 +40,16 @@ class HybridRetrieverTest(unittest.TestCase):
         self.doc_a = make_result("chunk_001", 85)
         self.doc_b = make_result("chunk_002", 125)
         self.doc_c = make_result("chunk_003", 86)
+
+        self.target = SearchTarget(
+            corp_code="00126380",
+            fiscal_year=2025,
+            statement_scope="consolidated",
+            rcept_no="20260310002820",
+        )
+
+        self.project_root = Path("test_project")
+        self.persist_directory = "test_chroma"
 
     # 1. 동일 청크의 RRF 점수 합산
     def test_rrf_score(self):
@@ -124,18 +137,20 @@ class HybridRetrieverTest(unittest.TestCase):
     def test_empty_question(self):
         with self.assertRaises(ValueError):
             search_hybrid(
-                "test_chunks.json",
-                "test_chroma",
-                "   ",
+                target=self.target,
+                project_root=self.project_root,
+                persist_directory=self.persist_directory,
+                question="   ",
             )
 
     # 8. candidate_k 검사
     def test_invalid_candidate_k(self):
         with self.assertRaises(ValueError):
             search_hybrid(
-                "test_chunks.json",
-                "test_chroma",
-                "매출액",
+                target=self.target,
+                project_root=self.project_root,
+                persist_directory=self.persist_directory,
+                question="매출액",
                 k=5,
                 candidate_k=3,
             )
@@ -152,45 +167,122 @@ class HybridRetrieverTest(unittest.TestCase):
         mock_bm25,
         mock_chroma,
     ):
-        mock_load.return_value = ["test_document"]
+        # 실제 청크와 같은 메타데이터 구조
+        test_document = Document(
+            page_content="삼성전자 2025년 매출액",
+            metadata={
+                "chunk_id": "chunk_001",
+                "company": "삼성전자",
+                "fiscal_year": 2025,
+                "statement_scope": "consolidated",
+                "source_file": "20260310002820.pdf",
+                "pdf_page": 85,
+                "section": "연결재무제표",
+            },
+        )
+
+        mock_load.return_value = [test_document]
         mock_build.return_value = "test_retriever"
 
         mock_bm25.return_value = [
             self.doc_b,
             self.doc_a,
         ]
+
+        # Chroma 검색 결과에 현재 검색 대상 메타데이터 추가
+        chroma_a = dict(self.doc_a)
+        chroma_a["metadata"] = dict(test_document.metadata)
+
+        chroma_c = dict(self.doc_c)
+        chroma_c["metadata"] = dict(test_document.metadata)
+
         mock_chroma.return_value = [
-            self.doc_a,
-            self.doc_c,
+            chroma_a,
+            chroma_c,
         ]
 
         results = search_hybrid(
-            chunks_path="test_chunks.json",
-            persist_directory="test_chroma",
+            target=self.target,
+            project_root=self.project_root,
+            persist_directory=self.persist_directory,
             question="매출액",
             k=2,
             candidate_k=3,
         )
 
-        # 두 검색기에서 모두 등장한 chunk_001이 1위
+        # BM25와 Chroma에 모두 등장한 chunk_001이 1위
         self.assertEqual(len(results), 2)
         self.assertEqual(results[0]["chunk_id"], "chunk_001")
 
-        mock_load.assert_called_once_with("test_chunks.json")
+        mock_load.assert_called_once_with(
+            self.target.chunks_path(self.project_root)
+        )
+
         mock_build.assert_called_once_with(
-            ["test_document"],
+            [test_document],
             k=3,
         )
+
         mock_bm25.assert_called_once_with(
             "test_retriever",
             "매출액",
         )
+
         mock_chroma.assert_called_once_with(
-            persist_directory="test_chroma",
+            persist_directory=self.persist_directory,
             question="매출액",
+            collection_name=self.target.collection_name,
             k=3,
         )
 
+    @patch("fin_research.retrieval.hybrid_retriever.search_chroma")
+    @patch("fin_research.retrieval.hybrid_retriever.search_bm25")
+    @patch("fin_research.retrieval.hybrid_retriever.build_bm25_retriever")
+    @patch("fin_research.retrieval.hybrid_retriever.load_chunk_documents")
+    def test_reject_different_chroma_target(
+        self,
+        mock_load,
+        mock_build,
+        mock_bm25,
+        mock_chroma,
+    ):
+        mock_load.return_value = [
+            Document(
+                page_content="2025년 매출액",
+                metadata={
+                    "chunk_id": "chunk_001",
+                    "fiscal_year": 2025,
+                    "statement_scope": "consolidated",
+                    "source_file": "20260310002820.pdf",
+                },
+            )
+        ]
+
+        mock_bm25.return_value = [self.doc_a]
+
+        # 연결재무제표를 요청했는데 별도재무제표가 검색된 상황
+        invalid_result = dict(self.doc_b)
+        invalid_result["metadata"] = {
+            "fiscal_year": 2025,
+            "statement_scope": "separate",
+            "source_file": "20260310002820.pdf",
+        }
+
+        mock_chroma.return_value = [invalid_result]
+
+        with self.assertRaisesRegex(
+            ValueError,
+            "Chroma 검색 결과",
+        ):
+            search_hybrid(
+                target=self.target,
+                project_root=self.project_root,
+                persist_directory=self.persist_directory,
+                question="매출액",
+                k=1,
+                candidate_k=2,
+            )
+            
 
 if __name__ == "__main__":
     unittest.main()

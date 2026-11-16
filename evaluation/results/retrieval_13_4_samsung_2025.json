@@ -1,0 +1,3765 @@
+{
+  "config": {
+    "embedding_model": "nlpai-lab/KURE-v1",
+    "questions": 20,
+    "chunks": 294,
+    "bm25_candidate_k": 10,
+    "chroma_candidate_k": 10,
+    "mmr_fetch_k": 20,
+    "mmr_lambda_mult": 0.5,
+    "rrf_rank_constant": 60,
+    "collection_name": "fin_00126380_2025_consolidated_20260310002820_kure_v1"
+  },
+  "summary": {
+    "bm25": {
+      "hit_at_3": 0.3,
+      "hit_at_5": 0.35,
+      "hits_at_3": 6,
+      "hits_at_5": 7,
+      "total": 20
+    },
+    "chroma": {
+      "hit_at_3": 0.9,
+      "hit_at_5": 0.9,
+      "hits_at_3": 18,
+      "hits_at_5": 18,
+      "total": 20
+    },
+    "mmr": {
+      "hit_at_3": 0.75,
+      "hit_at_5": 0.75,
+      "hits_at_3": 15,
+      "hits_at_5": 15,
+      "total": 20
+    },
+    "hybrid": {
+      "hit_at_3": 0.85,
+      "hit_at_5": 0.9,
+      "hits_at_3": 17,
+      "hits_at_5": 18,
+      "total": 20
+    }
+  },
+  "details": {
+    "bm25": [
+      {
+        "id": "S01",
+        "question": "2025년 연결 기준 자산총계는 얼마인가?",
+        "answer_type": "numeric",
+        "category": "financial_position",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 83
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0125_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 125
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0129_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 129
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0149_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 149
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0129_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 129
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0149_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 149
+          }
+        ]
+      },
+      {
+        "id": "S02",
+        "question": "2025년 연결 기준 현금및현금성자산은 얼마인가?",
+        "answer_type": "numeric",
+        "category": "financial_position",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 83
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0125_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 125
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0129_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 129
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0108_03",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 108
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0149_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 149
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0165_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 165
+          }
+        ]
+      },
+      {
+        "id": "S03",
+        "question": "2025년 연결 기준 재고자산은 얼마인가?",
+        "answer_type": "numeric",
+        "category": "financial_position",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 83
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0125_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 125
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0129_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 129
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0149_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 149
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0129_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 129
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0149_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 149
+          }
+        ]
+      },
+      {
+        "id": "S04",
+        "question": "2025년 연결 기준 매출액은 얼마인가?",
+        "answer_type": "numeric",
+        "category": "income_statement",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 85
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0125_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 125
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0129_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 129
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0149_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 149
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0129_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 129
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0149_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 149
+          }
+        ]
+      },
+      {
+        "id": "S05",
+        "question": "2025년 연결 기준 영업이익은 얼마인가?",
+        "answer_type": "numeric",
+        "category": "income_statement",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 85
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0125_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 125
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0129_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 129
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0149_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 149
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0129_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 129
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0149_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 149
+          }
+        ]
+      },
+      {
+        "id": "S06",
+        "question": "2025년 연결 기준 당기순이익은 얼마인가?",
+        "answer_type": "numeric",
+        "category": "income_statement",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 85
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0125_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 125
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0129_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 129
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0149_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 149
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0129_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 129
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0149_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 149
+          }
+        ]
+      },
+      {
+        "id": "S07",
+        "question": "2025년 연결 기준 영업활동으로 인한 현금흐름은 얼마인가?",
+        "answer_type": "numeric",
+        "category": "cash_flow",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 89
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0163_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 163
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0163_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 163
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0125_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 125
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0089_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 89
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0129_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 129
+          }
+        ]
+      },
+      {
+        "id": "S08",
+        "question": "2025년 연결 기준 배당금 지급액은 얼마인가?",
+        "answer_type": "numeric",
+        "category": "cash_flow",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 90
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0149_03",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 149
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0149_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 149
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0149_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 149
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0125_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 125
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0129_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 129
+          }
+        ]
+      },
+      {
+        "id": "S09",
+        "question": "2025년과 2024년 연결 기준 자산총계는 각각 얼마인가?",
+        "answer_type": "comparison",
+        "category": "financial_position",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 83
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0129_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 129
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0149_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 149
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0125_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 125
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0149_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 149
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0149_03",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 149
+          }
+        ]
+      },
+      {
+        "id": "S10",
+        "question": "2025년과 2024년 연결 기준 매출액은 각각 얼마인가?",
+        "answer_type": "comparison",
+        "category": "income_statement",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 85
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0129_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 129
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0149_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 149
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0125_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 125
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0149_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 149
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0149_03",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 149
+          }
+        ]
+      },
+      {
+        "id": "S11",
+        "question": "2025년과 2024년 연결 기준 영업이익은 각각 얼마인가?",
+        "answer_type": "comparison",
+        "category": "income_statement",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 85
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0129_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 129
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0149_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 149
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0125_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 125
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0149_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 149
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0149_03",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 149
+          }
+        ]
+      },
+      {
+        "id": "S12",
+        "question": "2025년과 2024년 연결 기준 배당금 지급액은 어떻게 다른가?",
+        "answer_type": "comparison",
+        "category": "cash_flow",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 90
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0149_03",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 149
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0149_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 149
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0149_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 149
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0108_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 108
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0129_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 129
+          }
+        ]
+      },
+      {
+        "id": "S13",
+        "question": "연결회사는 금융자산을 어떤 기준으로 분류하는가?",
+        "answer_type": "note_detail",
+        "category": "accounting_policy",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 109
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0184_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 184
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0113_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 113
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0109_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 109
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0171_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 171
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0170_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 170
+          }
+        ]
+      },
+      {
+        "id": "S14",
+        "question": "제품 반품이 예상되는 경우 연결회사는 어떤 부채와 권리를 인식하는가?",
+        "answer_type": "note_detail",
+        "category": "revenue_recognition",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 113
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0111_03",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 111
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0113_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 113
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0111_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 111
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0114_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 114
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0111_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 111
+          }
+        ]
+      },
+      {
+        "id": "S15",
+        "question": "매출채권 및 미수금 관련 내용은 몇 번 주석에서 확인할 수 있는가?",
+        "answer_type": "note_detail",
+        "category": "receivables",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 121
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0122_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 122
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0122_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 122
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0121_04",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 121
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0121_03",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 121
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0112_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 112
+          }
+        ]
+      },
+      {
+        "id": "S16",
+        "question": "연결 기준 유형자산의 기말 장부금액은 얼마인가?",
+        "answer_type": "note_detail",
+        "category": "tangible_assets",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 129
+          },
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 130
+          },
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 131
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0149_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 149
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0130_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 130
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0125_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 125
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0149_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 149
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0145_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 145
+          }
+        ]
+      },
+      {
+        "id": "S17",
+        "question": "새로운 회계기준이 연결회사의 재무제표에 미치는 영향에 대해 무엇을 평가하고 있는가?",
+        "answer_type": "narrative",
+        "category": "accounting_policy",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 108
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0108_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 108
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0107_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 107
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0160_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 160
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0108_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 108
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0129_03",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 129
+          }
+        ]
+      },
+      {
+        "id": "S18",
+        "question": "연결회사는 파생상품 계약에서 발생한 권리와 의무를 어떻게 회계처리하는가?",
+        "answer_type": "narrative",
+        "category": "derivatives",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 111
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0111_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 111
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0108_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 108
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0172_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 172
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0173_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 173
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0112_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 112
+          }
+        ]
+      },
+      {
+        "id": "S19",
+        "question": "품질보증 관련 충당부채는 어떤 상황에서 인식되는가?",
+        "answer_type": "narrative",
+        "category": "provisions",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 144
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0112_03",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 112
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0164_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 164
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0172_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 172
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0117_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 117
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0164_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 164
+          }
+        ]
+      },
+      {
+        "id": "S20",
+        "question": "보고기간후사건 주석에서 연결회사가 진행 중인 주요 보통주 거래는 무엇인가?",
+        "answer_type": "narrative",
+        "category": "subsequent_events",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 195
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0166_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 166
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0106_03",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 106
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0107_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 107
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0167_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 167
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0166_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 166
+          }
+        ]
+      }
+    ],
+    "chroma": [
+      {
+        "id": "S01",
+        "question": "2025년 연결 기준 자산총계는 얼마인가?",
+        "answer_type": "numeric",
+        "category": "financial_position",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 83
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0085_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 85
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0083_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 83
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0086_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 86
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0087_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 87
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0089_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 89
+          }
+        ]
+      },
+      {
+        "id": "S02",
+        "question": "2025년 연결 기준 현금및현금성자산은 얼마인가?",
+        "answer_type": "numeric",
+        "category": "financial_position",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 83
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0083_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 83
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0108_03",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 108
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0089_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 89
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0165_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 165
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0087_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 87
+          }
+        ]
+      },
+      {
+        "id": "S03",
+        "question": "2025년 연결 기준 재고자산은 얼마인가?",
+        "answer_type": "numeric",
+        "category": "financial_position",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 83
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0124_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 124
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0083_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 83
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0083_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 83
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0124_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 124
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0174_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 174
+          }
+        ]
+      },
+      {
+        "id": "S04",
+        "question": "2025년 연결 기준 매출액은 얼마인가?",
+        "answer_type": "numeric",
+        "category": "income_statement",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 85
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0085_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 85
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0086_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 86
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0089_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 89
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0146_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 146
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0087_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 87
+          }
+        ]
+      },
+      {
+        "id": "S05",
+        "question": "2025년 연결 기준 영업이익은 얼마인가?",
+        "answer_type": "numeric",
+        "category": "income_statement",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 85
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0085_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 85
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0089_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 89
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0086_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 86
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0127_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 127
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0087_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 87
+          }
+        ]
+      },
+      {
+        "id": "S06",
+        "question": "2025년 연결 기준 당기순이익은 얼마인가?",
+        "answer_type": "numeric",
+        "category": "income_statement",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 85
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0085_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 85
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0086_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 86
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0089_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 89
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0087_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 87
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0087_04",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 87
+          }
+        ]
+      },
+      {
+        "id": "S07",
+        "question": "2025년 연결 기준 영업활동으로 인한 현금흐름은 얼마인가?",
+        "answer_type": "numeric",
+        "category": "cash_flow",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 89
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0089_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 89
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0134_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 134
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0165_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 165
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0135_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 135
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0085_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 85
+          }
+        ]
+      },
+      {
+        "id": "S08",
+        "question": "2025년 연결 기준 배당금 지급액은 얼마인가?",
+        "answer_type": "numeric",
+        "category": "cash_flow",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 90
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0149_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 149
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0089_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 89
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0087_04",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 87
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0086_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 86
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0149_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 149
+          }
+        ]
+      },
+      {
+        "id": "S09",
+        "question": "2025년과 2024년 연결 기준 자산총계는 각각 얼마인가?",
+        "answer_type": "comparison",
+        "category": "financial_position",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 83
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0087_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 87
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0085_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 85
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0083_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 83
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0086_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 86
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0083_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 83
+          }
+        ]
+      },
+      {
+        "id": "S10",
+        "question": "2025년과 2024년 연결 기준 매출액은 각각 얼마인가?",
+        "answer_type": "comparison",
+        "category": "income_statement",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 85
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0085_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 85
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0086_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 86
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0087_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 87
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0089_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 89
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0087_04",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 87
+          }
+        ]
+      },
+      {
+        "id": "S11",
+        "question": "2025년과 2024년 연결 기준 영업이익은 각각 얼마인가?",
+        "answer_type": "comparison",
+        "category": "income_statement",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 85
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0085_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 85
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0089_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 89
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0086_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 86
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0087_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 87
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0087_03",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 87
+          }
+        ]
+      },
+      {
+        "id": "S12",
+        "question": "2025년과 2024년 연결 기준 배당금 지급액은 어떻게 다른가?",
+        "answer_type": "comparison",
+        "category": "cash_flow",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 90
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0149_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 149
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0149_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 149
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0087_04",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 87
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0089_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 89
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0087_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 87
+          }
+        ]
+      },
+      {
+        "id": "S13",
+        "question": "연결회사는 금융자산을 어떤 기준으로 분류하는가?",
+        "answer_type": "note_detail",
+        "category": "accounting_policy",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 109
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0174_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 174
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0109_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 109
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0111_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 111
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0110_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 110
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0109_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 109
+          }
+        ]
+      },
+      {
+        "id": "S14",
+        "question": "제품 반품이 예상되는 경우 연결회사는 어떤 부채와 권리를 인식하는가?",
+        "answer_type": "note_detail",
+        "category": "revenue_recognition",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 113
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0111_03",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 111
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0113_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 113
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0111_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 111
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0144_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 144
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0110_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 110
+          }
+        ]
+      },
+      {
+        "id": "S15",
+        "question": "매출채권 및 미수금 관련 내용은 몇 번 주석에서 확인할 수 있는가?",
+        "answer_type": "note_detail",
+        "category": "receivables",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 121
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0121_04",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 121
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0122_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 122
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0118_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 118
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0083_03",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 83
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0083_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 83
+          }
+        ]
+      },
+      {
+        "id": "S16",
+        "question": "연결 기준 유형자산의 기말 장부금액은 얼마인가?",
+        "answer_type": "note_detail",
+        "category": "tangible_assets",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 129
+          },
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 130
+          },
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 131
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0131_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 131
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0124_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 124
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0130_04",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 130
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0130_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 130
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0083_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 83
+          }
+        ]
+      },
+      {
+        "id": "S17",
+        "question": "새로운 회계기준이 연결회사의 재무제표에 미치는 영향에 대해 무엇을 평가하고 있는가?",
+        "answer_type": "narrative",
+        "category": "accounting_policy",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 108
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0108_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 108
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0106_03",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 106
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0107_03",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 107
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0112_03",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 112
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0107_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 107
+          }
+        ]
+      },
+      {
+        "id": "S18",
+        "question": "연결회사는 파생상품 계약에서 발생한 권리와 의무를 어떻게 회계처리하는가?",
+        "answer_type": "narrative",
+        "category": "derivatives",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 111
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0111_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 111
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0113_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 113
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0110_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 110
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0171_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 171
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0111_03",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 111
+          }
+        ]
+      },
+      {
+        "id": "S19",
+        "question": "품질보증 관련 충당부채는 어떤 상황에서 인식되는가?",
+        "answer_type": "narrative",
+        "category": "provisions",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 144
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0144_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 144
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0113_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 113
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0143_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 143
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0143_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 143
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0145_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 145
+          }
+        ]
+      },
+      {
+        "id": "S20",
+        "question": "보고기간후사건 주석에서 연결회사가 진행 중인 주요 보통주 거래는 무엇인가?",
+        "answer_type": "narrative",
+        "category": "subsequent_events",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 195
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0195_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 195
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0128_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 128
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0162_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 162
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0125_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 125
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0113_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 113
+          }
+        ]
+      }
+    ],
+    "mmr": [
+      {
+        "id": "S01",
+        "question": "2025년 연결 기준 자산총계는 얼마인가?",
+        "answer_type": "numeric",
+        "category": "financial_position",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 83
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0085_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 85
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0124_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 124
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0146_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 146
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0139_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 139
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0193_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 193
+          }
+        ]
+      },
+      {
+        "id": "S02",
+        "question": "2025년 연결 기준 현금및현금성자산은 얼마인가?",
+        "answer_type": "numeric",
+        "category": "financial_position",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 83
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0083_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 83
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0108_03",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 108
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0134_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 134
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0166_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 166
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0114_03",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 114
+          }
+        ]
+      },
+      {
+        "id": "S03",
+        "question": "2025년 연결 기준 재고자산은 얼마인가?",
+        "answer_type": "numeric",
+        "category": "financial_position",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 83
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0124_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 124
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0083_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 83
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0146_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 146
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0109_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 109
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0089_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 89
+          }
+        ]
+      },
+      {
+        "id": "S04",
+        "question": "2025년 연결 기준 매출액은 얼마인가?",
+        "answer_type": "numeric",
+        "category": "income_statement",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 85
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0085_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 85
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0146_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 146
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0195_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 195
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0193_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 193
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0151_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 151
+          }
+        ]
+      },
+      {
+        "id": "S05",
+        "question": "2025년 연결 기준 영업이익은 얼마인가?",
+        "answer_type": "numeric",
+        "category": "income_statement",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 85
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0085_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 85
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0162_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 162
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0146_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 146
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0159_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 159
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0193_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 193
+          }
+        ]
+      },
+      {
+        "id": "S06",
+        "question": "2025년 연결 기준 당기순이익은 얼마인가?",
+        "answer_type": "numeric",
+        "category": "income_statement",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 85
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0085_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 85
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0192_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 192
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0162_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 162
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0151_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 151
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0134_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 134
+          }
+        ]
+      },
+      {
+        "id": "S07",
+        "question": "2025년 연결 기준 영업활동으로 인한 현금흐름은 얼마인가?",
+        "answer_type": "numeric",
+        "category": "cash_flow",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 89
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0089_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 89
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0135_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 135
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0193_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 193
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0166_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 166
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0173_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 173
+          }
+        ]
+      },
+      {
+        "id": "S08",
+        "question": "2025년 연결 기준 배당금 지급액은 얼마인가?",
+        "answer_type": "numeric",
+        "category": "cash_flow",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 90
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0149_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 149
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0089_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 89
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0151_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 151
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0191_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 191
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0144_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 144
+          }
+        ]
+      },
+      {
+        "id": "S09",
+        "question": "2025년과 2024년 연결 기준 자산총계는 각각 얼마인가?",
+        "answer_type": "comparison",
+        "category": "financial_position",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 83
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0087_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 87
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0139_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 139
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0134_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 134
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0110_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 110
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0132_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 132
+          }
+        ]
+      },
+      {
+        "id": "S10",
+        "question": "2025년과 2024년 연결 기준 매출액은 각각 얼마인가?",
+        "answer_type": "comparison",
+        "category": "income_statement",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 85
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0085_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 85
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0146_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 146
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0134_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 134
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0195_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 195
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0113_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 113
+          }
+        ]
+      },
+      {
+        "id": "S11",
+        "question": "2025년과 2024년 연결 기준 영업이익은 각각 얼마인가?",
+        "answer_type": "comparison",
+        "category": "income_statement",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 85
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0085_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 85
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0156_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 156
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0128_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 128
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0134_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 134
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0146_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 146
+          }
+        ]
+      },
+      {
+        "id": "S12",
+        "question": "2025년과 2024년 연결 기준 배당금 지급액은 어떻게 다른가?",
+        "answer_type": "comparison",
+        "category": "cash_flow",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 90
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0149_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 149
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0087_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 87
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0151_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 151
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0144_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 144
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0191_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 191
+          }
+        ]
+      },
+      {
+        "id": "S13",
+        "question": "연결회사는 금융자산을 어떤 기준으로 분류하는가?",
+        "answer_type": "note_detail",
+        "category": "accounting_policy",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 109
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0174_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 174
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0109_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 109
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0167_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 167
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0112_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 112
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0110_03",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 110
+          }
+        ]
+      },
+      {
+        "id": "S14",
+        "question": "제품 반품이 예상되는 경우 연결회사는 어떤 부채와 권리를 인식하는가?",
+        "answer_type": "note_detail",
+        "category": "revenue_recognition",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 113
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0111_03",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 111
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0144_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 144
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0118_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 118
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0110_03",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 110
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0124_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 124
+          }
+        ]
+      },
+      {
+        "id": "S15",
+        "question": "매출채권 및 미수금 관련 내용은 몇 번 주석에서 확인할 수 있는가?",
+        "answer_type": "note_detail",
+        "category": "receivables",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 121
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0121_04",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 121
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0118_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 118
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0107_03",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 107
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0160_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 160
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0134_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 134
+          }
+        ]
+      },
+      {
+        "id": "S16",
+        "question": "연결 기준 유형자산의 기말 장부금액은 얼마인가?",
+        "answer_type": "note_detail",
+        "category": "tangible_assets",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 129
+          },
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 130
+          },
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 131
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0131_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 131
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0124_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 124
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0109_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 109
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0089_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 89
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0158_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 158
+          }
+        ]
+      },
+      {
+        "id": "S17",
+        "question": "새로운 회계기준이 연결회사의 재무제표에 미치는 영향에 대해 무엇을 평가하고 있는가?",
+        "answer_type": "narrative",
+        "category": "accounting_policy",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 108
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0108_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 108
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0106_03",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 106
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0140_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 140
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0114_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 114
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0085_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 85
+          }
+        ]
+      },
+      {
+        "id": "S18",
+        "question": "연결회사는 파생상품 계약에서 발생한 권리와 의무를 어떻게 회계처리하는가?",
+        "answer_type": "narrative",
+        "category": "derivatives",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 111
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0111_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 111
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0110_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 110
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0171_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 171
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0112_03",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 112
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0144_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 144
+          }
+        ]
+      },
+      {
+        "id": "S19",
+        "question": "품질보증 관련 충당부채는 어떤 상황에서 인식되는가?",
+        "answer_type": "narrative",
+        "category": "provisions",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 144
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0144_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 144
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0170_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 170
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0107_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 107
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0177_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 177
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0113_03",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 113
+          }
+        ]
+      },
+      {
+        "id": "S20",
+        "question": "보고기간후사건 주석에서 연결회사가 진행 중인 주요 보통주 거래는 무엇인가?",
+        "answer_type": "narrative",
+        "category": "subsequent_events",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 195
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0195_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 195
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0145_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 145
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0167_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 167
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0191_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 191
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0091_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 91
+          }
+        ]
+      }
+    ],
+    "hybrid": [
+      {
+        "id": "S01",
+        "question": "2025년 연결 기준 자산총계는 얼마인가?",
+        "answer_type": "numeric",
+        "category": "financial_position",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 83
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0085_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 85
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0125_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 125
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0083_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 83
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0129_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 129
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0086_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 86
+          }
+        ]
+      },
+      {
+        "id": "S02",
+        "question": "2025년 연결 기준 현금및현금성자산은 얼마인가?",
+        "answer_type": "numeric",
+        "category": "financial_position",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 83
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0108_03",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 108
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0165_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 165
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0083_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 83
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0125_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 125
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0129_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 129
+          }
+        ]
+      },
+      {
+        "id": "S03",
+        "question": "2025년 연결 기준 재고자산은 얼마인가?",
+        "answer_type": "numeric",
+        "category": "financial_position",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 83
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0124_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 124
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0125_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 125
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0083_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 83
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0129_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 129
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0083_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 83
+          }
+        ]
+      },
+      {
+        "id": "S04",
+        "question": "2025년 연결 기준 매출액은 얼마인가?",
+        "answer_type": "numeric",
+        "category": "income_statement",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 85
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0085_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 85
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0125_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 125
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0086_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 86
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0129_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 129
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0089_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 89
+          }
+        ]
+      },
+      {
+        "id": "S05",
+        "question": "2025년 연결 기준 영업이익은 얼마인가?",
+        "answer_type": "numeric",
+        "category": "income_statement",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 85
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0085_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 85
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0125_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 125
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0089_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 89
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0129_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 129
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0086_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 86
+          }
+        ]
+      },
+      {
+        "id": "S06",
+        "question": "2025년 연결 기준 당기순이익은 얼마인가?",
+        "answer_type": "numeric",
+        "category": "income_statement",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 85
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0085_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 85
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0125_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 125
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0086_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 86
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0129_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 129
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0089_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 89
+          }
+        ]
+      },
+      {
+        "id": "S07",
+        "question": "2025년 연결 기준 영업활동으로 인한 현금흐름은 얼마인가?",
+        "answer_type": "numeric",
+        "category": "cash_flow",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 89
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0089_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 89
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0163_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 163
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0134_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 134
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0163_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 163
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0125_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 125
+          }
+        ]
+      },
+      {
+        "id": "S08",
+        "question": "2025년 연결 기준 배당금 지급액은 얼마인가?",
+        "answer_type": "numeric",
+        "category": "cash_flow",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 90
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0149_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 149
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0149_03",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 149
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0149_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 149
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0089_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 89
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0087_04",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 87
+          }
+        ]
+      },
+      {
+        "id": "S09",
+        "question": "2025년과 2024년 연결 기준 자산총계는 각각 얼마인가?",
+        "answer_type": "comparison",
+        "category": "financial_position",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 83
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0087_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 87
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0129_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 129
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0085_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 85
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0149_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 149
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0083_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 83
+          }
+        ]
+      },
+      {
+        "id": "S10",
+        "question": "2025년과 2024년 연결 기준 매출액은 각각 얼마인가?",
+        "answer_type": "comparison",
+        "category": "income_statement",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 85
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0085_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 85
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0129_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 129
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0086_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 86
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0149_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 149
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0087_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 87
+          }
+        ]
+      },
+      {
+        "id": "S11",
+        "question": "2025년과 2024년 연결 기준 영업이익은 각각 얼마인가?",
+        "answer_type": "comparison",
+        "category": "income_statement",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 85
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0085_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 85
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0129_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 129
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0089_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 89
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0149_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 149
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0086_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 86
+          }
+        ]
+      },
+      {
+        "id": "S12",
+        "question": "2025년과 2024년 연결 기준 배당금 지급액은 어떻게 다른가?",
+        "answer_type": "comparison",
+        "category": "cash_flow",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 90
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0149_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 149
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0149_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 149
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0149_03",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 149
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0089_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 89
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0087_04",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 87
+          }
+        ]
+      },
+      {
+        "id": "S13",
+        "question": "연결회사는 금융자산을 어떤 기준으로 분류하는가?",
+        "answer_type": "note_detail",
+        "category": "accounting_policy",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 109
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0109_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 109
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0109_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 109
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0110_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 110
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0174_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 174
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0184_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 184
+          }
+        ]
+      },
+      {
+        "id": "S14",
+        "question": "제품 반품이 예상되는 경우 연결회사는 어떤 부채와 권리를 인식하는가?",
+        "answer_type": "note_detail",
+        "category": "revenue_recognition",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 113
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0111_03",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 111
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0113_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 113
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0111_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 111
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0144_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 144
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0111_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 111
+          }
+        ]
+      },
+      {
+        "id": "S15",
+        "question": "매출채권 및 미수금 관련 내용은 몇 번 주석에서 확인할 수 있는가?",
+        "answer_type": "note_detail",
+        "category": "receivables",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 121
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0122_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 122
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0121_04",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 121
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0122_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 122
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0118_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 118
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0118_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 118
+          }
+        ]
+      },
+      {
+        "id": "S16",
+        "question": "연결 기준 유형자산의 기말 장부금액은 얼마인가?",
+        "answer_type": "note_detail",
+        "category": "tangible_assets",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 129
+          },
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 130
+          },
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 131
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0130_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 130
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0129_04",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 129
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0131_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 131
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0149_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 149
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0124_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 124
+          }
+        ]
+      },
+      {
+        "id": "S17",
+        "question": "새로운 회계기준이 연결회사의 재무제표에 미치는 영향에 대해 무엇을 평가하고 있는가?",
+        "answer_type": "narrative",
+        "category": "accounting_policy",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 108
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0108_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 108
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0107_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 107
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0107_03",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 107
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0106_03",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 106
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0160_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 160
+          }
+        ]
+      },
+      {
+        "id": "S18",
+        "question": "연결회사는 파생상품 계약에서 발생한 권리와 의무를 어떻게 회계처리하는가?",
+        "answer_type": "narrative",
+        "category": "derivatives",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 111
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0111_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 111
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0108_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 108
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0172_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 172
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0111_03",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 111
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0113_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 113
+          }
+        ]
+      },
+      {
+        "id": "S19",
+        "question": "품질보증 관련 충당부채는 어떤 상황에서 인식되는가?",
+        "answer_type": "narrative",
+        "category": "provisions",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 144
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0112_03",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 112
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0144_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 144
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0113_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 113
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0164_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 164
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0143_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 143
+          }
+        ]
+      },
+      {
+        "id": "S20",
+        "question": "보고기간후사건 주석에서 연결회사가 진행 중인 주요 보통주 거래는 무엇인가?",
+        "answer_type": "narrative",
+        "category": "subsequent_events",
+        "gold_sources": [
+          {
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 195
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00126380_2025_consolidated_0166_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 166
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00126380_2025_consolidated_0162_01",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 162
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00126380_2025_consolidated_0195_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 195
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00126380_2025_consolidated_0106_03",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 106
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00126380_2025_consolidated_0128_02",
+            "source_file": "20260310002820.pdf",
+            "pdf_page": 128
+          }
+        ]
+      }
+    ]
+  }
+}

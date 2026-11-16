@@ -51,6 +51,7 @@ class TestChromaRetriever(unittest.TestCase):
 
         self.chunks_path = self.root / "test_chunks.json"
         self.persist_directory = self.root / "chroma_db"
+        self.collection_name = f"test_{uuid.uuid4().hex}"
 
         self.chunks = [
             {
@@ -98,7 +99,7 @@ class TestChromaRetriever(unittest.TestCase):
         # 수정 후 1
         # 디스크 파일을 만들지 않는 테스트용 Chroma
         self.vectorstore = Chroma(
-            collection_name=f"test_{uuid.uuid4().hex}",
+            collection_name=self.collection_name,
             embedding_function=TestEmbeddings(),
             client=chromadb.EphemeralClient(),
         )
@@ -133,35 +134,41 @@ class TestChromaRetriever(unittest.TestCase):
         count = build_chroma(
             self.chunks_path,
             self.persist_directory,
+            collection_name=self.collection_name,
         )
 
         self.assertEqual(count, 3)
-
-        # 수정 전
-        # self.assertTrue(self.persist_directory.exists())
-
-        # 수정 후
         self.assertEqual(self.vectorstore._collection.count(), 3)
 
     # 2. 재실행 시 중복 적재 방지
     def test_reuse_existing_index(self):
-        build_chroma(self.chunks_path, self.persist_directory)
+        build_chroma(
+            self.chunks_path,
+            self.persist_directory,
+            collection_name=self.collection_name,
+        )
 
         count = build_chroma(
             self.chunks_path,
             self.persist_directory,
+            collection_name=self.collection_name,
         )
 
         self.assertEqual(count, 3)
 
     # 3. 관련 청크 검색 및 출처 확인
     def test_similarity_search(self):
-        build_chroma(self.chunks_path, self.persist_directory)
+        build_chroma(
+            self.chunks_path,
+            self.persist_directory,
+            collection_name=self.collection_name,
+        )
 
         results = search_chroma(
             self.persist_directory,
             "매출액",
             k=2,
+            collection_name=self.collection_name,
         )
 
         self.assertEqual(len(results), 2)
@@ -172,7 +179,11 @@ class TestChromaRetriever(unittest.TestCase):
 
     # 4. Top-K 결과 개수
     def test_top_k(self):
-        build_chroma(self.chunks_path, self.persist_directory)
+        build_chroma(
+            self.chunks_path,
+            self.persist_directory,
+            collection_name=self.collection_name,
+        )
 
         for k in [1, 2, 3]:
             with self.subTest(k=k):
@@ -180,6 +191,7 @@ class TestChromaRetriever(unittest.TestCase):
                     self.persist_directory,
                     "자산총계",
                     k=k,
+                    collection_name=self.collection_name,
                 )
 
                 self.assertEqual(len(results), k)
@@ -190,6 +202,7 @@ class TestChromaRetriever(unittest.TestCase):
             search_chroma(
                 self.persist_directory,
                 "   ",
+                collection_name=self.collection_name,
             )
 
     # 6. 잘못된 k 처리
@@ -199,6 +212,7 @@ class TestChromaRetriever(unittest.TestCase):
                 self.persist_directory,
                 "매출액",
                 k=0,
+                collection_name=self.collection_name,
             )
 
     # 7. 미색인 저장소 검색 방지
@@ -207,6 +221,7 @@ class TestChromaRetriever(unittest.TestCase):
             search_chroma(
                 self.persist_directory,
                 "매출액",
+                collection_name=self.collection_name,
             )
 
     # 8. 중복 chunk_id 검사
@@ -219,11 +234,16 @@ class TestChromaRetriever(unittest.TestCase):
             build_chroma(
                 self.chunks_path,
                 self.persist_directory,
+                collection_name=self.collection_name,
             )
 
     # 9. 다른 청크 ID를 가진 기존 DB 재사용 방지
     def test_changed_chunk_ids(self):
-        build_chroma(self.chunks_path, self.persist_directory)
+        build_chroma(
+            self.chunks_path,
+            self.persist_directory,
+            collection_name=self.collection_name,
+        )
 
         self.chunks[0]["chunk_id"] = "changed_001"
         self._save_chunks()
@@ -232,6 +252,7 @@ class TestChromaRetriever(unittest.TestCase):
             build_chroma(
                 self.chunks_path,
                 self.persist_directory,
+                collection_name=self.collection_name,
             )
 
 
