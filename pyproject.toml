@@ -1,0 +1,14 @@
+[project]
+name = "jaemujepyoeya"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+    "langchain>=1.5.0",
+    "langchain-core>=1.8.1",
+    "langchain-community>=0.4.2",
+    "python-dotenv>=1.2.4",
+    "langchain-openai>=1.8.0",
+    "langgraph>=1.2.22",
+    "pydantic>=2.14.3",
+    "pyyaml>=6.0.3",
+]
