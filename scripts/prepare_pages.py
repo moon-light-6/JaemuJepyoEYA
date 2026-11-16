@@ -78,19 +78,127 @@ def clipped_page_text(pdf_path: Path, cut: PageCut) -> str:
         if not 1 <= cut.page_number <= document.page_count:
             raise ValueError(f"{cut.page_number}쪽이 PDF 범위를 벗어났습니다.")
         page = document[cut.page_number - 1]
-        matches = page.search_for(cut.heading)
-        if len(matches) != 1:
-            raise ValueError(
-                f"{cut.page_number}쪽에서 제목 '{cut.heading}'이(가) {len(matches)}번 발견되었습니다. "
-                "정확히 한 번 나오는 제목을 지정하세요."
-            )
-        y = matches[0].y0
-        width, height = page.rect.width, page.rect.height
-        if cut.keep == "above":
-            clip = fitz.Rect(0, 0, width, y)
-        else:
-            clip = fitz.Rect(0, y, width, height)
-        return page.get_text("text", clip=clip)
+        y = locate_heading_y(page, cut.page_number, cut.heading)
+        return page_text_clipped(page, y, cut.keep)
+
+
+def page_text_clipped(page, y: float, keep: str) -> str:
+    """y좌표 기준 위쪽(above) 또는 아래쪽(below)의 텍스트만 읽는다."""
+
+    import pymupdf as fitz
+
+    width, height = page.rect.width, page.rect.height
+    if keep == "above":
+        clip = fitz.Rect(0, 0, width, y)
+    else:
+        clip = fitz.Rect(0, y, width, height)
+    return page.get_text("text", clip=clip)
+
+
+def find_heading_y(page, heading: str) -> float | None:
+    """제목만 한 줄로 단독 존재하는 곳의 y좌표를 찾는다.
+
+    본문 속 인용문('... 3. 연결재무제표 주석 참조')이나 목차 줄은 제목 외 글자가
+    섞여 있어서 걸러진다. 정확히 한 곳일 때만 값을 돌려주고, 없거나 여러 곳이면 None.
+    """
+
+    found: list[float] = []
+    for block in page.get_text("dict")["blocks"]:
+        for line in block.get("lines", []):
+            line_text = "".join(span["text"] for span in line["spans"])
+            if re.sub(r"\s+", " ", line_text).strip() == heading:
+                found.append(line["bbox"][1])
+    return found[0] if len(found) == 1 else None
+
+
+def locate_heading_y(page, page_number: int, heading: str) -> float:
+    """수동 지정 제목의 y좌표. 단독 줄이 없으면 글자 검색으로 한 번만 나올 때 허용한다."""
+
+    y = find_heading_y(page, heading)
+    if y is not None:
+        return y
+    matches = page.search_for(heading)
+    if len(matches) != 1:
+        raise ValueError(
+            f"{page_number}쪽에서 제목 '{heading}'이(가) {len(matches)}번 발견되었습니다. "
+            "정확히 한 번 나오는 제목을 지정하세요."
+        )
+    return matches[0].y0
+
+
+FOOTER_PATTERN = re.compile(r"전자공시시스템|dart\.fss\.or\.kr|^\s*Page\s*\d+\s*\|?\s*$")
+
+
+def has_body_text(text: str) -> bool:
+    """쪽 하단 꼬리말(전자공시시스템, Page N)을 빼고 남는 본문이 있는지 본다."""
+
+    for line in text.splitlines():
+        stripped = line.strip().strip("|").strip()
+        if stripped and not FOOTER_PATTERN.search(stripped):
+            return True
+    return False
+
+
+# 연결 구간의 시작과 끝을 알리는 DART 사업보고서 표준 제목
+AUTO_START_HEADING = "2. 연결재무제표"
+AUTO_END_HEADING = "4. 재무제표"
+
+
+def plan_auto_cuts(
+    pdf_path: Path,
+    ranges: list[SectionRange],
+    start_heading: str = AUTO_START_HEADING,
+    end_heading: str = AUTO_END_HEADING,
+) -> tuple[dict[int, PageCut], dict[int, PageCut], list[str]]:
+    """연결 구간 경계 쪽에서 연결이 아닌 내용이 섞여 있으면 자동으로 자를 계획을 세운다.
+
+    - 시작 쪽: '2. 연결재무제표' 제목 위에 본문이 있으면 제목부터 아래쪽만 사용
+    - 끝 쪽(또는 바로 다음 쪽): '4. 재무제표'(별도 시작) 제목 위에 본문이 있으면
+      그 위쪽만 사용. 바로 다음 쪽이면 연결 주석의 끝부분이므로 범위에 추가한다.
+    제목이 단독 한 줄로 정확히 한 번 나올 때만 동작하고, 그 외에는 아무것도 바꾸지 않는다.
+
+    반환: (범위 안 쪽의 자르기, 범위 밖에서 추가할 쪽의 자르기, 안내 메시지)
+    """
+
+    import pymupdf as fitz
+
+    cuts: dict[int, PageCut] = {}
+    extras: dict[int, PageCut] = {}
+    notes: list[str] = []
+    first_page = min(page_range.start_page for page_range in ranges)
+    last_page = max(page_range.end_page for page_range in ranges)
+
+    with fitz.open(pdf_path) as document:
+        if first_page <= document.page_count:
+            page = document[first_page - 1]
+            y = find_heading_y(page, start_heading)
+            if y is not None and has_body_text(page_text_clipped(page, y, "above")):
+                cuts[first_page] = PageCut(first_page, start_heading, "below")
+                notes.append(
+                    f"{first_page}쪽: '{start_heading}' 위쪽에 연결이 아닌 내용이 있어 제목부터 아래쪽만 사용"
+                )
+
+        for page_number in (last_page, last_page + 1):
+            if page_number > document.page_count:
+                break
+            page = document[page_number - 1]
+            y = find_heading_y(page, end_heading)
+            if y is None:
+                continue
+            if has_body_text(page_text_clipped(page, y, "above")):
+                cut = PageCut(page_number, end_heading, "above")
+                if page_number == last_page:
+                    cuts[page_number] = cut
+                    notes.append(
+                        f"{page_number}쪽: '{end_heading}' 아래(별도 시작)를 빼고 위쪽만 사용"
+                    )
+                else:
+                    extras[page_number] = cut
+                    notes.append(
+                        f"{page_number}쪽: 연결 주석의 끝부분이 있어 '{end_heading}' 위쪽만 범위에 추가"
+                    )
+            break
+    return cuts, extras, notes
 
 # 사람이 쓴 범위 읽기
 def parse_section_range(value: str) -> SectionRange: 
@@ -168,6 +276,11 @@ def parse_args() -> argparse.Namespace:
         help="경계 쪽에서 제목부터 아래쪽만 사용. 예: 54:2. 연결재무제표 (별도 요약 제외)",
     )
     parser.add_argument("--pdf-path", type=Path, help="원본 PDF 경로 (자르기 옵션 사용 시)")
+    parser.add_argument(
+        "--no-auto-cut",
+        action="store_true",
+        help="연결 구간 경계 쪽 자동 자르기를 끈다 (예전 방식으로 쪽 전체를 사용)",
+    )
     parser.add_argument("--input-path", type=Path, help="PDF 페이지 추출 JSON 경로")
     parser.add_argument("--output-path", type=Path, help="출력 JSON 경로")
     return parser.parse_args()
@@ -186,6 +299,19 @@ def main() -> None:
         / str(args.fiscal_year)
         / f"{args.rcept_no}.pdf"
     )
+
+    # 연결 구간 경계 쪽 자동 자르기 (수동 --cut-* 지정이 있으면 그 쪽은 수동이 우선)
+    extra_cuts: dict[int, PageCut] = {}
+    if args.statement_scope == "consolidated" and not args.no_auto_cut:
+        if pdf_path.is_file():
+            auto_cuts, extra_cuts, auto_notes = plan_auto_cuts(pdf_path, args.section_range)
+            for page_number, auto_cut in auto_cuts.items():
+                cuts.setdefault(page_number, auto_cut)
+            for note in auto_notes:
+                print(f"[자동 경계 처리] {note}")
+        else:
+            print(f"[자동 경계 처리 건너뜀] 원본 PDF가 없습니다: {pdf_path}")
+    last_section = max(args.section_range, key=lambda page_range: page_range.end_page).section
 
     # 입력 파일 경로를 정하기
     input_path = args.input_path or (
@@ -213,12 +339,14 @@ def main() -> None:
             raise ValueError("페이지 번호가 올바르지 않습니다.")
 
         section = section_for_page(page_number, args.section_range)
+        if section is None and page_number in extra_cuts:
+            section = last_section
         if section is None:
             continue
         if not isinstance(text, str) or not text.strip():
             raise ValueError(f"{page_number}쪽의 텍스트가 비어 있습니다.")
 
-        cut = cuts.get(page_number)
+        cut = cuts.get(page_number) or extra_cuts.get(page_number)
         if cut is not None:
             text = clipped_page_text(pdf_path, cut)
             if not text.strip():

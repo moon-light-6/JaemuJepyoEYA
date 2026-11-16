@@ -15,7 +15,10 @@ from scripts.prepare_pages import (
     PageCut,
     SectionRange,
     clipped_page_text,
+    find_heading_y,
+    has_body_text,
     parse_cut_above,
+    plan_auto_cuts,
     parse_cut_below,
     validate_cuts,
 )
@@ -93,6 +96,116 @@ class ClippedTextTest(unittest.TestCase):
     def test_page_out_of_pdf_is_an_error(self):
         with self.assertRaises(ValueError):
             clipped_page_text(self.pdf_path, PageCut(5, "HEADING-FOUR", "above"))
+
+
+def make_pages_pdf(path: Path, pages: list[list[tuple[int, str]]]) -> None:
+    """쪽마다 (y좌표, 글자) 목록으로 PDF를 만든다."""
+
+    import pymupdf
+
+    document = pymupdf.open()
+    for items in pages:
+        page = document.new_page()
+        for y, text in items:
+            page.insert_text((72, y), text)
+    document.save(path)
+    document.close()
+
+
+START = "START-HEADING"
+END = "END-HEADING"
+RANGES = [SectionRange(2, 2, "연결재무제표"), SectionRange(3, 4, "연결재무제표 주석")]
+
+
+class AutoCutTest(unittest.TestCase):
+    def setUp(self):
+        self.directory = tempfile.TemporaryDirectory()
+        self.pdf_path = Path(self.directory.name) / "auto.pdf"
+
+    def tearDown(self):
+        self.directory.cleanup()
+
+    def build(self, pages):
+        make_pages_pdf(self.pdf_path, pages)
+        return plan_auto_cuts(self.pdf_path, RANGES, START, END)
+
+    def test_start_page_with_content_above_heading_is_cut_below(self):
+        cuts, extras, _ = self.build(
+            [
+                [(100, "cover")],
+                [(100, "SEPARATE-SUMMARY"), (400, START), (500, "BODY")],
+                [(100, "BODY-3")],
+                [(100, "BODY-4")],
+                [(100, END), (500, "SEPARATE")],
+            ]
+        )
+        self.assertEqual(cuts[2], PageCut(2, START, "below"))
+        self.assertEqual(extras, {})
+
+    def test_clean_start_and_clean_end_change_nothing(self):
+        cuts, extras, notes = self.build(
+            [
+                [(100, "cover")],
+                [(120, START), (500, "BODY")],
+                [(100, "BODY-3")],
+                [(100, "BODY-4")],
+                [(120, END), (500, "SEPARATE")],
+            ]
+        )
+        self.assertEqual((cuts, extras, notes), ({}, {}, []))
+
+    def test_tail_above_separate_heading_on_next_page_is_added(self):
+        cuts, extras, _ = self.build(
+            [
+                [(100, "cover")],
+                [(120, START), (500, "BODY")],
+                [(100, "BODY-3")],
+                [(100, "BODY-4")],
+                [(100, "NOTE-TAIL"), (400, END), (500, "SEPARATE")],
+            ]
+        )
+        self.assertEqual(cuts, {})
+        self.assertEqual(extras, {5: PageCut(5, END, "above")})
+
+    def test_separate_heading_inside_last_page_is_cut_above(self):
+        cuts, extras, _ = self.build(
+            [
+                [(100, "cover")],
+                [(120, START), (500, "BODY")],
+                [(100, "BODY-3")],
+                [(100, "NOTE-TAIL"), (400, END), (500, "SEPARATE")],
+                [(100, "SEPARATE-ONLY")],
+            ]
+        )
+        self.assertEqual(cuts, {4: PageCut(4, END, "above")})
+        self.assertEqual(extras, {})
+
+    def test_heading_inside_a_sentence_is_ignored(self):
+        cuts, extras, _ = self.build(
+            [
+                [(100, "cover")],
+                [(120, START), (500, "BODY")],
+                [(100, "BODY-3")],
+                [(100, "BODY-4")],
+                [(100, "NOTE-TAIL"), (400, "see END-HEADING for details"), (500, "MORE")],
+            ]
+        )
+        self.assertEqual((cuts, extras), ({}, {}))
+
+    def test_find_heading_requires_exactly_one_standalone_line(self):
+        make_pages_pdf(
+            self.pdf_path,
+            [[(100, END), (300, END)]],
+        )
+        import pymupdf
+
+        with pymupdf.open(self.pdf_path) as document:
+            self.assertIsNone(find_heading_y(document[0], END))
+
+    def test_has_body_text_ignores_footer_lines(self):
+        self.assertFalse(has_body_text("전자공시시스템 dart.fss.or.kr\n"))
+        self.assertFalse(has_body_text(" | \nPage 12 |\n"))
+        self.assertTrue(has_body_text("본문\n전자공시시스템 dart.fss.or.kr"))
 
 
 if __name__ == "__main__":
