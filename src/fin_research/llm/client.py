@@ -11,7 +11,15 @@ from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 PROJECT_ROOT =Path(__file__).resolve().parents[3]
 CONFIG_PATH = PROJECT_ROOT / "configs" / "models.yaml"
 load_dotenv(PROJECT_ROOT / ".env")  
-
+#
+#
+#
+# get_chat_model(name) name= small, large 
+#
+#
+#
+#
+#
 @lru_cache(maxsize=1)
 def load_model_config(path: Path = CONFIG_PATH) -> dict:
     if not path.is_file(): 

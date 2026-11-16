@@ -17,3 +17,7 @@ __pycache__/
 !/data/runs/
 /data/*/*
 !/data/*/.gitkeep
+*.egg-info/
+tempCodeRunnerFile.py
+.venv
+*.nosync

@@ -12,3 +12,11 @@ dependencies = [
     "pydantic>=2.14.3",
     "pyyaml>=6.0.3",
 ]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+# src/ 레이아웃: src/fin_research 패키지를 설치 대상으로 지정
+[tool.setuptools.packages.find]
+where = ["src"]
