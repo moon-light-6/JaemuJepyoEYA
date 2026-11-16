@@ -21,3 +21,4 @@ __pycache__/
 tempCodeRunnerFile.py
 .venv
 *.nosync
+.DS_Store

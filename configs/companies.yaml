@@ -1,0 +1,16 @@
+companies:
+  - name: "삼성전자"
+    corp_code: "00126380"
+    reports:
+      "2025":
+        report_type: "business"
+        fiscal_year: 2025
+        fiscal_month: 12
+        # 2025 사업보고서는 통상 2026년에 공시된다. 실제 공시일 범위와 사업연도는 분리한다.
+        disclosure_start: "2026-01-01"
+        disclosure_end: "2026-12-31"
+        # OpenDART에서 확인한 2025 사업보고서 접수번호. 재실행 시 이 공시만 수집한다.
+        rcept_no: "20260310002820"
+        official_pdf:
+          provider: "dart"
+          dcm_no: "11104488"

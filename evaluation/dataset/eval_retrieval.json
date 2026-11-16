@@ -1,0 +1,316 @@
+[
+  {
+    "id": "S01",
+    "question": "2025년 연결 기준 자산총계는 얼마인가?",
+    "answer_type": "numeric",
+    "expected_value": "566,942,110",
+    "unit": "백만원",
+    "gold_sources": [
+      {
+        "source_file": "20260310002820.pdf",
+        "pdf_page": 83
+      }
+    ],
+    "category": "financial_position",
+    "annotation_status": "verified"
+  },
+  {
+    "id": "S02",
+    "question": "2025년 연결 기준 현금및현금성자산은 얼마인가?",
+    "answer_type": "numeric",
+    "expected_value": "57,856,378",
+    "unit": "백만원",
+    "gold_sources": [
+      {
+        "source_file": "20260310002820.pdf",
+        "pdf_page": 83
+      }
+    ],
+    "category": "financial_position",
+    "annotation_status": "verified"
+  },
+  {
+    "id": "S03",
+    "question": "2025년 연결 기준 재고자산은 얼마인가?",
+    "answer_type": "numeric",
+    "expected_value": "52,636,828",
+    "unit": "백만원",
+    "gold_sources": [
+      {
+        "source_file": "20260310002820.pdf",
+        "pdf_page": 83
+      }
+    ],
+    "category": "financial_position",
+    "annotation_status": "verified"
+  },
+  {
+    "id": "S04",
+    "question": "2025년 연결 기준 매출액은 얼마인가?",
+    "answer_type": "numeric",
+    "expected_value": "333,605,938",
+    "unit": "백만원",
+    "gold_sources": [
+      {
+        "source_file": "20260310002820.pdf",
+        "pdf_page": 85
+      }
+    ],
+    "category": "income_statement",
+    "annotation_status": "verified"
+  },
+  {
+    "id": "S05",
+    "question": "2025년 연결 기준 영업이익은 얼마인가?",
+    "answer_type": "numeric",
+    "expected_value": "43,601,051",
+    "unit": "백만원",
+    "gold_sources": [
+      {
+        "source_file": "20260310002820.pdf",
+        "pdf_page": 85
+      }
+    ],
+    "category": "income_statement",
+    "annotation_status": "verified"
+  },
+  {
+    "id": "S06",
+    "question": "2025년 연결 기준 당기순이익은 얼마인가?",
+    "answer_type": "numeric",
+    "expected_value": "45,206,805",
+    "unit": "백만원",
+    "gold_sources": [
+      {
+        "source_file": "20260310002820.pdf",
+        "pdf_page": 85
+      }
+    ],
+    "category": "income_statement",
+    "annotation_status": "verified"
+  },
+  {
+    "id": "S07",
+    "question": "2025년 연결 기준 영업활동으로 인한 현금흐름은 얼마인가?",
+    "answer_type": "numeric",
+    "expected_value": "85,315,148",
+    "unit": "백만원",
+    "gold_sources": [
+      {
+        "source_file": "20260310002820.pdf",
+        "pdf_page": 89
+      }
+    ],
+    "category": "cash_flow",
+    "annotation_status": "verified"
+  },
+  {
+    "id": "S08",
+    "question": "2025년 연결 기준 배당금 지급액은 얼마인가?",
+    "answer_type": "numeric",
+    "expected_value": "(9,897,183)",
+    "unit": "백만원",
+    "gold_sources": [
+      {
+        "source_file": "20260310002820.pdf",
+        "pdf_page": 90
+      }
+    ],
+    "category": "cash_flow",
+    "annotation_status": "verified"
+  },
+  {
+    "id": "S09",
+    "question": "2025년과 2024년 연결 기준 자산총계는 각각 얼마인가?",
+    "answer_type": "comparison",
+    "expected_value": {
+      "2025": "566,942,110",
+      "2024": "514,531,948"
+    },
+    "unit": "백만원",
+    "gold_sources": [
+      {
+        "source_file": "20260310002820.pdf",
+        "pdf_page": 83
+      }
+    ],
+    "category": "financial_position",
+    "annotation_status": "verified"
+  },
+  {
+    "id": "S10",
+    "question": "2025년과 2024년 연결 기준 매출액은 각각 얼마인가?",
+    "answer_type": "comparison",
+    "expected_value": {
+      "2025": "333,605,938",
+      "2024": "300,870,903"
+    },
+    "unit": "백만원",
+    "gold_sources": [
+      {
+        "source_file": "20260310002820.pdf",
+        "pdf_page": 85
+      }
+    ],
+    "category": "income_statement",
+    "annotation_status": "verified"
+  },
+  {
+    "id": "S11",
+    "question": "2025년과 2024년 연결 기준 영업이익은 각각 얼마인가?",
+    "answer_type": "comparison",
+    "expected_value": {
+      "2025": "43,601,051",
+      "2024": "32,725,961"
+    },
+    "unit": "백만원",
+    "gold_sources": [
+      {
+        "source_file": "20260310002820.pdf",
+        "pdf_page": 85
+      }
+    ],
+    "category": "income_statement",
+    "annotation_status": "verified"
+  },
+  {
+    "id": "S12",
+    "question": "2025년과 2024년 연결 기준 배당금 지급액은 어떻게 다른가?",
+    "answer_type": "comparison",
+    "expected_value": {
+      "2025": "(9,897,183)",
+      "2024": "(10,888,749)",
+      "comparison": "2025년 배당금 지급액은 2024년보다 991,566백만원 감소했다."
+    },
+    "unit": "백만원",
+    "gold_sources": [
+      {
+        "source_file": "20260310002820.pdf",
+        "pdf_page": 90
+      }
+    ],
+    "category": "cash_flow",
+    "annotation_status": "verified"
+  },
+  {
+    "id": "S13",
+    "question": "연결회사는 금융자산을 어떤 기준으로 분류하는가?",
+    "answer_type": "note_detail",
+    "expected_value": "금융자산은 금융자산의 관리를 위한 사업모형과 금융자산의 계약상 현금흐름 특성에 근거하여 분류합니다.",
+    "gold_sources": [
+      {
+        "source_file": "20260310002820.pdf",
+        "pdf_page": 109
+      }
+    ],
+    "category": "accounting_policy",
+    "annotation_status": "verified"
+  },
+  {
+    "id": "S14",
+    "question": "제품 반품이 예상되는 경우 연결회사는 어떤 부채와 권리를 인식하는가?",
+    "answer_type": "note_detail",
+    "expected_value": "연결회사는 고객에게 제품 판매 후 고객이 반품할 것으로 예상되는 제품에 대하여 환불부채와 회수할 재화에 대한 권리를 인식하고 있습니다.",
+    "gold_sources": [
+      {
+        "source_file": "20260310002820.pdf",
+        "pdf_page": 113
+      }
+    ],
+    "category": "revenue_recognition",
+    "annotation_status": "verified"
+  },
+  {
+    "id": "S15",
+    "question": "매출채권 및 미수금 관련 내용은 몇 번 주석에서 확인할 수 있는가?",
+    "answer_type": "note_detail",
+    "expected_value": "7",
+    "gold_sources": [
+      {
+        "source_file": "20260310002820.pdf",
+        "pdf_page": 121
+      }
+    ],
+    "category": "receivables",
+    "annotation_status": "verified"
+  },
+  {
+    "id": "S16",
+    "question": "연결 기준 유형자산의 기말 장부금액은 얼마인가?",
+    "answer_type": "note_detail",
+    "expected_value": "215,304,784",
+    "unit": "백만원",
+    "gold_sources": [
+      {
+        "source_file": "20260310002820.pdf",
+        "pdf_page": 129
+      },
+      {
+        "source_file": "20260310002820.pdf",
+        "pdf_page": 130
+      },
+      {
+        "source_file": "20260310002820.pdf",
+        "pdf_page": 131
+      }
+    ],
+    "category": "tangible_assets",
+    "annotation_status": "verified"
+  },
+  {
+    "id": "S17",
+    "question": "새로운 회계기준이 연결회사의 재무제표에 미치는 영향에 대해 무엇을 평가하고 있는가?",
+    "answer_type": "narrative",
+    "expected_value": "연결회사는 새로운 회계기준이 연결회사의 연결손익계산서 구조 및 영업이익에 미치는 영향을 평가하고 있으며, 연결현금흐름표 및 경영진이 정의한 성과측정치에 필요한 추가 공시 요건을 평가하고 있습니다. 또한, 연결회사는 현재 기타로 표시되는 항목 등 연결재무제표에서 정보가 어떻게 그룹화되는지 평가하고 있습니다.",
+    "gold_sources": [
+      {
+        "source_file": "20260310002820.pdf",
+        "pdf_page": 108
+      }
+    ],
+    "category": "accounting_policy",
+    "annotation_status": "verified"
+  },
+  {
+    "id": "S18",
+    "question": "연결회사는 파생상품 계약에서 발생한 권리와 의무를 어떻게 회계처리하는가?",
+    "answer_type": "narrative",
+    "expected_value": "연결회사는 파생상품의 계약에 따라 발생된 권리와 의무를 공정가액으로 평가하여 자산과 부채로 계상하고, 동 계약으로부터 발생한 손익은 발생 시점에 당기손익으로 인식하고 있습니다. 다만, 요건을 충족한 현금흐름위험회피 금액은 자본항목으로 이연하고 있습니다.",
+    "gold_sources": [
+      {
+        "source_file": "20260310002820.pdf",
+        "pdf_page": 111
+      }
+    ],
+    "category": "derivatives",
+    "annotation_status": "verified"
+  },
+  {
+    "id": "S19",
+    "question": "품질보증 관련 충당부채는 어떤 상황에서 인식되는가?",
+    "answer_type": "narrative",
+    "expected_value": "연결회사는 출고한 제품에 대한 품질보증, 교환, 하자보수 및 그에 따른 사후서비스 등으로 인하여 향후 부담할 것으로 예상되는 비용을 보증기간 및 과거 경험률 등을 기초로 추정하여 충당부채로 설정하고 있습니다.",
+    "gold_sources": [
+      {
+        "source_file": "20260310002820.pdf",
+        "pdf_page": 144
+      }
+    ],
+    "category": "provisions",
+    "annotation_status": "verified"
+  },
+  {
+    "id": "S20",
+    "question": "보고기간후사건 주석에서 연결회사가 진행 중인 주요 보통주 거래는 무엇인가?",
+    "answer_type": "narrative",
+    "expected_value": "연결회사는 2026년 1월 7일 및 1월 28일 이사회 결의에 따라 자기주식을 매입 중이며, 총 매입 예상 규모는 약 6,073,000백만원(총 매입 예상 수량: 4,000만주)으로 추정하고 있습니다. 향후 주가 변동에 따라 실제 취득 수량은 변동될 수 있습니다.",
+    "gold_sources": [
+      {
+        "source_file": "20260310002820.pdf",
+        "pdf_page": 195
+      }
+    ],
+    "category": "subsequent_events",
+    "annotation_status": "verified"
+  }
+]
