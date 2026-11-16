@@ -1,4 +1,4 @@
-"""검색 대상 식별자와 경로 생성 단위 테스트."""
+"""SearchTarget의 검색 대상 식별 및 경로 생성 테스트."""
 
 import sys
 import unittest
@@ -14,6 +14,7 @@ from fin_research.retrieval.search_target import SearchTarget
 class SearchTargetTest(unittest.TestCase):
 
     def setUp(self):
+        """각 테스트에서 사용할 삼성전자 검색 대상을 생성한다."""
         self.target = SearchTarget(
             corp_code="00126380",
             fiscal_year=2025,
@@ -21,70 +22,122 @@ class SearchTargetTest(unittest.TestCase):
             rcept_no="20260310002820",
         )
 
-    def test_chunks_path(self):
-        result = self.target.chunks_path(PROJECT_ROOT)
-
+    # 1. Chroma 컬렉션 이름 생성
+    def test_collection_name(self):
         expected = (
-            PROJECT_ROOT / "data" / "processed" / "dart"
-            / "00126380" / "2025"
+            "fin_00126380_2025_consolidated_"
+            "20260310002820_kure_v1"
+        )
+
+        self.assertEqual(self.target.collection_name, expected)
+
+    # 2. 기존 청킹 파이프라인의 파일 경로 생성
+    def test_chunks_path(self):
+        expected = (
+            PROJECT_ROOT
+            / "data"
+            / "processed"
+            / "dart"
+            / "00126380"
+            / "2025"
             / "20260310002820_chunks.json"
         )
 
-        self.assertEqual(result, expected)
-
-    def test_collection_name(self):
         self.assertEqual(
-            self.target.collection_name(),
-            "fin_00126380_2025_consolidated_20260310002820_kure_v1",
+            self.target.chunks_path(PROJECT_ROOT),
+            expected,
         )
 
-    def test_source_file(self):
-        self.assertEqual(
-            self.target.source_file(),
-            "20260310002820.pdf",
-        )
-
-    def test_invalid_corp_code(self):
-        with self.assertRaises(ValueError):
-            SearchTarget("123", 2025, "consolidated", "20260310002820")
-
-    def test_invalid_fiscal_year(self):
-        with self.assertRaises(ValueError):
-            SearchTarget("00126380", 1800, "consolidated", "20260310002820")
-
-    def test_invalid_statement_scope(self):
-        with self.assertRaises(ValueError):
-            SearchTarget("00126380", 2025, "unknown", "20260310002820")
-
-    def test_invalid_rcept_no(self):
-        with self.assertRaises(ValueError):
-            SearchTarget("00126380", 2025, "consolidated", "123")
-
-    def test_different_companies_have_different_collections(self):
-        other = SearchTarget(
-            corp_code="12345678",
+    # 3. 연결/별도 컬렉션 이름 구분
+    def test_different_statement_scope(self):
+        separate_target = SearchTarget(
+            corp_code="00126380",
             fiscal_year=2025,
-            statement_scope="consolidated",
+            statement_scope="separate",
             rcept_no="20260310002820",
         )
 
         self.assertNotEqual(
-            self.target.collection_name(),
-            other.collection_name(),
+            self.target.collection_name,
+            separate_target.collection_name,
         )
 
-    def test_different_reports_have_different_collections(self):
-        other = SearchTarget(
-            corp_code="00126380",
+        # 현재 기존 청킹 경로는 연결/별도에 관계없이 동일함
+        self.assertEqual(
+            self.target.chunks_path(PROJECT_ROOT),
+            separate_target.chunks_path(PROJECT_ROOT),
+        )
+
+    # 4. 다른 기업 검색 대상 구분
+    def test_different_company(self):
+        other_target = SearchTarget(
+            corp_code="01160363",
             fiscal_year=2025,
             statement_scope="consolidated",
-            rcept_no="20260401000001",
+            rcept_no="20260318001622",
         )
 
         self.assertNotEqual(
-            self.target.collection_name(),
-            other.collection_name(),
+            self.target.collection_name,
+            other_target.collection_name,
         )
+        self.assertNotEqual(
+            self.target.chunks_path(PROJECT_ROOT),
+            other_target.chunks_path(PROJECT_ROOT),
+        )
+
+    # 5. 잘못된 corp_code
+    def test_invalid_corp_code(self):
+        for value in ["005930", "abcdefgh", "", 126380]:
+            with self.subTest(value=value):
+                with self.assertRaises(ValueError):
+                    SearchTarget(
+                        corp_code=value,
+                        fiscal_year=2025,
+                        statement_scope="consolidated",
+                        rcept_no="20260310002820",
+                    )
+
+    # 6. 잘못된 fiscal_year
+    def test_invalid_fiscal_year(self):
+        for value in [0, -1, "2025", True]:
+            with self.subTest(value=value):
+                with self.assertRaises(ValueError):
+                    SearchTarget(
+                        corp_code="00126380",
+                        fiscal_year=value,
+                        statement_scope="consolidated",
+                        rcept_no="20260310002820",
+                    )
+
+    # 7. 잘못된 statement_scope
+    def test_invalid_statement_scope(self):
+        for value in ["unknown", "CONSOLIDATED", "", None]:
+            with self.subTest(value=value):
+                with self.assertRaises(ValueError):
+                    SearchTarget(
+                        corp_code="00126380",
+                        fiscal_year=2025,
+                        statement_scope=value,
+                        rcept_no="20260310002820",
+                    )
+
+    # 8. 잘못된 rcept_no
+    def test_invalid_rcept_no(self):
+        for value in ["12345", "abcdefghijklmn", "", 20260310002820]:
+            with self.subTest(value=value):
+                with self.assertRaises(ValueError):
+                    SearchTarget(
+                        corp_code="00126380",
+                        fiscal_year=2025,
+                        statement_scope="consolidated",
+                        rcept_no=value,
+                    )
+
+    # 9. 검색 대상 변경 방지
+    def test_immutable(self):
+        with self.assertRaises(AttributeError):
+            self.target.fiscal_year = 2024
 
 
 if __name__ == "__main__":
