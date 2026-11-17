@@ -43,11 +43,17 @@ def validate_roles() -> None:
         )
 
 
-def get_llm_for_role(role: str, budget: Budget | None = None, **overrides) -> ChatOpenAI:
+def get_llm_for_role(
+    role: str,
+    budget: Budget | None = None,
+    model_key: str | None = None,
+    **overrides,
+) -> ChatOpenAI:
     """역할 이름으로 LLM을 만든다.
 
     우선순위(뒤가 이김): models의 모델 기본값 → roles의 역할 값 → 호출 시 overrides
     budget을 주면 이 LLM의 호출이 그 Budget에 집계되고, 상한 초과 시 BudgetExceeded.
+    model_key('large'|'small')를 주면 이번 호출만 역할의 모델 선택을 바꾼다 (CLI·실험용).
     """
     # ① roles 가져오기
     roles = _roles()
@@ -58,7 +64,8 @@ def get_llm_for_role(role: str, budget: Budget | None = None, **overrides) -> Ch
 
     # ③ 캐시 원본을 건드리지 않도록 복사한 뒤 model 키 분리
     role_cfg = dict(roles[role] or {})
-    model_key = role_cfg.pop("model", None)
+    role_model_key = role_cfg.pop("model", None)
+    model_key = model_key or role_model_key
     if model_key is None:
         raise ValueError(f"역할 {role!r}에 'model'이 지정되지 않았습니다 (models.yaml roles).")
 
