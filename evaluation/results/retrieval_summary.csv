@@ -1,0 +1,2 @@
+﻿company,corp_code,stock_code,fiscal_year,statement_scope,rcept_no,dcm_no,statements_pages,notes_pages,chunks,questions,dataset,bm25_hit3,bm25_hit5,chroma_hit3,chroma_hit5,mmr_hit3,mmr_hit5,hybrid_hit3,hybrid_hit5,status,message,updated_at
+파마리서치,00970453,214450,2025,consolidated,20260319001417,11153937,39-45,46-141,285,12,auto,0.0,8.3,66.7,83.3,66.7,66.7,66.7,66.7,evaluated,후보 1건,2026-11-17T15:39:57
