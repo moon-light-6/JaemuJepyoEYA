@@ -31,7 +31,7 @@ class SearchTargetTest(unittest.TestCase):
 
         self.assertEqual(self.target.collection_name, expected)
 
-    # 2. 기존 청킹 파이프라인의 파일 경로 생성
+    # 2. 검색 산출물은 corp/year/scope 폴더 아래에 접수번호 파일명으로 생성
     def test_chunks_path(self):
         expected = (
             PROJECT_ROOT
@@ -40,6 +40,7 @@ class SearchTargetTest(unittest.TestCase):
             / "dart"
             / "00126380"
             / "2025"
+            / "consolidated"
             / "20260310002820_chunks.json"
         )
 
@@ -62,10 +63,23 @@ class SearchTargetTest(unittest.TestCase):
             separate_target.collection_name,
         )
 
-        # 현재 기존 청킹 경로는 연결/별도에 관계없이 동일함
-        self.assertEqual(
+        # 동일 공시라도 연결과 별도는 각각 다른 산출물 폴더를 사용한다.
+        self.assertNotEqual(
             self.target.chunks_path(PROJECT_ROOT),
             separate_target.chunks_path(PROJECT_ROOT),
+        )
+
+    def test_dataset_and_result_paths(self):
+        """평가셋과 결과도 scope 폴더 아래 접수번호 파일명으로 분리되는지 확인한다."""
+
+        expected_base = (
+            PROJECT_ROOT / "evaluation" / "dataset" / "00126380" / "2025" / "consolidated"
+        )
+        self.assertEqual(self.target.dataset_path(PROJECT_ROOT), expected_base / "20260310002820.json")
+        self.assertEqual(
+            self.target.result_path(PROJECT_ROOT),
+            PROJECT_ROOT / "evaluation" / "results" / "00126380" / "2025"
+            / "consolidated" / "20260310002820.json",
         )
 
     # 4. 다른 기업 검색 대상 구분

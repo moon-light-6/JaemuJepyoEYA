@@ -46,15 +46,59 @@ class SearchTarget:
             f"{self.statement_scope}_{self.rcept_no}_kure_v1"
         )
 
-    def chunks_path(self, project_root: str | Path) -> Path:
-        """청크 JSON 경로."""
+    def scope_dir(self, project_root: str | Path) -> Path:
+        """연결/별도 기준별 검색 산출물을 모아 둘 폴더."""
 
+        # 원본 PDF·ZIP은 연결/별도 공통 자료다. 반면 pages·chunks·평가 결과는
+        # 연결/별도에 따라 달라지므로 scope까지 폴더로 분리한다.
+        # 접수번호는 이 폴더 바로 아래의 파일명으로 사용한다.
         return (
             Path(project_root)
-            / "data"
-            / "processed"
-            / "dart"
+            / "data" / "processed" / "dart"
             / self.corp_code
             / str(self.fiscal_year)
-            / f"{self.rcept_no}_chunks.json"
+            / self.statement_scope
+        )
+
+    def pages_path(self, project_root: str | Path) -> Path:
+        """페이지 범위를 정리한 검색용 원문 경로."""
+
+        return self.scope_dir(project_root) / f"{self.rcept_no}_pages.json"
+
+    def chunks_path(self, project_root: str | Path) -> Path:
+        """페이지 원문을 청킹한 검색 인덱스 입력 경로."""
+
+        return self.scope_dir(project_root) / f"{self.rcept_no}_chunks.json"
+
+    def validation_path(self, project_root: str | Path) -> Path:
+        """청킹 구조 점검 결과 경로."""
+
+        return self.scope_dir(project_root) / f"{self.rcept_no}_chunks_validation.json"
+
+    def pipeline_path(self, project_root: str | Path) -> Path:
+        """자동 파이프라인이 판단한 범위·단위 등의 실행 기록 경로."""
+
+        # 파이프라인 기록은 scope 폴더 안에서 접수번호 자체를 파일명으로 사용한다.
+        return self.scope_dir(project_root) / f"{self.rcept_no}.json"
+
+    def dataset_path(self, project_root: str | Path) -> Path:
+        """접수번호별 평가 문항을 저장할 경로."""
+
+        return (
+            Path(project_root) / "evaluation" / "dataset"
+            / self.corp_code
+            / str(self.fiscal_year)
+            / self.statement_scope
+            / f"{self.rcept_no}.json"
+        )
+
+    def result_path(self, project_root: str | Path) -> Path:
+        """접수번호별 검색 성능 평가 결과 경로."""
+
+        return (
+            Path(project_root) / "evaluation" / "results"
+            / self.corp_code
+            / str(self.fiscal_year)
+            / self.statement_scope
+            / f"{self.rcept_no}.json"
         )
