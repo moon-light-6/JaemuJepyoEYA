@@ -249,6 +249,10 @@ companies:
         fiscal_month: 12
         disclosure_start: "2026-01-01"
         disclosure_end: "2026-12-31"
+        rcept_no: "20260318001519"
+        official_pdf:
+          provider: "dart"
+          dcm_no: "11143410"
 
   # 종목코드: 041510
   - name: "에스엠"
@@ -260,6 +264,10 @@ companies:
         fiscal_month: 12
         disclosure_start: "2026-01-01"
         disclosure_end: "2026-12-31"
+        rcept_no: "20260317000781"
+        official_pdf:
+          provider: "dart"
+          dcm_no: "11133390"          
 
   # 종목코드: 263750
   - name: "펄어비스"
