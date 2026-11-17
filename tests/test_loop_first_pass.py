@@ -65,7 +65,7 @@ class FirstPassTests(unittest.TestCase):
         model.with_structured_output.assert_not_called()
 
     @patch("fin_research.research.loop.graph.execute_search", return_value=[EVIDENCE])
-    @patch("fin_research.llm.client.get_chat_model")
+    @patch("fin_research.llm.router.get_llm_for_role")
     def test_search_only_does_not_create_gpt_client(self, get_model, search):
         result = run_once("질문", Path("unused"), search_only=True)
         get_model.assert_not_called()
@@ -74,14 +74,14 @@ class FirstPassTests(unittest.TestCase):
         self.assertEqual(result["numeric_verification"], "not_performed")
 
     @patch("fin_research.research.loop.graph.execute_search")
-    @patch("fin_research.llm.client.get_chat_model", side_effect=RuntimeError("키 없음"))
+    @patch("fin_research.llm.router.get_llm_for_role", side_effect=RuntimeError("키 없음"))
     def test_missing_key_fails_before_embedding_load(self, get_model, search):
         with self.assertRaisesRegex(RuntimeError, "키 없음"):
             run_once("질문", Path("unused"))
         search.assert_not_called()
 
     @patch("fin_research.research.loop.graph.execute_search", return_value=[EVIDENCE])
-    @patch("fin_research.llm.client.get_chat_model")
+    @patch("fin_research.llm.router.get_llm_for_role")
     def test_gpt_path_returns_draft_with_search_sources(self, get_model, search):
         answer = GroundedAnswer(
             status="draft", answer="단위는 백만원입니다. [S1]",
