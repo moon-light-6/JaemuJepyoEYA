@@ -121,6 +121,8 @@ def search_chroma(
     persist_directory: str | Path,
     question: str,
     k: int = 5,
+    *,
+    vectorstore: Chroma | None = None,
 ) -> list[dict]:
     """Chroma에서 질문과 유사한 청크를 검색한다."""
 
@@ -130,7 +132,9 @@ def search_chroma(
     if k <= 0:
         raise ValueError("k는 1 이상이어야 합니다.")
 
-    vectorstore = create_chroma(persist_directory)
+    # 반복 조사에서는 이미 불러온 임베딩 모델과 저장소를 재사용합니다.
+    if vectorstore is None:
+        vectorstore = create_chroma(persist_directory)
 
     # 색인이 수행되지 않았다면 검색하지 않음
     count = vectorstore._collection.count()

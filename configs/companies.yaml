@@ -160,7 +160,7 @@ companies:
         official_pdf:
           provider: "dart"
           dcm_no: "11168903"
-        
+
 
   # 종목코드: 028300
   - name: "HLB"

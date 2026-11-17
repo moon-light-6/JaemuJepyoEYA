@@ -1,4 +1,4 @@
-"""Execute the document-search action for the first Researcher iteration."""
+"""조사 담당자의 첫 번째 조사 단계에서 문서 검색 도구를 실행합니다."""
 
 from pathlib import Path
 
