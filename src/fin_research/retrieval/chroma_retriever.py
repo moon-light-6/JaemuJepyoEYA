@@ -10,7 +10,7 @@ from fin_research.retrieval.bm25_retriever import load_chunk_documents
 
 
 EMBEDDING_MODEL = "nlpai-lab/KURE-v1"
-COLLECTION_NAME = "samsung_2025_consolidated_kure_v1"
+# COLLECTION_NAME = "samsung_2025_consolidated_kure_v1"
 
 
 def create_embedding_model():
@@ -34,12 +34,19 @@ def create_embedding_model():
     )
 
 
-def create_chroma(persist_directory: str | Path) -> Chroma:
-    """로컬 Chroma 컬렉션을 생성하거나 다시 연다."""
+def create_chroma(
+    persist_directory: str | Path,
+    collection_name: str,
+) -> Chroma:
+    """지정한 이름의 로컬 Chroma 컬렉션을 생성하거나 다시 연다."""
+
+    if not isinstance(collection_name, str) or not collection_name.strip():
+        raise ValueError("컬렉션 이름은 비어 있지 않은 문자열이어야 합니다.")
+
     embedding_model = create_embedding_model()
 
     return Chroma(
-        collection_name=COLLECTION_NAME,
+        collection_name=collection_name,
         embedding_function=embedding_model,
         persist_directory=str(persist_directory),
         collection_metadata={"embedding_model": EMBEDDING_MODEL},
@@ -49,6 +56,7 @@ def create_chroma(persist_directory: str | Path) -> Chroma:
 def build_chroma(
     chunks_path: str | Path,
     persist_directory: str | Path,
+    collection_name: str,
 ) -> int:
     """청크를 Chroma에 저장하고 저장된 문서 수를 반환한다."""
 
@@ -68,7 +76,10 @@ def build_chroma(
             if isinstance(value, (str, int, float, bool))
         }
 
-    vectorstore = create_chroma(persist_directory)
+    vectorstore = create_chroma(
+        persist_directory=persist_directory,
+        collection_name=collection_name,
+    )
 
     existing_count = vectorstore._collection.count()
 
@@ -120,6 +131,7 @@ def build_chroma(
 def search_chroma(
     persist_directory: str | Path,
     question: str,
+    collection_name: str,
     k: int = 5,
 ) -> list[dict]:
     """Chroma에서 질문과 유사한 청크를 검색한다."""
@@ -130,8 +142,10 @@ def search_chroma(
     if k <= 0:
         raise ValueError("k는 1 이상이어야 합니다.")
 
-    vectorstore = create_chroma(persist_directory)
-
+    vectorstore = create_chroma(
+        persist_directory=persist_directory,
+        collection_name=collection_name,
+    )
     # 색인이 수행되지 않았다면 검색하지 않음
     count = vectorstore._collection.count()
 
@@ -170,6 +184,7 @@ def search_chroma(
 def search_mmr(
     persist_directory: str | Path,
     question: str,
+    collection_name: str,
     k: int = 5,
     fetch_k: int = 20,
     lambda_mult: float = 0.5,
@@ -188,7 +203,10 @@ def search_mmr(
     if not 0.0 <= lambda_mult <= 1.0:
         raise ValueError("lambda_mult는 0~1 사이여야 합니다.")
 
-    vectorstore = create_chroma(persist_directory)
+    vectorstore = create_chroma(
+        persist_directory=persist_directory,
+        collection_name=collection_name,
+    )
 
     if vectorstore._collection.count() == 0:
         raise ValueError(
