@@ -1,4 +1,4 @@
-"""Check source integrity and orchestration without calling paid APIs."""
+"""모의 모델을 사용해 출처의 유효성과 1차 조사 흐름을 검사합니다."""
 
 import sys
 import unittest
