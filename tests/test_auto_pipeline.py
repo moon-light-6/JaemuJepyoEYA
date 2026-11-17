@@ -5,6 +5,8 @@ from __future__ import annotations
 import json
 import sys
 import unittest
+import csv
+import tempfile
 from pathlib import Path
 
 
@@ -31,6 +33,7 @@ from fin_research.ingestion.section_detector import (
     SectionDetectionError,
     detect_sections,
 )
+from scripts.run_pipeline import SUMMARY_FIELDS, save_summary
 
 
 CORP_XML = """<?xml version="1.0" encoding="UTF-8"?>
@@ -89,6 +92,33 @@ class ReportChoiceTest(unittest.TestCase):
         self.assertEqual(choose_report(candidates, "20260318000001")[0].rcept_no, "20260318000001")
         with self.assertRaises(DartError):
             choose_report(candidates, "20990101000000")
+
+
+class SummarySaveTest(unittest.TestCase):
+    def test_existing_csv_string_year_and_new_integer_year_are_sorted(self):
+        """기존 CSV 문자열과 이번 실행 정수 연도가 섞여도 요약 저장이 성공한다."""
+
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "summary.csv"
+            with path.open("w", encoding="utf-8-sig", newline="") as file:
+                writer = csv.DictWriter(file, fieldnames=SUMMARY_FIELDS)
+                writer.writeheader()
+                writer.writerow({
+                    "company": "JYP Ent.", "corp_code": "00258689",
+                    "fiscal_year": "2025", "statement_scope": "consolidated",
+                    "rcept_no": "20260318001519",
+                })
+
+            save_summary([{
+                "company": "JYP Ent.", "corp_code": "00258689",
+                "fiscal_year": 2025, "statement_scope": "separate",
+                "rcept_no": "20260318001519",
+            }], path)
+
+            with path.open(encoding="utf-8-sig", newline="") as file:
+                rows = list(csv.DictReader(file))
+            self.assertEqual(len(rows), 2)
+            self.assertTrue(all(row["fiscal_year"] == "2025" for row in rows))
 
 
 class DcmNoTest(unittest.TestCase):

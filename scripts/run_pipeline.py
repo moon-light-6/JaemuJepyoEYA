@@ -245,10 +245,8 @@ class Pipeline:
 
     # 11. 평가셋 ---------------------------------------------------------------
     def prepare_dataset(self, corp, name, target: SearchTarget, plan, pages_path: Path) -> tuple[Path | None, str]:
-        dataset_path = (
-            PROJECT_ROOT / "evaluation" / "dataset"
-            / f"eval_{target.corp_code}_{target.fiscal_year}_{target.statement_scope}_{target.rcept_no}.json"
-        )
+        # 평가셋은 corp/year/scope 폴더 아래에서 접수번호를 파일명으로 사용한다.
+        dataset_path = target.dataset_path(PROJECT_ROOT)
         if dataset_path.is_file():
             items = json.loads(dataset_path.read_text(encoding="utf-8"))
             auto = [item.get("annotation_method") == ANNOTATION_METHOD for item in items]
@@ -350,9 +348,11 @@ class Pipeline:
             log(name, f"   - {note}")
 
         target = SearchTarget(corp.corp_code, args.fiscal_year, scope, rcept_no)
-        base = self.processed_dir(corp) / rcept_no
-        pages_path = Path(f"{base}_pages.json")
+        # 연결·별도 결과가 같은 공시에서 섞이지 않도록 scope 폴더로 분리하고,
+        # 접수번호는 pages·chunks 파일명의 접두사로 남긴다.
+        pages_path = target.pages_path(PROJECT_ROOT)
         chunks_path = target.chunks_path(PROJECT_ROOT)
+        validation_path = target.validation_path(PROJECT_ROOT)
 
         section_arguments = []
         for page_range in plan.ranges:
@@ -367,7 +367,7 @@ class Pipeline:
                  "--chunk-size", args.chunk_size, "--chunk-overlap", args.chunk_overlap)
         run_step("청크 검증", "scripts/check_chunks.py",
                  "--pages-path", pages_path, "--chunks-path", chunks_path,
-                 "--output-path", f"{base}_chunks_validation.json",
+                 "--output-path", validation_path,
                  "--chunk-size", args.chunk_size)
         row["chunks"] = len(json.loads(chunks_path.read_text(encoding="utf-8")))
 
@@ -396,10 +396,8 @@ class Pipeline:
                  "--statement-scope", scope, "--rcept-no", rcept_no,
                  "--dataset-path", dataset_path, "--chroma-path", args.chroma_dir)
 
-        result_path = (
-            PROJECT_ROOT / "evaluation" / "results"
-            / f"retrieval_{corp.corp_code}_{args.fiscal_year}_{scope}_{rcept_no}.json"
-        )
+        # 평가 결과도 corp/year/scope 폴더 안에서 접수번호를 파일명으로 사용한다.
+        result_path = target.result_path(PROJECT_ROOT)
         report_json = json.loads(result_path.read_text(encoding="utf-8"))
         row["questions"] = report_json["config"]["questions"]
         for method in METHODS:
@@ -415,7 +413,9 @@ class Pipeline:
             "dataset_path": str(dataset_path.relative_to(PROJECT_ROOT)),
             "result_path": str(result_path.relative_to(PROJECT_ROOT)),
         }
-        Path(f"{base}_pipeline.json").write_text(
+        pipeline_path = target.pipeline_path(PROJECT_ROOT)
+        pipeline_path.parent.mkdir(parents=True, exist_ok=True)
+        pipeline_path.write_text(
             json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
         )
         return row
@@ -430,24 +430,44 @@ def save_summary(rows: list[dict], summary_path: Path) -> None:
     if summary_path.is_file():
         with summary_path.open(encoding="utf-8-sig", newline="") as file:
             for old in csv.DictReader(file):
-                existing[(old["corp_code"], old["fiscal_year"], old["statement_scope"])] = old
+                # 정정공시는 같은 기업·연도·기준이어도 접수번호가 달라 별도 행으로 보존한다.
+                existing[(old["corp_code"], old["fiscal_year"], old["statement_scope"], old.get("rcept_no", ""))] = old
     now = datetime.now().isoformat(timespec="seconds")
     for row in rows:
         if not row.get("corp_code"):
             continue
         row = {**row, "updated_at": now}
-        scope = row.get("statement_scope", "")
-        key = (row["corp_code"], str(row["fiscal_year"]), scope)
+        # CSV에서 다시 읽은 값은 모두 문자열이지만, 이번 실행의 fiscal_year는 정수다.
+        # 저장 직전에 식별값을 문자열로 통일해야 기존 행과 함께 안전하게 정렬할 수 있다.
+        corp_code = str(row["corp_code"])
+        fiscal_year = str(row["fiscal_year"])
+        scope = str(row.get("statement_scope", ""))
+        rcept_no = str(row.get("rcept_no", ""))
+        key = (corp_code, fiscal_year, scope, rcept_no)
         if scope:
             # 범위 판정 전에 실패했던 같은 기업·연도 행은 새 결과로 대체한다.
-            existing.pop((row["corp_code"], str(row["fiscal_year"]), ""), None)
-        existing[key] = {field: row.get(field, "") for field in SUMMARY_FIELDS}
+            existing.pop((corp_code, fiscal_year, "", ""), None)
+        record = {field: row.get(field, "") for field in SUMMARY_FIELDS}
+        record.update(
+            corp_code=corp_code,
+            fiscal_year=fiscal_year,
+            statement_scope=scope,
+            rcept_no=rcept_no,
+        )
+        existing[key] = record
     summary_path.parent.mkdir(parents=True, exist_ok=True)
+    # 정렬이 끝나기 전에 파일을 열면 예외 발생 시 기존 CSV가 빈 파일로 남을 수 있다.
+    # 모든 행을 먼저 확정한 다음에만 파일을 새로 쓴다.
+    ordered_rows = sorted(
+        existing.values(),
+        key=lambda record: (str(record["company"]), str(record["fiscal_year"])),
+    )
     # 엑셀에서 한글이 깨지지 않도록 BOM 포함 UTF-8로 저장
     with summary_path.open("w", encoding="utf-8-sig", newline="") as file:
-        writer = csv.DictWriter(file, fieldnames=SUMMARY_FIELDS)
+        # 운영체제에 따라 CRLF로 바뀌어 불필요한 Git 변경으로 보이지 않게 LF로 고정한다.
+        writer = csv.DictWriter(file, fieldnames=SUMMARY_FIELDS, lineterminator="\n")
         writer.writeheader()
-        writer.writerows(sorted(existing.values(), key=lambda r: (r["company"], r["fiscal_year"])))
+        writer.writerows(ordered_rows)
 
 
 def print_summary(rows: list[dict]) -> None:
