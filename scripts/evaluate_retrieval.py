@@ -14,7 +14,10 @@ sys.path.insert(0, str(PROJECT_ROOT / "src"))
 from evaluation.retrieval_metrics import (
     load_eval_dataset,
     is_hit,
+    is_value_hit,
+    is_page_value_hit,
     calculate_hit_rate,
+    summarize_value_hits,
 )
 
 from fin_research.retrieval.bm25_retriever import (
@@ -27,40 +30,77 @@ from fin_research.retrieval.chroma_retriever import (
     search_mmr,
 )
 from fin_research.retrieval.hybrid_retriever import rrf_merge
+from fin_research.retrieval.search_target import SearchTarget
 
 
 # 2. 기본 경로
-DEFAULT_DATASET_PATH = (
-    PROJECT_ROOT / "evaluation" / "dataset" / "eval_retrieval.json"
-)
+# DEFAULT_DATASET_PATH = (
+#     PROJECT_ROOT / "evaluation" / "dataset" / "eval_retrieval.json"
+# )
 
-DEFAULT_CHUNKS_PATH = (
-    PROJECT_ROOT / "data" / "processed" / "dart"
-    / "00126380" / "2025" / "20260310002820_chunks.json"
-)
+# DEFAULT_CHUNKS_PATH = (
+#     PROJECT_ROOT / "data" / "processed" / "dart"
+#     / "00126380" / "2025" / "20260310002820_chunks.json"
+# )
 
-DEFAULT_CHROMA_PATH = PROJECT_ROOT / "data" / "chroma_samsung"
+DEFAULT_CHROMA_PATH = PROJECT_ROOT / "data" / "chroma_multi"
 
-DEFAULT_OUTPUT_PATH = (
-    PROJECT_ROOT / "evaluation" / "results" / "retrieval_baseline.json"
-)
+# DEFAULT_OUTPUT_PATH = (
+#     PROJECT_ROOT
+#     / "evaluation"
+#     / "results"
+#     / "retrieval_13_4_samsung_2025.json"
+# )
 
 
 def evaluate_retrievers(
     dataset_path: Path,
     chunks_path: Path,
     chroma_path: Path,
+    target: SearchTarget,
 ) -> dict:
     """동일 평가셋으로 네 검색 방식을 비교한다."""
 
     questions = load_eval_dataset(dataset_path)
     documents = load_chunk_documents(chunks_path)
 
+    # 값 지표 판정에 쓸 청크 텍스트 (chunk_id -> 본문)
+    chunk_texts = {
+        str(document.metadata["chunk_id"]): document.page_content
+        for document in documents
+    }
+
+
+    # 선택한 검색 대상과 입력 청크 메타데이터 비교
+    expected_source = f"{target.rcept_no}.pdf"
+
+    for document in documents:
+        metadata = document.metadata
+
+        if metadata["fiscal_year"] != target.fiscal_year:
+            raise ValueError(
+                f"사업연도 불일치: {metadata['chunk_id']}"
+            )
+
+        if metadata["statement_scope"] != target.statement_scope:
+            raise ValueError(
+                f"연결/별도 기준 불일치: {metadata['chunk_id']}"
+            )
+
+        if metadata["source_file"] != expected_source:
+            raise ValueError(
+                f"공시번호 불일치: {metadata['chunk_id']}"
+            )
+
+
     # BM25는 평가 전체에서 한 번만 구성
     bm25 = build_bm25_retriever(documents, k=10)
 
     # Chroma와 임베딩 모델도 한 번만 로드
-    vectorstore = create_chroma(chroma_path)
+    vectorstore = create_chroma(
+        persist_directory=chroma_path,
+        collection_name=target.collection_name,
+    )
 
     if vectorstore._collection.count() != len(documents):
         raise ValueError(
@@ -145,6 +185,10 @@ def evaluate_retrievers(
         }
 
         # 7. 질문별 평가 결과 기록
+        # 정답 값(expected_value)이 없는 질문은 값 지표를 None으로 두고 요약에서 뺀다.
+        expected_value = item.get("expected_value")
+        has_value = expected_value is not None
+
         for method, results in search_results.items():
             evaluations[method].append({
                 "id": item["id"],
@@ -154,6 +198,26 @@ def evaluate_retrievers(
                 "gold_sources": gold_sources,
                 "hit_at_3": is_hit(results, gold_sources, 3),
                 "hit_at_5": is_hit(results, gold_sources, 5),
+                "value_hit_at_3": (
+                    is_value_hit(results, expected_value, 3, chunk_texts)
+                    if has_value else None
+                ),
+                "value_hit_at_5": (
+                    is_value_hit(results, expected_value, 5, chunk_texts)
+                    if has_value else None
+                ),
+                "page_value_hit_at_3": (
+                    is_page_value_hit(
+                        results, gold_sources, expected_value, 3, chunk_texts
+                    )
+                    if has_value else None
+                ),
+                "page_value_hit_at_5": (
+                    is_page_value_hit(
+                        results, gold_sources, expected_value, 5, chunk_texts
+                    )
+                    if has_value else None
+                ),
                 "results": [
                     {
                         "rank": result["rank"],
@@ -180,6 +244,8 @@ def evaluate_retrievers(
             "hits_at_5": sum(x["hit_at_5"] for x in items),
             "total": len(items),
         }
+        # 값 지표: 쪽+값(대표 지표), 값. 정답 값이 있는 질문만 센다.
+        summary[method].update(summarize_value_hits(items))
 
     return {
         "config": {
@@ -191,6 +257,7 @@ def evaluate_retrievers(
             "mmr_fetch_k": 20,
             "mmr_lambda_mult": 0.5,
             "rrf_rank_constant": 60,
+            "collection_name": target.collection_name,
         },
         "summary": summary,
         "details": evaluations,
@@ -203,45 +270,119 @@ def main():
     )
 
     parser.add_argument(
-        "--dataset-path", type=Path, default=DEFAULT_DATASET_PATH
-    )
-    parser.add_argument(
-        "--chunks-path", type=Path, default=DEFAULT_CHUNKS_PATH
+        "--dataset-path",
+        type=Path,
+        default=None,
+        help="평가셋 JSON 경로 (생략 시 검색 대상에 따라 자동 결정)",
     )
     parser.add_argument(
         "--chroma-path", type=Path, default=DEFAULT_CHROMA_PATH
     )
     parser.add_argument(
-        "--output-path", type=Path, default=DEFAULT_OUTPUT_PATH
+        "--output-path", type=Path, default=None
     )
+    parser.add_argument("--corp-code", required=True)
+    parser.add_argument("--fiscal-year", required=True, type=int)
+    parser.add_argument(
+        "--statement-scope",
+        required=True,
+        choices=["consolidated", "separate"],
+    )
+    parser.add_argument("--rcept-no", required=True)
 
     args = parser.parse_args()
 
+    # 평가 대상 생성
+    target = SearchTarget(
+        corp_code=args.corp_code,
+        fiscal_year=args.fiscal_year,
+        statement_scope=args.statement_scope,
+        rcept_no=args.rcept_no,
+    )
+
+    # 검색 대상별 평가셋 경로 생성
+    default_dataset_path = (
+        PROJECT_ROOT
+        / "evaluation"
+        / "dataset"
+        / (
+            f"eval_{target.corp_code}_{target.fiscal_year}_"
+            f"{target.statement_scope}_{target.rcept_no}.json"
+        )
+    )
+
+    dataset_path = args.dataset_path or default_dataset_path
+
+    # 평가셋 존재 여부 확인
+    if not dataset_path.is_file():
+        parser.error(
+            f"평가셋이 존재하지 않습니다: {dataset_path}\n"
+            "해당 검색 대상의 평가셋을 생성하거나 "
+            "--dataset-path로 올바른 파일을 지정하세요."
+        )
+
+    # 검색 대상에 따른 평가 결과 경로 생성
+    default_output_path = (
+        PROJECT_ROOT
+        / "evaluation"
+        / "results"
+        / (
+            f"retrieval_{target.corp_code}_{target.fiscal_year}_"
+            f"{target.statement_scope}_{target.rcept_no}.json"
+        )
+    )
+
+    # 사용자가 경로를 지정했다면 해당 경로 우선 사용
+    output_path = args.output_path or default_output_path
+
+    baseline_path = (
+        PROJECT_ROOT
+        / "evaluation"
+        / "results"
+        / "retrieval_baseline.json"
+    )
+
+    if output_path.resolve() == baseline_path.resolve():
+        parser.error(
+            "기존 retrieval_baseline.json은 덮어쓸 수 없습니다."
+        )
+
+    # 평가 실행
     report = evaluate_retrievers(
-        dataset_path=args.dataset_path,
-        chunks_path=args.chunks_path,
+        dataset_path=dataset_path,
+        chunks_path=target.chunks_path(PROJECT_ROOT),
         chroma_path=args.chroma_path,
+        target=target,
     )
 
     # 9. 결과 출력
-    print("\n=== 검색 방식별 평가 결과 ===")
-    print(f"{'방식':<12} {'Hit@3':>10} {'Hit@5':>10}")
+    # 대표 지표는 쪽+값이고, 쪽과 값은 원인 분석용으로 함께 보여 준다.
+    def percent(value):
+        return "      -" if value is None else f"{value * 100:>6.1f}%"
+
+    print("\n=== 검색 방식별 평가 결과 (Hit@3 / Hit@5) ===")
+    print(
+        f"{'방식':<10} {'쪽+값@3':>8} {'쪽+값@5':>8} | "
+        f"{'쪽@3':>7} {'쪽@5':>7} | {'값@3':>7} {'값@5':>7}"
+    )
 
     for method, result in report["summary"].items():
         print(
-            f"{method:<12} "
-            f"{result['hit_at_3'] * 100:>9.1f}% "
-            f"{result['hit_at_5'] * 100:>9.1f}%"
+            f"{method:<10} "
+            f"{percent(result.get('page_value_hit_at_3'))} "
+            f"{percent(result.get('page_value_hit_at_5'))} | "
+            f"{percent(result['hit_at_3'])} {percent(result['hit_at_5'])} | "
+            f"{percent(result.get('value_hit_at_3'))} "
+            f"{percent(result.get('value_hit_at_5'))}"
         )
 
     # 10. 결과 JSON 저장
-    args.output_path.parent.mkdir(parents=True, exist_ok=True)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
 
-    with args.output_path.open("w", encoding="utf-8") as file:
+    with output_path.open("w", encoding="utf-8") as file:
         json.dump(report, file, ensure_ascii=False, indent=2)
 
-    print(f"\n평가 결과 저장: {args.output_path}")
-
+    print(f"\n평가 결과 저장: {output_path}")
 
 if __name__ == "__main__":
     main()
