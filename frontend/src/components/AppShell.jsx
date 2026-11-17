@@ -1,13 +1,54 @@
+import { useCallback, useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { RECENT_JOBS } from "../data/mock.js";
+
+const SIDEBAR_DEFAULT = 250;
+const SIDEBAR_MIN = 80;
+const SIDEBAR_MAX = 400;
+const STORAGE_KEY = "jjeya:sidebar-width";
+
+const clamp = (n) => Math.min(SIDEBAR_MAX, Math.max(SIDEBAR_MIN, n));
+
+function loadWidth() {
+  const saved = Number(localStorage.getItem(STORAGE_KEY));
+  return Number.isFinite(saved) && saved > 0 ? clamp(saved) : SIDEBAR_DEFAULT;
+}
 
 // variant="chat": 어두운 사이드바(채팅형) / variant="work": 밝은 사이드바(작업형)
 export default function AppShell({ variant = "work", title, pill, pillClass = "pill-blue", children, topLeft }) {
   const navigate = useNavigate();
   const dark = variant === "chat";
+  const [width, setWidth] = useState(loadWidth);
+  const [dragging, setDragging] = useState(false);
+
+  useEffect(() => { localStorage.setItem(STORAGE_KEY, String(width)); }, [width]);
+
+  const startDrag = useCallback((e) => {
+    e.preventDefault();
+    setDragging(true);
+    const onMove = (ev) => setWidth(clamp(ev.clientX));
+    const onUp = () => {
+      setDragging(false);
+      window.removeEventListener("pointermove", onMove);
+      window.removeEventListener("pointerup", onUp);
+    };
+    window.addEventListener("pointermove", onMove);
+    window.addEventListener("pointerup", onUp);
+  }, []);
+
+  const onKey = (e) => {
+    if (e.key === "ArrowLeft") setWidth((w) => clamp(w - 10));
+    if (e.key === "ArrowRight") setWidth((w) => clamp(w + 10));
+  };
+
   return (
-    <div className={`shell ${dark ? "shell-dark" : "shell-light"}`}>
+    <div className={`shell ${dark ? "shell-dark" : "shell-light"} ${dragging ? "is-resizing" : ""}`}
+      style={{ "--sidebar-w": `${width}px` }}>
       <aside className="sidebar">
+        <div className="sidebar-resizer" role="separator" aria-orientation="vertical" tabIndex={0}
+          aria-valuemin={SIDEBAR_MIN} aria-valuemax={SIDEBAR_MAX} aria-valuenow={width}
+          title="드래그해서 너비 조절 (더블클릭: 기본 250px)"
+          onPointerDown={startDrag} onKeyDown={onKey} onDoubleClick={() => setWidth(SIDEBAR_DEFAULT)} />
         {dark ? (
           <>
             <button className="side-new" onClick={() => navigate("/chat/generate")}><i className="ri-add-line" /> 새 검증</button>
