@@ -6,6 +6,8 @@ from pathlib import Path
 from langchain_core.documents import Document
 from langchain_community.retrievers import BM25Retriever
 
+from fin_research.retrieval.search_target import SearchTarget
+
 
 # 간단한 한국어·영문·숫자 토큰화
 def simple_tokens(text: str) -> list[str]:
@@ -101,3 +103,57 @@ def search_bm25(
         })
 
     return results
+
+
+def search_bm25_for_target(
+    target: SearchTarget,
+    project_root: str | Path,
+    question: str,
+    k: int = 5,
+) -> list[dict]:
+    """지정한 기업·공시·재무제표 기준으로 BM25 검색한다."""
+
+    # 1. 검색 대상 청크 경로 결정
+    chunks_path = target.chunks_path(project_root)
+
+    # 2. 청크 파일 존재 여부 확인
+    if not chunks_path.is_file():
+        raise FileNotFoundError(
+            f"검색 대상 청크 파일이 없습니다: {chunks_path}"
+        )
+
+    # 3. 기존 청크 로더 재사용
+    documents = load_chunk_documents(chunks_path)
+
+    # 4. 선택한 검색 대상과 청크 메타데이터 비교
+    expected_source = f"{target.rcept_no}.pdf"
+
+    for document in documents:
+        metadata = document.metadata
+
+        if metadata["fiscal_year"] != target.fiscal_year:
+            raise ValueError(
+                f"사업연도 불일치: {metadata['chunk_id']}"
+            )
+
+        if metadata["statement_scope"] != target.statement_scope:
+            raise ValueError(
+                f"연결/별도 기준 불일치: {metadata['chunk_id']}"
+            )
+
+        if metadata["source_file"] != expected_source:
+            raise ValueError(
+                f"원본 PDF 불일치: {metadata['chunk_id']}"
+            )
+
+    # 5. 기존 BM25 검색기 생성
+    retriever = build_bm25_retriever(
+        documents=documents,
+        k=k,
+    )
+
+    # 6. 검색 결과 반환
+    return search_bm25(
+        retriever=retriever,
+        question=question,
+    )

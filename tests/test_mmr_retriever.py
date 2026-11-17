@@ -31,6 +31,10 @@ class MMRRetrieverTest(unittest.TestCase):
             },
         )
 
+        self.collection_name = (
+            "fin_00126380_2025_consolidated_20260310002820_kure_v1"
+        )
+
         # 실제 ChromaDB 대신 가짜 검색기 사용
         self.vectorstore = MagicMock()
         self.vectorstore._collection.count.return_value = 3
@@ -54,6 +58,7 @@ class MMRRetrieverTest(unittest.TestCase):
         results = search_mmr(
             self.persist_directory,
             "2025년 매출액",
+            collection_name=self.collection_name,
         )
 
         self.assertEqual(len(results), 1)
@@ -69,6 +74,7 @@ class MMRRetrieverTest(unittest.TestCase):
             k=3,
             fetch_k=10,
             lambda_mult=0.7,
+            collection_name=self.collection_name,
         )
 
         self.vectorstore.as_retriever.assert_called_once_with(
@@ -80,17 +86,53 @@ class MMRRetrieverTest(unittest.TestCase):
             },
         )
 
-    # 3. 빈 질문 처리
+    # 3. 컬렉션 전달 여부 확인
+    def test_mmr_collection_name(self):
+        search_mmr(
+            self.persist_directory,
+            "매출액",
+            collection_name=self.collection_name,
+        )
+
+        self.vectorstore.as_retriever.assert_called_once()
+
+        # 실제 create_chroma() 대신 사용한 Mock 호출 검증
+        with patch(
+            "fin_research.retrieval.chroma_retriever.create_chroma"
+        ) as mock_create:
+            mock_create.return_value = self.vectorstore
+
+            search_mmr(
+                self.persist_directory,
+                "매출액",
+                collection_name=self.collection_name,
+            )
+
+            mock_create.assert_called_once_with(
+                persist_directory=self.persist_directory,
+                collection_name=self.collection_name,
+            )
+
+    # 4. 빈 질문 처리
     def test_empty_question(self):
         with self.assertRaises(ValueError):
-            search_mmr(self.persist_directory, "   ")
+            search_mmr(
+                self.persist_directory,
+                "   ",
+                collection_name=self.collection_name,
+            )
 
-    # 4. 잘못된 k 처리
+    # 5. 잘못된 k 처리
     def test_invalid_k(self):
         with self.assertRaises(ValueError):
-            search_mmr(self.persist_directory, "매출액", k=0)
+            search_mmr(
+                self.persist_directory,
+                "매출액",
+                k=0,
+                collection_name=self.collection_name,
+            )
 
-    # 5. fetch_k가 k보다 작은 경우
+    # 6. fetch_k가 k보다 작은 경우
     def test_invalid_fetch_k(self):
         with self.assertRaises(ValueError):
             search_mmr(
@@ -98,9 +140,10 @@ class MMRRetrieverTest(unittest.TestCase):
                 "매출액",
                 k=5,
                 fetch_k=3,
+                collection_name=self.collection_name,
             )
 
-    # 6. lambda_mult 범위 검사
+    # 7. lambda_mult 범위 검사
     def test_invalid_lambda_mult(self):
         for value in [-0.1, 1.1]:
             with self.subTest(value=value):
@@ -109,14 +152,19 @@ class MMRRetrieverTest(unittest.TestCase):
                         self.persist_directory,
                         "매출액",
                         lambda_mult=value,
+                        collection_name=self.collection_name,
                     )
 
-    # 7. 비어 있는 컬렉션 검색 방지
+    # 8. 비어 있는 컬렉션 검색 방지
     def test_search_without_index(self):
         self.vectorstore._collection.count.return_value = 0
 
         with self.assertRaises(ValueError):
-            search_mmr(self.persist_directory, "매출액")
+            search_mmr(
+                self.persist_directory,
+                "매출액",
+                collection_name=self.collection_name,
+            )
 
 
 if __name__ == "__main__":

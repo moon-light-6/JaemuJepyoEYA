@@ -11,10 +11,16 @@ from unittest.mock import MagicMock, patch
 from langchain_core.documents import Document
 
 
+# 프로젝트 경로 등록
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT_ROOT))
 sys.path.insert(0, str(PROJECT_ROOT / "src"))
 
+# 프로젝트 내부 모듈 import
+from fin_research.retrieval.search_target import SearchTarget
+
+
+# 평가 스크립트 불러오기
 SCRIPT_PATH = PROJECT_ROOT / "scripts" / "evaluate_retrieval.py"
 
 spec = importlib.util.spec_from_file_location(
@@ -24,14 +30,17 @@ evaluate_script = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(evaluate_script)
 
 
+
 def make_document(chunk_id, page):
     """평가용 가상 청크를 생성한다."""
     return Document(
         page_content=f"테스트 청크 {chunk_id}",
         metadata={
             "chunk_id": chunk_id,
-            "source_file": "test.pdf",
+            "source_file": "20260310002820.pdf",
             "pdf_page": page,
+            "fiscal_year": 2025,
+            "statement_scope": "consolidated",
         },
     )
 
@@ -53,6 +62,13 @@ class EvaluateRetrievalTest(unittest.TestCase):
     def setUp(self):
         self.temp_dir = tempfile.TemporaryDirectory()
         self.root = Path(self.temp_dir.name)
+        self.target = SearchTarget(
+            corp_code="00126380",
+            fiscal_year=2025,
+            statement_scope="consolidated",
+            rcept_no="20260310002820",
+        )
+
 
         self.doc_85 = make_document("chunk_001", 85)
         self.doc_83 = make_document("chunk_002", 83)
@@ -71,7 +87,7 @@ class EvaluateRetrievalTest(unittest.TestCase):
                 "answer_type": "numeric",
                 "category": "income_statement",
                 "gold_sources": [
-                    {"source_file": "test.pdf", "pdf_page": 85}
+                    {"source_file": "20260310002820.pdf", "pdf_page": 85}
                 ],
             },
             {
@@ -80,7 +96,7 @@ class EvaluateRetrievalTest(unittest.TestCase):
                 "answer_type": "numeric",
                 "category": "financial_position",
                 "gold_sources": [
-                    {"source_file": "test.pdf", "pdf_page": 83}
+                    {"source_file": "20260310002820.pdf", "pdf_page": 83}
                 ],
             },
         ]
@@ -138,6 +154,7 @@ class EvaluateRetrievalTest(unittest.TestCase):
                 dataset_path=self.root / "eval.json",
                 chunks_path=self.root / "chunks.json",
                 chroma_path=self.root / "chroma",
+                target=self.target,
             )
 
     # 1. 네 가지 검색 방식 평가
@@ -183,8 +200,17 @@ class EvaluateRetrievalTest(unittest.TestCase):
             self.run_evaluation()
 
     # 5. 평가 결과 JSON 저장
+    
+    # 5. 평가 결과 JSON 저장
     def test_json_output(self):
         output_path = self.root / "results" / "baseline.json"
+        dataset_path = self.root / "eval.json"
+
+        # 실제 평가 데이터 대신 테스트용 평가셋 파일 생성
+        dataset_path.write_text(
+            json.dumps(self.questions, ensure_ascii=False),
+            encoding="utf-8",
+        )
 
         fake_report = {
             "config": {"questions": 2, "chunks": 3},
@@ -196,8 +222,12 @@ class EvaluateRetrievalTest(unittest.TestCase):
 
         argv = [
             "evaluate_retrieval.py",
-            "--output-path",
-            str(output_path),
+            "--corp-code", self.target.corp_code,
+            "--fiscal-year", str(self.target.fiscal_year),
+            "--statement-scope", self.target.statement_scope,
+            "--rcept-no", self.target.rcept_no,
+            "--dataset-path", str(dataset_path),
+            "--output-path", str(output_path),
         ]
 
         with (
@@ -212,10 +242,16 @@ class EvaluateRetrievalTest(unittest.TestCase):
 
         self.assertTrue(output_path.exists())
 
-        saved = json.loads(output_path.read_text(encoding="utf-8"))
+        saved = json.loads(
+            output_path.read_text(encoding="utf-8")
+        )
 
         self.assertEqual(saved, fake_report)
-        self.assertEqual(saved["summary"]["chroma"]["hit_at_5"], 1.0)
+        self.assertEqual(
+            saved["summary"]["chroma"]["hit_at_5"],
+            1.0,
+        )
+
 
 
 if __name__ == "__main__":

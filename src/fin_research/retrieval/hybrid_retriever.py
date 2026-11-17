@@ -8,6 +8,7 @@ from fin_research.retrieval.bm25_retriever import (
     search_bm25,
 )
 from fin_research.retrieval.chroma_retriever import search_chroma
+from fin_research.retrieval.search_target import SearchTarget
 
 
 def rrf_merge(
@@ -73,14 +74,15 @@ def rrf_merge(
 
 
 def search_hybrid(
-    chunks_path: str | Path,
+    target: SearchTarget,
+    project_root: str | Path,
     persist_directory: str | Path,
     question: str,
     k: int = 5,
     candidate_k: int = 10,
     rank_constant: int = 60,
 ) -> list[dict]:
-    """BM25와 Chroma 결과를 RRF로 결합해 반환한다."""
+    """동일한 검색 대상으로 BM25와 Chroma 결과를 결합한다."""
 
     if not question.strip():
         raise ValueError("검색 질문이 비어 있습니다.")
@@ -91,8 +93,26 @@ def search_hybrid(
     if candidate_k < k:
         raise ValueError("candidate_k는 k 이상이어야 합니다.")
 
-    # 1. BM25 키워드 검색
+    # 1. SearchTarget으로 청크 경로와 컬렉션 결정
+    chunks_path = target.chunks_path(project_root)
+    collection_name = target.collection_name
+
+    # 2. BM25 대상 데이터 검증
     documents = load_chunk_documents(chunks_path)
+
+    for document in documents:
+        metadata = document.metadata
+
+        if metadata["fiscal_year"] != target.fiscal_year:
+            raise ValueError("사업연도가 일치하지 않습니다.")
+
+        if metadata["statement_scope"] != target.statement_scope:
+            raise ValueError("연결/별도 기준이 일치하지 않습니다.")
+
+        if metadata["source_file"] != f"{target.rcept_no}.pdf":
+            raise ValueError("공시 보고서가 일치하지 않습니다.")
+
+    # 3. BM25 검색
     bm25_retriever = build_bm25_retriever(
         documents,
         k=candidate_k,
@@ -103,14 +123,28 @@ def search_hybrid(
         question,
     )
 
-    # 2. Chroma 벡터 유사도 검색
+    # 4. 동일한 검색 대상의 Chroma 컬렉션 검색
     chroma_results = search_chroma(
         persist_directory=persist_directory,
         question=question,
+        collection_name=collection_name,
         k=candidate_k,
     )
 
-    # 3. RRF 순위 결합
+    # 5. Chroma 검색 결과도 동일한 보고서인지 검증
+    for result in chroma_results:
+        metadata = result["metadata"]
+
+        if (
+            metadata.get("fiscal_year") != target.fiscal_year
+            or metadata.get("statement_scope") != target.statement_scope
+            or metadata.get("source_file") != f"{target.rcept_no}.pdf"
+        ):
+            raise ValueError(
+                "Chroma 검색 결과가 선택한 보고서와 일치하지 않습니다."
+            )
+
+    # 6. RRF 결합
     return rrf_merge(
         result_lists=[bm25_results, chroma_results],
         top_k=k,

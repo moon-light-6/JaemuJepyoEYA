@@ -18,3 +18,9 @@ __pycache__/
 /data/*/*
 !/data/*/.gitkeep
 .DS_Store
+
+# 검색 평가 결과 제외
+/evaluation/results/*.json
+
+# 기존 성능 베이스라인만 유지
+!/evaluation/results/retrieval_baseline.json
