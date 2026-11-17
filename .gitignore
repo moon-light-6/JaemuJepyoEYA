@@ -24,3 +24,9 @@ __pycache__/
 
 # 기존 성능 베이스라인만 유지
 !/evaluation/results/retrieval_baseline.json
+
+*.egg-info/
+tempCodeRunnerFile.py
+.venv
+*.nosync
+.DS_Store
