@@ -183,6 +183,40 @@ class EvaluateRetrievalTest(unittest.TestCase):
 
         self.assertEqual(summary["chroma"]["hits_at_5"], 2)
 
+    # 2-1. 값 지표 계산 확인 (정답 값이 있는 평가셋)
+    def test_value_metrics_summary(self):
+        self.doc_85.page_content = "매출액 333,605,938"
+        self.doc_83.page_content = "자산총계 566,942,110"
+        self.doc_125.page_content = "관계없는 내용"
+        self.questions[0]["expected_value"] = "333,605,938"
+        self.questions[1]["expected_value"] = "566,942,110"
+
+        report = self.run_evaluation()
+        summary = report["summary"]
+
+        # chroma는 두 질문 모두 정답 쪽 청크를 찾고 값도 있다
+        self.assertEqual(summary["chroma"]["value_total"], 2)
+        self.assertEqual(summary["chroma"]["page_value_hit_at_3"], 1.0)
+        self.assertEqual(summary["chroma"]["value_hit_at_5"], 1.0)
+        # bm25는 두 질문 모두 값이 없는 청크만 찾는다
+        self.assertEqual(summary["bm25"]["value_hit_at_5"], 0.0)
+        self.assertEqual(summary["bm25"]["page_value_hit_at_5"], 0.0)
+        # mmr은 첫 질문만 맞다
+        self.assertEqual(summary["mmr"]["page_value_hit_at_5"], 0.5)
+
+        first = report["details"]["chroma"][0]
+        self.assertTrue(first["page_value_hit_at_3"])
+        self.assertTrue(first["value_hit_at_3"])
+
+    # 2-2. 정답 값이 없는 평가셋은 값 지표에서 제외
+    def test_value_metrics_skipped_without_expected_value(self):
+        report = self.run_evaluation()
+        summary = report["summary"]["chroma"]
+
+        self.assertEqual(summary["value_total"], 0)
+        self.assertIsNone(summary["page_value_hit_at_3"])
+        self.assertIsNone(report["details"]["chroma"][0]["value_hit_at_3"])
+
     # 3. Chroma 청크 수 불일치 검사
     def test_chroma_count_mismatch(self):
         self.vectorstore._collection.count.return_value = 2
