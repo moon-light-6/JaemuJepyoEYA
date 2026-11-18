@@ -323,7 +323,18 @@ def main() -> None:
         / str(args.fiscal_year)
         / f"{args.rcept_no}_pdf_pages.json"
     )
-    output_path = args.output_path or input_path.with_name(f"{args.rcept_no}_pages.json") # 출력 파일 경로 설정 
+    # PDF 전체 페이지 추출본은 연결/별도 공통이지만, 선택한 페이지는 기준별로 달라진다.
+    # 그래서 기본 결과를 corp/year/scope/{rcept_no}_pages.json에 저장한다.
+    output_path = args.output_path or (
+        PROJECT_ROOT
+        / "data"
+        / "processed"
+        / "dart"
+        / args.corp_code
+        / str(args.fiscal_year)
+        / args.statement_scope
+        / f"{args.rcept_no}_pages.json"
+    )
 
     with input_path.open(encoding="utf-8") as file: 
         pdf_data = json.load(file)
