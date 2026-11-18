@@ -32,9 +32,9 @@ def main() -> None:
         PROJECT_ROOT / "data" / "raw" / "dart" / args.corp_code
         / str(args.fiscal_year) / f"{args.rcept_no}.zip"
     )
-    # 접수번호는 폴더가 아니라 scope 폴더 바로 아래의 파일명으로 사용한다.
+    # XML과 PDF 처리 결과가 섞이지 않도록 XML 전용 폴더에 저장한다.
     output_path = args.output_path or (
-        PROJECT_ROOT / "data" / "processed" / "dart" / args.corp_code
+        PROJECT_ROOT / "data" / "processed" / "xml" / "dart" / args.corp_code
         / str(args.fiscal_year) / args.statement_scope
         / f"{args.rcept_no}_xml_documents.json"
     )

@@ -102,3 +102,40 @@ class SearchTarget:
             / self.statement_scope
             / f"{self.rcept_no}.json"
         )
+
+    # XML은 PDF 처리 결과와 섞이지 않도록 원본 형식별 경로를 사용한다.
+    def xml_scope_dir(self, project_root: str | Path) -> Path:
+        return (
+            Path(project_root) / "data" / "processed" / "xml" / "dart"
+            / self.corp_code / str(self.fiscal_year) / self.statement_scope
+        )
+
+    def xml_documents_path(self, project_root: str | Path) -> Path:
+        return self.xml_scope_dir(project_root) / f"{self.rcept_no}_xml_documents.json"
+
+    def xml_chunks_path(self, project_root: str | Path) -> Path:
+        return self.xml_scope_dir(project_root) / f"{self.rcept_no}_xml_chunks.json"
+
+    def xml_pipeline_path(self, project_root: str | Path) -> Path:
+        return self.xml_scope_dir(project_root) / f"{self.rcept_no}_xml_pipeline.json"
+
+    @property
+    def xml_collection_name(self) -> str:
+        return (
+            f"fin_xml_{self.corp_code}_{self.fiscal_year}_"
+            f"{self.statement_scope}_{self.rcept_no}_kure_v1"
+        )
+
+    def xml_dataset_path(self, project_root: str | Path) -> Path:
+        return (
+            Path(project_root) / "evaluation" / "dataset" / "xml"
+            / self.corp_code / str(self.fiscal_year) / self.statement_scope
+            / f"{self.rcept_no}_retrieval.json"
+        )
+
+    def xml_result_path(self, project_root: str | Path) -> Path:
+        return (
+            Path(project_root) / "evaluation" / "results" / "xml"
+            / self.corp_code / str(self.fiscal_year) / self.statement_scope
+            / f"{self.rcept_no}_retrieval.json"
+        )
