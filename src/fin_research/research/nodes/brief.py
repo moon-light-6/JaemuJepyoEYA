@@ -3,6 +3,7 @@
 ① 하위 주제 목록·제목·필수 지표는 configs/report_template.yaml이 고정한다 (보고서 구성·평가 기준)
 ② LLM은 기업·업종·관심 영역에 맞는 질문과 추가 지표만 채운다 (BriefDraft)
 ③ build_brief가 템플릿에 맞춰 조립하고, LLM이 실패해도 기본 질문으로 진행한다
+④ 노드는 Command로 Brief(update)와 1라운드 researcher Send(goto)를 함께 돌려준다
 """
 
 from __future__ import annotations
@@ -15,12 +16,14 @@ from typing import Literal, get_args
 import yaml
 from langchain_core.messages import HumanMessage, SystemMessage
 from langchain_core.runnables import RunnableConfig
+from langgraph.types import Command
 from pydantic import BaseModel, Field
 
 from fin_research.llm.client import PROJECT_ROOT
 from fin_research.llm.output_parser import OutputParseError, ainvoke_structured
 from fin_research.llm.router import get_llm_for_role
 from fin_research.research.nodes.common import get_budget, load_prompt
+from fin_research.research.nodes.supervisor import dispatch
 from fin_research.research.state import Brief, ClarifyResult, ResearchState, SubTopic
 
 TEMPLATE_PATH = PROJECT_ROOT / "configs" / "report_template.yaml"
@@ -160,7 +163,7 @@ def _brief_input(clarify: ClarifyResult, template: tuple[dict, ...]) -> str:
     }, ensure_ascii=False, indent=2)
 
 
-async def brief_node(state: ResearchState, config: RunnableConfig) -> dict:
+async def brief_node(state: ResearchState, config: RunnableConfig) -> Command[Literal["researcher"]]:
     clarify = state.get("clarify")
     if clarify is None or clarify.need_clarification or not clarify.company:
         # 라우팅 오류: clarify가 확정되지 않았는데 brief로 왔다
@@ -180,7 +183,9 @@ async def brief_node(state: ResearchState, config: RunnableConfig) -> dict:
         draft = None  # 기본 질문으로 진행 (데모 중 멈추지 않게)
         errors.append(f"brief: LLM 초안 실패, 기본 질문 사용 — {e}")
 
-    update: dict = {"brief": build_brief(draft, clarify, template), "round": 1, "step": "brief"}
+    brief = build_brief(draft, clarify, template)
+    update: dict = {"brief": brief, "round": 1, "step": "brief"}
     if errors:
         update["errors"] = errors
-    return update
+    # 하위 주제마다 researcher로 병렬 Send (1라운드)
+    return Command(update=update, goto=dispatch(brief, brief.subtopics, 1))

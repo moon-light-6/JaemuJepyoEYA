@@ -1,7 +1,8 @@
 """supervisor: 하위 주제를 researcher에게 병렬 분배하고, 부족한 주제만 한 번 더 조사시킨다.
 
-① fan_out: brief의 하위 주제마다 Send (2라운드는 재조사 대상만)
-② supervisor_review: 부족한 주제·라운드·예산을 '코드'로 판단
+① dispatch: 하위 주제마다 researcher로 Send (brief가 1라운드, supervisor_review가 재조사 때 사용)
+② supervisor_review: 부족한 주제·라운드·예산을 '코드'로 판단하고
+   Command(update=..., goto=...)로 다음 행선지(재조사 Send 또는 종료)까지 직접 정한다
 ③ 재조사할 때만 LLM(supervisor 역할)이 1라운드 한계를 보고 질문을 다시 쓴다
    (같은 질문을 다시 보내면 같은 검색 결과가 나오므로)
 """
@@ -9,11 +10,12 @@
 from __future__ import annotations
 
 import json
+from typing import Literal
 
 from langchain_core.messages import HumanMessage, SystemMessage
 from langchain_core.runnables import RunnableConfig
 from langgraph.graph import END
-from langgraph.types import Send
+from langgraph.types import Command, Send
 from pydantic import BaseModel, Field
 
 from fin_research.llm.budget import BudgetExceeded, load_budget_config
@@ -52,12 +54,8 @@ def max_rounds(config: RunnableConfig | None) -> int:
 # ─────────────────────────── 분배 ───────────────────────────
 
 
-def fan_out(state: ResearchState) -> list[Send]:
-    """하위 주제마다 researcher로 Send. 재조사 라운드면 supervisor가 고친 하위 주제만."""
-    brief = state["brief"]
-    round_ = state.get("round", 1)
-    decision = state.get("supervisor_decision")
-    subtopics = decision.retry_subtopics if (round_ > 1 and decision) else brief.subtopics
+def dispatch(brief: Brief, subtopics: list[SubTopic], round_: int) -> list[Send]:
+    """하위 주제마다 researcher로 Send. Command(goto=...)에 그대로 넣는다."""
     return [
         Send("researcher", ResearcherInput(subtopic=s, brief=brief, round=round_))
         for s in subtopics
@@ -128,7 +126,9 @@ async def rewrite_questions(
     ], errors
 
 
-async def supervisor_review(state: ResearchState, config: RunnableConfig) -> dict:
+async def supervisor_review(
+    state: ResearchState, config: RunnableConfig
+) -> Command[Literal["researcher", "__end__"]]:
     brief = state["brief"]
     round_ = state.get("round", 1)
     latest = latest_by_subtopic(state.get("findings") or [])
@@ -137,11 +137,15 @@ async def supervisor_review(state: ResearchState, config: RunnableConfig) -> dic
         if s.id not in latest or latest[s.id].status == "insufficient_evidence"
     ]
 
-    def stop(complete: bool, reason: str) -> dict:
-        return {
-            "supervisor_decision": SupervisorDecision(complete=complete, reason=reason),
-            "step": f"supervisor_review:round{round_}",
-        }
+    def stop(complete: bool, reason: str) -> Command:
+        # 3주차: 종료 대신 compress로
+        return Command(
+            update={
+                "supervisor_decision": SupervisorDecision(complete=complete, reason=reason),
+                "step": f"supervisor_review:round{round_}",
+            },
+            goto=END,
+        )
 
     if not lacking:
         return stop(True, f"{round_}라운드에서 모든 하위 주제 조사 완료")
@@ -167,12 +171,5 @@ async def supervisor_review(state: ResearchState, config: RunnableConfig) -> dic
     }
     if errors:
         update["errors"] = errors
-    return update
-
-
-def route_after_review(state: ResearchState) -> list[Send] | str:
-    """재조사 결정이면 같은 fan_out으로 Send, 아니면 종료 (3주차: compress로)."""
-    decision = state["supervisor_decision"]
-    if not decision.complete and decision.retry_subtopics:
-        return fan_out(state)
-    return END
+    # 재조사 대상만 다음 라운드 번호로 다시 보낸다
+    return Command(update=update, goto=dispatch(brief, retry_subtopics, round_ + 1))

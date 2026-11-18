@@ -28,7 +28,6 @@ from fin_research.research.nodes.clarify import (
     ClarifyExtraction,
     clarify_node,
     resolve_years,
-    route_after_clarify,
     validate_request,
 )
 
@@ -203,25 +202,25 @@ class TestClarifyNode(FixtureCompaniesTestCase):
             "에코프로비엠 현금흐름 위주로", self.fake_llm_factory("알겠습니다!", good),
             {"configurable": {"budget": budget}},
         )
-        self.assertEqual(sorted(out), ["clarify", "step"])
-        self.assertEqual(out["clarify"].company, "에코프로비엠")
-        self.assertEqual(out["clarify"].focus, ["현금흐름"])
-        self.assertEqual(route_after_clarify(out), "brief")
+        self.assertEqual(sorted(out.update), ["clarify", "step"])
+        self.assertEqual(out.update["clarify"].company, "에코프로비엠")
+        self.assertEqual(out.update["clarify"].focus, ["현금흐름"])
+        self.assertEqual(out.goto, "brief")
         # 첫 응답(JSON 아님) + 재시도 = 2회 호출이 clarify 역할로 집계
         self.assertEqual(budget.summary()["by_role"]["clarify"]["calls"], 2)
 
     def test_parse_failure_asks_and_records_error(self):
         out = self.run_node("???", self.fake_llm_factory("몰라", "몰라", "몰라"))
-        self.assertTrue(out["clarify"].need_clarification)
-        self.assertEqual(len(out["errors"]), 1)
-        self.assertEqual(route_after_clarify(out), END)
+        self.assertTrue(out.update["clarify"].need_clarification)
+        self.assertEqual(len(out.update["errors"]), 1)
+        self.assertEqual(out.goto, END)
 
     def test_empty_request_asks_without_calling_llm(self):
         def must_not_call(*_, **__):
             raise AssertionError("빈 요청에서 LLM을 만들면 안 됩니다")
         out = self.run_node("   ", must_not_call)
-        self.assertTrue(out["clarify"].need_clarification)
-        self.assertEqual(route_after_clarify(out), END)
+        self.assertTrue(out.update["clarify"].need_clarification)
+        self.assertEqual(out.goto, END)
 
 
 class TestRealCompaniesYaml(unittest.TestCase):

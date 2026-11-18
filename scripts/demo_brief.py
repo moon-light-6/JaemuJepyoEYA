@@ -13,7 +13,7 @@ import asyncio
 
 from fin_research.llm.budget import Budget, BudgetExceeded
 from fin_research.research.nodes.brief import brief_node
-from fin_research.research.nodes.clarify import clarify_node, route_after_clarify
+from fin_research.research.nodes.clarify import clarify_node
 
 DEFAULT_REQUESTS = [
     "SK 재무 분석해줘",
@@ -25,16 +25,18 @@ async def run(request: str, config: dict) -> None:
     state: dict = {"request": request}
     print(f"\n▶ {request}")
 
-    state.update(await clarify_node(state, config))
+    # 노드는 Command(update=결과, goto=다음 행선지)를 돌려준다
+    command = await clarify_node(state, config)
+    state.update(command.update)
     clarify = state["clarify"]
-    if route_after_clarify(state) != "brief":
+    if command.goto != "brief":
         print(f"  되묻기: {clarify.question}")
         return
     print(f"  clarify: {clarify.company} {clarify.years} focus={clarify.focus}")
     for note in clarify.notes:
         print(f"           메모: {note}")
 
-    state.update(await brief_node(state, config))
+    state.update((await brief_node(state, config)).update)  # goto(researcher Send)는 이 시연에서 쓰지 않음
     brief = state["brief"]
     print(f"  목적: {brief.objective}")
     for subtopic in brief.subtopics:

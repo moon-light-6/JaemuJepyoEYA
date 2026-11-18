@@ -1,20 +1,27 @@
 """Deep Research 그래프 조립 (2주차: clarify → brief → researcher 병렬 → supervisor 검토).
 
-    START → clarify ─▶ brief ─(fan_out)─▶ researcher ×N ─▶ supervisor_review ─(재조사)─▶ researcher
-              └▶ END (되묻기)                                                └▶ END (3주차: compress)
+    START → clarify ─▶ brief ─(Send ×N)─▶ researcher ─▶ supervisor_review ─(Send 재조사)─▶ researcher
+              └▶ END (되묻기)                                            └▶ END (3주차: compress)
+
+라우팅은 조건부 엣지 대신 각 노드가 Command(update=..., goto=...)로 직접 정한다.
+- clarify:           goto "brief" 또는 END
+- brief:             goto [Send("researcher", ...) × 하위 주제]
+- supervisor_review: goto [Send("researcher", ...) × 재조사 대상] 또는 END
+행선지는 노드 반환 타입 Command[Literal[...]]에서 LangGraph가 읽어 그래프 구조에 반영한다.
+고정 엣지는 START → clarify, researcher → supervisor_review 둘뿐이다.
 """
 
 from __future__ import annotations
 
 from collections.abc import Callable
 
-from langgraph.graph import END, START, StateGraph
+from langgraph.graph import START, StateGraph
 
 from fin_research.llm.budget import Budget, load_budget_config
 from fin_research.research.nodes.brief import brief_node
-from fin_research.research.nodes.clarify import clarify_node, route_after_clarify
+from fin_research.research.nodes.clarify import clarify_node
 from fin_research.research.nodes.researcher import make_loop_researcher
-from fin_research.research.nodes.supervisor import fan_out, route_after_review, supervisor_review
+from fin_research.research.nodes.supervisor import supervisor_review
 from fin_research.research.state import ResearchState
 
 
@@ -27,10 +34,7 @@ def build_graph(researcher: Callable | None = None):
     g.add_node("supervisor_review", supervisor_review)
 
     g.add_edge(START, "clarify")
-    g.add_conditional_edges("clarify", route_after_clarify, ["brief", END])
-    g.add_conditional_edges("brief", fan_out, ["researcher"])
     g.add_edge("researcher", "supervisor_review")
-    g.add_conditional_edges("supervisor_review", route_after_review, ["researcher", END])
     return g.compile()
 
 

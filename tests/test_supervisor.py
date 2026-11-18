@@ -15,6 +15,7 @@ from unittest.mock import patch
 
 from langchain_core.language_models.fake_chat_models import FakeMessagesListChatModel
 from langchain_core.messages import AIMessage
+from langgraph.types import Command
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 os.environ.setdefault("OPENAI_API_KEY", "sk-test-dummy")
@@ -71,12 +72,14 @@ def make_researcher(fail_rounds: dict[str, set[int]] | None = None, raise_for: s
 
 def run_graph(researcher, budget=None, rewrite_response=None, max_rounds=None):
     """clarify·brief는 고정값으로 바꿔 끼우고, supervisor LLM은 가짜 응답."""
-    async def fake_clarify(state, config):
-        return {"clarify": ClarifyResult(need_clarification=False, company="삼성전자",
-                                         corp_code="00126380", years=[2025]), "step": "clarify"}
+    async def fake_clarify(state, config) -> Command:
+        return Command(update={"clarify": ClarifyResult(
+            need_clarification=False, company="삼성전자", corp_code="00126380", years=[2025],
+        ), "step": "clarify"}, goto="brief")
 
-    async def fake_brief(state, config):
-        return {"brief": BRIEF, "round": 1, "step": "brief"}
+    async def fake_brief(state, config) -> Command:
+        return Command(update={"brief": BRIEF, "round": 1, "step": "brief"},
+                       goto=supervisor_module.dispatch(BRIEF, BRIEF.subtopics, 1))
 
     def fake_llm(role, budget=None, **_):
         return FakeMessagesListChatModel(responses=[AIMessage(rewrite_response or "몰라")] * 3)

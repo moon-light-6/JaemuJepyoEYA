@@ -2,13 +2,17 @@
 
 ① LLM은 요청에서 회사·기간·관심 영역을 '추출'만 한다 (ClarifyExtraction)
 ② 확정·되묻기 판단은 코드가 companies.yaml과 대조해 결정한다 (validate_request)
+③ 노드는 Command로 결과(update)와 다음 행선지(goto: brief 또는 종료)를 함께 돌려준다
 """
 
 from __future__ import annotations
 
+from typing import Literal
+
 from langchain_core.messages import HumanMessage, SystemMessage
 from langchain_core.runnables import RunnableConfig
 from langgraph.graph import END
+from langgraph.types import Command
 from pydantic import BaseModel, Field
 
 from fin_research.companies import available_years, find_companies, supported_names
@@ -122,11 +126,20 @@ def validate_request(extraction: ClarifyExtraction) -> ClarifyResult:
 # ─────────────────────────── 노드 ───────────────────────────
 
 
-async def clarify_node(state: ResearchState, config: RunnableConfig) -> dict:
+def _command(result: ClarifyResult, errors: list[str] | None = None) -> Command:
+    """되물어야 하면 그래프 종료(API가 question을 사용자에게 전달), 아니면 brief로."""
+    update: dict = {"clarify": result, "step": "clarify"}
+    if errors:
+        update["errors"] = errors
+    return Command(update=update, goto=END if result.need_clarification else "brief")
+
+
+async def clarify_node(
+    state: ResearchState, config: RunnableConfig
+) -> Command[Literal["brief", "__end__"]]:
     request = (state.get("request") or "").strip()
     if not request:
-        return {"clarify": _ask("분석할 기업과 기간을 알려주세요. (예: 삼성전자 최근 3년 재무 분석)"),
-                "step": "clarify"}
+        return _command(_ask("분석할 기업과 기간을 알려주세요. (예: 삼성전자 최근 3년 재무 분석)"))
 
     llm = get_llm_for_role("clarify", budget=get_budget(config))
     messages = [
@@ -136,14 +149,8 @@ async def clarify_node(state: ResearchState, config: RunnableConfig) -> dict:
     try:
         extraction = await ainvoke_structured(llm, messages, ClarifyExtraction)
     except OutputParseError as e:
-        return {
-            "clarify": _ask("요청을 이해하지 못했습니다. 기업명과 기간을 다시 알려주세요."),
-            "step": "clarify",
-            "errors": [f"clarify: {e}"],
-        }
-    return {"clarify": validate_request(extraction), "step": "clarify"}
-
-
-def route_after_clarify(state: ResearchState) -> str:
-    """되물어야 하면 그래프 종료(API가 question을 사용자에게 전달), 아니면 brief로."""
-    return END if state["clarify"].need_clarification else "brief"
+        return _command(
+            _ask("요청을 이해하지 못했습니다. 기업명과 기간을 다시 알려주세요."),
+            errors=[f"clarify: {e}"],
+        )
+    return _command(validate_request(extraction))

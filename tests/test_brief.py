@@ -177,18 +177,23 @@ class TestBriefNode(unittest.TestCase):
         budget = Budget()
         out = self.run_node({"clarify": clarify_result()}, self.factory(bad, good),
                             {"configurable": {"budget": budget}})
-        self.assertEqual(sorted(out), ["brief", "round", "step"])
-        self.assertEqual(out["round"], 1)
-        cashflow = out["brief"].subtopics[2]
+        self.assertEqual(sorted(out.update), ["brief", "round", "step"])
+        self.assertEqual(out.update["round"], 1)
+        # 하위 주제마다 researcher로 1라운드 Send
+        self.assertEqual([send.node for send in out.goto], ["researcher"] * 4)
+        self.assertEqual([send.arg["subtopic"].id for send in out.goto], TEMPLATE_IDS)
+        self.assertEqual({send.arg["round"] for send in out.goto}, {1})
+        cashflow = out.update["brief"].subtopics[2]
         self.assertEqual(cashflow.questions[1], f"{COMPANY} 설비투자는?")
         self.assertEqual(cashflow.metrics, ["영업활동현금흐름", "CAPEX"])
         self.assertEqual(budget.summary()["by_role"]["brief"]["calls"], 2)
 
     def test_llm_failure_continues_with_defaults_and_records_error(self):
         out = self.run_node({"clarify": clarify_result()}, self.factory("몰라", "몰라", "몰라"))
-        self.assertEqual([s.id for s in out["brief"].subtopics], TEMPLATE_IDS)
-        self.assertEqual(len(out["errors"]), 1)
-        self.assertIn("기본 질문 사용", out["errors"][0])
+        self.assertEqual([s.id for s in out.update["brief"].subtopics], TEMPLATE_IDS)
+        self.assertEqual(len(out.goto), 4)  # LLM이 실패해도 조사는 진행
+        self.assertEqual(len(out.update["errors"]), 1)
+        self.assertIn("기본 질문 사용", out.update["errors"][0])
 
     def test_requires_confirmed_clarify(self):
         def must_not_call(*_, **__):
