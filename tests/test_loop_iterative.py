@@ -51,6 +51,25 @@ def answer(source="S1", status="draft"):
 
 
 class IterativeLoopTests(unittest.TestCase):
+    def test_progress_reports_real_retry_without_changing_result(self):
+        def run(progress=None):
+            return run_research_loop(
+                "원래 질문", Path("unused"), max_rounds=3,
+                model=model_responses(evaluation(), evaluation(True, ids=["S2"]), answer("S2")),
+                search_function=Mock(side_effect=[[evidence(1)], [evidence(2)]]),
+                progress=progress,
+            )
+        messages = []
+        actual = run(messages.append)
+        self.assertEqual(actual, run())
+        transcript = "\n".join(messages)
+        self.assertIn("[조사 1/3] 문서 검색 시작", transcript)
+        self.assertIn("재검색 결정 · 다음 검색어: 추가 검색", transcript)
+        self.assertIn("[조사 2/3] 문서 검색 시작", transcript)
+        self.assertIn("새 근거 S2", transcript)
+        self.assertIn("평가 결과: 충분", transcript)
+        self.assertIn("검색 2회", messages[-1])
+
     def run_loop(self, model, search, max_rounds=3):
         return run_research_loop(
             "원래 질문", Path("unused"), max_rounds=max_rounds,

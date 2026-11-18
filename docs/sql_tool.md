@@ -37,6 +37,9 @@ python -m pip install -r requirements.txt
 
 ## 실행
 
+단계별 진행 로그는 기본으로 표시된다. `--quiet`로 숨길 수 있다.
+재검색 루프를 포함한 사용법은 `docs/research_progress.md`를 참고한다.
+
 DB와 모델을 호출하지 않고 SQL 구문 검사:
 
 ```bat
@@ -75,6 +78,10 @@ python -X utf8 -m unittest discover -s tests -p test_sql_tool.py -v
 - 접속은 읽기 전용 트랜잭션, 기본 쿼리 제한 10초, 잠금 대기 2초, 연결 제한 5초다.
 - 기본 최대 100행(설정 최대 1000행)이며 한 행을 추가 확인해 `truncated`로 잘림을 표시한다.
 - 정수는 정수, Decimal은 문자열로 JSON에 보존한다. 날짜는 ISO 문자열이다.
+- 응답에 원 단위 `amount`가 있으면 표시용 `amount_display`를 추가한다.
+  예: `amount: 2531576384113`, `amount_display: "약 2.532조 원"`.
+  조·억·만 단위는 소수 셋째 자리까지 반올림해 표시한 근삿값이고 1만원 미만은 원 단위 그대로 표시한다.
+  금액 누락은 표시값도 null이다. 화면에는 표시값을, 계산·검증에는 원본 amount를 사용한다.
 - 기준이 불명확하면 모델이 `needs_clarification`으로 응답하도록 요청한다.
   생성 SQL이 보고서 연도만 필터하고 실적 기간을 제한하지 않으면 차단한다.
   구문·기간 조건 검사 실패 시 모델에 한 번 수정 요청하고, 재실패하면 실행하지 않는다.
