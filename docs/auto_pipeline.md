@@ -46,6 +46,10 @@ python scripts/run_pipeline.py --from-config
 | `evaluation/results/retrieval_{corp}_{year}_{scope}_{rcept}.json` | 기업별 문항 단위 평가 결과 (`evaluate_retrieval.py` 기본 경로) |
 | `evaluation/results/retrieval_summary.csv` | 전체 기업 요약 (엑셀에서 바로 열림). 같은 기업·연도를 다시 돌리면 해당 행만 갱신 |
 | `data/processed/dart/{corp}/{year}/{rcept}_pipeline.json` | 자동으로 정한 값(dcm_no 출처, 페이지 범위, 단위, 재무제표 종류별 쪽)의 기록 |
+| `evaluation/dataset/{corp}/{year}/{scope}/{rcept}.json` | 자동 생성 평가셋. 이미 있으면 새로 만들지 않고 그대로 사용 |
+| `evaluation/results/{corp}/{year}/{scope}/{rcept}.json` | 기업별 문항 단위 평가 결과 (`evaluate_retrieval.py` 기본 경로) |
+| `evaluation/results/retrieval_summary.csv` | 전체 기업 요약 (엑셀에서 바로 열림). 같은 기업·연도를 다시 돌리면 해당 행만 갱신 |
+| `data/processed/dart/{corp}/{year}/{scope}/{rcept}.json` | 자동으로 정한 값(dcm_no 출처, 페이지 범위, 단위, 재무제표 종류별 쪽)의 기록 |
 
 ## 자동 평가셋의 범위와 한계
 
