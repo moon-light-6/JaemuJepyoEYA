@@ -237,6 +237,14 @@ class TestRealCompaniesYaml(unittest.TestCase):
             self.assertTrue(company.get("name"), company)
             self.assertRegex(str(company.get("corp_code", "")), r"^\d{8}$", company.get("name"))
 
+    def test_no_duplicate_companies(self):
+        # 같은 기업이 두 번 있으면 clarify가 "HLB, HLB 중 어느 기업인가요?"처럼 되묻게 된다
+        companies = companies_module.load_companies()
+        for key in ("name", "corp_code"):
+            values = [c[key] for c in companies]
+            duplicates = sorted({v for v in values if values.count(v) > 1})
+            self.assertEqual(duplicates, [], f"companies.yaml에 중복 {key}")
+
 
 if __name__ == "__main__":
     unittest.main()
