@@ -1,0 +1,266 @@
+[
+  {
+    "id": "A01",
+    "question": "2025년 연결 기준 자산총계는 얼마인가?",
+    "answer_type": "numeric",
+    "expected_value": "851,090,190,178",
+    "unit": "원",
+    "gold_sources": [
+      {
+        "source_file": "20260318001519.pdf",
+        "pdf_page": 38
+      }
+    ],
+    "category": "financial_position",
+    "annotation_status": "verified",
+    "annotation_method": "auto_opendart_pdf_match",
+    "opendart_account": {
+      "sj_div": "BS",
+      "account_id": "ifrs-full_Assets",
+      "account_nm": "자산총계"
+    }
+  },
+  {
+    "id": "A02",
+    "question": "2025년 연결 기준 현금및현금성자산은 얼마인가?",
+    "answer_type": "numeric",
+    "expected_value": "294,471,835,825",
+    "unit": "원",
+    "gold_sources": [
+      {
+        "source_file": "20260318001519.pdf",
+        "pdf_page": 37
+      }
+    ],
+    "category": "financial_position",
+    "annotation_status": "verified",
+    "annotation_method": "auto_opendart_pdf_match",
+    "opendart_account": {
+      "sj_div": "BS",
+      "account_id": "ifrs-full_CashAndCashEquivalents",
+      "account_nm": "현금및현금성자산"
+    }
+  },
+  {
+    "id": "A03",
+    "question": "2025년 연결 기준 재고자산은 얼마인가?",
+    "answer_type": "numeric",
+    "expected_value": "20,168,943,120",
+    "unit": "원",
+    "gold_sources": [
+      {
+        "source_file": "20260318001519.pdf",
+        "pdf_page": 38
+      }
+    ],
+    "category": "financial_position",
+    "annotation_status": "verified",
+    "annotation_method": "auto_opendart_pdf_match",
+    "opendart_account": {
+      "sj_div": "BS",
+      "account_id": "ifrs-full_Inventories",
+      "account_nm": "재고자산"
+    }
+  },
+  {
+    "id": "A04",
+    "question": "2025년 연결 기준 매출액은 얼마인가?",
+    "answer_type": "numeric",
+    "expected_value": "821,854,634,614",
+    "unit": "원",
+    "gold_sources": [
+      {
+        "source_file": "20260318001519.pdf",
+        "pdf_page": 39
+      }
+    ],
+    "category": "income_statement",
+    "annotation_status": "verified",
+    "annotation_method": "auto_opendart_pdf_match",
+    "opendart_account": {
+      "sj_div": "CIS",
+      "account_id": "ifrs-full_Revenue",
+      "account_nm": "매출액"
+    }
+  },
+  {
+    "id": "A05",
+    "question": "2025년 연결 기준 영업이익은 얼마인가?",
+    "answer_type": "numeric",
+    "expected_value": "155,246,094,076",
+    "unit": "원",
+    "gold_sources": [
+      {
+        "source_file": "20260318001519.pdf",
+        "pdf_page": 39
+      }
+    ],
+    "category": "income_statement",
+    "annotation_status": "verified",
+    "annotation_method": "auto_opendart_pdf_match",
+    "opendart_account": {
+      "sj_div": "CIS",
+      "account_id": "dart_OperatingIncomeLoss",
+      "account_nm": "영업이익"
+    }
+  },
+  {
+    "id": "A06",
+    "question": "2025년 연결 기준 당기순이익은 얼마인가?",
+    "answer_type": "numeric",
+    "expected_value": "160,563,476,080",
+    "unit": "원",
+    "gold_sources": [
+      {
+        "source_file": "20260318001519.pdf",
+        "pdf_page": 39
+      }
+    ],
+    "category": "income_statement",
+    "annotation_status": "verified",
+    "annotation_method": "auto_opendart_pdf_match",
+    "opendart_account": {
+      "sj_div": "CIS",
+      "account_id": "ifrs-full_ProfitLoss",
+      "account_nm": "당기순이익"
+    }
+  },
+  {
+    "id": "A07",
+    "question": "2025년 연결 기준 영업활동으로 인한 현금흐름은 얼마인가?",
+    "answer_type": "numeric",
+    "expected_value": "124,332,829,487",
+    "unit": "원",
+    "gold_sources": [
+      {
+        "source_file": "20260318001519.pdf",
+        "pdf_page": 40
+      }
+    ],
+    "category": "cash_flow",
+    "annotation_status": "verified",
+    "annotation_method": "auto_opendart_pdf_match",
+    "opendart_account": {
+      "sj_div": "CF",
+      "account_id": "ifrs-full_CashFlowsFromUsedInOperatingActivities",
+      "account_nm": "영업활동현금흐름"
+    }
+  },
+  {
+    "id": "A08",
+    "question": "2025년 연결 기준 배당금 지급액은 얼마인가?",
+    "answer_type": "numeric",
+    "expected_value": "17,693,053,506",
+    "unit": "원",
+    "gold_sources": [
+      {
+        "source_file": "20260318001519.pdf",
+        "pdf_page": 42
+      }
+    ],
+    "category": "cash_flow",
+    "annotation_status": "verified",
+    "annotation_method": "auto_opendart_pdf_match",
+    "opendart_account": {
+      "sj_div": "CF",
+      "account_id": "ifrs-full_DividendsPaidClassifiedAsFinancingActivities",
+      "account_nm": "배당금의지급"
+    }
+  },
+  {
+    "id": "A09",
+    "question": "2025년과 2024년 연결 기준 자산총계는 각각 얼마인가?",
+    "answer_type": "comparison",
+    "expected_value": {
+      "2025": "851,090,190,178",
+      "2024": "678,782,059,891"
+    },
+    "unit": "원",
+    "gold_sources": [
+      {
+        "source_file": "20260318001519.pdf",
+        "pdf_page": 38
+      }
+    ],
+    "category": "financial_position",
+    "annotation_status": "verified",
+    "annotation_method": "auto_opendart_pdf_match",
+    "opendart_account": {
+      "sj_div": "BS",
+      "account_id": "ifrs-full_Assets",
+      "account_nm": "자산총계"
+    }
+  },
+  {
+    "id": "A10",
+    "question": "2025년과 2024년 연결 기준 매출액은 각각 얼마인가?",
+    "answer_type": "comparison",
+    "expected_value": {
+      "2025": "821,854,634,614",
+      "2024": "601,787,883,332"
+    },
+    "unit": "원",
+    "gold_sources": [
+      {
+        "source_file": "20260318001519.pdf",
+        "pdf_page": 39
+      }
+    ],
+    "category": "income_statement",
+    "annotation_status": "verified",
+    "annotation_method": "auto_opendart_pdf_match",
+    "opendart_account": {
+      "sj_div": "CIS",
+      "account_id": "ifrs-full_Revenue",
+      "account_nm": "매출액"
+    }
+  },
+  {
+    "id": "A11",
+    "question": "2025년과 2024년 연결 기준 영업이익은 각각 얼마인가?",
+    "answer_type": "comparison",
+    "expected_value": {
+      "2025": "155,246,094,076",
+      "2024": "128,262,269,240"
+    },
+    "unit": "원",
+    "gold_sources": [
+      {
+        "source_file": "20260318001519.pdf",
+        "pdf_page": 39
+      }
+    ],
+    "category": "income_statement",
+    "annotation_status": "verified",
+    "annotation_method": "auto_opendart_pdf_match",
+    "opendart_account": {
+      "sj_div": "CIS",
+      "account_id": "dart_OperatingIncomeLoss",
+      "account_nm": "영업이익"
+    }
+  },
+  {
+    "id": "A12",
+    "question": "2025년과 2024년 연결 기준 배당금 지급액은 각각 얼마인가?",
+    "answer_type": "comparison",
+    "expected_value": {
+      "2025": "17,693,053,506",
+      "2024": "19,009,765,866"
+    },
+    "unit": "원",
+    "gold_sources": [
+      {
+        "source_file": "20260318001519.pdf",
+        "pdf_page": 42
+      }
+    ],
+    "category": "cash_flow",
+    "annotation_status": "verified",
+    "annotation_method": "auto_opendart_pdf_match",
+    "opendart_account": {
+      "sj_div": "CF",
+      "account_id": "ifrs-full_DividendsPaidClassifiedAsFinancingActivities",
+      "account_nm": "배당금의지급"
+    }
+  }
+]
