@@ -67,6 +67,15 @@ class Brief(BaseModel):
     notes: list[str] = Field(default_factory=list, description="조사 범위의 한계. 예: 2023~2024년 자료 없음")
 
 
+class EvidenceRef(BaseModel):
+    """Finding이 인용한 근거의 위치 (Evidence Registry 전 임시: 원문 대신 출처만 보관)."""
+
+    id: str = Field(description="전역 근거 ID. 예: profitability.r1.q1.S1")
+    source_file: str | None = None
+    pdf_page: int | None = None
+    chunk_id: str | None = None
+
+
 class Finding(BaseModel):
     """researcher 1회 결과 (researcher 안에서 압축 완료된 것).
 
@@ -78,6 +87,7 @@ class Finding(BaseModel):
     summary: str = Field(description="한국어 조사 결과. 근거를 쓴 문장마다 [S#] 표기")
     evidence_ids: list[str] = Field(default_factory=list, description="summary에서 인용한 근거 ID")
     limitations: list[str] = Field(default_factory=list, description="누락·미검증 내용")
+    sources: list[EvidenceRef] = Field(default_factory=list, description="evidence_ids의 출처 위치")
     round: int = 1
 
 
@@ -86,6 +96,7 @@ class SupervisorDecision(BaseModel):
 
     complete: bool = Field(description="모든 하위 주제가 충분히 조사됐으면 True")
     retry_subtopic_ids: list[str] = Field(default_factory=list, description="다시 조사할 하위 주제 id")
+    retry_subtopics: list[SubTopic] = Field(default_factory=list, description="질문을 고쳐 다시 보낼 하위 주제")
     reason: str = ""
 
 
