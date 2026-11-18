@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 from collections import defaultdict
 from pathlib import Path
 from typing import Any
@@ -16,6 +17,17 @@ REQUIRED_METADATA = {
     "page_id", "company", "fiscal_year", "statement_scope", "document_type",
     "source_format", "source_file", "source_xpath", "source_element_index", "section", "title",
 }
+
+
+def normalize_search_text(text: str) -> str:
+    """DART 표의 글자 단위 공백을 검색에 덜 방해되게 정리한다.
+
+    원문은 바꾸지 않고, 계정명처럼 한글 글자 사이에만 공백이 반복된 경우에만
+    붙인다. 예: ``자 산 총 계`` → ``자산총계``.
+    """
+
+    return re.sub(r"(?<!\S)(?:[가-힣]\s+){2,}[가-힣](?!\S)",
+                  lambda match: re.sub(r"\s+", "", match.group(0)), text)
 
 
 def build_xml_chunks(records: list[dict[str, Any]], chunk_size: int, chunk_overlap: int) -> list[dict[str, Any]]:
@@ -33,7 +45,13 @@ def build_xml_chunks(records: list[dict[str, Any]], chunk_size: int, chunk_overl
         text = record.get("text")
         if not isinstance(text, str) or not text.strip():
             raise ValueError(f"{index}번째 XML 문서의 텍스트가 비어 있습니다.")
-        documents.append(Document(page_content=text, metadata={key: value for key, value in record.items() if key != "text"}))
+        search_context = f"[검색 문맥 | {record['section']} | {record['title']}]\n"
+        documents.append(
+            Document(
+                page_content=search_context + normalize_search_text(text),
+                metadata={key: value for key, value in record.items() if key != "text"},
+            )
+        )
 
     if not documents:
         raise ValueError("청킹할 XML 문서가 없습니다.")
