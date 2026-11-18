@@ -14,7 +14,10 @@ sys.path.insert(0, str(PROJECT_ROOT / "src"))
 from evaluation.retrieval_metrics import (
     load_eval_dataset,
     is_hit,
+    is_value_hit,
+    is_page_value_hit,
     calculate_hit_rate,
+    summarize_value_hits,
 )
 
 from fin_research.retrieval.bm25_retriever import (
@@ -60,6 +63,12 @@ def evaluate_retrievers(
 
     questions = load_eval_dataset(dataset_path)
     documents = load_chunk_documents(chunks_path)
+
+    # 값 지표 판정에 쓸 청크 텍스트 (chunk_id -> 본문)
+    chunk_texts = {
+        str(document.metadata["chunk_id"]): document.page_content
+        for document in documents
+    }
 
 
     # 선택한 검색 대상과 입력 청크 메타데이터 비교
@@ -176,6 +185,10 @@ def evaluate_retrievers(
         }
 
         # 7. 질문별 평가 결과 기록
+        # 정답 값(expected_value)이 없는 질문은 값 지표를 None으로 두고 요약에서 뺀다.
+        expected_value = item.get("expected_value")
+        has_value = expected_value is not None
+
         for method, results in search_results.items():
             evaluations[method].append({
                 "id": item["id"],
@@ -185,6 +198,26 @@ def evaluate_retrievers(
                 "gold_sources": gold_sources,
                 "hit_at_3": is_hit(results, gold_sources, 3),
                 "hit_at_5": is_hit(results, gold_sources, 5),
+                "value_hit_at_3": (
+                    is_value_hit(results, expected_value, 3, chunk_texts)
+                    if has_value else None
+                ),
+                "value_hit_at_5": (
+                    is_value_hit(results, expected_value, 5, chunk_texts)
+                    if has_value else None
+                ),
+                "page_value_hit_at_3": (
+                    is_page_value_hit(
+                        results, gold_sources, expected_value, 3, chunk_texts
+                    )
+                    if has_value else None
+                ),
+                "page_value_hit_at_5": (
+                    is_page_value_hit(
+                        results, gold_sources, expected_value, 5, chunk_texts
+                    )
+                    if has_value else None
+                ),
                 "results": [
                     {
                         "rank": result["rank"],
@@ -211,6 +244,8 @@ def evaluate_retrievers(
             "hits_at_5": sum(x["hit_at_5"] for x in items),
             "total": len(items),
         }
+        # 값 지표: 쪽+값(대표 지표), 값. 정답 값이 있는 질문만 센다.
+        summary[method].update(summarize_value_hits(items))
 
     return {
         "config": {
@@ -321,14 +356,24 @@ def main():
     )
 
     # 9. 결과 출력
-    print("\n=== 검색 방식별 평가 결과 ===")
-    print(f"{'방식':<12} {'Hit@3':>10} {'Hit@5':>10}")
+    # 대표 지표는 쪽+값이고, 쪽과 값은 원인 분석용으로 함께 보여 준다.
+    def percent(value):
+        return "      -" if value is None else f"{value * 100:>6.1f}%"
+
+    print("\n=== 검색 방식별 평가 결과 (Hit@3 / Hit@5) ===")
+    print(
+        f"{'방식':<10} {'쪽+값@3':>8} {'쪽+값@5':>8} | "
+        f"{'쪽@3':>7} {'쪽@5':>7} | {'값@3':>7} {'값@5':>7}"
+    )
 
     for method, result in report["summary"].items():
         print(
-            f"{method:<12} "
-            f"{result['hit_at_3'] * 100:>9.1f}% "
-            f"{result['hit_at_5'] * 100:>9.1f}%"
+            f"{method:<10} "
+            f"{percent(result.get('page_value_hit_at_3'))} "
+            f"{percent(result.get('page_value_hit_at_5'))} | "
+            f"{percent(result['hit_at_3'])} {percent(result['hit_at_5'])} | "
+            f"{percent(result.get('value_hit_at_3'))} "
+            f"{percent(result.get('value_hit_at_5'))}"
         )
 
     # 10. 결과 JSON 저장
