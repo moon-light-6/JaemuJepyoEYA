@@ -6,6 +6,7 @@ from pathlib import Path
 from collections.abc import Callable
 from typing import TYPE_CHECKING
 
+from fin_research.progress import ProgressCallback, report_progress
 from fin_research.research.loop.evaluator import evaluate_evidence
 from fin_research.research.loop.executor import execute_search
 from fin_research.research.loop.findings import GroundedAnswer, generate_findings
@@ -36,20 +37,31 @@ def run_once(
     *,
     budget: Budget | None = None,
     target: SearchTarget | None = None,
+    progress: ProgressCallback | None = None,
 ) -> dict:
     """검색 1회 + (선택) 답변 초안. target을 주면 그 기업·공시의 컬렉션을 검색한다."""
     if not question.strip():
         raise ValueError("질문을 입력하세요.")
+    report_progress(progress, f"1회 조사 시작 · 질문: {question.strip()}")
 
     model = None
     if not search_only:
         # 로컬 임베딩 모델을 불러오기 전에 API 키를 확인하고, 누락 시 즉시 중단합니다.
         model = _role_model("loop_findings", model_name, budget)
 
+    report_progress(progress, "문서 검색 시작 · 임베딩 모델을 처음 불러오면 시간이 걸릴 수 있습니다.")
     evidences = execute_search(question.strip(), persist_directory, top_k, target)
+    report_progress(progress, f"검색 완료 · 근거 {len(evidences)}개")
+    for item in evidences:
+        report_progress(progress, f"근거 {item.get('evidence_id', '')} · {item['source_file']} "
+                        f"{item['pdf_page']}쪽 · 청크 {item['chunk_id']}")
     findings = None
     if not search_only:
+        report_progress(progress, "확보한 근거로 답변 생성 중")
         findings = generate_findings(question, evidences, model).model_dump()
+        report_progress(progress, f"답변 생성 완료 · 상태: {findings['status']}")
+
+    report_progress(progress, "조사 종료 · single_pass (1회 실행)")
 
     return {
         "question": question.strip(),
@@ -76,6 +88,7 @@ def run_research_loop(
     search_function: Callable[[str, int], list[dict]] | None = None,
     budget: Budget | None = None,
     target: SearchTarget | None = None,
+    progress: ProgressCallback | None = None,
 ) -> dict:
     """검색·평가를 제한 횟수만큼 반복하고 근거와 조사 이력을 반환합니다.
 
@@ -89,6 +102,7 @@ def run_research_loop(
         raise ValueError("max_rounds는 1~5 사이여야 합니다.")
     if not 1 <= top_k <= 10:
         raise ValueError("top_k는 1~10 사이여야 합니다.")
+    report_progress(progress, f"재검색 조사 시작 · 최대 {max_rounds}회 · 질문: {question.strip()}")
     if model is not None:
         evaluator_model = findings_model = model
     else:
@@ -101,6 +115,10 @@ def run_research_loop(
 
     def search_node(state: LoopState) -> dict:
         query = state["query"]
+        round_number = state["rounds"] + 1
+        report_progress(progress, f"[조사 {round_number}/{max_rounds}] 문서 검색 시작 · 검색어: {query}")
+        if round_number == 1:
+            report_progress(progress, "임베딩 모델을 처음 불러오면 검색에 시간이 걸릴 수 있습니다.")
         history = {
             "round": state["rounds"] + 1, "query": query,
             "new_evidence_count": 0, "evaluation": None,
@@ -108,6 +126,7 @@ def run_research_loop(
         try:
             hits = search_function(query, top_k)
         except (OSError, ValueError, RuntimeError) as exc:
+            report_progress(progress, "문서 검색 실패 · 도구 오류로 조사를 종료합니다.")
             history["error"] = str(exc)
             return {
                 "rounds": state["rounds"] + 1,
@@ -125,7 +144,13 @@ def run_research_loop(
                 evidences.append({**hit, "evidence_id": f"S{len(evidences) + 1}"})
                 known.add(key)
                 history["new_evidence_count"] += 1
+                report_progress(progress, f"새 근거 S{len(evidences)} · {hit['source_file']} "
+                                f"{hit['pdf_page']}쪽 · 청크 {hit['chunk_id']}")
         no_new_evidence = state["rounds"] > 0 and history["new_evidence_count"] == 0
+        report_progress(progress, f"검색 완료 · 반환 {len(hits)}개 · 신규 "
+                        f"{history['new_evidence_count']}개 · 누적 {len(evidences)}개")
+        if no_new_evidence:
+            report_progress(progress, "새 근거가 없어 추가 평가·재검색을 중단합니다.")
         return {
             "evidences": evidences,
             "rounds": state["rounds"] + 1,
@@ -137,6 +162,7 @@ def run_research_loop(
     def evaluate_node(state: LoopState) -> dict:
         if state["stop_reason"]:
             return {}
+        report_progress(progress, f"[조사 {state['rounds']}/{max_rounds}] 근거 충분성 평가 중")
         evaluation = evaluate_evidence(
             state["question"], state["evidences"], state["queries"], evaluator_model,
         )
@@ -152,6 +178,14 @@ def run_research_loop(
             stop_reason = "repeated_query"
         else:
             stop_reason = ""
+
+        report_progress(progress, f"평가 결과: {'충분' if evaluation.sufficient else '부족'} · {evaluation.reason}")
+        if evaluation.missing_items:
+            report_progress(progress, "부족한 정보: " + "; ".join(evaluation.missing_items))
+        if not stop_reason:
+            report_progress(progress, f"재검색 결정 · 다음 검색어: {next_query}")
+        else:
+            report_progress(progress, f"검색 단계 종료 · {stop_reason}")
 
         history = state["history"][:-1] + [
             {**state["history"][-1], "evaluation": evaluation.model_dump()}
@@ -171,7 +205,9 @@ def run_research_loop(
             generation_question = state["question"]
             for attempt in range(2):
                 try:
+                    report_progress(progress, f"출처가 연결된 답변 생성 중 · 시도 {attempt + 1}/2")
                     findings = generate_findings(generation_question, selected, findings_model)
+                    report_progress(progress, f"답변 생성 완료 · 상태: {findings.status}")
                     return {
                         "findings": findings.model_dump(),
                         "llm_calls": state["llm_calls"] + attempt + 1,
@@ -182,6 +218,8 @@ def run_research_loop(
                         ),
                     }
                 except ValueError as exc:
+                    report_progress(progress, "답변의 출처·형식 검사 실패 · "
+                                    + ("한 번 수정 요청합니다." if attempt == 0 else "답변을 확정하지 않습니다."))
                     errors.append(str(exc))
                     generation_question = (
                         state["question"]
@@ -211,6 +249,7 @@ def run_research_loop(
             answer="확보한 근거만으로는 질문에 대한 답변을 확정할 수 없습니다.",
             evidence_ids=[], limitations=limitations,
         )
+        report_progress(progress, "근거가 충분하지 않아 답변을 확정하지 않습니다.")
         return {"findings": findings.model_dump()}
 
     graph = StateGraph(LoopState)
@@ -233,6 +272,8 @@ def run_research_loop(
         "generation_errors": [],
     }
     state = graph.compile().invoke(initial_state, {"recursion_limit": 2 * max_rounds + 5})
+    report_progress(progress, f"조사 종료 · {state['stop_reason']} · 검색 {state['rounds']}회 · "
+                    f"LLM 호출 {state['llm_calls']}회 · 누적 근거 {len(state['evidences'])}개")
     return {
         "question": state["question"], "mode": "iterative_research",
         "model": getattr(findings_model, "model_name", None),

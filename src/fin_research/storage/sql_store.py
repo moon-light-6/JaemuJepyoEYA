@@ -6,7 +6,7 @@ import os
 from contextlib import suppress
 from dataclasses import asdict, dataclass
 from datetime import date, datetime
-from decimal import Decimal
+from decimal import Context, Decimal, ROUND_HALF_UP, localcontext
 
 import psycopg2
 from sqlglot import exp, parse
@@ -97,7 +97,32 @@ class SQLResult:
     truncated: bool
 
     def to_dict(self) -> dict:
-        return asdict(self)
+        result = asdict(self)
+        # DB 원본 금액은 계산용으로 유지하고, 응답에만 표시용 값을 추가한다.
+        if "amount" in self.columns and "amount_display" not in self.columns:
+            result["columns"].append("amount_display")
+            for row in result["rows"]:
+                row["amount_display"] = format_krw(row.get("amount"))
+        return result
+
+
+def format_krw(amount: int | Decimal | None) -> str | None:
+    """원 단위 금액을 조·억·만 단위로 소수 셋째 자리까지 반올림해 표시한다."""
+    if isinstance(amount, bool) or not isinstance(amount, (int, Decimal)):
+        return None
+    number = Decimal(amount)
+    if not number.is_finite():
+        return None
+    with localcontext(Context(prec=50, rounding=ROUND_HALF_UP)):
+        for divisor, label in ((10**12, "조"), (10**8, "억"), (10**4, "만")):
+            if abs(number) >= divisor:
+                scaled = (number / divisor).quantize(Decimal("0.001"))
+                return f"약 {scaled:,.3f}{label} 원"
+        # 작은 금액은 단위 변환이나 반올림 없이 표시한다.
+        text = format(number, ",f")
+        if "." in text:
+            text = text.rstrip("0").rstrip(".")
+        return f"{text}원"
 
 
 def json_value(value):

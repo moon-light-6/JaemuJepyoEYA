@@ -18,7 +18,7 @@ sys.path.insert(0, str(ROOT / "src"))
 
 from fin_research.storage.sql_store import (
     VIEW_COLUMNS, PostgresReadOnlyStore, SQLExecutionError, SQLResult,
-    UnsafeSQLError, json_value, validate_readonly_sql,
+    UnsafeSQLError, format_krw, json_value, validate_readonly_sql,
 )
 from fin_research.tools.sql_tool import FinancialSQLTool, SQLPlan, generate_sql
 
@@ -147,6 +147,19 @@ class SQLStoreTests(unittest.TestCase):
                 PostgresReadOnlyStore("unused", **kwargs)
         self.assertEqual(json_value(date(2025, 12, 31)), "2025-12-31")
 
+    def test_amount_display_preserves_original_value(self):
+        original = SQLResult(VALID_SQL, ["amount"], [{"amount": 2531576384113}], 1, False)
+        result = original.to_dict()
+        self.assertEqual(result["rows"][0]["amount"], 2531576384113)
+        self.assertEqual(result["rows"][0]["amount_display"], "약 2.532조 원")
+        self.assertEqual(original.rows, [{"amount": 2531576384113}])
+        self.assertEqual(original.columns, ["amount"])
+        self.assertEqual(format_krw(-2531576384113), "약 -2.532조 원")
+        self.assertEqual(format_krw(123456789), "약 1.235억 원")
+        self.assertEqual(format_krw(12345), "약 1.235만 원")
+        self.assertEqual(format_krw(0), "0원")
+        self.assertIsNone(format_krw(None))
+
 
 class SQLGenerationTests(unittest.TestCase):
     def model(self, response):
@@ -163,7 +176,7 @@ class SQLGenerationTests(unittest.TestCase):
         store = Mock()
         store.execute.return_value = SQLResult(VALID_SQL, ["amount"], [{"amount": 100}], 1, False)
         result = FinancialSQLTool(model, store).run("에코프로비엠의 2025년 연결 매출")
-        self.assertEqual(result["result"]["rows"], [{"amount": 100}])
+        self.assertEqual(result["result"]["rows"], [{"amount": 100, "amount_display": "100원"}])
         self.assertIn("fin.v_fin_value", self.prompts[0])
         self.assertIn("fiscal_year는 보고서의 사업연도", self.prompts[0])
         self.assertIn("에코프로비엠", self.prompts[0])
@@ -203,10 +216,15 @@ class SQLGenerationTests(unittest.TestCase):
             prompts.append(prompt.to_string())
             return next(responses)
         model.with_structured_output.return_value = RunnableLambda(reply)
-        plan = generate_sql("2025 실적", model)
+        progress = []
+        plan = generate_sql("2025 실적", model, progress=progress.append)
         self.assertEqual(len(prompts), 2)
         self.assertIn("period_end 또는 period_role", prompts[1])
         self.assertIn("2025-12-31", plan.sql)
+        self.assertIn("SQL 생성 중", progress[0])
+        self.assertTrue(any("SQL 검사 실패" in message for message in progress))
+        self.assertTrue(any("시도 2/2" in message for message in progress))
+        self.assertTrue(any("SQL 검사 통과" in message for message in progress))
 
     def test_unrepaired_period_query_never_executes(self):
         model = self.model({"status": "ready", "sql":

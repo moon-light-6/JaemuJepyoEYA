@@ -9,6 +9,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT_ROOT / "src"))
 
 from fin_research.research.loop.graph import run_once, run_research_loop
+from fin_research.progress import TerminalProgress, report_progress
 
 LEGACY_PERSIST_DIRECTORY = PROJECT_ROOT / "data/chroma_samsung"  # 기존 단일 컬렉션
 MULTI_PERSIST_DIRECTORY = PROJECT_ROOT / "data/chroma_multi"     # build_chroma.py 기업별 컬렉션
@@ -74,24 +75,27 @@ def main() -> int:
         help=f"생략하면 검색 대상 지정 시 {MULTI_PERSIST_DIRECTORY.name}, 아니면 {LEGACY_PERSIST_DIRECTORY.name}",
     )
     parser.add_argument("--out", type=Path)
+    parser.add_argument("--quiet", action="store_true", help="조사 단계 진행 로그 숨기기")
     args = parser.parse_args()
     if args.search_only and args.max_rounds is not None:
         parser.error("--search-only와 --max-rounds는 함께 사용할 수 없습니다.")
-
     target = resolve_target(args, parser)
     persist_directory = args.persist_directory or (
         MULTI_PERSIST_DIRECTORY if target else LEGACY_PERSIST_DIRECTORY
     )
+    progress = None if args.quiet else TerminalProgress()
     try:
         if args.max_rounds is not None:
             result = run_research_loop(
                 args.question, persist_directory, args.top_k,
                 args.model, args.max_rounds, target=target,
+                progress=progress,
             )
         else:
             result = run_once(
                 args.question, persist_directory, args.top_k,
                 args.model, args.search_only, target=target,
+                progress=progress,
             )
     except (ValueError, RuntimeError, FileNotFoundError) as exc:
         print(f"실행 실패: {exc}", file=sys.stderr)
@@ -101,6 +105,7 @@ def main() -> int:
     if args.out:
         args.out.parent.mkdir(parents=True, exist_ok=True)
         args.out.write_text(rendered + "\n", encoding="utf-8")
+        report_progress(progress, f"결과 JSON 저장: {args.out.resolve()}")
     print(rendered)
     return 0
 
