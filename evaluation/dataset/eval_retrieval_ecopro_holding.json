@@ -1,0 +1,207 @@
+[
+  {
+    "id": "P01",
+    "question": "2025년 연결 기준 자산총계는 얼마인가?",
+    "answer_type": "numeric",
+    "expected_value": "9,778,714,530,496",
+    "unit": "원",
+    "gold_sources": [{"source_file": "20260318001612.pdf", "pdf_page": 91}],
+    "category": "financial_position",
+    "annotation_status": "verified"
+  },
+  {
+    "id": "P02",
+    "question": "2025년 연결 기준 현금및현금성자산은 얼마인가?",
+    "answer_type": "numeric",
+    "expected_value": "1,186,767,418,765",
+    "unit": "원",
+    "gold_sources": [{"source_file": "20260318001612.pdf", "pdf_page": 91}],
+    "category": "financial_position",
+    "annotation_status": "verified"
+  },
+  {
+    "id": "P03",
+    "question": "2025년 연결 기준 재고자산은 얼마인가?",
+    "answer_type": "numeric",
+    "expected_value": "919,167,346,004",
+    "unit": "원",
+    "gold_sources": [{"source_file": "20260318001612.pdf", "pdf_page": 91}],
+    "category": "financial_position",
+    "annotation_status": "verified"
+  },
+  {
+    "id": "P04",
+    "question": "2025년 연결 기준 부채총계는 얼마인가?",
+    "answer_type": "numeric",
+    "expected_value": "5,291,398,401,591",
+    "unit": "원",
+    "gold_sources": [{"source_file": "20260318001612.pdf", "pdf_page": 92}],
+    "category": "financial_position",
+    "annotation_status": "verified"
+  },
+  {
+    "id": "P05",
+    "question": "2025년 연결 기준 매출액은 얼마인가?",
+    "answer_type": "numeric",
+    "expected_value": "3,413,021,590,101",
+    "unit": "원",
+    "gold_sources": [{"source_file": "20260318001612.pdf", "pdf_page": 93}],
+    "category": "income_statement",
+    "annotation_status": "verified"
+  },
+  {
+    "id": "P06",
+    "question": "2025년 연결 기준 영업이익은 얼마인가?",
+    "answer_type": "numeric",
+    "expected_value": "213,763,514,884",
+    "unit": "원",
+    "gold_sources": [{"source_file": "20260318001612.pdf", "pdf_page": 93}],
+    "category": "income_statement",
+    "annotation_status": "verified"
+  },
+  {
+    "id": "P07",
+    "question": "2025년 연결 기준 당기순손익은 얼마인가?",
+    "answer_type": "numeric",
+    "expected_value": "(105,539,603,168)",
+    "unit": "원",
+    "gold_sources": [{"source_file": "20260318001612.pdf", "pdf_page": 93}],
+    "category": "income_statement",
+    "annotation_status": "verified"
+  },
+  {
+    "id": "P08",
+    "question": "2025년 연결 기준 영업활동으로 인한 현금흐름은 얼마인가?",
+    "answer_type": "numeric",
+    "expected_value": "339,076,295,162",
+    "unit": "원",
+    "gold_sources": [{"source_file": "20260318001612.pdf", "pdf_page": 96}],
+    "category": "cash_flow",
+    "annotation_status": "verified"
+  },
+  {
+    "id": "P09",
+    "question": "2025년과 2024년 연결 기준 자산총계는 각각 얼마인가?",
+    "answer_type": "comparison",
+    "expected_value": {
+      "2025": "9,778,714,530,496",
+      "2024": "8,138,264,562,531"
+    },
+    "unit": "원",
+    "gold_sources": [{"source_file": "20260318001612.pdf", "pdf_page": 91}],
+    "category": "financial_position",
+    "annotation_status": "verified"
+  },
+  {
+    "id": "P10",
+    "question": "2025년과 2024년 연결 기준 매출액은 각각 얼마인가?",
+    "answer_type": "comparison",
+    "expected_value": {
+      "2025": "3,413,021,590,101",
+      "2024": "3,127,853,158,129"
+    },
+    "unit": "원",
+    "gold_sources": [{"source_file": "20260318001612.pdf", "pdf_page": 93}],
+    "category": "income_statement",
+    "annotation_status": "verified"
+  },
+  {
+    "id": "P11",
+    "question": "2025년과 2024년 연결 기준 영업이익은 각각 얼마인가?",
+    "answer_type": "comparison",
+    "expected_value": {
+      "2025": "213,763,514,884",
+      "2024": "(293,038,698,088)"
+    },
+    "unit": "원",
+    "gold_sources": [{"source_file": "20260318001612.pdf", "pdf_page": 93}],
+    "category": "income_statement",
+    "annotation_status": "verified"
+  },
+  {
+    "id": "P12",
+    "question": "2025년과 2024년 연결 기준 영업활동현금흐름은 각각 얼마인가?",
+    "answer_type": "comparison",
+    "expected_value": {
+      "2025": "339,076,295,162",
+      "2024": "488,829,329,203"
+    },
+    "unit": "원",
+    "gold_sources": [{"source_file": "20260318001612.pdf", "pdf_page": 96}],
+    "category": "cash_flow",
+    "annotation_status": "verified"
+  },
+  {
+    "id": "P13",
+    "question": "매출채권 및 기타금융자산 관련 내용은 몇 번 주석에서 확인할 수 있는가?",
+    "answer_type": "note_detail",
+    "expected_value": "7",
+    "gold_sources": [{"source_file": "20260318001612.pdf", "pdf_page": 132}],
+    "category": "receivables",
+    "annotation_status": "verified"
+  },
+  {
+    "id": "P14",
+    "question": "2025년 말 재고자산평가충당금 합계는 얼마인가?",
+    "answer_type": "note_detail",
+    "expected_value": "(80,177,598)",
+    "unit": "천원",
+    "gold_sources": [{"source_file": "20260318001612.pdf", "pdf_page": 133}],
+    "category": "inventories",
+    "annotation_status": "verified"
+  },
+  {
+    "id": "P15",
+    "question": "지배기업이 당기에 지급한 전년도 회계연도 현금 배당금과 주당배당금은 얼마인가?",
+    "answer_type": "note_detail",
+    "expected_value": "현금 배당금 13,189,060천원, 보통주 주당배당금 100원",
+    "gold_sources": [{"source_file": "20260318001612.pdf", "pdf_page": 181}],
+    "category": "dividends",
+    "annotation_status": "verified"
+  },
+  {
+    "id": "P16",
+    "question": "보고기간후사건 주석에서 지배기업은 어떤 결의를 하였는가?",
+    "answer_type": "note_detail",
+    "expected_value": "지배기업은 2026년 2월 25일자 이사회에서 배당을 결의하였다.",
+    "gold_sources": [{"source_file": "20260318001612.pdf", "pdf_page": 201}],
+    "category": "subsequent_events",
+    "annotation_status": "verified"
+  },
+  {
+    "id": "P17",
+    "question": "연결회사는 위험회피회계 요건을 충족하지 않는 파생상품의 공정가치 변동을 어떻게 회계처리하는가?",
+    "answer_type": "narrative",
+    "expected_value": "파생상품은 계약 체결 시점에 공정가치로 최초 인식하고 이후 공정가치로 재측정하며, 위험회피회계 요건을 충족하지 않는 파생상품의 공정가치 변동은 거래의 성격에 따라 연결포괄손익계산서에 금융수익(원가)으로 인식한다.",
+    "gold_sources": [{"source_file": "20260318001612.pdf", "pdf_page": 104}],
+    "category": "derivatives",
+    "annotation_status": "verified"
+  },
+  {
+    "id": "P18",
+    "question": "연결회사의 유형자산 중 건물, 구축물, 기계장치의 추정 경제적 내용연수는 얼마인가?",
+    "answer_type": "narrative",
+    "expected_value": "건물 30년~40년, 구축물 4년~40년, 기계장치 10년~30년이며, 감가상각 내용연수를 재측정한 후 일부 자산의 내용연수를 변경하였다.",
+    "gold_sources": [{"source_file": "20260318001612.pdf", "pdf_page": 105}],
+    "category": "tangible_assets",
+    "annotation_status": "verified"
+  },
+  {
+    "id": "P19",
+    "question": "연결회사는 영업부문의 성과를 무엇에 근거하여 평가하는가?",
+    "answer_type": "narrative",
+    "expected_value": "영업부문의 성과를 영업손익에 근거해서 평가하며, 이는 부문간 내부거래를 제외하고는 손익계산서에 보고된 내용과 차이가 없다.",
+    "gold_sources": [{"source_file": "20260318001612.pdf", "pdf_page": 198}],
+    "category": "segments",
+    "annotation_status": "verified"
+  },
+  {
+    "id": "P20",
+    "question": "지배기업인 주식회사 에코프로는 언제 설립되었고 2016년에 어떤 사업부문을 분할하였는가?",
+    "answer_type": "narrative",
+    "expected_value": "1998년 10월 22일에 설립되었으며, 2016년 5월 1일을 분할기일로 2차전지소재 사업부문을 물적분할하였다.",
+    "gold_sources": [{"source_file": "20260318001612.pdf", "pdf_page": 97}],
+    "category": "general_information",
+    "annotation_status": "verified"
+  }
+]
