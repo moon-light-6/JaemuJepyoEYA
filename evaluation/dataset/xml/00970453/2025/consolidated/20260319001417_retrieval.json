@@ -1,0 +1,153 @@
+[
+  {
+    "question": "2025년 연결 기준 자산총계는 얼마인가?",
+    "answer_type": "numeric",
+    "expected_value": "1,043,888,016,418",
+    "unit": "원",
+    "gold_sources": [
+      {
+        "source_file": "20260319001417_00761.xml",
+        "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+      }
+    ],
+    "candidate_sources": [
+      {
+        "source_file": "20260319001417_00761.xml",
+        "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+        "title": "재무상태표",
+        "match_reason": "계정명과 당기 금액이 같은 XML 문서"
+      }
+    ],
+    "category": "financial_position",
+    "opendart_account": {
+      "sj_div": "BS",
+      "account_id": "ifrs-full_Assets",
+      "account_nm": "자산총계"
+    },
+    "id": "X01",
+    "annotation_status": "verified",
+    "annotation_method": "auto_opendart_xml_xpath_candidate"
+  },
+  {
+    "question": "2025년 연결 기준 현금및현금성자산은 얼마인가?",
+    "answer_type": "numeric",
+    "expected_value": "175,663,243,434",
+    "unit": "원",
+    "gold_sources": [
+      {
+        "source_file": "20260319001417_00761.xml",
+        "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+      }
+    ],
+    "candidate_sources": [
+      {
+        "source_file": "20260319001417_00761.xml",
+        "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+        "title": "재무상태표",
+        "match_reason": "계정명과 당기 금액이 같은 XML 문서"
+      }
+    ],
+    "category": "financial_position",
+    "opendart_account": {
+      "sj_div": "BS",
+      "account_id": "ifrs-full_CashAndCashEquivalents",
+      "account_nm": "현금및현금성자산"
+    },
+    "id": "X02",
+    "annotation_status": "verified",
+    "annotation_method": "auto_opendart_xml_xpath_candidate"
+  },
+  {
+    "question": "2025년 연결 기준 영업활동으로 인한 현금흐름은 얼마인가?",
+    "answer_type": "numeric",
+    "expected_value": "183,162,279,104",
+    "unit": "원",
+    "gold_sources": [
+      {
+        "source_file": "20260319001417_00761.xml",
+        "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]"
+      }
+    ],
+    "candidate_sources": [
+      {
+        "source_file": "20260319001417_00761.xml",
+        "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+        "title": "현금흐름표",
+        "match_reason": "계정명과 당기 금액이 같은 XML 문서"
+      }
+    ],
+    "category": "cash_flow",
+    "opendart_account": {
+      "sj_div": "CF",
+      "account_id": "ifrs-full_CashFlowsFromUsedInOperatingActivities",
+      "account_nm": "영업활동현금흐름"
+    },
+    "id": "X03",
+    "annotation_status": "verified",
+    "annotation_method": "auto_opendart_xml_xpath_candidate"
+  },
+  {
+    "question": "2025년과 2024년 연결 기준 자산총계는 각각 얼마인가?",
+    "answer_type": "comparison",
+    "expected_value": {
+      "2025": "1,043,888,016,418",
+      "2024": "855,700,916,352"
+    },
+    "unit": "원",
+    "gold_sources": [
+      {
+        "source_file": "20260319001417_00761.xml",
+        "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+      }
+    ],
+    "candidate_sources": [
+      {
+        "source_file": "20260319001417_00761.xml",
+        "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+        "title": "재무상태표",
+        "match_reason": "계정명과 당기·전기 금액이 같은 XML 문서"
+      }
+    ],
+    "category": "financial_position",
+    "opendart_account": {
+      "sj_div": "BS",
+      "account_id": "ifrs-full_Assets",
+      "account_nm": "자산총계"
+    },
+    "id": "X04",
+    "annotation_status": "verified",
+    "annotation_method": "auto_opendart_xml_xpath_candidate"
+  },
+  {
+    "question": "2025년과 2024년 연결 기준 영업활동으로 인한 현금흐름은 각각 얼마인가?",
+    "answer_type": "comparison",
+    "expected_value": {
+      "2025": "183,162,279,104",
+      "2024": "138,121,879,153"
+    },
+    "unit": "원",
+    "gold_sources": [
+      {
+        "source_file": "20260319001417_00761.xml",
+        "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]"
+      }
+    ],
+    "candidate_sources": [
+      {
+        "source_file": "20260319001417_00761.xml",
+        "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+        "title": "현금흐름표",
+        "match_reason": "계정명과 당기·전기 금액이 같은 XML 문서"
+      }
+    ],
+    "category": "cash_flow",
+    "opendart_account": {
+      "sj_div": "CF",
+      "account_id": "ifrs-full_CashFlowsFromUsedInOperatingActivities",
+      "account_nm": "영업활동현금흐름"
+    },
+    "id": "X05",
+    "annotation_status": "verified",
+    "annotation_method": "auto_opendart_xml_xpath_candidate"
+  }
+]

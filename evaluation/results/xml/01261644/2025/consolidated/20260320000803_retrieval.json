@@ -1,0 +1,268 @@
+{
+  "config": {
+    "source_format": "xml",
+    "questions": 1,
+    "chunks": 111,
+    "collection_name": "fin_xml_01261644_2025_consolidated_20260320000803_kure_v1"
+  },
+  "summary": {
+    "bm25": {
+      "hit_at_3": 0.0,
+      "hit_at_5": 0.0,
+      "value_hit_at_3": 0.0,
+      "value_hit_at_5": 0.0,
+      "source_value_hit_at_3": 0.0,
+      "source_value_hit_at_5": 0.0,
+      "total": 1
+    },
+    "chroma": {
+      "hit_at_3": 1.0,
+      "hit_at_5": 1.0,
+      "value_hit_at_3": 1.0,
+      "value_hit_at_5": 1.0,
+      "source_value_hit_at_3": 1.0,
+      "source_value_hit_at_5": 1.0,
+      "total": 1
+    },
+    "mmr": {
+      "hit_at_3": 1.0,
+      "hit_at_5": 1.0,
+      "value_hit_at_3": 1.0,
+      "value_hit_at_5": 1.0,
+      "source_value_hit_at_3": 1.0,
+      "source_value_hit_at_5": 1.0,
+      "total": 1
+    },
+    "hybrid": {
+      "hit_at_3": 1.0,
+      "hit_at_5": 1.0,
+      "value_hit_at_3": 1.0,
+      "value_hit_at_5": 1.0,
+      "source_value_hit_at_3": 1.0,
+      "source_value_hit_at_5": 1.0,
+      "total": 1
+    }
+  },
+  "details": {
+    "bm25": [
+      {
+        "id": "X01",
+        "question": "2025년 연결 기준 현금및현금성자산은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260320000803_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[139]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "01261644_2025_consolidated_xml_0002_02",
+            "source_file": "20260320000803_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[15]",
+            "title": "2. 중요한 회계정책다음은 연결재무제표 작성에 적용된 중요한 회계정책입니다. 이러한 정책은 별도의 언급이 없다면 표시된 회계기간에 계속적으로 적용됩니다.2.1 연결재무제표 작성 기준연결회사의 연결재무제표는 한국채택국제회계기준(이하 기업회계기준)에 따라 작성됐습니다. 한국채택국제회계기준은 국제회계기준위원회(\"IASB\")가 발표한 기준서와해석서 중 대한민국이 채택한 내용을 의미합니다."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "01261644_2025_consolidated_xml_0031_01",
+            "source_file": "20260320000803_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[254]",
+            "title": "31. 특수관계자 거래"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "01261644_2025_consolidated_xml_0031_02",
+            "source_file": "20260320000803_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[254]",
+            "title": "31. 특수관계자 거래"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "01261644_2025_consolidated_xml_0034_03",
+            "source_file": "20260320000803_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[296]",
+            "title": "34. 금융상품 공정가치(1) 당기말과 전기말 현재 금융상품 종류별 공정가치는 다음과 같습니다. (단위:천원)"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "01261644_2025_consolidated_xml_0034_02",
+            "source_file": "20260320000803_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[296]",
+            "title": "34. 금융상품 공정가치(1) 당기말과 전기말 현재 금융상품 종류별 공정가치는 다음과 같습니다. (단위:천원)"
+          }
+        ]
+      }
+    ],
+    "chroma": [
+      {
+        "id": "X01",
+        "question": "2025년 연결 기준 현금및현금성자산은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260320000803_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[139]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "01261644_2025_consolidated_xml_0004_01",
+            "source_file": "20260320000803_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[139]",
+            "title": "4. 현금및현금성자산 (1) 연결회사의 당기말과 전기말 현재 현금및현금성자산의 구성 내역은 다음과 같습니다. (단위:천원)"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "01261644_2025_consolidated_xml_0033_02",
+            "source_file": "20260320000803_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[275]",
+            "title": "33. 재무위험관리 33.1 재무위험관리요소연결회사가 노출되어 있는 재무위험 및 이러한 위험이 연결회사의 미래 성과에 미칠 수 있는 영향은 다음과 같습니다."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "01261644_2025_consolidated_xml_0035_01",
+            "source_file": "20260320000803_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[304]",
+            "title": "35. 범주별 금융상품(1) 금융상품 범주별 장부금액 (단위:천원)"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "01261644_2025_consolidated_xml_0010_05",
+            "source_file": "20260320000803_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[152]",
+            "title": "10. 유형자산 (1) 유형자산의 내역 (단위:천원)"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "01261644_2025_consolidated_xml_0006_01",
+            "source_file": "20260320000803_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[144]",
+            "title": "6. 당기손익-공정가치측정금융자산연결회사의 당기말과 전기말 현재 당기손익-공정가치측정금융자산의 구성 내역은 다음과 같습니다. (단위:천원)"
+          }
+        ]
+      }
+    ],
+    "mmr": [
+      {
+        "id": "X01",
+        "question": "2025년 연결 기준 현금및현금성자산은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260320000803_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[139]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "01261644_2025_consolidated_xml_0004_01",
+            "source_file": "20260320000803_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[139]",
+            "title": "4. 현금및현금성자산 (1) 연결회사의 당기말과 전기말 현재 현금및현금성자산의 구성 내역은 다음과 같습니다. (단위:천원)"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "01261644_2025_consolidated_xml_0033_02",
+            "source_file": "20260320000803_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[275]",
+            "title": "33. 재무위험관리 33.1 재무위험관리요소연결회사가 노출되어 있는 재무위험 및 이러한 위험이 연결회사의 미래 성과에 미칠 수 있는 영향은 다음과 같습니다."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "01261644_2025_consolidated_xml_0010_02",
+            "source_file": "20260320000803_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[152]",
+            "title": "10. 유형자산 (1) 유형자산의 내역 (단위:천원)"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "01261644_2025_consolidated_xml_0002_02",
+            "source_file": "20260320000803_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[15]",
+            "title": "2. 중요한 회계정책다음은 연결재무제표 작성에 적용된 중요한 회계정책입니다. 이러한 정책은 별도의 언급이 없다면 표시된 회계기간에 계속적으로 적용됩니다.2.1 연결재무제표 작성 기준연결회사의 연결재무제표는 한국채택국제회계기준(이하 기업회계기준)에 따라 작성됐습니다. 한국채택국제회계기준은 국제회계기준위원회(\"IASB\")가 발표한 기준서와해석서 중 대한민국이 채택한 내용을 의미합니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "01261644_2025_consolidated_xml_0032_02",
+            "source_file": "20260320000803_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[266]",
+            "title": "32. 우발부채와 약정사항"
+          }
+        ]
+      }
+    ],
+    "hybrid": [
+      {
+        "id": "X01",
+        "question": "2025년 연결 기준 현금및현금성자산은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260320000803_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[139]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "01261644_2025_consolidated_xml_0033_06",
+            "source_file": "20260320000803_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[275]",
+            "title": "33. 재무위험관리 33.1 재무위험관리요소연결회사가 노출되어 있는 재무위험 및 이러한 위험이 연결회사의 미래 성과에 미칠 수 있는 영향은 다음과 같습니다."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "01261644_2025_consolidated_xml_0002_02",
+            "source_file": "20260320000803_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[15]",
+            "title": "2. 중요한 회계정책다음은 연결재무제표 작성에 적용된 중요한 회계정책입니다. 이러한 정책은 별도의 언급이 없다면 표시된 회계기간에 계속적으로 적용됩니다.2.1 연결재무제표 작성 기준연결회사의 연결재무제표는 한국채택국제회계기준(이하 기업회계기준)에 따라 작성됐습니다. 한국채택국제회계기준은 국제회계기준위원회(\"IASB\")가 발표한 기준서와해석서 중 대한민국이 채택한 내용을 의미합니다."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "01261644_2025_consolidated_xml_0004_01",
+            "source_file": "20260320000803_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[139]",
+            "title": "4. 현금및현금성자산 (1) 연결회사의 당기말과 전기말 현재 현금및현금성자산의 구성 내역은 다음과 같습니다. (단위:천원)"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "01261644_2025_consolidated_xml_0031_01",
+            "source_file": "20260320000803_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[254]",
+            "title": "31. 특수관계자 거래"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "01261644_2025_consolidated_xml_0033_02",
+            "source_file": "20260320000803_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[275]",
+            "title": "33. 재무위험관리 33.1 재무위험관리요소연결회사가 노출되어 있는 재무위험 및 이러한 위험이 연결회사의 미래 성과에 미칠 수 있는 영향은 다음과 같습니다."
+          }
+        ]
+      }
+    ]
+  }
+}
