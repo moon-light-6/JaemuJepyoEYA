@@ -169,8 +169,36 @@ def main() -> int:
     report = evaluate_xml(dataset_path, target.xml_chunks_path(PROJECT_ROOT), args.chroma_dir, target)
     write_json(target.xml_result_path(PROJECT_ROOT), report)
     print(f"평가 결과 저장: {target.xml_result_path(PROJECT_ROOT)}")
-    for method, row in report["summary"].items():
-        print(f"{method:<8} 위치@5 {row['hit_at_5'] * 100:5.1f}% | 위치+값@5 {(row['source_value_hit_at_5'] or 0) * 100:5.1f}%")
+    
+    # 평가 지표 출력 순서
+    metrics = [
+        ("위치+값@3", "source_value_hit_at_3"),
+        ("위치+값@5", "source_value_hit_at_5"),
+        ("위치@3", "hit_at_3"),
+        ("위치@5", "hit_at_5"),
+        ("값@3", "value_hit_at_3"),
+        ("값@5", "value_hit_at_5"),
+    ]
+
+    methods = [
+        ("BM25", "bm25"),
+        ("Chroma", "chroma"),
+        ("MMR", "mmr"),
+        ("Hybrid-RRF", "hybrid"),
+    ]
+
+    print("\n=== 검색 평가 결과 (%) ===")
+    print("방식\t" + "\t".join(name for name, _ in metrics))
+
+    for name, key in methods:
+        row = report["summary"][key]
+        values = [
+            "N/A" if row[metric] is None
+            else f"{row[metric] * 100:.1f}%"
+            for _, metric in metrics
+        ]
+        print(name + "\t" + "\t".join(values))
+
     return 0
 
 
