@@ -10,7 +10,8 @@ from fin_research.retrieval.bm25_retriever import load_chunk_documents
 
 
 EMBEDDING_MODEL = "nlpai-lab/KURE-v1"
-# COLLECTION_NAME = "samsung_2025_consolidated_kure_v1"
+# 기존 루프와 이미 만들어진 단일 기업 색인의 호환성을 유지한다.
+COLLECTION_NAME = "samsung_2025_consolidated_kure_v1"
 
 
 def create_embedding_model():
@@ -36,7 +37,7 @@ def create_embedding_model():
 
 def create_chroma(
     persist_directory: str | Path,
-    collection_name: str,
+    collection_name: str = COLLECTION_NAME,
 ) -> Chroma:
     """지정한 이름의 로컬 Chroma 컬렉션을 생성하거나 다시 연다."""
 
@@ -131,8 +132,10 @@ def build_chroma(
 def search_chroma(
     persist_directory: str | Path,
     question: str,
-    collection_name: str,
+    collection_name: str = COLLECTION_NAME,
     k: int = 5,
+    *,
+    vectorstore: Chroma | None = None,
 ) -> list[dict]:
     """Chroma에서 질문과 유사한 청크를 검색한다."""
 
@@ -142,10 +145,12 @@ def search_chroma(
     if k <= 0:
         raise ValueError("k는 1 이상이어야 합니다.")
 
-    vectorstore = create_chroma(
-        persist_directory=persist_directory,
-        collection_name=collection_name,
-    )
+    # 반복 조사에서는 이미 불러온 임베딩 모델과 저장소를 재사용합니다.
+    if vectorstore is None:
+        vectorstore = create_chroma(
+            persist_directory=persist_directory,
+            collection_name=collection_name,
+        )
     # 색인이 수행되지 않았다면 검색하지 않음
     count = vectorstore._collection.count()
 

@@ -9,6 +9,7 @@ limits:
   max_seconds: 900             # 실행 전체 시간 (15분)
 
 research:
-  max_researchers: 3           # supervisor가 동시에 보내는 researcher 수
+  max_concurrent_researchers: 3  # 동시에 실행할 researcher 수 (하위 주제 수와 별개, config의 max_concurrency)
+  questions_per_subtopic: 2    # researcher가 하위 주제당 조사할 질문 수 상한 (비용 조절)
   max_rounds: 2                # 계획서: 조사 단계 최대 2라운드 (누락 주제 재분배 포함)
   loop_max_iterations: 3       # researcher 내부 루프 반복 상한 (루프 담당과 협의)

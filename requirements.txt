@@ -12,4 +12,6 @@ langchain-huggingface
 sentence-transformers
 langchain-openai
 pydantic
+langgraph
 psycopg2-binary
+sqlglot>=28,<29

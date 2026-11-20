@@ -300,16 +300,8 @@ def main():
         rcept_no=args.rcept_no,
     )
 
-    # 검색 대상별 평가셋 경로 생성
-    default_dataset_path = (
-        PROJECT_ROOT
-        / "evaluation"
-        / "dataset"
-        / (
-            f"eval_{target.corp_code}_{target.fiscal_year}_"
-            f"{target.statement_scope}_{target.rcept_no}.json"
-        )
-    )
+    # 평가셋은 corp/year/scope 폴더 아래의 {rcept_no}.json을 기본값으로 사용한다.
+    default_dataset_path = target.dataset_path(PROJECT_ROOT)
 
     dataset_path = args.dataset_path or default_dataset_path
 
@@ -321,16 +313,8 @@ def main():
             "--dataset-path로 올바른 파일을 지정하세요."
         )
 
-    # 검색 대상에 따른 평가 결과 경로 생성
-    default_output_path = (
-        PROJECT_ROOT
-        / "evaluation"
-        / "results"
-        / (
-            f"retrieval_{target.corp_code}_{target.fiscal_year}_"
-            f"{target.statement_scope}_{target.rcept_no}.json"
-        )
-    )
+    # 평가 결과도 평가셋과 같은 식별 체계(corp/year/scope/{rcept_no}.json)를 따른다.
+    default_output_path = target.result_path(PROJECT_ROOT)
 
     # 사용자가 경로를 지정했다면 해당 경로 우선 사용
     output_path = args.output_path or default_output_path
