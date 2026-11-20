@@ -1,0 +1,2600 @@
+{
+  "config": {
+    "source_format": "xml",
+    "questions": 12,
+    "chunks": 138,
+    "collection_name": "fin_00260879_2025_consolidated_20260317000899_kure_v1_xml"
+  },
+  "summary": {
+    "bm25": {
+      "hit_at_3": 0.08333333333333333,
+      "hit_at_5": 0.3333333333333333,
+      "value_hit_at_3": 0.16666666666666666,
+      "value_hit_at_5": 0.25,
+      "source_value_hit_at_3": 0.08333333333333333,
+      "source_value_hit_at_5": 0.16666666666666666,
+      "total": 12
+    },
+    "chroma": {
+      "hit_at_3": 0.5833333333333334,
+      "hit_at_5": 0.75,
+      "value_hit_at_3": 0.4166666666666667,
+      "value_hit_at_5": 0.6666666666666666,
+      "source_value_hit_at_3": 0.3333333333333333,
+      "source_value_hit_at_5": 0.5,
+      "total": 12
+    },
+    "mmr": {
+      "hit_at_3": 0.6666666666666666,
+      "hit_at_5": 0.75,
+      "value_hit_at_3": 0.5,
+      "value_hit_at_5": 0.5,
+      "source_value_hit_at_3": 0.3333333333333333,
+      "source_value_hit_at_5": 0.3333333333333333,
+      "total": 12
+    },
+    "hybrid": {
+      "hit_at_3": 0.5,
+      "hit_at_5": 0.5833333333333334,
+      "value_hit_at_3": 0.4166666666666667,
+      "value_hit_at_5": 0.4166666666666667,
+      "source_value_hit_at_3": 0.3333333333333333,
+      "source_value_hit_at_5": 0.3333333333333333,
+      "total": 12
+    }
+  },
+  "details": {
+    "bm25": [
+      {
+        "id": "X01",
+        "question": "2025년 연결 기준 현금및현금성자산은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00260879_2025_consolidated_xml_0005_12",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반사항 카페24 주식회사(이하 '당사' 또는 '지배기업') 및 종속기업들(이하 당사 및 종속기업들을 합하여 '연결회사')의 일반적인 사항은 다음과 같습니다.당사는 1999년 5월 17일 설립된 인터넷 전문 솔루션 회사입니다. 서울특별시 동작구보라매로5길에 본사를 두고 있는 당사는 인터넷 비즈니스솔루션, 소프트웨어 개발 및 공급업을 영위할 목적으로 설립되었으며, 자체 설립한 연구소와 개발조직을 통해 인터넷 서비스를 제공하고 있습니다. 당사는 2018년 2월 8일에 KRX 코스닥시장에 상장되었습니다."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00260879_2025_consolidated_xml_0003_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00260879_2025_consolidated_xml_0004_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00260879_2025_consolidated_xml_0002_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00260879_2025_consolidated_xml_0005_43",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반사항 카페24 주식회사(이하 '당사' 또는 '지배기업') 및 종속기업들(이하 당사 및 종속기업들을 합하여 '연결회사')의 일반적인 사항은 다음과 같습니다.당사는 1999년 5월 17일 설립된 인터넷 전문 솔루션 회사입니다. 서울특별시 동작구보라매로5길에 본사를 두고 있는 당사는 인터넷 비즈니스솔루션, 소프트웨어 개발 및 공급업을 영위할 목적으로 설립되었으며, 자체 설립한 연구소와 개발조직을 통해 인터넷 서비스를 제공하고 있습니다. 당사는 2018년 2월 8일에 KRX 코스닥시장에 상장되었습니다."
+          }
+        ]
+      },
+      {
+        "id": "X02",
+        "question": "2025년 연결 기준 재고자산은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00260879_2025_consolidated_xml_0010_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[253]",
+            "title": "7. 재고자산연결회사의 재고자산은 다음과 같습니다."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00260879_2025_consolidated_xml_0005_12",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반사항 카페24 주식회사(이하 '당사' 또는 '지배기업') 및 종속기업들(이하 당사 및 종속기업들을 합하여 '연결회사')의 일반적인 사항은 다음과 같습니다.당사는 1999년 5월 17일 설립된 인터넷 전문 솔루션 회사입니다. 서울특별시 동작구보라매로5길에 본사를 두고 있는 당사는 인터넷 비즈니스솔루션, 소프트웨어 개발 및 공급업을 영위할 목적으로 설립되었으며, 자체 설립한 연구소와 개발조직을 통해 인터넷 서비스를 제공하고 있습니다. 당사는 2018년 2월 8일에 KRX 코스닥시장에 상장되었습니다."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00260879_2025_consolidated_xml_0005_24",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반사항 카페24 주식회사(이하 '당사' 또는 '지배기업') 및 종속기업들(이하 당사 및 종속기업들을 합하여 '연결회사')의 일반적인 사항은 다음과 같습니다.당사는 1999년 5월 17일 설립된 인터넷 전문 솔루션 회사입니다. 서울특별시 동작구보라매로5길에 본사를 두고 있는 당사는 인터넷 비즈니스솔루션, 소프트웨어 개발 및 공급업을 영위할 목적으로 설립되었으며, 자체 설립한 연구소와 개발조직을 통해 인터넷 서비스를 제공하고 있습니다. 당사는 2018년 2월 8일에 KRX 코스닥시장에 상장되었습니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00260879_2025_consolidated_xml_0003_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00260879_2025_consolidated_xml_0004_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          }
+        ]
+      },
+      {
+        "id": "X03",
+        "question": "2025년 연결 기준 매출액은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[242]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00260879_2025_consolidated_xml_0005_12",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반사항 카페24 주식회사(이하 '당사' 또는 '지배기업') 및 종속기업들(이하 당사 및 종속기업들을 합하여 '연결회사')의 일반적인 사항은 다음과 같습니다.당사는 1999년 5월 17일 설립된 인터넷 전문 솔루션 회사입니다. 서울특별시 동작구보라매로5길에 본사를 두고 있는 당사는 인터넷 비즈니스솔루션, 소프트웨어 개발 및 공급업을 영위할 목적으로 설립되었으며, 자체 설립한 연구소와 개발조직을 통해 인터넷 서비스를 제공하고 있습니다. 당사는 2018년 2월 8일에 KRX 코스닥시장에 상장되었습니다."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00260879_2025_consolidated_xml_0003_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00260879_2025_consolidated_xml_0004_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00260879_2025_consolidated_xml_0002_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00260879_2025_consolidated_xml_0005_43",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반사항 카페24 주식회사(이하 '당사' 또는 '지배기업') 및 종속기업들(이하 당사 및 종속기업들을 합하여 '연결회사')의 일반적인 사항은 다음과 같습니다.당사는 1999년 5월 17일 설립된 인터넷 전문 솔루션 회사입니다. 서울특별시 동작구보라매로5길에 본사를 두고 있는 당사는 인터넷 비즈니스솔루션, 소프트웨어 개발 및 공급업을 영위할 목적으로 설립되었으며, 자체 설립한 연구소와 개발조직을 통해 인터넷 서비스를 제공하고 있습니다. 당사는 2018년 2월 8일에 KRX 코스닥시장에 상장되었습니다."
+          }
+        ]
+      },
+      {
+        "id": "X04",
+        "question": "2025년 연결 기준 영업이익은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00260879_2025_consolidated_xml_0005_12",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반사항 카페24 주식회사(이하 '당사' 또는 '지배기업') 및 종속기업들(이하 당사 및 종속기업들을 합하여 '연결회사')의 일반적인 사항은 다음과 같습니다.당사는 1999년 5월 17일 설립된 인터넷 전문 솔루션 회사입니다. 서울특별시 동작구보라매로5길에 본사를 두고 있는 당사는 인터넷 비즈니스솔루션, 소프트웨어 개발 및 공급업을 영위할 목적으로 설립되었으며, 자체 설립한 연구소와 개발조직을 통해 인터넷 서비스를 제공하고 있습니다. 당사는 2018년 2월 8일에 KRX 코스닥시장에 상장되었습니다."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00260879_2025_consolidated_xml_0003_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00260879_2025_consolidated_xml_0004_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00260879_2025_consolidated_xml_0002_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00260879_2025_consolidated_xml_0005_43",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반사항 카페24 주식회사(이하 '당사' 또는 '지배기업') 및 종속기업들(이하 당사 및 종속기업들을 합하여 '연결회사')의 일반적인 사항은 다음과 같습니다.당사는 1999년 5월 17일 설립된 인터넷 전문 솔루션 회사입니다. 서울특별시 동작구보라매로5길에 본사를 두고 있는 당사는 인터넷 비즈니스솔루션, 소프트웨어 개발 및 공급업을 영위할 목적으로 설립되었으며, 자체 설립한 연구소와 개발조직을 통해 인터넷 서비스를 제공하고 있습니다. 당사는 2018년 2월 8일에 KRX 코스닥시장에 상장되었습니다."
+          }
+        ]
+      },
+      {
+        "id": "X05",
+        "question": "2025년 연결 기준 당기순이익은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00260879_2025_consolidated_xml_0005_12",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반사항 카페24 주식회사(이하 '당사' 또는 '지배기업') 및 종속기업들(이하 당사 및 종속기업들을 합하여 '연결회사')의 일반적인 사항은 다음과 같습니다.당사는 1999년 5월 17일 설립된 인터넷 전문 솔루션 회사입니다. 서울특별시 동작구보라매로5길에 본사를 두고 있는 당사는 인터넷 비즈니스솔루션, 소프트웨어 개발 및 공급업을 영위할 목적으로 설립되었으며, 자체 설립한 연구소와 개발조직을 통해 인터넷 서비스를 제공하고 있습니다. 당사는 2018년 2월 8일에 KRX 코스닥시장에 상장되었습니다."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00260879_2025_consolidated_xml_0003_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00260879_2025_consolidated_xml_0004_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00260879_2025_consolidated_xml_0002_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00260879_2025_consolidated_xml_0005_43",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반사항 카페24 주식회사(이하 '당사' 또는 '지배기업') 및 종속기업들(이하 당사 및 종속기업들을 합하여 '연결회사')의 일반적인 사항은 다음과 같습니다.당사는 1999년 5월 17일 설립된 인터넷 전문 솔루션 회사입니다. 서울특별시 동작구보라매로5길에 본사를 두고 있는 당사는 인터넷 비즈니스솔루션, 소프트웨어 개발 및 공급업을 영위할 목적으로 설립되었으며, 자체 설립한 연구소와 개발조직을 통해 인터넷 서비스를 제공하고 있습니다. 당사는 2018년 2월 8일에 KRX 코스닥시장에 상장되었습니다."
+          }
+        ]
+      },
+      {
+        "id": "X06",
+        "question": "2025년 연결 기준 영업활동으로 인한 현금흐름은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00260879_2025_consolidated_xml_0004_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00260879_2025_consolidated_xml_0030_02",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[338]",
+            "title": "28. 중단영업(1) 당기말 현재 연결회사의 주요 영업지역과 관련된 종속기업 중 1개사(Cafe24 Philippines INC.)는 당기 중 청산을 완료하였고, 1개사(CAFE24 COMMERCE EUROPE GMBH)는 청산 중에 있습니다. 한편 전기 중 주요 영업부문과 관련된 종속기업인 ㈜필웨이를 처분하였습니다. 청산 중인 종속기업 및 청산/처분이 완료된 종속기업에대한 손익은 당기 및 전기 연결포괄손익계산서 상 중단영업으로 표시되어 있습니다."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00260879_2025_consolidated_xml_0026_02",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[319]",
+            "title": "24. 현금흐름표(1) 당기순손익에 대한 조정 내역"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00260879_2025_consolidated_xml_0026_03",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[319]",
+            "title": "24. 현금흐름표(1) 당기순손익에 대한 조정 내역"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00260879_2025_consolidated_xml_0005_12",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반사항 카페24 주식회사(이하 '당사' 또는 '지배기업') 및 종속기업들(이하 당사 및 종속기업들을 합하여 '연결회사')의 일반적인 사항은 다음과 같습니다.당사는 1999년 5월 17일 설립된 인터넷 전문 솔루션 회사입니다. 서울특별시 동작구보라매로5길에 본사를 두고 있는 당사는 인터넷 비즈니스솔루션, 소프트웨어 개발 및 공급업을 영위할 목적으로 설립되었으며, 자체 설립한 연구소와 개발조직을 통해 인터넷 서비스를 제공하고 있습니다. 당사는 2018년 2월 8일에 KRX 코스닥시장에 상장되었습니다."
+          }
+        ]
+      },
+      {
+        "id": "X07",
+        "question": "2025년 연결 기준 부채총계는 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[193]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00260879_2025_consolidated_xml_0005_12",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반사항 카페24 주식회사(이하 '당사' 또는 '지배기업') 및 종속기업들(이하 당사 및 종속기업들을 합하여 '연결회사')의 일반적인 사항은 다음과 같습니다.당사는 1999년 5월 17일 설립된 인터넷 전문 솔루션 회사입니다. 서울특별시 동작구보라매로5길에 본사를 두고 있는 당사는 인터넷 비즈니스솔루션, 소프트웨어 개발 및 공급업을 영위할 목적으로 설립되었으며, 자체 설립한 연구소와 개발조직을 통해 인터넷 서비스를 제공하고 있습니다. 당사는 2018년 2월 8일에 KRX 코스닥시장에 상장되었습니다."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00260879_2025_consolidated_xml_0003_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00260879_2025_consolidated_xml_0004_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00260879_2025_consolidated_xml_0002_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00260879_2025_consolidated_xml_0005_43",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반사항 카페24 주식회사(이하 '당사' 또는 '지배기업') 및 종속기업들(이하 당사 및 종속기업들을 합하여 '연결회사')의 일반적인 사항은 다음과 같습니다.당사는 1999년 5월 17일 설립된 인터넷 전문 솔루션 회사입니다. 서울특별시 동작구보라매로5길에 본사를 두고 있는 당사는 인터넷 비즈니스솔루션, 소프트웨어 개발 및 공급업을 영위할 목적으로 설립되었으며, 자체 설립한 연구소와 개발조직을 통해 인터넷 서비스를 제공하고 있습니다. 당사는 2018년 2월 8일에 KRX 코스닥시장에 상장되었습니다."
+          }
+        ]
+      },
+      {
+        "id": "X08",
+        "question": "2025년 연결 기준 자본총계는 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[193]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00260879_2025_consolidated_xml_0005_12",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반사항 카페24 주식회사(이하 '당사' 또는 '지배기업') 및 종속기업들(이하 당사 및 종속기업들을 합하여 '연결회사')의 일반적인 사항은 다음과 같습니다.당사는 1999년 5월 17일 설립된 인터넷 전문 솔루션 회사입니다. 서울특별시 동작구보라매로5길에 본사를 두고 있는 당사는 인터넷 비즈니스솔루션, 소프트웨어 개발 및 공급업을 영위할 목적으로 설립되었으며, 자체 설립한 연구소와 개발조직을 통해 인터넷 서비스를 제공하고 있습니다. 당사는 2018년 2월 8일에 KRX 코스닥시장에 상장되었습니다."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00260879_2025_consolidated_xml_0003_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00260879_2025_consolidated_xml_0004_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00260879_2025_consolidated_xml_0002_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00260879_2025_consolidated_xml_0005_43",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반사항 카페24 주식회사(이하 '당사' 또는 '지배기업') 및 종속기업들(이하 당사 및 종속기업들을 합하여 '연결회사')의 일반적인 사항은 다음과 같습니다.당사는 1999년 5월 17일 설립된 인터넷 전문 솔루션 회사입니다. 서울특별시 동작구보라매로5길에 본사를 두고 있는 당사는 인터넷 비즈니스솔루션, 소프트웨어 개발 및 공급업을 영위할 목적으로 설립되었으며, 자체 설립한 연구소와 개발조직을 통해 인터넷 서비스를 제공하고 있습니다. 당사는 2018년 2월 8일에 KRX 코스닥시장에 상장되었습니다."
+          }
+        ]
+      },
+      {
+        "id": "X09",
+        "question": "2025년과 2024년 연결 기준 매출액은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[242]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00260879_2025_consolidated_xml_0005_41",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반사항 카페24 주식회사(이하 '당사' 또는 '지배기업') 및 종속기업들(이하 당사 및 종속기업들을 합하여 '연결회사')의 일반적인 사항은 다음과 같습니다.당사는 1999년 5월 17일 설립된 인터넷 전문 솔루션 회사입니다. 서울특별시 동작구보라매로5길에 본사를 두고 있는 당사는 인터넷 비즈니스솔루션, 소프트웨어 개발 및 공급업을 영위할 목적으로 설립되었으며, 자체 설립한 연구소와 개발조직을 통해 인터넷 서비스를 제공하고 있습니다. 당사는 2018년 2월 8일에 KRX 코스닥시장에 상장되었습니다."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00260879_2025_consolidated_xml_0003_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00260879_2025_consolidated_xml_0004_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00260879_2025_consolidated_xml_0005_12",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반사항 카페24 주식회사(이하 '당사' 또는 '지배기업') 및 종속기업들(이하 당사 및 종속기업들을 합하여 '연결회사')의 일반적인 사항은 다음과 같습니다.당사는 1999년 5월 17일 설립된 인터넷 전문 솔루션 회사입니다. 서울특별시 동작구보라매로5길에 본사를 두고 있는 당사는 인터넷 비즈니스솔루션, 소프트웨어 개발 및 공급업을 영위할 목적으로 설립되었으며, 자체 설립한 연구소와 개발조직을 통해 인터넷 서비스를 제공하고 있습니다. 당사는 2018년 2월 8일에 KRX 코스닥시장에 상장되었습니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00260879_2025_consolidated_xml_0002_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          }
+        ]
+      },
+      {
+        "id": "X11",
+        "question": "2025년과 2024년 연결 기준 당기순이익은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00260879_2025_consolidated_xml_0005_41",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반사항 카페24 주식회사(이하 '당사' 또는 '지배기업') 및 종속기업들(이하 당사 및 종속기업들을 합하여 '연결회사')의 일반적인 사항은 다음과 같습니다.당사는 1999년 5월 17일 설립된 인터넷 전문 솔루션 회사입니다. 서울특별시 동작구보라매로5길에 본사를 두고 있는 당사는 인터넷 비즈니스솔루션, 소프트웨어 개발 및 공급업을 영위할 목적으로 설립되었으며, 자체 설립한 연구소와 개발조직을 통해 인터넷 서비스를 제공하고 있습니다. 당사는 2018년 2월 8일에 KRX 코스닥시장에 상장되었습니다."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00260879_2025_consolidated_xml_0003_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00260879_2025_consolidated_xml_0004_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00260879_2025_consolidated_xml_0005_12",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반사항 카페24 주식회사(이하 '당사' 또는 '지배기업') 및 종속기업들(이하 당사 및 종속기업들을 합하여 '연결회사')의 일반적인 사항은 다음과 같습니다.당사는 1999년 5월 17일 설립된 인터넷 전문 솔루션 회사입니다. 서울특별시 동작구보라매로5길에 본사를 두고 있는 당사는 인터넷 비즈니스솔루션, 소프트웨어 개발 및 공급업을 영위할 목적으로 설립되었으며, 자체 설립한 연구소와 개발조직을 통해 인터넷 서비스를 제공하고 있습니다. 당사는 2018년 2월 8일에 KRX 코스닥시장에 상장되었습니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00260879_2025_consolidated_xml_0002_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          }
+        ]
+      },
+      {
+        "id": "X12",
+        "question": "2025년과 2024년 연결 기준 자본총계는 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[193]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00260879_2025_consolidated_xml_0005_41",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반사항 카페24 주식회사(이하 '당사' 또는 '지배기업') 및 종속기업들(이하 당사 및 종속기업들을 합하여 '연결회사')의 일반적인 사항은 다음과 같습니다.당사는 1999년 5월 17일 설립된 인터넷 전문 솔루션 회사입니다. 서울특별시 동작구보라매로5길에 본사를 두고 있는 당사는 인터넷 비즈니스솔루션, 소프트웨어 개발 및 공급업을 영위할 목적으로 설립되었으며, 자체 설립한 연구소와 개발조직을 통해 인터넷 서비스를 제공하고 있습니다. 당사는 2018년 2월 8일에 KRX 코스닥시장에 상장되었습니다."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00260879_2025_consolidated_xml_0003_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00260879_2025_consolidated_xml_0004_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00260879_2025_consolidated_xml_0005_12",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반사항 카페24 주식회사(이하 '당사' 또는 '지배기업') 및 종속기업들(이하 당사 및 종속기업들을 합하여 '연결회사')의 일반적인 사항은 다음과 같습니다.당사는 1999년 5월 17일 설립된 인터넷 전문 솔루션 회사입니다. 서울특별시 동작구보라매로5길에 본사를 두고 있는 당사는 인터넷 비즈니스솔루션, 소프트웨어 개발 및 공급업을 영위할 목적으로 설립되었으며, 자체 설립한 연구소와 개발조직을 통해 인터넷 서비스를 제공하고 있습니다. 당사는 2018년 2월 8일에 KRX 코스닥시장에 상장되었습니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00260879_2025_consolidated_xml_0002_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          }
+        ]
+      },
+      {
+        "id": "X13",
+        "question": "2025년과 2024년 연결 기준 부채총계는 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[193]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00260879_2025_consolidated_xml_0005_41",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반사항 카페24 주식회사(이하 '당사' 또는 '지배기업') 및 종속기업들(이하 당사 및 종속기업들을 합하여 '연결회사')의 일반적인 사항은 다음과 같습니다.당사는 1999년 5월 17일 설립된 인터넷 전문 솔루션 회사입니다. 서울특별시 동작구보라매로5길에 본사를 두고 있는 당사는 인터넷 비즈니스솔루션, 소프트웨어 개발 및 공급업을 영위할 목적으로 설립되었으며, 자체 설립한 연구소와 개발조직을 통해 인터넷 서비스를 제공하고 있습니다. 당사는 2018년 2월 8일에 KRX 코스닥시장에 상장되었습니다."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00260879_2025_consolidated_xml_0003_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00260879_2025_consolidated_xml_0004_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00260879_2025_consolidated_xml_0005_12",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반사항 카페24 주식회사(이하 '당사' 또는 '지배기업') 및 종속기업들(이하 당사 및 종속기업들을 합하여 '연결회사')의 일반적인 사항은 다음과 같습니다.당사는 1999년 5월 17일 설립된 인터넷 전문 솔루션 회사입니다. 서울특별시 동작구보라매로5길에 본사를 두고 있는 당사는 인터넷 비즈니스솔루션, 소프트웨어 개발 및 공급업을 영위할 목적으로 설립되었으며, 자체 설립한 연구소와 개발조직을 통해 인터넷 서비스를 제공하고 있습니다. 당사는 2018년 2월 8일에 KRX 코스닥시장에 상장되었습니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00260879_2025_consolidated_xml_0002_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          }
+        ]
+      }
+    ],
+    "chroma": [
+      {
+        "id": "X01",
+        "question": "2025년 연결 기준 현금및현금성자산은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00260879_2025_consolidated_xml_0001_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00260879_2025_consolidated_xml_0004_04",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00260879_2025_consolidated_xml_0007_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[224]",
+            "title": "4. 금융상품(1) 범주별 금융상품자산"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00260879_2025_consolidated_xml_0004_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00260879_2025_consolidated_xml_0004_03",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          }
+        ]
+      },
+      {
+        "id": "X02",
+        "question": "2025년 연결 기준 재고자산은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00260879_2025_consolidated_xml_0001_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00260879_2025_consolidated_xml_0010_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[253]",
+            "title": "7. 재고자산연결회사의 재고자산은 다음과 같습니다."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00260879_2025_consolidated_xml_0001_02",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00260879_2025_consolidated_xml_0006_06",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[193]",
+            "title": "3. 재무위험관리3.1 재무위험요소연결회사는 여러 활동으로 인하여 시장위험(환위험, 가격위험, 이자율위험), 신용위험 및 유동성위험과 같은 다양한 재무위험에 있습니다. 연결회사의 전반적인 위험관리 정책은 금융시장의 변동성에 초점을 맞추고 있으며, 재무성과에 미치는 부정적 영향을 최소화하는데 중점을 두고 있습니다.3.2 위험관리 정책"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00260879_2025_consolidated_xml_0008_03",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[242]",
+            "title": "5. 영업부문(1) 영업단위부문① 부문별 주요사업"
+          }
+        ]
+      },
+      {
+        "id": "X03",
+        "question": "2025년 연결 기준 매출액은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[242]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00260879_2025_consolidated_xml_0002_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00260879_2025_consolidated_xml_0003_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00260879_2025_consolidated_xml_0003_03",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00260879_2025_consolidated_xml_0004_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00260879_2025_consolidated_xml_0008_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[242]",
+            "title": "5. 영업부문(1) 영업단위부문① 부문별 주요사업"
+          }
+        ]
+      },
+      {
+        "id": "X04",
+        "question": "2025년 연결 기준 영업이익은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00260879_2025_consolidated_xml_0002_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00260879_2025_consolidated_xml_0004_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00260879_2025_consolidated_xml_0003_03",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00260879_2025_consolidated_xml_0003_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00260879_2025_consolidated_xml_0003_04",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          }
+        ]
+      },
+      {
+        "id": "X05",
+        "question": "2025년 연결 기준 당기순이익은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00260879_2025_consolidated_xml_0003_03",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00260879_2025_consolidated_xml_0003_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00260879_2025_consolidated_xml_0002_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00260879_2025_consolidated_xml_0004_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00260879_2025_consolidated_xml_0017_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[284]",
+            "title": "15. 이익잉여금"
+          }
+        ]
+      },
+      {
+        "id": "X06",
+        "question": "2025년 연결 기준 영업활동으로 인한 현금흐름은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00260879_2025_consolidated_xml_0004_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00260879_2025_consolidated_xml_0006_06",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[193]",
+            "title": "3. 재무위험관리3.1 재무위험요소연결회사는 여러 활동으로 인하여 시장위험(환위험, 가격위험, 이자율위험), 신용위험 및 유동성위험과 같은 다양한 재무위험에 있습니다. 연결회사의 전반적인 위험관리 정책은 금융시장의 변동성에 초점을 맞추고 있으며, 재무성과에 미치는 부정적 영향을 최소화하는데 중점을 두고 있습니다.3.2 위험관리 정책"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00260879_2025_consolidated_xml_0030_02",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[338]",
+            "title": "28. 중단영업(1) 당기말 현재 연결회사의 주요 영업지역과 관련된 종속기업 중 1개사(Cafe24 Philippines INC.)는 당기 중 청산을 완료하였고, 1개사(CAFE24 COMMERCE EUROPE GMBH)는 청산 중에 있습니다. 한편 전기 중 주요 영업부문과 관련된 종속기업인 ㈜필웨이를 처분하였습니다. 청산 중인 종속기업 및 청산/처분이 완료된 종속기업에대한 손익은 당기 및 전기 연결포괄손익계산서 상 중단영업으로 표시되어 있습니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00260879_2025_consolidated_xml_0002_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00260879_2025_consolidated_xml_0004_02",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          }
+        ]
+      },
+      {
+        "id": "X07",
+        "question": "2025년 연결 기준 부채총계는 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[193]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00260879_2025_consolidated_xml_0001_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00260879_2025_consolidated_xml_0006_07",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[193]",
+            "title": "3. 재무위험관리3.1 재무위험요소연결회사는 여러 활동으로 인하여 시장위험(환위험, 가격위험, 이자율위험), 신용위험 및 유동성위험과 같은 다양한 재무위험에 있습니다. 연결회사의 전반적인 위험관리 정책은 금융시장의 변동성에 초점을 맞추고 있으며, 재무성과에 미치는 부정적 영향을 최소화하는데 중점을 두고 있습니다.3.2 위험관리 정책"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00260879_2025_consolidated_xml_0006_06",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[193]",
+            "title": "3. 재무위험관리3.1 재무위험요소연결회사는 여러 활동으로 인하여 시장위험(환위험, 가격위험, 이자율위험), 신용위험 및 유동성위험과 같은 다양한 재무위험에 있습니다. 연결회사의 전반적인 위험관리 정책은 금융시장의 변동성에 초점을 맞추고 있으며, 재무성과에 미치는 부정적 영향을 최소화하는데 중점을 두고 있습니다.3.2 위험관리 정책"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00260879_2025_consolidated_xml_0008_03",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[242]",
+            "title": "5. 영업부문(1) 영업단위부문① 부문별 주요사업"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00260879_2025_consolidated_xml_0023_05",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[302]",
+            "title": "21. 법인세비용"
+          }
+        ]
+      },
+      {
+        "id": "X08",
+        "question": "2025년 연결 기준 자본총계는 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[193]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00260879_2025_consolidated_xml_0003_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00260879_2025_consolidated_xml_0001_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00260879_2025_consolidated_xml_0003_04",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00260879_2025_consolidated_xml_0006_10",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[193]",
+            "title": "3. 재무위험관리3.1 재무위험요소연결회사는 여러 활동으로 인하여 시장위험(환위험, 가격위험, 이자율위험), 신용위험 및 유동성위험과 같은 다양한 재무위험에 있습니다. 연결회사의 전반적인 위험관리 정책은 금융시장의 변동성에 초점을 맞추고 있으며, 재무성과에 미치는 부정적 영향을 최소화하는데 중점을 두고 있습니다.3.2 위험관리 정책"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00260879_2025_consolidated_xml_0001_04",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          }
+        ]
+      },
+      {
+        "id": "X09",
+        "question": "2025년과 2024년 연결 기준 매출액은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[242]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00260879_2025_consolidated_xml_0002_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00260879_2025_consolidated_xml_0003_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00260879_2025_consolidated_xml_0004_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00260879_2025_consolidated_xml_0001_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00260879_2025_consolidated_xml_0003_03",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          }
+        ]
+      },
+      {
+        "id": "X11",
+        "question": "2025년과 2024년 연결 기준 당기순이익은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00260879_2025_consolidated_xml_0003_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00260879_2025_consolidated_xml_0002_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00260879_2025_consolidated_xml_0003_03",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00260879_2025_consolidated_xml_0004_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00260879_2025_consolidated_xml_0026_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[319]",
+            "title": "24. 현금흐름표(1) 당기순손익에 대한 조정 내역"
+          }
+        ]
+      },
+      {
+        "id": "X12",
+        "question": "2025년과 2024년 연결 기준 자본총계는 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[193]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00260879_2025_consolidated_xml_0003_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00260879_2025_consolidated_xml_0001_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00260879_2025_consolidated_xml_0002_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00260879_2025_consolidated_xml_0004_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00260879_2025_consolidated_xml_0003_03",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          }
+        ]
+      },
+      {
+        "id": "X13",
+        "question": "2025년과 2024년 연결 기준 부채총계는 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[193]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00260879_2025_consolidated_xml_0001_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00260879_2025_consolidated_xml_0003_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00260879_2025_consolidated_xml_0002_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00260879_2025_consolidated_xml_0004_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00260879_2025_consolidated_xml_0003_03",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          }
+        ]
+      }
+    ],
+    "mmr": [
+      {
+        "id": "X01",
+        "question": "2025년 연결 기준 현금및현금성자산은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00260879_2025_consolidated_xml_0001_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00260879_2025_consolidated_xml_0004_04",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00260879_2025_consolidated_xml_0007_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[224]",
+            "title": "4. 금융상품(1) 범주별 금융상품자산"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00260879_2025_consolidated_xml_0004_03",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00260879_2025_consolidated_xml_0006_10",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[193]",
+            "title": "3. 재무위험관리3.1 재무위험요소연결회사는 여러 활동으로 인하여 시장위험(환위험, 가격위험, 이자율위험), 신용위험 및 유동성위험과 같은 다양한 재무위험에 있습니다. 연결회사의 전반적인 위험관리 정책은 금융시장의 변동성에 초점을 맞추고 있으며, 재무성과에 미치는 부정적 영향을 최소화하는데 중점을 두고 있습니다.3.2 위험관리 정책"
+          }
+        ]
+      },
+      {
+        "id": "X02",
+        "question": "2025년 연결 기준 재고자산은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00260879_2025_consolidated_xml_0001_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00260879_2025_consolidated_xml_0010_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[253]",
+            "title": "7. 재고자산연결회사의 재고자산은 다음과 같습니다."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00260879_2025_consolidated_xml_0006_06",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[193]",
+            "title": "3. 재무위험관리3.1 재무위험요소연결회사는 여러 활동으로 인하여 시장위험(환위험, 가격위험, 이자율위험), 신용위험 및 유동성위험과 같은 다양한 재무위험에 있습니다. 연결회사의 전반적인 위험관리 정책은 금융시장의 변동성에 초점을 맞추고 있으며, 재무성과에 미치는 부정적 영향을 최소화하는데 중점을 두고 있습니다.3.2 위험관리 정책"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00260879_2025_consolidated_xml_0008_03",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[242]",
+            "title": "5. 영업부문(1) 영업단위부문① 부문별 주요사업"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00260879_2025_consolidated_xml_0003_04",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          }
+        ]
+      },
+      {
+        "id": "X03",
+        "question": "2025년 연결 기준 매출액은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[242]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00260879_2025_consolidated_xml_0002_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00260879_2025_consolidated_xml_0027_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[324]",
+            "title": "25. 우발부채 및 약정사항 등"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00260879_2025_consolidated_xml_0006_06",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[193]",
+            "title": "3. 재무위험관리3.1 재무위험요소연결회사는 여러 활동으로 인하여 시장위험(환위험, 가격위험, 이자율위험), 신용위험 및 유동성위험과 같은 다양한 재무위험에 있습니다. 연결회사의 전반적인 위험관리 정책은 금융시장의 변동성에 초점을 맞추고 있으며, 재무성과에 미치는 부정적 영향을 최소화하는데 중점을 두고 있습니다.3.2 위험관리 정책"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00260879_2025_consolidated_xml_0005_08",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반사항 카페24 주식회사(이하 '당사' 또는 '지배기업') 및 종속기업들(이하 당사 및 종속기업들을 합하여 '연결회사')의 일반적인 사항은 다음과 같습니다.당사는 1999년 5월 17일 설립된 인터넷 전문 솔루션 회사입니다. 서울특별시 동작구보라매로5길에 본사를 두고 있는 당사는 인터넷 비즈니스솔루션, 소프트웨어 개발 및 공급업을 영위할 목적으로 설립되었으며, 자체 설립한 연구소와 개발조직을 통해 인터넷 서비스를 제공하고 있습니다. 당사는 2018년 2월 8일에 KRX 코스닥시장에 상장되었습니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00260879_2025_consolidated_xml_0005_36",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반사항 카페24 주식회사(이하 '당사' 또는 '지배기업') 및 종속기업들(이하 당사 및 종속기업들을 합하여 '연결회사')의 일반적인 사항은 다음과 같습니다.당사는 1999년 5월 17일 설립된 인터넷 전문 솔루션 회사입니다. 서울특별시 동작구보라매로5길에 본사를 두고 있는 당사는 인터넷 비즈니스솔루션, 소프트웨어 개발 및 공급업을 영위할 목적으로 설립되었으며, 자체 설립한 연구소와 개발조직을 통해 인터넷 서비스를 제공하고 있습니다. 당사는 2018년 2월 8일에 KRX 코스닥시장에 상장되었습니다."
+          }
+        ]
+      },
+      {
+        "id": "X04",
+        "question": "2025년 연결 기준 영업이익은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00260879_2025_consolidated_xml_0002_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00260879_2025_consolidated_xml_0003_04",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00260879_2025_consolidated_xml_0005_48",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반사항 카페24 주식회사(이하 '당사' 또는 '지배기업') 및 종속기업들(이하 당사 및 종속기업들을 합하여 '연결회사')의 일반적인 사항은 다음과 같습니다.당사는 1999년 5월 17일 설립된 인터넷 전문 솔루션 회사입니다. 서울특별시 동작구보라매로5길에 본사를 두고 있는 당사는 인터넷 비즈니스솔루션, 소프트웨어 개발 및 공급업을 영위할 목적으로 설립되었으며, 자체 설립한 연구소와 개발조직을 통해 인터넷 서비스를 제공하고 있습니다. 당사는 2018년 2월 8일에 KRX 코스닥시장에 상장되었습니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00260879_2025_consolidated_xml_0006_06",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[193]",
+            "title": "3. 재무위험관리3.1 재무위험요소연결회사는 여러 활동으로 인하여 시장위험(환위험, 가격위험, 이자율위험), 신용위험 및 유동성위험과 같은 다양한 재무위험에 있습니다. 연결회사의 전반적인 위험관리 정책은 금융시장의 변동성에 초점을 맞추고 있으며, 재무성과에 미치는 부정적 영향을 최소화하는데 중점을 두고 있습니다.3.2 위험관리 정책"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00260879_2025_consolidated_xml_0019_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[293]",
+            "title": "17. 주당이익"
+          }
+        ]
+      },
+      {
+        "id": "X05",
+        "question": "2025년 연결 기준 당기순이익은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00260879_2025_consolidated_xml_0003_03",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00260879_2025_consolidated_xml_0002_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00260879_2025_consolidated_xml_0019_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[293]",
+            "title": "17. 주당이익"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00260879_2025_consolidated_xml_0005_48",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반사항 카페24 주식회사(이하 '당사' 또는 '지배기업') 및 종속기업들(이하 당사 및 종속기업들을 합하여 '연결회사')의 일반적인 사항은 다음과 같습니다.당사는 1999년 5월 17일 설립된 인터넷 전문 솔루션 회사입니다. 서울특별시 동작구보라매로5길에 본사를 두고 있는 당사는 인터넷 비즈니스솔루션, 소프트웨어 개발 및 공급업을 영위할 목적으로 설립되었으며, 자체 설립한 연구소와 개발조직을 통해 인터넷 서비스를 제공하고 있습니다. 당사는 2018년 2월 8일에 KRX 코스닥시장에 상장되었습니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00260879_2025_consolidated_xml_0006_10",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[193]",
+            "title": "3. 재무위험관리3.1 재무위험요소연결회사는 여러 활동으로 인하여 시장위험(환위험, 가격위험, 이자율위험), 신용위험 및 유동성위험과 같은 다양한 재무위험에 있습니다. 연결회사의 전반적인 위험관리 정책은 금융시장의 변동성에 초점을 맞추고 있으며, 재무성과에 미치는 부정적 영향을 최소화하는데 중점을 두고 있습니다.3.2 위험관리 정책"
+          }
+        ]
+      },
+      {
+        "id": "X06",
+        "question": "2025년 연결 기준 영업활동으로 인한 현금흐름은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00260879_2025_consolidated_xml_0004_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00260879_2025_consolidated_xml_0006_06",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[193]",
+            "title": "3. 재무위험관리3.1 재무위험요소연결회사는 여러 활동으로 인하여 시장위험(환위험, 가격위험, 이자율위험), 신용위험 및 유동성위험과 같은 다양한 재무위험에 있습니다. 연결회사의 전반적인 위험관리 정책은 금융시장의 변동성에 초점을 맞추고 있으며, 재무성과에 미치는 부정적 영향을 최소화하는데 중점을 두고 있습니다.3.2 위험관리 정책"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00260879_2025_consolidated_xml_0030_02",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[338]",
+            "title": "28. 중단영업(1) 당기말 현재 연결회사의 주요 영업지역과 관련된 종속기업 중 1개사(Cafe24 Philippines INC.)는 당기 중 청산을 완료하였고, 1개사(CAFE24 COMMERCE EUROPE GMBH)는 청산 중에 있습니다. 한편 전기 중 주요 영업부문과 관련된 종속기업인 ㈜필웨이를 처분하였습니다. 청산 중인 종속기업 및 청산/처분이 완료된 종속기업에대한 손익은 당기 및 전기 연결포괄손익계산서 상 중단영업으로 표시되어 있습니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00260879_2025_consolidated_xml_0003_04",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00260879_2025_consolidated_xml_0006_08",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[193]",
+            "title": "3. 재무위험관리3.1 재무위험요소연결회사는 여러 활동으로 인하여 시장위험(환위험, 가격위험, 이자율위험), 신용위험 및 유동성위험과 같은 다양한 재무위험에 있습니다. 연결회사의 전반적인 위험관리 정책은 금융시장의 변동성에 초점을 맞추고 있으며, 재무성과에 미치는 부정적 영향을 최소화하는데 중점을 두고 있습니다.3.2 위험관리 정책"
+          }
+        ]
+      },
+      {
+        "id": "X07",
+        "question": "2025년 연결 기준 부채총계는 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[193]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00260879_2025_consolidated_xml_0001_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00260879_2025_consolidated_xml_0006_07",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[193]",
+            "title": "3. 재무위험관리3.1 재무위험요소연결회사는 여러 활동으로 인하여 시장위험(환위험, 가격위험, 이자율위험), 신용위험 및 유동성위험과 같은 다양한 재무위험에 있습니다. 연결회사의 전반적인 위험관리 정책은 금융시장의 변동성에 초점을 맞추고 있으며, 재무성과에 미치는 부정적 영향을 최소화하는데 중점을 두고 있습니다.3.2 위험관리 정책"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00260879_2025_consolidated_xml_0008_03",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[242]",
+            "title": "5. 영업부문(1) 영업단위부문① 부문별 주요사업"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00260879_2025_consolidated_xml_0003_03",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00260879_2025_consolidated_xml_0013_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[271]",
+            "title": "10. 매입채무와 기타지급채무연결회사의 매입채무와 기타지급채무는 다음과 같습니다."
+          }
+        ]
+      },
+      {
+        "id": "X08",
+        "question": "2025년 연결 기준 자본총계는 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[193]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00260879_2025_consolidated_xml_0003_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00260879_2025_consolidated_xml_0003_04",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00260879_2025_consolidated_xml_0006_06",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[193]",
+            "title": "3. 재무위험관리3.1 재무위험요소연결회사는 여러 활동으로 인하여 시장위험(환위험, 가격위험, 이자율위험), 신용위험 및 유동성위험과 같은 다양한 재무위험에 있습니다. 연결회사의 전반적인 위험관리 정책은 금융시장의 변동성에 초점을 맞추고 있으며, 재무성과에 미치는 부정적 영향을 최소화하는데 중점을 두고 있습니다.3.2 위험관리 정책"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00260879_2025_consolidated_xml_0016_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[281]",
+            "title": "14. 자본금과 자본잉여금"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00260879_2025_consolidated_xml_0005_02",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반사항 카페24 주식회사(이하 '당사' 또는 '지배기업') 및 종속기업들(이하 당사 및 종속기업들을 합하여 '연결회사')의 일반적인 사항은 다음과 같습니다.당사는 1999년 5월 17일 설립된 인터넷 전문 솔루션 회사입니다. 서울특별시 동작구보라매로5길에 본사를 두고 있는 당사는 인터넷 비즈니스솔루션, 소프트웨어 개발 및 공급업을 영위할 목적으로 설립되었으며, 자체 설립한 연구소와 개발조직을 통해 인터넷 서비스를 제공하고 있습니다. 당사는 2018년 2월 8일에 KRX 코스닥시장에 상장되었습니다."
+          }
+        ]
+      },
+      {
+        "id": "X09",
+        "question": "2025년과 2024년 연결 기준 매출액은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[242]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00260879_2025_consolidated_xml_0002_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00260879_2025_consolidated_xml_0003_03",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00260879_2025_consolidated_xml_0005_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반사항 카페24 주식회사(이하 '당사' 또는 '지배기업') 및 종속기업들(이하 당사 및 종속기업들을 합하여 '연결회사')의 일반적인 사항은 다음과 같습니다.당사는 1999년 5월 17일 설립된 인터넷 전문 솔루션 회사입니다. 서울특별시 동작구보라매로5길에 본사를 두고 있는 당사는 인터넷 비즈니스솔루션, 소프트웨어 개발 및 공급업을 영위할 목적으로 설립되었으며, 자체 설립한 연구소와 개발조직을 통해 인터넷 서비스를 제공하고 있습니다. 당사는 2018년 2월 8일에 KRX 코스닥시장에 상장되었습니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00260879_2025_consolidated_xml_0005_02",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반사항 카페24 주식회사(이하 '당사' 또는 '지배기업') 및 종속기업들(이하 당사 및 종속기업들을 합하여 '연결회사')의 일반적인 사항은 다음과 같습니다.당사는 1999년 5월 17일 설립된 인터넷 전문 솔루션 회사입니다. 서울특별시 동작구보라매로5길에 본사를 두고 있는 당사는 인터넷 비즈니스솔루션, 소프트웨어 개발 및 공급업을 영위할 목적으로 설립되었으며, 자체 설립한 연구소와 개발조직을 통해 인터넷 서비스를 제공하고 있습니다. 당사는 2018년 2월 8일에 KRX 코스닥시장에 상장되었습니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00260879_2025_consolidated_xml_0027_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[324]",
+            "title": "25. 우발부채 및 약정사항 등"
+          }
+        ]
+      },
+      {
+        "id": "X11",
+        "question": "2025년과 2024년 연결 기준 당기순이익은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00260879_2025_consolidated_xml_0003_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00260879_2025_consolidated_xml_0003_03",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00260879_2025_consolidated_xml_0019_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[293]",
+            "title": "17. 주당이익"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00260879_2025_consolidated_xml_0008_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[242]",
+            "title": "5. 영업부문(1) 영업단위부문① 부문별 주요사업"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00260879_2025_consolidated_xml_0005_48",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반사항 카페24 주식회사(이하 '당사' 또는 '지배기업') 및 종속기업들(이하 당사 및 종속기업들을 합하여 '연결회사')의 일반적인 사항은 다음과 같습니다.당사는 1999년 5월 17일 설립된 인터넷 전문 솔루션 회사입니다. 서울특별시 동작구보라매로5길에 본사를 두고 있는 당사는 인터넷 비즈니스솔루션, 소프트웨어 개발 및 공급업을 영위할 목적으로 설립되었으며, 자체 설립한 연구소와 개발조직을 통해 인터넷 서비스를 제공하고 있습니다. 당사는 2018년 2월 8일에 KRX 코스닥시장에 상장되었습니다."
+          }
+        ]
+      },
+      {
+        "id": "X12",
+        "question": "2025년과 2024년 연결 기준 자본총계는 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[193]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00260879_2025_consolidated_xml_0003_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00260879_2025_consolidated_xml_0016_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[281]",
+            "title": "14. 자본금과 자본잉여금"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00260879_2025_consolidated_xml_0005_02",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반사항 카페24 주식회사(이하 '당사' 또는 '지배기업') 및 종속기업들(이하 당사 및 종속기업들을 합하여 '연결회사')의 일반적인 사항은 다음과 같습니다.당사는 1999년 5월 17일 설립된 인터넷 전문 솔루션 회사입니다. 서울특별시 동작구보라매로5길에 본사를 두고 있는 당사는 인터넷 비즈니스솔루션, 소프트웨어 개발 및 공급업을 영위할 목적으로 설립되었으며, 자체 설립한 연구소와 개발조직을 통해 인터넷 서비스를 제공하고 있습니다. 당사는 2018년 2월 8일에 KRX 코스닥시장에 상장되었습니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00260879_2025_consolidated_xml_0006_06",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[193]",
+            "title": "3. 재무위험관리3.1 재무위험요소연결회사는 여러 활동으로 인하여 시장위험(환위험, 가격위험, 이자율위험), 신용위험 및 유동성위험과 같은 다양한 재무위험에 있습니다. 연결회사의 전반적인 위험관리 정책은 금융시장의 변동성에 초점을 맞추고 있으며, 재무성과에 미치는 부정적 영향을 최소화하는데 중점을 두고 있습니다.3.2 위험관리 정책"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00260879_2025_consolidated_xml_0005_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반사항 카페24 주식회사(이하 '당사' 또는 '지배기업') 및 종속기업들(이하 당사 및 종속기업들을 합하여 '연결회사')의 일반적인 사항은 다음과 같습니다.당사는 1999년 5월 17일 설립된 인터넷 전문 솔루션 회사입니다. 서울특별시 동작구보라매로5길에 본사를 두고 있는 당사는 인터넷 비즈니스솔루션, 소프트웨어 개발 및 공급업을 영위할 목적으로 설립되었으며, 자체 설립한 연구소와 개발조직을 통해 인터넷 서비스를 제공하고 있습니다. 당사는 2018년 2월 8일에 KRX 코스닥시장에 상장되었습니다."
+          }
+        ]
+      },
+      {
+        "id": "X13",
+        "question": "2025년과 2024년 연결 기준 부채총계는 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[193]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00260879_2025_consolidated_xml_0001_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00260879_2025_consolidated_xml_0003_03",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00260879_2025_consolidated_xml_0006_07",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[193]",
+            "title": "3. 재무위험관리3.1 재무위험요소연결회사는 여러 활동으로 인하여 시장위험(환위험, 가격위험, 이자율위험), 신용위험 및 유동성위험과 같은 다양한 재무위험에 있습니다. 연결회사의 전반적인 위험관리 정책은 금융시장의 변동성에 초점을 맞추고 있으며, 재무성과에 미치는 부정적 영향을 최소화하는데 중점을 두고 있습니다.3.2 위험관리 정책"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00260879_2025_consolidated_xml_0006_04",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[193]",
+            "title": "3. 재무위험관리3.1 재무위험요소연결회사는 여러 활동으로 인하여 시장위험(환위험, 가격위험, 이자율위험), 신용위험 및 유동성위험과 같은 다양한 재무위험에 있습니다. 연결회사의 전반적인 위험관리 정책은 금융시장의 변동성에 초점을 맞추고 있으며, 재무성과에 미치는 부정적 영향을 최소화하는데 중점을 두고 있습니다.3.2 위험관리 정책"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00260879_2025_consolidated_xml_0013_02",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[271]",
+            "title": "10. 매입채무와 기타지급채무연결회사의 매입채무와 기타지급채무는 다음과 같습니다."
+          }
+        ]
+      }
+    ],
+    "hybrid": [
+      {
+        "id": "X01",
+        "question": "2025년 연결 기준 현금및현금성자산은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00260879_2025_consolidated_xml_0004_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00260879_2025_consolidated_xml_0003_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00260879_2025_consolidated_xml_0001_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00260879_2025_consolidated_xml_0005_12",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반사항 카페24 주식회사(이하 '당사' 또는 '지배기업') 및 종속기업들(이하 당사 및 종속기업들을 합하여 '연결회사')의 일반적인 사항은 다음과 같습니다.당사는 1999년 5월 17일 설립된 인터넷 전문 솔루션 회사입니다. 서울특별시 동작구보라매로5길에 본사를 두고 있는 당사는 인터넷 비즈니스솔루션, 소프트웨어 개발 및 공급업을 영위할 목적으로 설립되었으며, 자체 설립한 연구소와 개발조직을 통해 인터넷 서비스를 제공하고 있습니다. 당사는 2018년 2월 8일에 KRX 코스닥시장에 상장되었습니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00260879_2025_consolidated_xml_0004_04",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          }
+        ]
+      },
+      {
+        "id": "X02",
+        "question": "2025년 연결 기준 재고자산은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00260879_2025_consolidated_xml_0010_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[253]",
+            "title": "7. 재고자산연결회사의 재고자산은 다음과 같습니다."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00260879_2025_consolidated_xml_0003_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00260879_2025_consolidated_xml_0001_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00260879_2025_consolidated_xml_0005_12",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반사항 카페24 주식회사(이하 '당사' 또는 '지배기업') 및 종속기업들(이하 당사 및 종속기업들을 합하여 '연결회사')의 일반적인 사항은 다음과 같습니다.당사는 1999년 5월 17일 설립된 인터넷 전문 솔루션 회사입니다. 서울특별시 동작구보라매로5길에 본사를 두고 있는 당사는 인터넷 비즈니스솔루션, 소프트웨어 개발 및 공급업을 영위할 목적으로 설립되었으며, 자체 설립한 연구소와 개발조직을 통해 인터넷 서비스를 제공하고 있습니다. 당사는 2018년 2월 8일에 KRX 코스닥시장에 상장되었습니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00260879_2025_consolidated_xml_0001_02",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          }
+        ]
+      },
+      {
+        "id": "X03",
+        "question": "2025년 연결 기준 매출액은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[242]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00260879_2025_consolidated_xml_0003_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00260879_2025_consolidated_xml_0002_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00260879_2025_consolidated_xml_0004_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00260879_2025_consolidated_xml_0001_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00260879_2025_consolidated_xml_0005_12",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반사항 카페24 주식회사(이하 '당사' 또는 '지배기업') 및 종속기업들(이하 당사 및 종속기업들을 합하여 '연결회사')의 일반적인 사항은 다음과 같습니다.당사는 1999년 5월 17일 설립된 인터넷 전문 솔루션 회사입니다. 서울특별시 동작구보라매로5길에 본사를 두고 있는 당사는 인터넷 비즈니스솔루션, 소프트웨어 개발 및 공급업을 영위할 목적으로 설립되었으며, 자체 설립한 연구소와 개발조직을 통해 인터넷 서비스를 제공하고 있습니다. 당사는 2018년 2월 8일에 KRX 코스닥시장에 상장되었습니다."
+          }
+        ]
+      },
+      {
+        "id": "X04",
+        "question": "2025년 연결 기준 영업이익은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00260879_2025_consolidated_xml_0002_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00260879_2025_consolidated_xml_0004_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00260879_2025_consolidated_xml_0003_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00260879_2025_consolidated_xml_0005_12",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반사항 카페24 주식회사(이하 '당사' 또는 '지배기업') 및 종속기업들(이하 당사 및 종속기업들을 합하여 '연결회사')의 일반적인 사항은 다음과 같습니다.당사는 1999년 5월 17일 설립된 인터넷 전문 솔루션 회사입니다. 서울특별시 동작구보라매로5길에 본사를 두고 있는 당사는 인터넷 비즈니스솔루션, 소프트웨어 개발 및 공급업을 영위할 목적으로 설립되었으며, 자체 설립한 연구소와 개발조직을 통해 인터넷 서비스를 제공하고 있습니다. 당사는 2018년 2월 8일에 KRX 코스닥시장에 상장되었습니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00260879_2025_consolidated_xml_0003_03",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          }
+        ]
+      },
+      {
+        "id": "X05",
+        "question": "2025년 연결 기준 당기순이익은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00260879_2025_consolidated_xml_0003_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00260879_2025_consolidated_xml_0002_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00260879_2025_consolidated_xml_0004_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00260879_2025_consolidated_xml_0003_03",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00260879_2025_consolidated_xml_0005_12",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반사항 카페24 주식회사(이하 '당사' 또는 '지배기업') 및 종속기업들(이하 당사 및 종속기업들을 합하여 '연결회사')의 일반적인 사항은 다음과 같습니다.당사는 1999년 5월 17일 설립된 인터넷 전문 솔루션 회사입니다. 서울특별시 동작구보라매로5길에 본사를 두고 있는 당사는 인터넷 비즈니스솔루션, 소프트웨어 개발 및 공급업을 영위할 목적으로 설립되었으며, 자체 설립한 연구소와 개발조직을 통해 인터넷 서비스를 제공하고 있습니다. 당사는 2018년 2월 8일에 KRX 코스닥시장에 상장되었습니다."
+          }
+        ]
+      },
+      {
+        "id": "X06",
+        "question": "2025년 연결 기준 영업활동으로 인한 현금흐름은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00260879_2025_consolidated_xml_0004_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00260879_2025_consolidated_xml_0030_02",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[338]",
+            "title": "28. 중단영업(1) 당기말 현재 연결회사의 주요 영업지역과 관련된 종속기업 중 1개사(Cafe24 Philippines INC.)는 당기 중 청산을 완료하였고, 1개사(CAFE24 COMMERCE EUROPE GMBH)는 청산 중에 있습니다. 한편 전기 중 주요 영업부문과 관련된 종속기업인 ㈜필웨이를 처분하였습니다. 청산 중인 종속기업 및 청산/처분이 완료된 종속기업에대한 손익은 당기 및 전기 연결포괄손익계산서 상 중단영업으로 표시되어 있습니다."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00260879_2025_consolidated_xml_0002_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00260879_2025_consolidated_xml_0026_02",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[319]",
+            "title": "24. 현금흐름표(1) 당기순손익에 대한 조정 내역"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00260879_2025_consolidated_xml_0006_06",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[193]",
+            "title": "3. 재무위험관리3.1 재무위험요소연결회사는 여러 활동으로 인하여 시장위험(환위험, 가격위험, 이자율위험), 신용위험 및 유동성위험과 같은 다양한 재무위험에 있습니다. 연결회사의 전반적인 위험관리 정책은 금융시장의 변동성에 초점을 맞추고 있으며, 재무성과에 미치는 부정적 영향을 최소화하는데 중점을 두고 있습니다.3.2 위험관리 정책"
+          }
+        ]
+      },
+      {
+        "id": "X07",
+        "question": "2025년 연결 기준 부채총계는 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[193]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00260879_2025_consolidated_xml_0003_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00260879_2025_consolidated_xml_0001_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00260879_2025_consolidated_xml_0002_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00260879_2025_consolidated_xml_0005_12",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반사항 카페24 주식회사(이하 '당사' 또는 '지배기업') 및 종속기업들(이하 당사 및 종속기업들을 합하여 '연결회사')의 일반적인 사항은 다음과 같습니다.당사는 1999년 5월 17일 설립된 인터넷 전문 솔루션 회사입니다. 서울특별시 동작구보라매로5길에 본사를 두고 있는 당사는 인터넷 비즈니스솔루션, 소프트웨어 개발 및 공급업을 영위할 목적으로 설립되었으며, 자체 설립한 연구소와 개발조직을 통해 인터넷 서비스를 제공하고 있습니다. 당사는 2018년 2월 8일에 KRX 코스닥시장에 상장되었습니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00260879_2025_consolidated_xml_0006_07",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[193]",
+            "title": "3. 재무위험관리3.1 재무위험요소연결회사는 여러 활동으로 인하여 시장위험(환위험, 가격위험, 이자율위험), 신용위험 및 유동성위험과 같은 다양한 재무위험에 있습니다. 연결회사의 전반적인 위험관리 정책은 금융시장의 변동성에 초점을 맞추고 있으며, 재무성과에 미치는 부정적 영향을 최소화하는데 중점을 두고 있습니다.3.2 위험관리 정책"
+          }
+        ]
+      },
+      {
+        "id": "X08",
+        "question": "2025년 연결 기준 자본총계는 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[193]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00260879_2025_consolidated_xml_0003_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00260879_2025_consolidated_xml_0002_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00260879_2025_consolidated_xml_0001_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00260879_2025_consolidated_xml_0004_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00260879_2025_consolidated_xml_0005_12",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반사항 카페24 주식회사(이하 '당사' 또는 '지배기업') 및 종속기업들(이하 당사 및 종속기업들을 합하여 '연결회사')의 일반적인 사항은 다음과 같습니다.당사는 1999년 5월 17일 설립된 인터넷 전문 솔루션 회사입니다. 서울특별시 동작구보라매로5길에 본사를 두고 있는 당사는 인터넷 비즈니스솔루션, 소프트웨어 개발 및 공급업을 영위할 목적으로 설립되었으며, 자체 설립한 연구소와 개발조직을 통해 인터넷 서비스를 제공하고 있습니다. 당사는 2018년 2월 8일에 KRX 코스닥시장에 상장되었습니다."
+          }
+        ]
+      },
+      {
+        "id": "X09",
+        "question": "2025년과 2024년 연결 기준 매출액은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[242]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00260879_2025_consolidated_xml_0003_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00260879_2025_consolidated_xml_0002_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00260879_2025_consolidated_xml_0004_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00260879_2025_consolidated_xml_0001_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00260879_2025_consolidated_xml_0005_41",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반사항 카페24 주식회사(이하 '당사' 또는 '지배기업') 및 종속기업들(이하 당사 및 종속기업들을 합하여 '연결회사')의 일반적인 사항은 다음과 같습니다.당사는 1999년 5월 17일 설립된 인터넷 전문 솔루션 회사입니다. 서울특별시 동작구보라매로5길에 본사를 두고 있는 당사는 인터넷 비즈니스솔루션, 소프트웨어 개발 및 공급업을 영위할 목적으로 설립되었으며, 자체 설립한 연구소와 개발조직을 통해 인터넷 서비스를 제공하고 있습니다. 당사는 2018년 2월 8일에 KRX 코스닥시장에 상장되었습니다."
+          }
+        ]
+      },
+      {
+        "id": "X11",
+        "question": "2025년과 2024년 연결 기준 당기순이익은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00260879_2025_consolidated_xml_0003_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00260879_2025_consolidated_xml_0002_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00260879_2025_consolidated_xml_0004_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00260879_2025_consolidated_xml_0001_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00260879_2025_consolidated_xml_0005_41",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반사항 카페24 주식회사(이하 '당사' 또는 '지배기업') 및 종속기업들(이하 당사 및 종속기업들을 합하여 '연결회사')의 일반적인 사항은 다음과 같습니다.당사는 1999년 5월 17일 설립된 인터넷 전문 솔루션 회사입니다. 서울특별시 동작구보라매로5길에 본사를 두고 있는 당사는 인터넷 비즈니스솔루션, 소프트웨어 개발 및 공급업을 영위할 목적으로 설립되었으며, 자체 설립한 연구소와 개발조직을 통해 인터넷 서비스를 제공하고 있습니다. 당사는 2018년 2월 8일에 KRX 코스닥시장에 상장되었습니다."
+          }
+        ]
+      },
+      {
+        "id": "X12",
+        "question": "2025년과 2024년 연결 기준 자본총계는 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[193]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00260879_2025_consolidated_xml_0003_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00260879_2025_consolidated_xml_0004_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00260879_2025_consolidated_xml_0002_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00260879_2025_consolidated_xml_0001_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00260879_2025_consolidated_xml_0005_41",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반사항 카페24 주식회사(이하 '당사' 또는 '지배기업') 및 종속기업들(이하 당사 및 종속기업들을 합하여 '연결회사')의 일반적인 사항은 다음과 같습니다.당사는 1999년 5월 17일 설립된 인터넷 전문 솔루션 회사입니다. 서울특별시 동작구보라매로5길에 본사를 두고 있는 당사는 인터넷 비즈니스솔루션, 소프트웨어 개발 및 공급업을 영위할 목적으로 설립되었으며, 자체 설립한 연구소와 개발조직을 통해 인터넷 서비스를 제공하고 있습니다. 당사는 2018년 2월 8일에 KRX 코스닥시장에 상장되었습니다."
+          }
+        ]
+      },
+      {
+        "id": "X13",
+        "question": "2025년과 2024년 연결 기준 부채총계는 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[193]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00260879_2025_consolidated_xml_0003_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00260879_2025_consolidated_xml_0004_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00260879_2025_consolidated_xml_0002_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00260879_2025_consolidated_xml_0001_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00260879_2025_consolidated_xml_0013_01",
+            "source_file": "20260317000899_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[271]",
+            "title": "10. 매입채무와 기타지급채무연결회사의 매입채무와 기타지급채무는 다음과 같습니다."
+          }
+        ]
+      }
+    ]
+  }
+}

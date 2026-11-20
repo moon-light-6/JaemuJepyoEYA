@@ -1,0 +1,1116 @@
+{
+  "config": {
+    "source_format": "xml",
+    "questions": 5,
+    "chunks": 240,
+    "collection_name": "fin_xml_00970453_2025_consolidated_20260319001417_kure_v1"
+  },
+  "summary": {
+    "bm25": {
+      "hit_at_3": 0.0,
+      "hit_at_5": 0.4,
+      "value_hit_at_3": 0.0,
+      "value_hit_at_5": 0.4,
+      "source_value_hit_at_3": 0.0,
+      "source_value_hit_at_5": 0.4,
+      "total": 5
+    },
+    "chroma": {
+      "hit_at_3": 1.0,
+      "hit_at_5": 1.0,
+      "value_hit_at_3": 0.6,
+      "value_hit_at_5": 0.8,
+      "source_value_hit_at_3": 0.6,
+      "source_value_hit_at_5": 0.8,
+      "total": 5
+    },
+    "mmr": {
+      "hit_at_3": 0.8,
+      "hit_at_5": 0.8,
+      "value_hit_at_3": 0.8,
+      "value_hit_at_5": 0.8,
+      "source_value_hit_at_3": 0.8,
+      "source_value_hit_at_5": 0.8,
+      "total": 5
+    },
+    "hybrid": {
+      "hit_at_3": 0.6,
+      "hit_at_5": 1.0,
+      "value_hit_at_3": 0.6,
+      "value_hit_at_5": 0.6,
+      "source_value_hit_at_3": 0.6,
+      "source_value_hit_at_5": 0.6,
+      "total": 5
+    }
+  },
+  "details": {
+    "bm25": [
+      {
+        "id": "X01",
+        "question": "2025년 연결 기준 자산총계는 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00970453_2025_consolidated_xml_0003_01",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00970453_2025_consolidated_xml_0006_55",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[10]",
+            "title": "2. 연결재무제표 작성기준 및 중요한 회계정책 2.1 연결재무제표 작성기준"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00970453_2025_consolidated_xml_0004_01",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00970453_2025_consolidated_xml_0002_01",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00970453_2025_consolidated_xml_0021_06",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[417]",
+            "title": "18. 복합금융상품 (1) 당기말 및 전기말 현재 복합금융상품의 내역은 다음과 같습니다."
+          }
+        ]
+      },
+      {
+        "id": "X02",
+        "question": "2025년 연결 기준 현금및현금성자산은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00970453_2025_consolidated_xml_0003_01",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00970453_2025_consolidated_xml_0006_55",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[10]",
+            "title": "2. 연결재무제표 작성기준 및 중요한 회계정책 2.1 연결재무제표 작성기준"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00970453_2025_consolidated_xml_0004_01",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00970453_2025_consolidated_xml_0002_01",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00970453_2025_consolidated_xml_0021_06",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[417]",
+            "title": "18. 복합금융상품 (1) 당기말 및 전기말 현재 복합금융상품의 내역은 다음과 같습니다."
+          }
+        ]
+      },
+      {
+        "id": "X03",
+        "question": "2025년 연결 기준 영업활동으로 인한 현금흐름은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00970453_2025_consolidated_xml_0035_03",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[547]",
+            "title": "32. 현금흐름표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00970453_2025_consolidated_xml_0006_33",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[10]",
+            "title": "2. 연결재무제표 작성기준 및 중요한 회계정책 2.1 연결재무제표 작성기준"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00970453_2025_consolidated_xml_0003_01",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00970453_2025_consolidated_xml_0006_55",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[10]",
+            "title": "2. 연결재무제표 작성기준 및 중요한 회계정책 2.1 연결재무제표 작성기준"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00970453_2025_consolidated_xml_0004_01",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          }
+        ]
+      },
+      {
+        "id": "X04",
+        "question": "2025년과 2024년 연결 기준 자산총계는 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00970453_2025_consolidated_xml_0006_68",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[10]",
+            "title": "2. 연결재무제표 작성기준 및 중요한 회계정책 2.1 연결재무제표 작성기준"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00970453_2025_consolidated_xml_0003_01",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00970453_2025_consolidated_xml_0004_01",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00970453_2025_consolidated_xml_0002_01",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00970453_2025_consolidated_xml_0006_55",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[10]",
+            "title": "2. 연결재무제표 작성기준 및 중요한 회계정책 2.1 연결재무제표 작성기준"
+          }
+        ]
+      },
+      {
+        "id": "X05",
+        "question": "2025년과 2024년 연결 기준 영업활동으로 인한 현금흐름은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00970453_2025_consolidated_xml_0006_68",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[10]",
+            "title": "2. 연결재무제표 작성기준 및 중요한 회계정책 2.1 연결재무제표 작성기준"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00970453_2025_consolidated_xml_0035_03",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[547]",
+            "title": "32. 현금흐름표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00970453_2025_consolidated_xml_0003_01",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00970453_2025_consolidated_xml_0004_01",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00970453_2025_consolidated_xml_0002_01",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          }
+        ]
+      }
+    ],
+    "chroma": [
+      {
+        "id": "X01",
+        "question": "2025년 연결 기준 자산총계는 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00970453_2025_consolidated_xml_0003_01",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00970453_2025_consolidated_xml_0001_01",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00970453_2025_consolidated_xml_0002_01",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00970453_2025_consolidated_xml_0004_01",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00970453_2025_consolidated_xml_0003_04",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          }
+        ]
+      },
+      {
+        "id": "X02",
+        "question": "2025년 연결 기준 현금및현금성자산은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00970453_2025_consolidated_xml_0001_01",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00970453_2025_consolidated_xml_0008_01",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[345]",
+            "title": "4. 현금및현금성자산"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00970453_2025_consolidated_xml_0033_11",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[511]",
+            "title": "30. 위험관리 (1) 자본위험관리연결회사의 자본관리는 계속기업으로서의 존속능력을 유지하고 건전한 자본구조의 유지 및 자본조달 비용의 최소화를 통하여 주주이익을 극대화하는 것을 그 목적으로 하고 있습니다. 이사회는 더 많은 차입으로 더 높은 수익률을 얻는 것과 건전한 재무상태 간의 균형을 유지하기 위하여 노력하고 있습니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00970453_2025_consolidated_xml_0003_01",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00970453_2025_consolidated_xml_0004_01",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          }
+        ]
+      },
+      {
+        "id": "X03",
+        "question": "2025년 연결 기준 영업활동으로 인한 현금흐름은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00970453_2025_consolidated_xml_0004_01",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00970453_2025_consolidated_xml_0003_05",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00970453_2025_consolidated_xml_0003_01",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00970453_2025_consolidated_xml_0033_06",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[511]",
+            "title": "30. 위험관리 (1) 자본위험관리연결회사의 자본관리는 계속기업으로서의 존속능력을 유지하고 건전한 자본구조의 유지 및 자본조달 비용의 최소화를 통하여 주주이익을 극대화하는 것을 그 목적으로 하고 있습니다. 이사회는 더 많은 차입으로 더 높은 수익률을 얻는 것과 건전한 재무상태 간의 균형을 유지하기 위하여 노력하고 있습니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00970453_2025_consolidated_xml_0003_04",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          }
+        ]
+      },
+      {
+        "id": "X04",
+        "question": "2025년과 2024년 연결 기준 자산총계는 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00970453_2025_consolidated_xml_0003_01",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00970453_2025_consolidated_xml_0001_01",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00970453_2025_consolidated_xml_0002_01",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00970453_2025_consolidated_xml_0004_01",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00970453_2025_consolidated_xml_0001_02",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          }
+        ]
+      },
+      {
+        "id": "X05",
+        "question": "2025년과 2024년 연결 기준 영업활동으로 인한 현금흐름은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00970453_2025_consolidated_xml_0004_01",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00970453_2025_consolidated_xml_0003_01",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00970453_2025_consolidated_xml_0002_01",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00970453_2025_consolidated_xml_0001_01",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00970453_2025_consolidated_xml_0003_05",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          }
+        ]
+      }
+    ],
+    "mmr": [
+      {
+        "id": "X01",
+        "question": "2025년 연결 기준 자산총계는 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00970453_2025_consolidated_xml_0003_01",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00970453_2025_consolidated_xml_0033_05",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[511]",
+            "title": "30. 위험관리 (1) 자본위험관리연결회사의 자본관리는 계속기업으로서의 존속능력을 유지하고 건전한 자본구조의 유지 및 자본조달 비용의 최소화를 통하여 주주이익을 극대화하는 것을 그 목적으로 하고 있습니다. 이사회는 더 많은 차입으로 더 높은 수익률을 얻는 것과 건전한 재무상태 간의 균형을 유지하기 위하여 노력하고 있습니다."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00970453_2025_consolidated_xml_0006_73",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[10]",
+            "title": "2. 연결재무제표 작성기준 및 중요한 회계정책 2.1 연결재무제표 작성기준"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00970453_2025_consolidated_xml_0015_09",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[377]",
+            "title": "11. 유형자산 (1) 당기말 및 전기말 현재 유형자산 장부금액의 구성내역은 다음과 같습니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00970453_2025_consolidated_xml_0014_02",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[369]",
+            "title": "10. 관계기업투자"
+          }
+        ]
+      },
+      {
+        "id": "X02",
+        "question": "2025년 연결 기준 현금및현금성자산은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00970453_2025_consolidated_xml_0001_01",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00970453_2025_consolidated_xml_0008_01",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[345]",
+            "title": "4. 현금및현금성자산"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00970453_2025_consolidated_xml_0033_11",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[511]",
+            "title": "30. 위험관리 (1) 자본위험관리연결회사의 자본관리는 계속기업으로서의 존속능력을 유지하고 건전한 자본구조의 유지 및 자본조달 비용의 최소화를 통하여 주주이익을 극대화하는 것을 그 목적으로 하고 있습니다. 이사회는 더 많은 차입으로 더 높은 수익률을 얻는 것과 건전한 재무상태 간의 균형을 유지하기 위하여 노력하고 있습니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00970453_2025_consolidated_xml_0006_22",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[10]",
+            "title": "2. 연결재무제표 작성기준 및 중요한 회계정책 2.1 연결재무제표 작성기준"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00970453_2025_consolidated_xml_0033_02",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[511]",
+            "title": "30. 위험관리 (1) 자본위험관리연결회사의 자본관리는 계속기업으로서의 존속능력을 유지하고 건전한 자본구조의 유지 및 자본조달 비용의 최소화를 통하여 주주이익을 극대화하는 것을 그 목적으로 하고 있습니다. 이사회는 더 많은 차입으로 더 높은 수익률을 얻는 것과 건전한 재무상태 간의 균형을 유지하기 위하여 노력하고 있습니다."
+          }
+        ]
+      },
+      {
+        "id": "X03",
+        "question": "2025년 연결 기준 영업활동으로 인한 현금흐름은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00970453_2025_consolidated_xml_0004_01",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00970453_2025_consolidated_xml_0003_05",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00970453_2025_consolidated_xml_0033_06",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[511]",
+            "title": "30. 위험관리 (1) 자본위험관리연결회사의 자본관리는 계속기업으로서의 존속능력을 유지하고 건전한 자본구조의 유지 및 자본조달 비용의 최소화를 통하여 주주이익을 극대화하는 것을 그 목적으로 하고 있습니다. 이사회는 더 많은 차입으로 더 높은 수익률을 얻는 것과 건전한 재무상태 간의 균형을 유지하기 위하여 노력하고 있습니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00970453_2025_consolidated_xml_0017_08",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[386]",
+            "title": "13. 무형자산 (1) 당기말 및 전기말 현재 무형자산 장부금액의 구성내역은 다음과 같습니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00970453_2025_consolidated_xml_0006_34",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[10]",
+            "title": "2. 연결재무제표 작성기준 및 중요한 회계정책 2.1 연결재무제표 작성기준"
+          }
+        ]
+      },
+      {
+        "id": "X04",
+        "question": "2025년과 2024년 연결 기준 자산총계는 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00970453_2025_consolidated_xml_0003_01",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00970453_2025_consolidated_xml_0001_02",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00970453_2025_consolidated_xml_0027_01",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[455]",
+            "title": "24. 공정가치"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00970453_2025_consolidated_xml_0014_03",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[369]",
+            "title": "10. 관계기업투자"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00970453_2025_consolidated_xml_0006_73",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[10]",
+            "title": "2. 연결재무제표 작성기준 및 중요한 회계정책 2.1 연결재무제표 작성기준"
+          }
+        ]
+      },
+      {
+        "id": "X05",
+        "question": "2025년과 2024년 연결 기준 영업활동으로 인한 현금흐름은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00970453_2025_consolidated_xml_0004_01",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00970453_2025_consolidated_xml_0003_05",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00970453_2025_consolidated_xml_0033_06",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[511]",
+            "title": "30. 위험관리 (1) 자본위험관리연결회사의 자본관리는 계속기업으로서의 존속능력을 유지하고 건전한 자본구조의 유지 및 자본조달 비용의 최소화를 통하여 주주이익을 극대화하는 것을 그 목적으로 하고 있습니다. 이사회는 더 많은 차입으로 더 높은 수익률을 얻는 것과 건전한 재무상태 간의 균형을 유지하기 위하여 노력하고 있습니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00970453_2025_consolidated_xml_0017_11",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[386]",
+            "title": "13. 무형자산 (1) 당기말 및 전기말 현재 무형자산 장부금액의 구성내역은 다음과 같습니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00970453_2025_consolidated_xml_0006_34",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[10]",
+            "title": "2. 연결재무제표 작성기준 및 중요한 회계정책 2.1 연결재무제표 작성기준"
+          }
+        ]
+      }
+    ],
+    "hybrid": [
+      {
+        "id": "X01",
+        "question": "2025년 연결 기준 자산총계는 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00970453_2025_consolidated_xml_0003_01",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00970453_2025_consolidated_xml_0002_01",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00970453_2025_consolidated_xml_0004_01",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00970453_2025_consolidated_xml_0001_01",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00970453_2025_consolidated_xml_0006_55",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[10]",
+            "title": "2. 연결재무제표 작성기준 및 중요한 회계정책 2.1 연결재무제표 작성기준"
+          }
+        ]
+      },
+      {
+        "id": "X02",
+        "question": "2025년 연결 기준 현금및현금성자산은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00970453_2025_consolidated_xml_0003_01",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00970453_2025_consolidated_xml_0004_01",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00970453_2025_consolidated_xml_0001_01",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00970453_2025_consolidated_xml_0006_55",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[10]",
+            "title": "2. 연결재무제표 작성기준 및 중요한 회계정책 2.1 연결재무제표 작성기준"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00970453_2025_consolidated_xml_0008_01",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[345]",
+            "title": "4. 현금및현금성자산"
+          }
+        ]
+      },
+      {
+        "id": "X03",
+        "question": "2025년 연결 기준 영업활동으로 인한 현금흐름은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00970453_2025_consolidated_xml_0004_01",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00970453_2025_consolidated_xml_0003_01",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00970453_2025_consolidated_xml_0002_01",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00970453_2025_consolidated_xml_0035_03",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[547]",
+            "title": "32. 현금흐름표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00970453_2025_consolidated_xml_0003_05",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          }
+        ]
+      },
+      {
+        "id": "X04",
+        "question": "2025년과 2024년 연결 기준 자산총계는 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00970453_2025_consolidated_xml_0003_01",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00970453_2025_consolidated_xml_0002_01",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00970453_2025_consolidated_xml_0004_01",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00970453_2025_consolidated_xml_0001_01",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00970453_2025_consolidated_xml_0006_68",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[10]",
+            "title": "2. 연결재무제표 작성기준 및 중요한 회계정책 2.1 연결재무제표 작성기준"
+          }
+        ]
+      },
+      {
+        "id": "X05",
+        "question": "2025년과 2024년 연결 기준 영업활동으로 인한 현금흐름은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00970453_2025_consolidated_xml_0004_01",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00970453_2025_consolidated_xml_0003_01",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00970453_2025_consolidated_xml_0002_01",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00970453_2025_consolidated_xml_0006_68",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[10]",
+            "title": "2. 연결재무제표 작성기준 및 중요한 회계정책 2.1 연결재무제표 작성기준"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00970453_2025_consolidated_xml_0035_03",
+            "source_file": "20260319001417_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[547]",
+            "title": "32. 현금흐름표"
+          }
+        ]
+      }
+    ]
+  }
+}

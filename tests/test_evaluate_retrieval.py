@@ -234,7 +234,7 @@ class EvaluateRetrievalTest(unittest.TestCase):
             self.run_evaluation()
 
     # 5. 평가 결과 JSON 저장
-    
+
     # 5. 평가 결과 JSON 저장
     def test_json_output(self):
         output_path = self.root / "results" / "baseline.json"

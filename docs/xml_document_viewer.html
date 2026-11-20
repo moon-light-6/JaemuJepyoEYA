@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DART XML 문서 검증 뷰어</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --navy: #14213d;
+      --blue: #2563eb;
+      --paper: #f8fafc;
+      --line: #dbe3ef;
+      --muted: #64748b;
+      --ink: #182235;
+      --selected: #e8f0ff;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    header { padding: 22px clamp(18px, 4vw, 56px); background: var(--navy); color: white; }
+    h1 { margin: 0 0 7px; font-size: clamp(22px, 3vw, 30px); }
+    header p { margin: 0; color: #cbd5e1; line-height: 1.55; }
+    .file-guide { padding: 18px clamp(18px, 4vw, 56px); border-bottom: 1px solid var(--line); background: #eef5ff; }
+    .file-guide > p { max-width: 1120px; margin: 0; color: #24476d; line-height: 1.65; }
+    details { max-width: 1120px; margin: 12px auto 0; border: 1px solid #c9d9ee; border-radius: 9px; background: white; }
+    summary { padding: 11px 13px; cursor: pointer; color: #24476d; font-weight: 700; }
+    .guide-content { padding: 0 15px 15px; color: #334155; line-height: 1.65; }
+    .guide-content p { margin: 12px 0 8px; }
+    .guide-content ol { margin: 7px 0; padding-left: 24px; }
+    .guide-content code { overflow-wrap: anywhere; }
+    .guide-command { display: block; margin-top: 7px; padding: 11px; overflow-x: auto; border-radius: 7px; background: #14213d; color: #e2e8f0; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; white-space: pre; }
+    .toolbar { display: grid; grid-template-columns: auto minmax(180px, 1fr) auto; gap: 12px; align-items: center; padding: 18px clamp(18px, 4vw, 56px); border-bottom: 1px solid var(--line); background: white; }
+    input[type="file"] { max-width: 100%; }
+    input[type="search"] { width: 100%; padding: 10px 12px; border: 1px solid #b9c6d8; border-radius: 8px; font-size: 14px; }
+    .count { color: var(--muted); font-size: 14px; white-space: nowrap; }
+    .layout { display: grid; grid-template-columns: minmax(280px, 34%) 1fr; min-height: calc(100vh - 151px); }
+    aside { background: white; border-right: 1px solid var(--line); overflow: auto; }
+    #document-list { padding: 10px; }
+    .item { width: 100%; text-align: left; padding: 12px; margin-bottom: 7px; border: 1px solid transparent; border-radius: 9px; background: transparent; cursor: pointer; color: inherit; }
+    .item:hover { background: #f1f5f9; }
+    .item.selected { background: var(--selected); border-color: #b9d0ff; }
+    .item .section { color: var(--blue); font-size: 12px; font-weight: 650; margin-bottom: 4px; }
+    .item .title { font-weight: 700; line-height: 1.35; }
+    .item .xpath { overflow: hidden; color: var(--muted); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; margin-top: 5px; text-overflow: ellipsis; white-space: nowrap; }
+    .item .match { color: #49658a; font-size: 11px; margin-top: 5px; }
+    main { min-width: 0; padding: clamp(20px, 3vw, 38px); }
+    .empty { max-width: 640px; margin: 8vh auto; padding: 28px; border: 1px dashed #aab7c8; border-radius: 12px; background: white; color: var(--muted); line-height: 1.7; }
+    .meta { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+    .badge { padding: 5px 9px; border-radius: 99px; background: #e7eef9; color: #31496b; font-size: 12px; }
+    h2 { margin: 0 0 10px; font-size: clamp(20px, 2.5vw, 27px); line-height: 1.35; }
+    .source { display: flex; align-items: center; gap: 8px; margin: 14px 0 20px; color: var(--muted); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; overflow-wrap: anywhere; }
+    button.copy { flex: 0 0 auto; border: 1px solid #c8d4e3; border-radius: 7px; padding: 5px 8px; color: #29466d; background: white; cursor: pointer; font-family: inherit; font-size: 12px; }
+    pre { margin: 0; padding: clamp(16px, 2.5vw, 26px); border: 1px solid var(--line); border-radius: 12px; background: white; color: #243247; font-family: "Apple SD Gothic Neo", "Malgun Gothic", ui-monospace, monospace; font-size: 14px; line-height: 1.75; white-space: pre-wrap; word-break: break-word; }
+    mark { padding: 1px 2px; border-radius: 3px; background: #fde68a; color: inherit; }
+    .notice { padding: 10px 12px; margin-bottom: 14px; border-left: 3px solid var(--blue); background: #eff6ff; color: #24476d; font-size: 14px; line-height: 1.55; }
+    @media (max-width: 760px) { .toolbar { grid-template-columns: 1fr; } .count { white-space: normal; } .layout { grid-template-columns: 1fr; } aside { max-height: 38vh; border-right: 0; border-bottom: 1px solid var(--line); } }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>DART XML 문서 검증 뷰어</h1>
+    <p><code>*_xml_documents.json</code>을 선택해 제목·XPath·본문을 읽기 좋게 확인합니다. 파일은 브라우저 밖으로 전송되지 않습니다.</p>
+  </header>
+  <section class="file-guide" aria-label="XML 문서 파일 위치 안내">
+    <p><strong>선택할 파일 위치</strong> — XML 청킹 준비를 마치면 아래 경로에 <code>*_xml_documents.json</code> 파일이 생성됩니다. 예: 삼성전자 연결은 <code>data/processed/xml/dart/00126380/2025/consolidated/20260310002820_xml_documents.json</code>입니다.</p>
+    <details>
+      <summary>파일이 없을 때: 수집·생성 방법 자세히 보기</summary>
+      <div class="guide-content">
+        <p><strong>1. 현재 파일 경로 규칙</strong></p>
+        <code>data/processed/xml/dart/{corp_code}/{fiscal_year}/{statement_scope}/{rcept_no}_xml_documents.json</code>
+        <ul>
+          <li><code>corp_code</code>: DART 고유번호. 예: 삼성전자 <code>00126380</code></li>
+          <li><code>fiscal_year</code>: 사업연도. 예: <code>2025</code></li>
+          <li><code>statement_scope</code>: 연결은 <code>consolidated</code>, 별도는 <code>separate</code></li>
+          <li><code>rcept_no</code>: DART 접수번호</li>
+        </ul>
+        <p><strong>2. 원본 XML ZIP이 없다면 먼저 수집</strong></p>
+        <span class="guide-command">python scripts/collect.py \\
+  --corp-code {corp_code} \\
+  --fiscal-year {fiscal_year}</span>
+        <p>줄을 나눌 때는 각 줄 끝에 <code>\</code>를 <strong>하나만</strong> 쓰고, 그 뒤에 공백 없이 Enter를 누릅니다. 한 줄로 실행하려면 <code>\</code>를 모두 빼고 명령어를 이어 씁니다.</p>
+        <p>수집이 끝나면 원본은 <code>data/raw/dart/{corp_code}/{fiscal_year}/{rcept_no}.zip</code>에 생깁니다. 출력된 접수번호를 다음 명령의 <code>{rcept_no}</code> 자리에 넣습니다.</p>
+        <p><strong>3. XML 문서 JSON만 생성</strong></p>
+        <span class="guide-command">python scripts/run_pipeline_xml.py \\
+  --company "회사명" \\
+  --corp-code {corp_code} \\
+  --fiscal-year {fiscal_year} \\
+  --rcept-no {rcept_no} \\
+  --statement-scope consolidated \\
+  --prepare-only</span>
+        <p>별도 재무제표를 만들 때는 마지막 기준을 <code>--statement-scope separate</code>로 바꿉니다. <code>--prepare-only</code>는 XML 문서와 청크까지만 만들며, 평가셋·검색 평가는 실행하지 않습니다.</p>
+        <p>예전 경로인 <code>data/processed/dart/...</code>가 아니라, 현재는 원본 형식을 구분하기 위해 <code>data/processed/xml/dart/...</code> 아래를 사용합니다.</p>
+      </div>
+    </details>
+  </section>
+  <section class="toolbar" aria-label="문서 불러오기와 검색">
+    <input id="file-input" type="file" accept="application/json,.json" aria-label="XML 문서 JSON 선택">
+    <input id="search-input" type="search" placeholder="제목, XPath, 본문 검색·강조 — 예: 자산총계 / 10. 유형자산 / TABLE[5]" disabled>
+    <span id="count" class="count">JSON 파일을 선택하세요.</span>
+  </section>
+  <section class="layout">
+    <aside aria-label="XML 문서 목록"><div id="document-list"></div></aside>
+    <main id="viewer">
+      <div class="empty">
+        <strong>사용 방법</strong><br>
+        1. 위에서 <code>20260310002820_xml_documents.json</code>처럼 <code>_xml_documents.json</code>으로 끝나는 파일을 선택합니다.<br>
+        2. 평가셋의 <code>source_xpath</code>, 질문의 계정명 또는 주석 제목으로 검색합니다.<br>
+        3. 왼쪽 결과를 클릭해 제목·구간·XPath·원문 텍스트를 대조합니다.<br><br>
+        이 뷰어는 읽기 전용입니다. <code>draft → verified</code> 변경은 평가셋 JSON에서 별도로 수행합니다.
+      </div>
+    </main>
+  </section>
+  <script>
+    const fileInput = document.querySelector('#file-input');
+    const searchInput = document.querySelector('#search-input');
+    const count = document.querySelector('#count');
+    const list = document.querySelector('#document-list');
+    const viewer = document.querySelector('#viewer');
+    let documents = [];
+    let selectedIndex = null;
+
+    const normalized = (value) => String(value || '').toLowerCase().replace(/\s+/g, '');
+    const escapeRegExp = (value) => String(value).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+    function keywordPattern(value) {
+      const characters = String(value || '').replace(/\s+/g, '').split('');
+      return characters.length ? new RegExp(`(${characters.map(escapeRegExp).join('\\s*')})`, 'gi') : null;
+    }
+
+    function matchCount(document, term) {
+      const pattern = keywordPattern(term);
+      if (!pattern) return 0;
+      return [document.title, document.source_xpath, document.text]
+        .reduce((total, value) => total + (String(value || '').match(pattern) || []).length, 0);
+    }
+
+    function highlighted(value, term) {
+      const pattern = keywordPattern(term);
+      if (!pattern) return escapeHtml(value || '');
+      return String(value || '').split(pattern).map((part, index) => (
+        index % 2 ? `<mark>${escapeHtml(part)}</mark>` : escapeHtml(part)
+      )).join('');
+    }
+
+    function renderDocument(index) {
+      selectedIndex = index;
+      const document = documents[index];
+      if (!document) return;
+      const term = searchInput.value;
+      viewer.innerHTML = `
+        <div class="meta">
+          <span class="badge">${escapeHtml(document.section || '구간 없음')}</span>
+          <span class="badge">${escapeHtml(document.document_type || '문서')}</span>
+          <span class="badge">${escapeHtml(document.statement_scope || '기준 없음')}</span>
+        </div>
+        <h2>${highlighted(document.title || '제목 없음', term)}</h2>
+        <div class="source">
+          <span>${escapeHtml(document.source_file || '')} · ${escapeHtml(document.source_xpath || '')}</span>
+          <button class="copy" type="button">XPath 복사</button>
+        </div>
+        <div class="notice">평가셋의 <code>gold_sources.source_xpath</code>와 위 XPath가 같은지, 본문에 질문의 근거·금액·단위가 있는지 확인하세요.</div>
+        <pre>${highlighted(document.text || '', term)}</pre>`;
+      viewer.querySelector('.copy').addEventListener('click', async () => {
+        const button = viewer.querySelector('.copy');
+        try {
+          await navigator.clipboard.writeText(document.source_xpath || '');
+          button.textContent = '복사됨';
+          setTimeout(() => { button.textContent = 'XPath 복사'; }, 1300);
+        } catch {
+          button.textContent = '복사 실패';
+        }
+      });
+      renderList();
+    }
+
+    function renderList() {
+      const term = normalized(searchInput.value);
+      const matched = documents
+        .map((document, index) => ({ document, index }))
+        .filter(({ document }) => {
+          const searchable = [document.section, document.title, document.source_xpath, document.text].map(normalized).join('');
+          return !term || searchable.includes(term);
+        });
+      count.textContent = `전체 ${documents.length}개 · 검색 결과 ${matched.length}개`;
+      list.innerHTML = matched.map(({ document, index }) => `
+        <button class="item ${index === selectedIndex ? 'selected' : ''}" data-index="${index}" type="button">
+          <div class="section">${escapeHtml(document.section || '구간 없음')}</div>
+          <div class="title">${highlighted(document.title || '제목 없음', searchInput.value)}</div>
+          <div class="xpath">${escapeHtml(document.source_xpath || '')}</div>
+          <div class="match">요소 인덱스: ${escapeHtml(document.source_element_index ?? '-')} · 검색 일치: ${matchCount(document, searchInput.value)}건</div>
+        </button>`).join('') || '<div class="empty">검색 결과가 없습니다.</div>';
+      list.querySelectorAll('.item').forEach((item) => item.addEventListener('click', () => renderDocument(Number(item.dataset.index))));
+    }
+
+    function escapeHtml(value) {
+      return String(value).replace(/[&<>'"]/g, (character) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' })[character]);
+    }
+
+    fileInput.addEventListener('change', () => {
+      const [file] = fileInput.files;
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = () => {
+        try {
+          const parsed = JSON.parse(reader.result);
+          if (!Array.isArray(parsed)) throw new Error('배열이 아닙니다.');
+          documents = parsed;
+          selectedIndex = documents.length ? 0 : null;
+          searchInput.disabled = !documents.length;
+          searchInput.value = '';
+          if (selectedIndex !== null) renderDocument(selectedIndex);
+          else { list.innerHTML = ''; viewer.innerHTML = '<div class="empty">문서가 비어 있습니다.</div>'; renderList(); }
+        } catch (error) {
+          documents = [];
+          selectedIndex = null;
+          searchInput.disabled = true;
+          list.innerHTML = '';
+          viewer.innerHTML = `<div class="empty">JSON을 읽지 못했습니다: ${escapeHtml(error.message)}</div>`;
+          count.textContent = '올바른 XML 문서 JSON을 선택하세요.';
+        }
+      };
+      reader.readAsText(file, 'utf-8');
+    });
+    searchInput.addEventListener('input', () => {
+      if (selectedIndex !== null) renderDocument(selectedIndex);
+      else renderList();
+    });
+  </script>
+</body>
+</html>

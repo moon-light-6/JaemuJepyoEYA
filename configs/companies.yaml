@@ -70,6 +70,8 @@ companies:
         fiscal_month: 12
         disclosure_start: "2026-01-01"
         disclosure_end: "2026-12-31"
+        # 사업보고서 3건(최초 20260313001191, 기재정정 20260324000835·20260619000667) 중 최종 정정본
+        rcept_no: "20260619000667"
 
   # 종목코드: 017670
   - name: "SK텔레콤"
@@ -160,7 +162,7 @@ companies:
         official_pdf:
           provider: "dart"
           dcm_no: "11168903"
-        
+
 
   # 종목코드: 028300
   - name: "HLB"
@@ -172,6 +174,10 @@ companies:
         fiscal_month: 12
         disclosure_start: "2026-01-01"
         disclosure_end: "2026-12-31"
+        rcept_no: "20260323001673"
+        official_pdf:
+          provider: "dart"
+          dcm_no: "11169561"
 
   # 종목코드: 058470
   - name: "리노공업"
@@ -249,6 +255,10 @@ companies:
         fiscal_month: 12
         disclosure_start: "2026-01-01"
         disclosure_end: "2026-12-31"
+        rcept_no: "20260318001519"
+        official_pdf:
+          provider: "dart"
+          dcm_no: "11143410"
 
   # 종목코드: 041510
   - name: "에스엠"
@@ -260,6 +270,10 @@ companies:
         fiscal_month: 12
         disclosure_start: "2026-01-01"
         disclosure_end: "2026-12-31"
+        rcept_no: "20260317000781"
+        official_pdf:
+          provider: "dart"
+          dcm_no: "11133390"          
 
   # 종목코드: 263750
   - name: "펄어비스"

@@ -1,4 +1,4 @@
-"""Generate a draft from retrieved evidence and validate its source references."""
+"""검색 근거를 바탕으로 답변 초안을 생성하고 출처 표기의 유효성을 검사합니다."""
 
 import json
 import re
@@ -15,7 +15,7 @@ PROMPT_PATH = (
 
 
 class GroundedAnswer(BaseModel):
-    """A draft answer, not a completed numeric-verification verdict."""
+    """검색 근거로 작성한 답변 초안이며, 수치 검증 수행 여부는 별도 결과로 관리합니다."""
 
     model_config = ConfigDict(extra="forbid")
     status: Literal["draft", "insufficient_evidence"]
