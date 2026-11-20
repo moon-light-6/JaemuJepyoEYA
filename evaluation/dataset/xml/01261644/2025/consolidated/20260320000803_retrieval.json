@@ -1,0 +1,60 @@
+[
+  {
+    "question": "2025년 연결 기준 현금및현금성자산은 얼마인가?",
+    "answer_type": "numeric",
+    "expected_value": "10,110,273",
+    "unit": "천원",
+    "gold_sources": [
+      {
+        "source_file": "20260320000803_00761.xml",
+        "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[139]"
+      }
+    ],
+    "candidate_sources": [
+      {
+        "source_file": "20260320000803_00761.xml",
+        "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[139]",
+        "title": "4. 현금및현금성자산 (1) 연결회사의 당기말과 전기말 현재 현금및현금성자산의 구성 내역은 다음과 같습니다. (단위:천원)",
+        "match_reason": "계정명과 당기 금액이 같은 XML 문서"
+      }
+    ],
+    "category": "financial_position",
+    "opendart_account": {
+      "sj_div": "BS",
+      "account_id": "ifrs-full_CashAndCashEquivalents",
+      "account_nm": "현금및현금성자산"
+    },
+    "id": "X01",
+    "annotation_status": "verified",
+    "annotation_method": "auto_opendart_xml_xpath_candidate"
+  },
+  {
+    "question": "2025년 연결 기준 매출액은 얼마인가?",
+    "answer_type": "numeric",
+    "expected_value": "34,123,100",
+    "unit": "천원",
+    "gold_sources": [
+      {
+        "source_file": "20260320000803_00761.xml",
+        "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[201]"
+      }
+    ],
+    "candidate_sources": [
+      {
+        "source_file": "20260320000803_00761.xml",
+        "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[201]",
+        "title": "23. 영업부문연결회사는 단일의 보고부문을 가지고 있으며, 당기와 전기의 보고부문에 대한 내역은 다음과 같습니다. (1) 매출에 대한 정보 (단위:천원)",
+        "match_reason": "계정명과 당기 금액이 같은 XML 문서"
+      }
+    ],
+    "category": "income_statement",
+    "opendart_account": {
+      "sj_div": "CIS",
+      "account_id": "ifrs-full_Revenue",
+      "account_nm": "매출액"
+    },
+    "id": "X02",
+    "annotation_status": "draft",
+    "annotation_method": "auto_opendart_xml_xpath_candidate"
+  }
+]

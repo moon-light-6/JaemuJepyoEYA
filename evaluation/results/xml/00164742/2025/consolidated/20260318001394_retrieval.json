@@ -1,0 +1,3024 @@
+{
+  "config": {
+    "source_format": "xml",
+    "questions": 14,
+    "chunks": 286,
+    "collection_name": "fin_xml_00164742_2025_consolidated_20260318001394_kure_v1"
+  },
+  "summary": {
+    "bm25": {
+      "hit_at_3": 0.0,
+      "hit_at_5": 0.0,
+      "value_hit_at_3": 0.14285714285714285,
+      "value_hit_at_5": 0.14285714285714285,
+      "source_value_hit_at_3": 0.0,
+      "source_value_hit_at_5": 0.0,
+      "total": 14
+    },
+    "chroma": {
+      "hit_at_3": 0.7857142857142857,
+      "hit_at_5": 0.8571428571428571,
+      "value_hit_at_3": 0.6428571428571429,
+      "value_hit_at_5": 0.6428571428571429,
+      "source_value_hit_at_3": 0.5,
+      "source_value_hit_at_5": 0.5714285714285714,
+      "total": 14
+    },
+    "mmr": {
+      "hit_at_3": 0.7142857142857143,
+      "hit_at_5": 0.7857142857142857,
+      "value_hit_at_3": 0.2857142857142857,
+      "value_hit_at_5": 0.5,
+      "source_value_hit_at_3": 0.21428571428571427,
+      "source_value_hit_at_5": 0.21428571428571427,
+      "total": 14
+    },
+    "hybrid": {
+      "hit_at_3": 0.5,
+      "hit_at_5": 0.7857142857142857,
+      "value_hit_at_3": 0.2857142857142857,
+      "value_hit_at_5": 0.6428571428571429,
+      "source_value_hit_at_3": 0.21428571428571427,
+      "source_value_hit_at_5": 0.35714285714285715,
+      "total": 14
+    }
+  },
+  "details": {
+    "bm25": [
+      {
+        "id": "X01",
+        "question": "2025년 연결 기준 자산총계는 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00164742_2025_consolidated_xml_0014_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[237]",
+            "title": "14. 금융업채권(1) 당기말 및 전기말 현재 금융업채권의 내용은 다음과 같습니다."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00164742_2025_consolidated_xml_0002_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[18]",
+            "title": "2. 연결재무제표 작성기준 및 중요한 회계정책(1) 연결재무제표 작성기준연결실체의 연결재무제표는 한국채택국제회계기준에 따라 작성되었습니다."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00164742_2025_consolidated_xml_0001_22",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[1]",
+            "title": "1. 회사 및 종속기업의 개요지배기업인 현대자동차주식회사(이하 '회사')는 1967년 12월에 설립되었으며, 회사와 회사의 종속기업(이하 '연결실체')은 자동차와 자동차부품의 제조 및 판매, 차량 할부금융, 결제대행 및 철도차량 제작 등의 사업을 운영하고 있습니다.회사는 1974년 6월에 한국거래소가 개설하는 유가증권시장에 주식을 상장하였습니다.당기말 현재 회사의 주요주주(보통주)의 현황은 다음과 같습니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00164742_2025_consolidated_xml_0009_07",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[190]",
+            "title": "9. 유형자산"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00164742_2025_consolidated_xml_0020_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[284]",
+            "title": "20. 자본금 및 자본잉여금회사의 수권주식수는 600,000,000주이며 당기말과 전기말 현재 보통주 및 우선주 자본금의 내용은 다음과 같습니다.(1) 보통주 자본금"
+          }
+        ]
+      },
+      {
+        "id": "X02",
+        "question": "2025년 연결 기준 현금및현금성자산은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[254]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00164742_2025_consolidated_xml_0014_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[237]",
+            "title": "14. 금융업채권(1) 당기말 및 전기말 현재 금융업채권의 내용은 다음과 같습니다."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00164742_2025_consolidated_xml_0002_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[18]",
+            "title": "2. 연결재무제표 작성기준 및 중요한 회계정책(1) 연결재무제표 작성기준연결실체의 연결재무제표는 한국채택국제회계기준에 따라 작성되었습니다."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00164742_2025_consolidated_xml_0001_22",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[1]",
+            "title": "1. 회사 및 종속기업의 개요지배기업인 현대자동차주식회사(이하 '회사')는 1967년 12월에 설립되었으며, 회사와 회사의 종속기업(이하 '연결실체')은 자동차와 자동차부품의 제조 및 판매, 차량 할부금융, 결제대행 및 철도차량 제작 등의 사업을 운영하고 있습니다.회사는 1974년 6월에 한국거래소가 개설하는 유가증권시장에 주식을 상장하였습니다.당기말 현재 회사의 주요주주(보통주)의 현황은 다음과 같습니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00164742_2025_consolidated_xml_0009_07",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[190]",
+            "title": "9. 유형자산"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00164742_2025_consolidated_xml_0020_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[284]",
+            "title": "20. 자본금 및 자본잉여금회사의 수권주식수는 600,000,000주이며 당기말과 전기말 현재 보통주 및 우선주 자본금의 내용은 다음과 같습니다.(1) 보통주 자본금"
+          }
+        ]
+      },
+      {
+        "id": "X03",
+        "question": "2025년 연결 기준 재고자산은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[179]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00164742_2025_consolidated_xml_0014_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[237]",
+            "title": "14. 금융업채권(1) 당기말 및 전기말 현재 금융업채권의 내용은 다음과 같습니다."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00164742_2025_consolidated_xml_0002_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[18]",
+            "title": "2. 연결재무제표 작성기준 및 중요한 회계정책(1) 연결재무제표 작성기준연결실체의 연결재무제표는 한국채택국제회계기준에 따라 작성되었습니다."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00164742_2025_consolidated_xml_0002_24",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[18]",
+            "title": "2. 연결재무제표 작성기준 및 중요한 회계정책(1) 연결재무제표 작성기준연결실체의 연결재무제표는 한국채택국제회계기준에 따라 작성되었습니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00164742_2025_consolidated_xml_0001_22",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[1]",
+            "title": "1. 회사 및 종속기업의 개요지배기업인 현대자동차주식회사(이하 '회사')는 1967년 12월에 설립되었으며, 회사와 회사의 종속기업(이하 '연결실체')은 자동차와 자동차부품의 제조 및 판매, 차량 할부금융, 결제대행 및 철도차량 제작 등의 사업을 운영하고 있습니다.회사는 1974년 6월에 한국거래소가 개설하는 유가증권시장에 주식을 상장하였습니다.당기말 현재 회사의 주요주주(보통주)의 현황은 다음과 같습니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00164742_2025_consolidated_xml_0009_07",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[190]",
+            "title": "9. 유형자산"
+          }
+        ]
+      },
+      {
+        "id": "X04",
+        "question": "2025년 연결 기준 매출액은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[302]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00164742_2025_consolidated_xml_0014_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[237]",
+            "title": "14. 금융업채권(1) 당기말 및 전기말 현재 금융업채권의 내용은 다음과 같습니다."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00164742_2025_consolidated_xml_0002_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[18]",
+            "title": "2. 연결재무제표 작성기준 및 중요한 회계정책(1) 연결재무제표 작성기준연결실체의 연결재무제표는 한국채택국제회계기준에 따라 작성되었습니다."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00164742_2025_consolidated_xml_0037_18",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]",
+            "title": "37. 부문정보"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00164742_2025_consolidated_xml_0039_01",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[398]",
+            "title": "39. 사업결합연결실체는 당기 중 타이거318호의 지분 40%를 추가로 인수함에 따라, 총 90%의 지분을 보유하게 되었습니다. 동 사업결합에 따라 타이거318호는 종속기업으로 편입되었습니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00164742_2025_consolidated_xml_0001_22",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[1]",
+            "title": "1. 회사 및 종속기업의 개요지배기업인 현대자동차주식회사(이하 '회사')는 1967년 12월에 설립되었으며, 회사와 회사의 종속기업(이하 '연결실체')은 자동차와 자동차부품의 제조 및 판매, 차량 할부금융, 결제대행 및 철도차량 제작 등의 사업을 운영하고 있습니다.회사는 1974년 6월에 한국거래소가 개설하는 유가증권시장에 주식을 상장하였습니다.당기말 현재 회사의 주요주주(보통주)의 현황은 다음과 같습니다."
+          }
+        ]
+      },
+      {
+        "id": "X05",
+        "question": "2025년 연결 기준 영업이익은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00164742_2025_consolidated_xml_0014_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[237]",
+            "title": "14. 금융업채권(1) 당기말 및 전기말 현재 금융업채권의 내용은 다음과 같습니다."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00164742_2025_consolidated_xml_0002_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[18]",
+            "title": "2. 연결재무제표 작성기준 및 중요한 회계정책(1) 연결재무제표 작성기준연결실체의 연결재무제표는 한국채택국제회계기준에 따라 작성되었습니다."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00164742_2025_consolidated_xml_0001_22",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[1]",
+            "title": "1. 회사 및 종속기업의 개요지배기업인 현대자동차주식회사(이하 '회사')는 1967년 12월에 설립되었으며, 회사와 회사의 종속기업(이하 '연결실체')은 자동차와 자동차부품의 제조 및 판매, 차량 할부금융, 결제대행 및 철도차량 제작 등의 사업을 운영하고 있습니다.회사는 1974년 6월에 한국거래소가 개설하는 유가증권시장에 주식을 상장하였습니다.당기말 현재 회사의 주요주주(보통주)의 현황은 다음과 같습니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00164742_2025_consolidated_xml_0009_07",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[190]",
+            "title": "9. 유형자산"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00164742_2025_consolidated_xml_0020_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[284]",
+            "title": "20. 자본금 및 자본잉여금회사의 수권주식수는 600,000,000주이며 당기말과 전기말 현재 보통주 및 우선주 자본금의 내용은 다음과 같습니다.(1) 보통주 자본금"
+          }
+        ]
+      },
+      {
+        "id": "X06",
+        "question": "2025년 연결 기준 당기순이익은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[333]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00164742_2025_consolidated_xml_0014_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[237]",
+            "title": "14. 금융업채권(1) 당기말 및 전기말 현재 금융업채권의 내용은 다음과 같습니다."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00164742_2025_consolidated_xml_0002_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[18]",
+            "title": "2. 연결재무제표 작성기준 및 중요한 회계정책(1) 연결재무제표 작성기준연결실체의 연결재무제표는 한국채택국제회계기준에 따라 작성되었습니다."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00164742_2025_consolidated_xml_0039_01",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[398]",
+            "title": "39. 사업결합연결실체는 당기 중 타이거318호의 지분 40%를 추가로 인수함에 따라, 총 90%의 지분을 보유하게 되었습니다. 동 사업결합에 따라 타이거318호는 종속기업으로 편입되었습니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00164742_2025_consolidated_xml_0001_22",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[1]",
+            "title": "1. 회사 및 종속기업의 개요지배기업인 현대자동차주식회사(이하 '회사')는 1967년 12월에 설립되었으며, 회사와 회사의 종속기업(이하 '연결실체')은 자동차와 자동차부품의 제조 및 판매, 차량 할부금융, 결제대행 및 철도차량 제작 등의 사업을 운영하고 있습니다.회사는 1974년 6월에 한국거래소가 개설하는 유가증권시장에 주식을 상장하였습니다.당기말 현재 회사의 주요주주(보통주)의 현황은 다음과 같습니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00164742_2025_consolidated_xml_0009_07",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[190]",
+            "title": "9. 유형자산"
+          }
+        ]
+      },
+      {
+        "id": "X07",
+        "question": "2025년 연결 기준 부채총계는 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00164742_2025_consolidated_xml_0014_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[237]",
+            "title": "14. 금융업채권(1) 당기말 및 전기말 현재 금융업채권의 내용은 다음과 같습니다."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00164742_2025_consolidated_xml_0002_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[18]",
+            "title": "2. 연결재무제표 작성기준 및 중요한 회계정책(1) 연결재무제표 작성기준연결실체의 연결재무제표는 한국채택국제회계기준에 따라 작성되었습니다."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00164742_2025_consolidated_xml_0001_22",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[1]",
+            "title": "1. 회사 및 종속기업의 개요지배기업인 현대자동차주식회사(이하 '회사')는 1967년 12월에 설립되었으며, 회사와 회사의 종속기업(이하 '연결실체')은 자동차와 자동차부품의 제조 및 판매, 차량 할부금융, 결제대행 및 철도차량 제작 등의 사업을 운영하고 있습니다.회사는 1974년 6월에 한국거래소가 개설하는 유가증권시장에 주식을 상장하였습니다.당기말 현재 회사의 주요주주(보통주)의 현황은 다음과 같습니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00164742_2025_consolidated_xml_0009_07",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[190]",
+            "title": "9. 유형자산"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00164742_2025_consolidated_xml_0020_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[284]",
+            "title": "20. 자본금 및 자본잉여금회사의 수권주식수는 600,000,000주이며 당기말과 전기말 현재 보통주 및 우선주 자본금의 내용은 다음과 같습니다.(1) 보통주 자본금"
+          }
+        ]
+      },
+      {
+        "id": "X08",
+        "question": "2025년 연결 기준 자본총계는 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00164742_2025_consolidated_xml_0014_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[237]",
+            "title": "14. 금융업채권(1) 당기말 및 전기말 현재 금융업채권의 내용은 다음과 같습니다."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00164742_2025_consolidated_xml_0002_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[18]",
+            "title": "2. 연결재무제표 작성기준 및 중요한 회계정책(1) 연결재무제표 작성기준연결실체의 연결재무제표는 한국채택국제회계기준에 따라 작성되었습니다."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00164742_2025_consolidated_xml_0001_22",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[1]",
+            "title": "1. 회사 및 종속기업의 개요지배기업인 현대자동차주식회사(이하 '회사')는 1967년 12월에 설립되었으며, 회사와 회사의 종속기업(이하 '연결실체')은 자동차와 자동차부품의 제조 및 판매, 차량 할부금융, 결제대행 및 철도차량 제작 등의 사업을 운영하고 있습니다.회사는 1974년 6월에 한국거래소가 개설하는 유가증권시장에 주식을 상장하였습니다.당기말 현재 회사의 주요주주(보통주)의 현황은 다음과 같습니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00164742_2025_consolidated_xml_0009_07",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[190]",
+            "title": "9. 유형자산"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00164742_2025_consolidated_xml_0020_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[284]",
+            "title": "20. 자본금 및 자본잉여금회사의 수권주식수는 600,000,000주이며 당기말과 전기말 현재 보통주 및 우선주 자본금의 내용은 다음과 같습니다.(1) 보통주 자본금"
+          }
+        ]
+      },
+      {
+        "id": "X09",
+        "question": "2025년과 2024년 연결 기준 자산총계는 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00164742_2025_consolidated_xml_0014_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[237]",
+            "title": "14. 금융업채권(1) 당기말 및 전기말 현재 금융업채권의 내용은 다음과 같습니다."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00164742_2025_consolidated_xml_0020_01",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[284]",
+            "title": "20. 자본금 및 자본잉여금회사의 수권주식수는 600,000,000주이며 당기말과 전기말 현재 보통주 및 우선주 자본금의 내용은 다음과 같습니다.(1) 보통주 자본금"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00164742_2025_consolidated_xml_0035_12",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[359]",
+            "title": "35. 특수관계자 등과의 거래"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00164742_2025_consolidated_xml_0034_05",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[337]",
+            "title": "34. 위험관리(1) 자본위험관리연결실체는 주주이익의 극대화 및 자본비용의 절감 등을 위하여 최적 자본구조를 유지하도록 자본을 관리하고 있습니다. 연결실체는 총부채를 총자본으로 나눈 부채비율을 자본관리지표로 이용하고 있으며, 연결실체의 전반적인 자본위험 관리정책은 전기와 동일합니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00164742_2025_consolidated_xml_0019_15",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[254]",
+            "title": "19. 금융상품"
+          }
+        ]
+      },
+      {
+        "id": "X10",
+        "question": "2025년과 2024년 연결 기준 매출액은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[302]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00164742_2025_consolidated_xml_0014_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[237]",
+            "title": "14. 금융업채권(1) 당기말 및 전기말 현재 금융업채권의 내용은 다음과 같습니다."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00164742_2025_consolidated_xml_0020_01",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[284]",
+            "title": "20. 자본금 및 자본잉여금회사의 수권주식수는 600,000,000주이며 당기말과 전기말 현재 보통주 및 우선주 자본금의 내용은 다음과 같습니다.(1) 보통주 자본금"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00164742_2025_consolidated_xml_0037_18",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]",
+            "title": "37. 부문정보"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00164742_2025_consolidated_xml_0039_01",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[398]",
+            "title": "39. 사업결합연결실체는 당기 중 타이거318호의 지분 40%를 추가로 인수함에 따라, 총 90%의 지분을 보유하게 되었습니다. 동 사업결합에 따라 타이거318호는 종속기업으로 편입되었습니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00164742_2025_consolidated_xml_0035_12",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[359]",
+            "title": "35. 특수관계자 등과의 거래"
+          }
+        ]
+      },
+      {
+        "id": "X11",
+        "question": "2025년과 2024년 연결 기준 영업이익은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00164742_2025_consolidated_xml_0014_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[237]",
+            "title": "14. 금융업채권(1) 당기말 및 전기말 현재 금융업채권의 내용은 다음과 같습니다."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00164742_2025_consolidated_xml_0020_01",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[284]",
+            "title": "20. 자본금 및 자본잉여금회사의 수권주식수는 600,000,000주이며 당기말과 전기말 현재 보통주 및 우선주 자본금의 내용은 다음과 같습니다.(1) 보통주 자본금"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00164742_2025_consolidated_xml_0035_12",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[359]",
+            "title": "35. 특수관계자 등과의 거래"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00164742_2025_consolidated_xml_0034_05",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[337]",
+            "title": "34. 위험관리(1) 자본위험관리연결실체는 주주이익의 극대화 및 자본비용의 절감 등을 위하여 최적 자본구조를 유지하도록 자본을 관리하고 있습니다. 연결실체는 총부채를 총자본으로 나눈 부채비율을 자본관리지표로 이용하고 있으며, 연결실체의 전반적인 자본위험 관리정책은 전기와 동일합니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00164742_2025_consolidated_xml_0019_15",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[254]",
+            "title": "19. 금융상품"
+          }
+        ]
+      },
+      {
+        "id": "X12",
+        "question": "2025년과 2024년 연결 기준 당기순이익은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[333]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00164742_2025_consolidated_xml_0014_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[237]",
+            "title": "14. 금융업채권(1) 당기말 및 전기말 현재 금융업채권의 내용은 다음과 같습니다."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00164742_2025_consolidated_xml_0020_01",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[284]",
+            "title": "20. 자본금 및 자본잉여금회사의 수권주식수는 600,000,000주이며 당기말과 전기말 현재 보통주 및 우선주 자본금의 내용은 다음과 같습니다.(1) 보통주 자본금"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00164742_2025_consolidated_xml_0039_01",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[398]",
+            "title": "39. 사업결합연결실체는 당기 중 타이거318호의 지분 40%를 추가로 인수함에 따라, 총 90%의 지분을 보유하게 되었습니다. 동 사업결합에 따라 타이거318호는 종속기업으로 편입되었습니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00164742_2025_consolidated_xml_0035_12",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[359]",
+            "title": "35. 특수관계자 등과의 거래"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00164742_2025_consolidated_xml_0034_05",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[337]",
+            "title": "34. 위험관리(1) 자본위험관리연결실체는 주주이익의 극대화 및 자본비용의 절감 등을 위하여 최적 자본구조를 유지하도록 자본을 관리하고 있습니다. 연결실체는 총부채를 총자본으로 나눈 부채비율을 자본관리지표로 이용하고 있으며, 연결실체의 전반적인 자본위험 관리정책은 전기와 동일합니다."
+          }
+        ]
+      },
+      {
+        "id": "X13",
+        "question": "2025년과 2024년 연결 기준 자본총계는 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00164742_2025_consolidated_xml_0014_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[237]",
+            "title": "14. 금융업채권(1) 당기말 및 전기말 현재 금융업채권의 내용은 다음과 같습니다."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00164742_2025_consolidated_xml_0020_01",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[284]",
+            "title": "20. 자본금 및 자본잉여금회사의 수권주식수는 600,000,000주이며 당기말과 전기말 현재 보통주 및 우선주 자본금의 내용은 다음과 같습니다.(1) 보통주 자본금"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00164742_2025_consolidated_xml_0035_12",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[359]",
+            "title": "35. 특수관계자 등과의 거래"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00164742_2025_consolidated_xml_0034_05",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[337]",
+            "title": "34. 위험관리(1) 자본위험관리연결실체는 주주이익의 극대화 및 자본비용의 절감 등을 위하여 최적 자본구조를 유지하도록 자본을 관리하고 있습니다. 연결실체는 총부채를 총자본으로 나눈 부채비율을 자본관리지표로 이용하고 있으며, 연결실체의 전반적인 자본위험 관리정책은 전기와 동일합니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00164742_2025_consolidated_xml_0019_15",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[254]",
+            "title": "19. 금융상품"
+          }
+        ]
+      },
+      {
+        "id": "X14",
+        "question": "2025년과 2024년 연결 기준 부채총계는 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00164742_2025_consolidated_xml_0014_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[237]",
+            "title": "14. 금융업채권(1) 당기말 및 전기말 현재 금융업채권의 내용은 다음과 같습니다."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00164742_2025_consolidated_xml_0020_01",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[284]",
+            "title": "20. 자본금 및 자본잉여금회사의 수권주식수는 600,000,000주이며 당기말과 전기말 현재 보통주 및 우선주 자본금의 내용은 다음과 같습니다.(1) 보통주 자본금"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00164742_2025_consolidated_xml_0035_12",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[359]",
+            "title": "35. 특수관계자 등과의 거래"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00164742_2025_consolidated_xml_0034_05",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[337]",
+            "title": "34. 위험관리(1) 자본위험관리연결실체는 주주이익의 극대화 및 자본비용의 절감 등을 위하여 최적 자본구조를 유지하도록 자본을 관리하고 있습니다. 연결실체는 총부채를 총자본으로 나눈 부채비율을 자본관리지표로 이용하고 있으며, 연결실체의 전반적인 자본위험 관리정책은 전기와 동일합니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00164742_2025_consolidated_xml_0019_15",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[254]",
+            "title": "19. 금융상품"
+          }
+        ]
+      }
+    ],
+    "chroma": [
+      {
+        "id": "X01",
+        "question": "2025년 연결 기준 자산총계는 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00164742_2025_consolidated_xml_0037_06",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]",
+            "title": "37. 부문정보"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00164742_2025_consolidated_xml_0037_09",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]",
+            "title": "37. 부문정보"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00164742_2025_consolidated_xml_0019_11",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[254]",
+            "title": "19. 금융상품"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00164742_2025_consolidated_xml_0012_04",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[212]",
+            "title": "12. 리스 및 운용리스자산(1) 당기 중 사용권자산 장부금액의 변동내역은 다음과 같습니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00164742_2025_consolidated_xml_0037_08",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]",
+            "title": "37. 부문정보"
+          }
+        ]
+      },
+      {
+        "id": "X02",
+        "question": "2025년 연결 기준 현금및현금성자산은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[254]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00164742_2025_consolidated_xml_0037_18",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]",
+            "title": "37. 부문정보"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00164742_2025_consolidated_xml_0037_06",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]",
+            "title": "37. 부문정보"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00164742_2025_consolidated_xml_0036_05",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[370]",
+            "title": "36. 우발부채 및 약정사항"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00164742_2025_consolidated_xml_0001_28",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[1]",
+            "title": "1. 회사 및 종속기업의 개요지배기업인 현대자동차주식회사(이하 '회사')는 1967년 12월에 설립되었으며, 회사와 회사의 종속기업(이하 '연결실체')은 자동차와 자동차부품의 제조 및 판매, 차량 할부금융, 결제대행 및 철도차량 제작 등의 사업을 운영하고 있습니다.회사는 1974년 6월에 한국거래소가 개설하는 유가증권시장에 주식을 상장하였습니다.당기말 현재 회사의 주요주주(보통주)의 현황은 다음과 같습니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00164742_2025_consolidated_xml_0037_08",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]",
+            "title": "37. 부문정보"
+          }
+        ]
+      },
+      {
+        "id": "X03",
+        "question": "2025년 연결 기준 재고자산은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[179]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00164742_2025_consolidated_xml_0006_01",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[179]",
+            "title": "6. 재고자산"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00164742_2025_consolidated_xml_0037_06",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]",
+            "title": "37. 부문정보"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00164742_2025_consolidated_xml_0006_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[179]",
+            "title": "6. 재고자산"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00164742_2025_consolidated_xml_0037_08",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]",
+            "title": "37. 부문정보"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00164742_2025_consolidated_xml_0037_09",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]",
+            "title": "37. 부문정보"
+          }
+        ]
+      },
+      {
+        "id": "X04",
+        "question": "2025년 연결 기준 매출액은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[302]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00164742_2025_consolidated_xml_0025_01",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[302]",
+            "title": "25. 매출당기와 전기 중 매출의 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00164742_2025_consolidated_xml_0037_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]",
+            "title": "37. 부문정보"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00164742_2025_consolidated_xml_0037_03",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]",
+            "title": "37. 부문정보"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00164742_2025_consolidated_xml_0008_01",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[185]",
+            "title": "8. 매각예정비유동자산과 중단영업(1) 당기말 및 전기말 현재 매각예정비유동자산 및 부채의 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00164742_2025_consolidated_xml_0038_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[393]",
+            "title": "38. 건설계약"
+          }
+        ]
+      },
+      {
+        "id": "X05",
+        "question": "2025년 연결 기준 영업이익은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00164742_2025_consolidated_xml_0025_01",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[302]",
+            "title": "25. 매출당기와 전기 중 매출의 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00164742_2025_consolidated_xml_0037_04",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]",
+            "title": "37. 부문정보"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00164742_2025_consolidated_xml_0037_03",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]",
+            "title": "37. 부문정보"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00164742_2025_consolidated_xml_0037_05",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]",
+            "title": "37. 부문정보"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00164742_2025_consolidated_xml_0037_06",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]",
+            "title": "37. 부문정보"
+          }
+        ]
+      },
+      {
+        "id": "X06",
+        "question": "2025년 연결 기준 당기순이익은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[333]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00164742_2025_consolidated_xml_0025_01",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[302]",
+            "title": "25. 매출당기와 전기 중 매출의 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00164742_2025_consolidated_xml_0037_06",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]",
+            "title": "37. 부문정보"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00164742_2025_consolidated_xml_0038_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[393]",
+            "title": "38. 건설계약"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00164742_2025_consolidated_xml_0033_01",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[333]",
+            "title": "33. 현금흐름(1) 당기와 전기 중 영업으로부터 창출된 현금흐름의 내용은 다음과 같습니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00164742_2025_consolidated_xml_0037_03",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]",
+            "title": "37. 부문정보"
+          }
+        ]
+      },
+      {
+        "id": "X07",
+        "question": "2025년 연결 기준 부채총계는 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00164742_2025_consolidated_xml_0037_09",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]",
+            "title": "37. 부문정보"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00164742_2025_consolidated_xml_0034_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[337]",
+            "title": "34. 위험관리(1) 자본위험관리연결실체는 주주이익의 극대화 및 자본비용의 절감 등을 위하여 최적 자본구조를 유지하도록 자본을 관리하고 있습니다. 연결실체는 총부채를 총자본으로 나눈 부채비율을 자본관리지표로 이용하고 있으며, 연결실체의 전반적인 자본위험 관리정책은 전기와 동일합니다."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00164742_2025_consolidated_xml_0037_11",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]",
+            "title": "37. 부문정보"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00164742_2025_consolidated_xml_0019_11",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[254]",
+            "title": "19. 금융상품"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00164742_2025_consolidated_xml_0032_06",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[324]",
+            "title": "32. 퇴직급여제도(1) 당기와 전기 중 연결실체의 확정기여형 퇴직급여제도와 관련하여 인식한 비용은 다음과 같습니다."
+          }
+        ]
+      },
+      {
+        "id": "X08",
+        "question": "2025년 연결 기준 자본총계는 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00164742_2025_consolidated_xml_0037_06",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]",
+            "title": "37. 부문정보"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00164742_2025_consolidated_xml_0037_09",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]",
+            "title": "37. 부문정보"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00164742_2025_consolidated_xml_0001_24",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[1]",
+            "title": "1. 회사 및 종속기업의 개요지배기업인 현대자동차주식회사(이하 '회사')는 1967년 12월에 설립되었으며, 회사와 회사의 종속기업(이하 '연결실체')은 자동차와 자동차부품의 제조 및 판매, 차량 할부금융, 결제대행 및 철도차량 제작 등의 사업을 운영하고 있습니다.회사는 1974년 6월에 한국거래소가 개설하는 유가증권시장에 주식을 상장하였습니다.당기말 현재 회사의 주요주주(보통주)의 현황은 다음과 같습니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00164742_2025_consolidated_xml_0037_11",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]",
+            "title": "37. 부문정보"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00164742_2025_consolidated_xml_0002_04",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[18]",
+            "title": "2. 연결재무제표 작성기준 및 중요한 회계정책(1) 연결재무제표 작성기준연결실체의 연결재무제표는 한국채택국제회계기준에 따라 작성되었습니다."
+          }
+        ]
+      },
+      {
+        "id": "X09",
+        "question": "2025년과 2024년 연결 기준 자산총계는 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00164742_2025_consolidated_xml_0037_06",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]",
+            "title": "37. 부문정보"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00164742_2025_consolidated_xml_0037_09",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]",
+            "title": "37. 부문정보"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00164742_2025_consolidated_xml_0012_04",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[212]",
+            "title": "12. 리스 및 운용리스자산(1) 당기 중 사용권자산 장부금액의 변동내역은 다음과 같습니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00164742_2025_consolidated_xml_0019_11",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[254]",
+            "title": "19. 금융상품"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00164742_2025_consolidated_xml_0037_08",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]",
+            "title": "37. 부문정보"
+          }
+        ]
+      },
+      {
+        "id": "X10",
+        "question": "2025년과 2024년 연결 기준 매출액은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[302]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00164742_2025_consolidated_xml_0025_01",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[302]",
+            "title": "25. 매출당기와 전기 중 매출의 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00164742_2025_consolidated_xml_0037_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]",
+            "title": "37. 부문정보"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00164742_2025_consolidated_xml_0011_08",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[202]",
+            "title": "11. 무형자산"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00164742_2025_consolidated_xml_0038_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[393]",
+            "title": "38. 건설계약"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00164742_2025_consolidated_xml_0037_03",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]",
+            "title": "37. 부문정보"
+          }
+        ]
+      },
+      {
+        "id": "X11",
+        "question": "2025년과 2024년 연결 기준 영업이익은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00164742_2025_consolidated_xml_0025_01",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[302]",
+            "title": "25. 매출당기와 전기 중 매출의 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00164742_2025_consolidated_xml_0037_04",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]",
+            "title": "37. 부문정보"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00164742_2025_consolidated_xml_0038_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[393]",
+            "title": "38. 건설계약"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00164742_2025_consolidated_xml_0011_08",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[202]",
+            "title": "11. 무형자산"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00164742_2025_consolidated_xml_0037_03",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]",
+            "title": "37. 부문정보"
+          }
+        ]
+      },
+      {
+        "id": "X12",
+        "question": "2025년과 2024년 연결 기준 당기순이익은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[333]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00164742_2025_consolidated_xml_0025_01",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[302]",
+            "title": "25. 매출당기와 전기 중 매출의 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00164742_2025_consolidated_xml_0038_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[393]",
+            "title": "38. 건설계약"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00164742_2025_consolidated_xml_0037_06",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]",
+            "title": "37. 부문정보"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00164742_2025_consolidated_xml_0022_01",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[291]",
+            "title": "22. 기타포괄손익누계액"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00164742_2025_consolidated_xml_0027_01",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[306]",
+            "title": "27. 금융수익 및 금융비용"
+          }
+        ]
+      },
+      {
+        "id": "X13",
+        "question": "2025년과 2024년 연결 기준 자본총계는 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00164742_2025_consolidated_xml_0020_01",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[284]",
+            "title": "20. 자본금 및 자본잉여금회사의 수권주식수는 600,000,000주이며 당기말과 전기말 현재 보통주 및 우선주 자본금의 내용은 다음과 같습니다.(1) 보통주 자본금"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00164742_2025_consolidated_xml_0037_06",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]",
+            "title": "37. 부문정보"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00164742_2025_consolidated_xml_0020_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[284]",
+            "title": "20. 자본금 및 자본잉여금회사의 수권주식수는 600,000,000주이며 당기말과 전기말 현재 보통주 및 우선주 자본금의 내용은 다음과 같습니다.(1) 보통주 자본금"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00164742_2025_consolidated_xml_0025_01",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[302]",
+            "title": "25. 매출당기와 전기 중 매출의 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00164742_2025_consolidated_xml_0037_09",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]",
+            "title": "37. 부문정보"
+          }
+        ]
+      },
+      {
+        "id": "X14",
+        "question": "2025년과 2024년 연결 기준 부채총계는 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00164742_2025_consolidated_xml_0037_09",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]",
+            "title": "37. 부문정보"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00164742_2025_consolidated_xml_0034_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[337]",
+            "title": "34. 위험관리(1) 자본위험관리연결실체는 주주이익의 극대화 및 자본비용의 절감 등을 위하여 최적 자본구조를 유지하도록 자본을 관리하고 있습니다. 연결실체는 총부채를 총자본으로 나눈 부채비율을 자본관리지표로 이용하고 있으며, 연결실체의 전반적인 자본위험 관리정책은 전기와 동일합니다."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00164742_2025_consolidated_xml_0037_11",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]",
+            "title": "37. 부문정보"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00164742_2025_consolidated_xml_0032_06",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[324]",
+            "title": "32. 퇴직급여제도(1) 당기와 전기 중 연결실체의 확정기여형 퇴직급여제도와 관련하여 인식한 비용은 다음과 같습니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00164742_2025_consolidated_xml_0034_08",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[337]",
+            "title": "34. 위험관리(1) 자본위험관리연결실체는 주주이익의 극대화 및 자본비용의 절감 등을 위하여 최적 자본구조를 유지하도록 자본을 관리하고 있습니다. 연결실체는 총부채를 총자본으로 나눈 부채비율을 자본관리지표로 이용하고 있으며, 연결실체의 전반적인 자본위험 관리정책은 전기와 동일합니다."
+          }
+        ]
+      }
+    ],
+    "mmr": [
+      {
+        "id": "X01",
+        "question": "2025년 연결 기준 자산총계는 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00164742_2025_consolidated_xml_0037_06",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]",
+            "title": "37. 부문정보"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00164742_2025_consolidated_xml_0012_04",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[212]",
+            "title": "12. 리스 및 운용리스자산(1) 당기 중 사용권자산 장부금액의 변동내역은 다음과 같습니다."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00164742_2025_consolidated_xml_0032_06",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[324]",
+            "title": "32. 퇴직급여제도(1) 당기와 전기 중 연결실체의 확정기여형 퇴직급여제도와 관련하여 인식한 비용은 다음과 같습니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00164742_2025_consolidated_xml_0002_04",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[18]",
+            "title": "2. 연결재무제표 작성기준 및 중요한 회계정책(1) 연결재무제표 작성기준연결실체의 연결재무제표는 한국채택국제회계기준에 따라 작성되었습니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00164742_2025_consolidated_xml_0002_36",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[18]",
+            "title": "2. 연결재무제표 작성기준 및 중요한 회계정책(1) 연결재무제표 작성기준연결실체의 연결재무제표는 한국채택국제회계기준에 따라 작성되었습니다."
+          }
+        ]
+      },
+      {
+        "id": "X02",
+        "question": "2025년 연결 기준 현금및현금성자산은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[254]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00164742_2025_consolidated_xml_0037_18",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]",
+            "title": "37. 부문정보"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00164742_2025_consolidated_xml_0037_07",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]",
+            "title": "37. 부문정보"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00164742_2025_consolidated_xml_0011_08",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[202]",
+            "title": "11. 무형자산"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00164742_2025_consolidated_xml_0032_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[324]",
+            "title": "32. 퇴직급여제도(1) 당기와 전기 중 연결실체의 확정기여형 퇴직급여제도와 관련하여 인식한 비용은 다음과 같습니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00164742_2025_consolidated_xml_0012_04",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[212]",
+            "title": "12. 리스 및 운용리스자산(1) 당기 중 사용권자산 장부금액의 변동내역은 다음과 같습니다."
+          }
+        ]
+      },
+      {
+        "id": "X03",
+        "question": "2025년 연결 기준 재고자산은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[179]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00164742_2025_consolidated_xml_0006_01",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[179]",
+            "title": "6. 재고자산"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00164742_2025_consolidated_xml_0019_11",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[254]",
+            "title": "19. 금융상품"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00164742_2025_consolidated_xml_0002_24",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[18]",
+            "title": "2. 연결재무제표 작성기준 및 중요한 회계정책(1) 연결재무제표 작성기준연결실체의 연결재무제표는 한국채택국제회계기준에 따라 작성되었습니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00164742_2025_consolidated_xml_0011_08",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[202]",
+            "title": "11. 무형자산"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00164742_2025_consolidated_xml_0012_04",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[212]",
+            "title": "12. 리스 및 운용리스자산(1) 당기 중 사용권자산 장부금액의 변동내역은 다음과 같습니다."
+          }
+        ]
+      },
+      {
+        "id": "X04",
+        "question": "2025년 연결 기준 매출액은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[302]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00164742_2025_consolidated_xml_0025_01",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[302]",
+            "title": "25. 매출당기와 전기 중 매출의 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00164742_2025_consolidated_xml_0037_04",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]",
+            "title": "37. 부문정보"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00164742_2025_consolidated_xml_0002_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[18]",
+            "title": "2. 연결재무제표 작성기준 및 중요한 회계정책(1) 연결재무제표 작성기준연결실체의 연결재무제표는 한국채택국제회계기준에 따라 작성되었습니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00164742_2025_consolidated_xml_0001_24",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[1]",
+            "title": "1. 회사 및 종속기업의 개요지배기업인 현대자동차주식회사(이하 '회사')는 1967년 12월에 설립되었으며, 회사와 회사의 종속기업(이하 '연결실체')은 자동차와 자동차부품의 제조 및 판매, 차량 할부금융, 결제대행 및 철도차량 제작 등의 사업을 운영하고 있습니다.회사는 1974년 6월에 한국거래소가 개설하는 유가증권시장에 주식을 상장하였습니다.당기말 현재 회사의 주요주주(보통주)의 현황은 다음과 같습니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00164742_2025_consolidated_xml_0032_06",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[324]",
+            "title": "32. 퇴직급여제도(1) 당기와 전기 중 연결실체의 확정기여형 퇴직급여제도와 관련하여 인식한 비용은 다음과 같습니다."
+          }
+        ]
+      },
+      {
+        "id": "X05",
+        "question": "2025년 연결 기준 영업이익은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00164742_2025_consolidated_xml_0025_01",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[302]",
+            "title": "25. 매출당기와 전기 중 매출의 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00164742_2025_consolidated_xml_0037_04",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]",
+            "title": "37. 부문정보"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00164742_2025_consolidated_xml_0031_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[316]",
+            "title": "31. 법인세"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00164742_2025_consolidated_xml_0032_06",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[324]",
+            "title": "32. 퇴직급여제도(1) 당기와 전기 중 연결실체의 확정기여형 퇴직급여제도와 관련하여 인식한 비용은 다음과 같습니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00164742_2025_consolidated_xml_0001_24",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[1]",
+            "title": "1. 회사 및 종속기업의 개요지배기업인 현대자동차주식회사(이하 '회사')는 1967년 12월에 설립되었으며, 회사와 회사의 종속기업(이하 '연결실체')은 자동차와 자동차부품의 제조 및 판매, 차량 할부금융, 결제대행 및 철도차량 제작 등의 사업을 운영하고 있습니다.회사는 1974년 6월에 한국거래소가 개설하는 유가증권시장에 주식을 상장하였습니다.당기말 현재 회사의 주요주주(보통주)의 현황은 다음과 같습니다."
+          }
+        ]
+      },
+      {
+        "id": "X06",
+        "question": "2025년 연결 기준 당기순이익은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[333]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00164742_2025_consolidated_xml_0025_01",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[302]",
+            "title": "25. 매출당기와 전기 중 매출의 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00164742_2025_consolidated_xml_0037_04",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]",
+            "title": "37. 부문정보"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00164742_2025_consolidated_xml_0032_06",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[324]",
+            "title": "32. 퇴직급여제도(1) 당기와 전기 중 연결실체의 확정기여형 퇴직급여제도와 관련하여 인식한 비용은 다음과 같습니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00164742_2025_consolidated_xml_0030_01",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[312]",
+            "title": "30. 주당이익기본주당이익은 보통주 및 우선주에 귀속되는 당기순이익을 가중평균유통주식수로 나누어 산출하며, 그 내용은 다음과 같습니다. 한편, 당기 및 전기에는 희석효과가 없으므로 희석주당이익은 산출하지 않았습니다.(1) 지배기업 소유주지분 순이익에 대한 주당이익"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00164742_2025_consolidated_xml_0001_24",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[1]",
+            "title": "1. 회사 및 종속기업의 개요지배기업인 현대자동차주식회사(이하 '회사')는 1967년 12월에 설립되었으며, 회사와 회사의 종속기업(이하 '연결실체')은 자동차와 자동차부품의 제조 및 판매, 차량 할부금융, 결제대행 및 철도차량 제작 등의 사업을 운영하고 있습니다.회사는 1974년 6월에 한국거래소가 개설하는 유가증권시장에 주식을 상장하였습니다.당기말 현재 회사의 주요주주(보통주)의 현황은 다음과 같습니다."
+          }
+        ]
+      },
+      {
+        "id": "X07",
+        "question": "2025년 연결 기준 부채총계는 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00164742_2025_consolidated_xml_0037_09",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]",
+            "title": "37. 부문정보"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00164742_2025_consolidated_xml_0034_08",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[337]",
+            "title": "34. 위험관리(1) 자본위험관리연결실체는 주주이익의 극대화 및 자본비용의 절감 등을 위하여 최적 자본구조를 유지하도록 자본을 관리하고 있습니다. 연결실체는 총부채를 총자본으로 나눈 부채비율을 자본관리지표로 이용하고 있으며, 연결실체의 전반적인 자본위험 관리정책은 전기와 동일합니다."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00164742_2025_consolidated_xml_0002_43",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[18]",
+            "title": "2. 연결재무제표 작성기준 및 중요한 회계정책(1) 연결재무제표 작성기준연결실체의 연결재무제표는 한국채택국제회계기준에 따라 작성되었습니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00164742_2025_consolidated_xml_0015_03",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[244]",
+            "title": "15. 차입금 및 사채"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00164742_2025_consolidated_xml_0034_01",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[337]",
+            "title": "34. 위험관리(1) 자본위험관리연결실체는 주주이익의 극대화 및 자본비용의 절감 등을 위하여 최적 자본구조를 유지하도록 자본을 관리하고 있습니다. 연결실체는 총부채를 총자본으로 나눈 부채비율을 자본관리지표로 이용하고 있으며, 연결실체의 전반적인 자본위험 관리정책은 전기와 동일합니다."
+          }
+        ]
+      },
+      {
+        "id": "X08",
+        "question": "2025년 연결 기준 자본총계는 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00164742_2025_consolidated_xml_0037_06",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]",
+            "title": "37. 부문정보"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00164742_2025_consolidated_xml_0002_04",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[18]",
+            "title": "2. 연결재무제표 작성기준 및 중요한 회계정책(1) 연결재무제표 작성기준연결실체의 연결재무제표는 한국채택국제회계기준에 따라 작성되었습니다."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00164742_2025_consolidated_xml_0020_01",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[284]",
+            "title": "20. 자본금 및 자본잉여금회사의 수권주식수는 600,000,000주이며 당기말과 전기말 현재 보통주 및 우선주 자본금의 내용은 다음과 같습니다.(1) 보통주 자본금"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00164742_2025_consolidated_xml_0034_01",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[337]",
+            "title": "34. 위험관리(1) 자본위험관리연결실체는 주주이익의 극대화 및 자본비용의 절감 등을 위하여 최적 자본구조를 유지하도록 자본을 관리하고 있습니다. 연결실체는 총부채를 총자본으로 나눈 부채비율을 자본관리지표로 이용하고 있으며, 연결실체의 전반적인 자본위험 관리정책은 전기와 동일합니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00164742_2025_consolidated_xml_0032_06",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[324]",
+            "title": "32. 퇴직급여제도(1) 당기와 전기 중 연결실체의 확정기여형 퇴직급여제도와 관련하여 인식한 비용은 다음과 같습니다."
+          }
+        ]
+      },
+      {
+        "id": "X09",
+        "question": "2025년과 2024년 연결 기준 자산총계는 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00164742_2025_consolidated_xml_0037_06",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]",
+            "title": "37. 부문정보"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00164742_2025_consolidated_xml_0012_04",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[212]",
+            "title": "12. 리스 및 운용리스자산(1) 당기 중 사용권자산 장부금액의 변동내역은 다음과 같습니다."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00164742_2025_consolidated_xml_0002_36",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[18]",
+            "title": "2. 연결재무제표 작성기준 및 중요한 회계정책(1) 연결재무제표 작성기준연결실체의 연결재무제표는 한국채택국제회계기준에 따라 작성되었습니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00164742_2025_consolidated_xml_0032_06",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[324]",
+            "title": "32. 퇴직급여제도(1) 당기와 전기 중 연결실체의 확정기여형 퇴직급여제도와 관련하여 인식한 비용은 다음과 같습니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00164742_2025_consolidated_xml_0002_04",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[18]",
+            "title": "2. 연결재무제표 작성기준 및 중요한 회계정책(1) 연결재무제표 작성기준연결실체의 연결재무제표는 한국채택국제회계기준에 따라 작성되었습니다."
+          }
+        ]
+      },
+      {
+        "id": "X10",
+        "question": "2025년과 2024년 연결 기준 매출액은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[302]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00164742_2025_consolidated_xml_0025_01",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[302]",
+            "title": "25. 매출당기와 전기 중 매출의 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00164742_2025_consolidated_xml_0037_04",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]",
+            "title": "37. 부문정보"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00164742_2025_consolidated_xml_0012_04",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[212]",
+            "title": "12. 리스 및 운용리스자산(1) 당기 중 사용권자산 장부금액의 변동내역은 다음과 같습니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00164742_2025_consolidated_xml_0001_24",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[1]",
+            "title": "1. 회사 및 종속기업의 개요지배기업인 현대자동차주식회사(이하 '회사')는 1967년 12월에 설립되었으며, 회사와 회사의 종속기업(이하 '연결실체')은 자동차와 자동차부품의 제조 및 판매, 차량 할부금융, 결제대행 및 철도차량 제작 등의 사업을 운영하고 있습니다.회사는 1974년 6월에 한국거래소가 개설하는 유가증권시장에 주식을 상장하였습니다.당기말 현재 회사의 주요주주(보통주)의 현황은 다음과 같습니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00164742_2025_consolidated_xml_0002_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[18]",
+            "title": "2. 연결재무제표 작성기준 및 중요한 회계정책(1) 연결재무제표 작성기준연결실체의 연결재무제표는 한국채택국제회계기준에 따라 작성되었습니다."
+          }
+        ]
+      },
+      {
+        "id": "X11",
+        "question": "2025년과 2024년 연결 기준 영업이익은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00164742_2025_consolidated_xml_0025_01",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[302]",
+            "title": "25. 매출당기와 전기 중 매출의 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00164742_2025_consolidated_xml_0037_04",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]",
+            "title": "37. 부문정보"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00164742_2025_consolidated_xml_0032_06",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[324]",
+            "title": "32. 퇴직급여제도(1) 당기와 전기 중 연결실체의 확정기여형 퇴직급여제도와 관련하여 인식한 비용은 다음과 같습니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00164742_2025_consolidated_xml_0034_09",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[337]",
+            "title": "34. 위험관리(1) 자본위험관리연결실체는 주주이익의 극대화 및 자본비용의 절감 등을 위하여 최적 자본구조를 유지하도록 자본을 관리하고 있습니다. 연결실체는 총부채를 총자본으로 나눈 부채비율을 자본관리지표로 이용하고 있으며, 연결실체의 전반적인 자본위험 관리정책은 전기와 동일합니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00164742_2025_consolidated_xml_0001_24",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[1]",
+            "title": "1. 회사 및 종속기업의 개요지배기업인 현대자동차주식회사(이하 '회사')는 1967년 12월에 설립되었으며, 회사와 회사의 종속기업(이하 '연결실체')은 자동차와 자동차부품의 제조 및 판매, 차량 할부금융, 결제대행 및 철도차량 제작 등의 사업을 운영하고 있습니다.회사는 1974년 6월에 한국거래소가 개설하는 유가증권시장에 주식을 상장하였습니다.당기말 현재 회사의 주요주주(보통주)의 현황은 다음과 같습니다."
+          }
+        ]
+      },
+      {
+        "id": "X12",
+        "question": "2025년과 2024년 연결 기준 당기순이익은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[333]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00164742_2025_consolidated_xml_0025_01",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[302]",
+            "title": "25. 매출당기와 전기 중 매출의 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00164742_2025_consolidated_xml_0032_06",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[324]",
+            "title": "32. 퇴직급여제도(1) 당기와 전기 중 연결실체의 확정기여형 퇴직급여제도와 관련하여 인식한 비용은 다음과 같습니다."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00164742_2025_consolidated_xml_0037_04",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]",
+            "title": "37. 부문정보"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00164742_2025_consolidated_xml_0020_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[284]",
+            "title": "20. 자본금 및 자본잉여금회사의 수권주식수는 600,000,000주이며 당기말과 전기말 현재 보통주 및 우선주 자본금의 내용은 다음과 같습니다.(1) 보통주 자본금"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00164742_2025_consolidated_xml_0002_50",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[18]",
+            "title": "2. 연결재무제표 작성기준 및 중요한 회계정책(1) 연결재무제표 작성기준연결실체의 연결재무제표는 한국채택국제회계기준에 따라 작성되었습니다."
+          }
+        ]
+      },
+      {
+        "id": "X13",
+        "question": "2025년과 2024년 연결 기준 자본총계는 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00164742_2025_consolidated_xml_0020_01",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[284]",
+            "title": "20. 자본금 및 자본잉여금회사의 수권주식수는 600,000,000주이며 당기말과 전기말 현재 보통주 및 우선주 자본금의 내용은 다음과 같습니다.(1) 보통주 자본금"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00164742_2025_consolidated_xml_0012_04",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[212]",
+            "title": "12. 리스 및 운용리스자산(1) 당기 중 사용권자산 장부금액의 변동내역은 다음과 같습니다."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00164742_2025_consolidated_xml_0002_04",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[18]",
+            "title": "2. 연결재무제표 작성기준 및 중요한 회계정책(1) 연결재무제표 작성기준연결실체의 연결재무제표는 한국채택국제회계기준에 따라 작성되었습니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00164742_2025_consolidated_xml_0024_01",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[299]",
+            "title": "24. 신종자본증권(1) 연결실체는 종속기업인 현대카드(주)가 발행한 신종자본증권을 자본(비지배주주지분)으로 분류하였습니다. 당기말 현재 신종자본증권의 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00164742_2025_consolidated_xml_0037_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]",
+            "title": "37. 부문정보"
+          }
+        ]
+      },
+      {
+        "id": "X14",
+        "question": "2025년과 2024년 연결 기준 부채총계는 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00164742_2025_consolidated_xml_0037_09",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]",
+            "title": "37. 부문정보"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00164742_2025_consolidated_xml_0034_08",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[337]",
+            "title": "34. 위험관리(1) 자본위험관리연결실체는 주주이익의 극대화 및 자본비용의 절감 등을 위하여 최적 자본구조를 유지하도록 자본을 관리하고 있습니다. 연결실체는 총부채를 총자본으로 나눈 부채비율을 자본관리지표로 이용하고 있으며, 연결실체의 전반적인 자본위험 관리정책은 전기와 동일합니다."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00164742_2025_consolidated_xml_0002_43",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[18]",
+            "title": "2. 연결재무제표 작성기준 및 중요한 회계정책(1) 연결재무제표 작성기준연결실체의 연결재무제표는 한국채택국제회계기준에 따라 작성되었습니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00164742_2025_consolidated_xml_0034_01",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[337]",
+            "title": "34. 위험관리(1) 자본위험관리연결실체는 주주이익의 극대화 및 자본비용의 절감 등을 위하여 최적 자본구조를 유지하도록 자본을 관리하고 있습니다. 연결실체는 총부채를 총자본으로 나눈 부채비율을 자본관리지표로 이용하고 있으며, 연결실체의 전반적인 자본위험 관리정책은 전기와 동일합니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00164742_2025_consolidated_xml_0015_03",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[244]",
+            "title": "15. 차입금 및 사채"
+          }
+        ]
+      }
+    ],
+    "hybrid": [
+      {
+        "id": "X01",
+        "question": "2025년 연결 기준 자산총계는 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00164742_2025_consolidated_xml_0014_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[237]",
+            "title": "14. 금융업채권(1) 당기말 및 전기말 현재 금융업채권의 내용은 다음과 같습니다."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00164742_2025_consolidated_xml_0037_06",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]",
+            "title": "37. 부문정보"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00164742_2025_consolidated_xml_0002_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[18]",
+            "title": "2. 연결재무제표 작성기준 및 중요한 회계정책(1) 연결재무제표 작성기준연결실체의 연결재무제표는 한국채택국제회계기준에 따라 작성되었습니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00164742_2025_consolidated_xml_0037_09",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]",
+            "title": "37. 부문정보"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00164742_2025_consolidated_xml_0001_22",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[1]",
+            "title": "1. 회사 및 종속기업의 개요지배기업인 현대자동차주식회사(이하 '회사')는 1967년 12월에 설립되었으며, 회사와 회사의 종속기업(이하 '연결실체')은 자동차와 자동차부품의 제조 및 판매, 차량 할부금융, 결제대행 및 철도차량 제작 등의 사업을 운영하고 있습니다.회사는 1974년 6월에 한국거래소가 개설하는 유가증권시장에 주식을 상장하였습니다.당기말 현재 회사의 주요주주(보통주)의 현황은 다음과 같습니다."
+          }
+        ]
+      },
+      {
+        "id": "X02",
+        "question": "2025년 연결 기준 현금및현금성자산은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[254]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00164742_2025_consolidated_xml_0014_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[237]",
+            "title": "14. 금융업채권(1) 당기말 및 전기말 현재 금융업채권의 내용은 다음과 같습니다."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00164742_2025_consolidated_xml_0037_18",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]",
+            "title": "37. 부문정보"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00164742_2025_consolidated_xml_0002_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[18]",
+            "title": "2. 연결재무제표 작성기준 및 중요한 회계정책(1) 연결재무제표 작성기준연결실체의 연결재무제표는 한국채택국제회계기준에 따라 작성되었습니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00164742_2025_consolidated_xml_0037_06",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]",
+            "title": "37. 부문정보"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00164742_2025_consolidated_xml_0001_22",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[1]",
+            "title": "1. 회사 및 종속기업의 개요지배기업인 현대자동차주식회사(이하 '회사')는 1967년 12월에 설립되었으며, 회사와 회사의 종속기업(이하 '연결실체')은 자동차와 자동차부품의 제조 및 판매, 차량 할부금융, 결제대행 및 철도차량 제작 등의 사업을 운영하고 있습니다.회사는 1974년 6월에 한국거래소가 개설하는 유가증권시장에 주식을 상장하였습니다.당기말 현재 회사의 주요주주(보통주)의 현황은 다음과 같습니다."
+          }
+        ]
+      },
+      {
+        "id": "X03",
+        "question": "2025년 연결 기준 재고자산은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[179]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00164742_2025_consolidated_xml_0002_24",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[18]",
+            "title": "2. 연결재무제표 작성기준 및 중요한 회계정책(1) 연결재무제표 작성기준연결실체의 연결재무제표는 한국채택국제회계기준에 따라 작성되었습니다."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00164742_2025_consolidated_xml_0006_01",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[179]",
+            "title": "6. 재고자산"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00164742_2025_consolidated_xml_0014_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[237]",
+            "title": "14. 금융업채권(1) 당기말 및 전기말 현재 금융업채권의 내용은 다음과 같습니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00164742_2025_consolidated_xml_0002_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[18]",
+            "title": "2. 연결재무제표 작성기준 및 중요한 회계정책(1) 연결재무제표 작성기준연결실체의 연결재무제표는 한국채택국제회계기준에 따라 작성되었습니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00164742_2025_consolidated_xml_0037_06",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]",
+            "title": "37. 부문정보"
+          }
+        ]
+      },
+      {
+        "id": "X04",
+        "question": "2025년 연결 기준 매출액은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[302]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00164742_2025_consolidated_xml_0037_18",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]",
+            "title": "37. 부문정보"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00164742_2025_consolidated_xml_0014_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[237]",
+            "title": "14. 금융업채권(1) 당기말 및 전기말 현재 금융업채권의 내용은 다음과 같습니다."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00164742_2025_consolidated_xml_0025_01",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[302]",
+            "title": "25. 매출당기와 전기 중 매출의 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00164742_2025_consolidated_xml_0002_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[18]",
+            "title": "2. 연결재무제표 작성기준 및 중요한 회계정책(1) 연결재무제표 작성기준연결실체의 연결재무제표는 한국채택국제회계기준에 따라 작성되었습니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00164742_2025_consolidated_xml_0037_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]",
+            "title": "37. 부문정보"
+          }
+        ]
+      },
+      {
+        "id": "X05",
+        "question": "2025년 연결 기준 영업이익은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00164742_2025_consolidated_xml_0014_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[237]",
+            "title": "14. 금융업채권(1) 당기말 및 전기말 현재 금융업채권의 내용은 다음과 같습니다."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00164742_2025_consolidated_xml_0025_01",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[302]",
+            "title": "25. 매출당기와 전기 중 매출의 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00164742_2025_consolidated_xml_0002_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[18]",
+            "title": "2. 연결재무제표 작성기준 및 중요한 회계정책(1) 연결재무제표 작성기준연결실체의 연결재무제표는 한국채택국제회계기준에 따라 작성되었습니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00164742_2025_consolidated_xml_0037_04",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]",
+            "title": "37. 부문정보"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00164742_2025_consolidated_xml_0001_22",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[1]",
+            "title": "1. 회사 및 종속기업의 개요지배기업인 현대자동차주식회사(이하 '회사')는 1967년 12월에 설립되었으며, 회사와 회사의 종속기업(이하 '연결실체')은 자동차와 자동차부품의 제조 및 판매, 차량 할부금융, 결제대행 및 철도차량 제작 등의 사업을 운영하고 있습니다.회사는 1974년 6월에 한국거래소가 개설하는 유가증권시장에 주식을 상장하였습니다.당기말 현재 회사의 주요주주(보통주)의 현황은 다음과 같습니다."
+          }
+        ]
+      },
+      {
+        "id": "X06",
+        "question": "2025년 연결 기준 당기순이익은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[333]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": false,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00164742_2025_consolidated_xml_0014_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[237]",
+            "title": "14. 금융업채권(1) 당기말 및 전기말 현재 금융업채권의 내용은 다음과 같습니다."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00164742_2025_consolidated_xml_0025_01",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[302]",
+            "title": "25. 매출당기와 전기 중 매출의 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00164742_2025_consolidated_xml_0002_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[18]",
+            "title": "2. 연결재무제표 작성기준 및 중요한 회계정책(1) 연결재무제표 작성기준연결실체의 연결재무제표는 한국채택국제회계기준에 따라 작성되었습니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00164742_2025_consolidated_xml_0037_06",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]",
+            "title": "37. 부문정보"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00164742_2025_consolidated_xml_0038_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[393]",
+            "title": "38. 건설계약"
+          }
+        ]
+      },
+      {
+        "id": "X07",
+        "question": "2025년 연결 기준 부채총계는 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00164742_2025_consolidated_xml_0014_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[237]",
+            "title": "14. 금융업채권(1) 당기말 및 전기말 현재 금융업채권의 내용은 다음과 같습니다."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00164742_2025_consolidated_xml_0037_09",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]",
+            "title": "37. 부문정보"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00164742_2025_consolidated_xml_0002_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[18]",
+            "title": "2. 연결재무제표 작성기준 및 중요한 회계정책(1) 연결재무제표 작성기준연결실체의 연결재무제표는 한국채택국제회계기준에 따라 작성되었습니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00164742_2025_consolidated_xml_0034_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[337]",
+            "title": "34. 위험관리(1) 자본위험관리연결실체는 주주이익의 극대화 및 자본비용의 절감 등을 위하여 최적 자본구조를 유지하도록 자본을 관리하고 있습니다. 연결실체는 총부채를 총자본으로 나눈 부채비율을 자본관리지표로 이용하고 있으며, 연결실체의 전반적인 자본위험 관리정책은 전기와 동일합니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00164742_2025_consolidated_xml_0001_22",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[1]",
+            "title": "1. 회사 및 종속기업의 개요지배기업인 현대자동차주식회사(이하 '회사')는 1967년 12월에 설립되었으며, 회사와 회사의 종속기업(이하 '연결실체')은 자동차와 자동차부품의 제조 및 판매, 차량 할부금융, 결제대행 및 철도차량 제작 등의 사업을 운영하고 있습니다.회사는 1974년 6월에 한국거래소가 개설하는 유가증권시장에 주식을 상장하였습니다.당기말 현재 회사의 주요주주(보통주)의 현황은 다음과 같습니다."
+          }
+        ]
+      },
+      {
+        "id": "X08",
+        "question": "2025년 연결 기준 자본총계는 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00164742_2025_consolidated_xml_0020_01",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[284]",
+            "title": "20. 자본금 및 자본잉여금회사의 수권주식수는 600,000,000주이며 당기말과 전기말 현재 보통주 및 우선주 자본금의 내용은 다음과 같습니다.(1) 보통주 자본금"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00164742_2025_consolidated_xml_0020_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[284]",
+            "title": "20. 자본금 및 자본잉여금회사의 수권주식수는 600,000,000주이며 당기말과 전기말 현재 보통주 및 우선주 자본금의 내용은 다음과 같습니다.(1) 보통주 자본금"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00164742_2025_consolidated_xml_0014_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[237]",
+            "title": "14. 금융업채권(1) 당기말 및 전기말 현재 금융업채권의 내용은 다음과 같습니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00164742_2025_consolidated_xml_0037_06",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]",
+            "title": "37. 부문정보"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00164742_2025_consolidated_xml_0002_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[18]",
+            "title": "2. 연결재무제표 작성기준 및 중요한 회계정책(1) 연결재무제표 작성기준연결실체의 연결재무제표는 한국채택국제회계기준에 따라 작성되었습니다."
+          }
+        ]
+      },
+      {
+        "id": "X09",
+        "question": "2025년과 2024년 연결 기준 자산총계는 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00164742_2025_consolidated_xml_0014_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[237]",
+            "title": "14. 금융업채권(1) 당기말 및 전기말 현재 금융업채권의 내용은 다음과 같습니다."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00164742_2025_consolidated_xml_0037_06",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]",
+            "title": "37. 부문정보"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00164742_2025_consolidated_xml_0020_01",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[284]",
+            "title": "20. 자본금 및 자본잉여금회사의 수권주식수는 600,000,000주이며 당기말과 전기말 현재 보통주 및 우선주 자본금의 내용은 다음과 같습니다.(1) 보통주 자본금"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00164742_2025_consolidated_xml_0037_09",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]",
+            "title": "37. 부문정보"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00164742_2025_consolidated_xml_0012_04",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[212]",
+            "title": "12. 리스 및 운용리스자산(1) 당기 중 사용권자산 장부금액의 변동내역은 다음과 같습니다."
+          }
+        ]
+      },
+      {
+        "id": "X10",
+        "question": "2025년과 2024년 연결 기준 매출액은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[302]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00164742_2025_consolidated_xml_0037_18",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]",
+            "title": "37. 부문정보"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00164742_2025_consolidated_xml_0014_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[237]",
+            "title": "14. 금융업채권(1) 당기말 및 전기말 현재 금융업채권의 내용은 다음과 같습니다."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00164742_2025_consolidated_xml_0025_01",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[302]",
+            "title": "25. 매출당기와 전기 중 매출의 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00164742_2025_consolidated_xml_0020_01",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[284]",
+            "title": "20. 자본금 및 자본잉여금회사의 수권주식수는 600,000,000주이며 당기말과 전기말 현재 보통주 및 우선주 자본금의 내용은 다음과 같습니다.(1) 보통주 자본금"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00164742_2025_consolidated_xml_0037_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]",
+            "title": "37. 부문정보"
+          }
+        ]
+      },
+      {
+        "id": "X11",
+        "question": "2025년과 2024년 연결 기준 영업이익은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00164742_2025_consolidated_xml_0014_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[237]",
+            "title": "14. 금융업채권(1) 당기말 및 전기말 현재 금융업채권의 내용은 다음과 같습니다."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00164742_2025_consolidated_xml_0025_01",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[302]",
+            "title": "25. 매출당기와 전기 중 매출의 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00164742_2025_consolidated_xml_0020_01",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[284]",
+            "title": "20. 자본금 및 자본잉여금회사의 수권주식수는 600,000,000주이며 당기말과 전기말 현재 보통주 및 우선주 자본금의 내용은 다음과 같습니다.(1) 보통주 자본금"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00164742_2025_consolidated_xml_0037_04",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]",
+            "title": "37. 부문정보"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00164742_2025_consolidated_xml_0035_12",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[359]",
+            "title": "35. 특수관계자 등과의 거래"
+          }
+        ]
+      },
+      {
+        "id": "X12",
+        "question": "2025년과 2024년 연결 기준 당기순이익은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[333]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00164742_2025_consolidated_xml_0014_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[237]",
+            "title": "14. 금융업채권(1) 당기말 및 전기말 현재 금융업채권의 내용은 다음과 같습니다."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00164742_2025_consolidated_xml_0025_01",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[302]",
+            "title": "25. 매출당기와 전기 중 매출의 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00164742_2025_consolidated_xml_0020_01",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[284]",
+            "title": "20. 자본금 및 자본잉여금회사의 수권주식수는 600,000,000주이며 당기말과 전기말 현재 보통주 및 우선주 자본금의 내용은 다음과 같습니다.(1) 보통주 자본금"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00164742_2025_consolidated_xml_0038_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[393]",
+            "title": "38. 건설계약"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00164742_2025_consolidated_xml_0037_06",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]",
+            "title": "37. 부문정보"
+          }
+        ]
+      },
+      {
+        "id": "X13",
+        "question": "2025년과 2024년 연결 기준 자본총계는 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00164742_2025_consolidated_xml_0020_01",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[284]",
+            "title": "20. 자본금 및 자본잉여금회사의 수권주식수는 600,000,000주이며 당기말과 전기말 현재 보통주 및 우선주 자본금의 내용은 다음과 같습니다.(1) 보통주 자본금"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00164742_2025_consolidated_xml_0020_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[284]",
+            "title": "20. 자본금 및 자본잉여금회사의 수권주식수는 600,000,000주이며 당기말과 전기말 현재 보통주 및 우선주 자본금의 내용은 다음과 같습니다.(1) 보통주 자본금"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00164742_2025_consolidated_xml_0014_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[237]",
+            "title": "14. 금융업채권(1) 당기말 및 전기말 현재 금융업채권의 내용은 다음과 같습니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00164742_2025_consolidated_xml_0037_06",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]",
+            "title": "37. 부문정보"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00164742_2025_consolidated_xml_0035_12",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[359]",
+            "title": "35. 특수관계자 등과의 거래"
+          }
+        ]
+      },
+      {
+        "id": "X14",
+        "question": "2025년과 2024년 연결 기준 부채총계는 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00164742_2025_consolidated_xml_0014_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[237]",
+            "title": "14. 금융업채권(1) 당기말 및 전기말 현재 금융업채권의 내용은 다음과 같습니다."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00164742_2025_consolidated_xml_0037_09",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[376]",
+            "title": "37. 부문정보"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00164742_2025_consolidated_xml_0020_01",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[284]",
+            "title": "20. 자본금 및 자본잉여금회사의 수권주식수는 600,000,000주이며 당기말과 전기말 현재 보통주 및 우선주 자본금의 내용은 다음과 같습니다.(1) 보통주 자본금"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00164742_2025_consolidated_xml_0034_02",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[337]",
+            "title": "34. 위험관리(1) 자본위험관리연결실체는 주주이익의 극대화 및 자본비용의 절감 등을 위하여 최적 자본구조를 유지하도록 자본을 관리하고 있습니다. 연결실체는 총부채를 총자본으로 나눈 부채비율을 자본관리지표로 이용하고 있으며, 연결실체의 전반적인 자본위험 관리정책은 전기와 동일합니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00164742_2025_consolidated_xml_0035_12",
+            "source_file": "20260318001394_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[359]",
+            "title": "35. 특수관계자 등과의 거래"
+          }
+        ]
+      }
+    ]
+  }
+}
