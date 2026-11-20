@@ -282,7 +282,7 @@ class HybridRetrieverTest(unittest.TestCase):
                 k=1,
                 candidate_k=2,
             )
-            
+
 
 if __name__ == "__main__":
     unittest.main()

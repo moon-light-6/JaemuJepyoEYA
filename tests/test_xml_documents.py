@@ -81,6 +81,90 @@ class XmlDocumentTest(unittest.TestCase):
         self.assertTrue(all(item["source_format"] == "xml" for item in chunks))
         self.assertTrue(all(item["source_file"] == "sample_00760.xml" for item in chunks))
 
+    def test_audit_report_preferred_over_business_report(self):
+        _, metadata = build_xml_documents(self.zip_path, "00258689", 2025, "consolidated", "JYP Ent.")
+        self.assertEqual(metadata["source_document"], "감사보고서")
+
+
+def business_report_xml() -> str:
+    """기재정정 사업보고서처럼 본문만 있는 XML. TABLE-GROUP 하나가 재무제표·주석 하나."""
+    return """<?xml version="1.0" encoding="utf-8"?>
+<DOCUMENT>
+  <DOCUMENT-NAME>사업보고서</DOCUMENT-NAME>
+  <BODY>
+    <SECTION-1>
+      <TITLE>III. 재무에 관한 사항</TITLE>
+      <SECTION-2><TITLE>1. 요약재무정보</TITLE><P>요약</P></SECTION-2>
+      <LIBRARY>
+        <SECTION-2>
+          <TITLE>2. 연결재무제표</TITLE>
+          <TABLE-GROUP>
+            <TITLE>2-1. 연결 재무상태표</TITLE>
+            <TABLE><TR><TE>자산총계</TE><TE ACODE="ifrs-full_Assets">797,923,033</TE></TR></TABLE>
+          </TABLE-GROUP>
+          <P></P>
+          <TABLE-GROUP>
+            <TITLE>2-4. 연결 현금흐름표</TITLE>
+            <TABLE><TR><TD>영업활동현금흐름</TD><TD>1,234</TD></TR></TABLE>
+          </TABLE-GROUP>
+        </SECTION-2>
+        <SECTION-2>
+          <TITLE>3. 연결재무제표 주석</TITLE>
+          <TABLE-GROUP>
+            <TITLE>1. 지배기업의 개요 (연결)</TITLE>
+            <TABLE><TR><TH ENG="" KB Insurance Co., Ltd "">KB손해보험</TH></TR></TABLE>
+          </TABLE-GROUP>
+        </SECTION-2>
+        <SECTION-2>
+          <TITLE>4. 재무제표</TITLE>
+          <TABLE-GROUP>
+            <TITLE>4-1. 재무상태표</TITLE>
+            <TABLE><TR><TD>자산총계</TD><TD>55,555</TD></TR></TABLE>
+          </TABLE-GROUP>
+        </SECTION-2>
+        <SECTION-2>
+          <TITLE>5. 재무제표 주석</TITLE>
+          <TABLE-GROUP><TITLE>1. 회사의 개요</TITLE><TABLE><TR><TD>본사</TD></TR></TABLE></TABLE-GROUP>
+        </SECTION-2>
+      </LIBRARY>
+    </SECTION-1>
+  </BODY>
+</DOCUMENT>"""
+
+
+class BusinessReportFallbackTest(unittest.TestCase):
+    """감사보고서 첨부가 없는 공시는 사업보고서 본문에서 같은 형식의 문서를 만든다."""
+
+    def setUp(self):
+        self.directory = tempfile.TemporaryDirectory()
+        self.zip_path = Path(self.directory.name) / "20260619000667.zip"
+        with zipfile.ZipFile(self.zip_path, "w") as archive:
+            archive.writestr("20260619000667.xml", business_report_xml())
+
+    def tearDown(self):
+        self.directory.cleanup()
+
+    def test_consolidated_reads_statements_and_notes_from_body(self):
+        records, metadata = build_xml_documents(self.zip_path, "00688996", 2025, "consolidated", "KB금융")
+        self.assertEqual(metadata["source_document"], "사업보고서")
+        self.assertEqual(metadata["financial_statement_documents"], 2)
+        self.assertEqual(metadata["note_documents"], 1)
+        self.assertEqual([r["title"] for r in records[:2]], ["재무상태표", "현금흐름표"])
+        self.assertIn("797,923,033", records[0]["text"])
+        self.assertTrue(records[0]["source_xpath"].endswith("/LIBRARY[1]/SECTION-2[1]/TABLE-GROUP[1]"))
+        self.assertEqual(records[0]["section"], "연결재무제표")
+        self.assertEqual(records[2]["document_type"], "xml_note")
+
+    def test_separate_reads_separate_sections(self):
+        records, _ = build_xml_documents(self.zip_path, "00688996", 2025, "separate", "KB금융")
+        self.assertEqual([r["title"] for r in records], ["재무상태표", "1. 회사의 개요"])
+        self.assertIn("55,555", records[0]["text"])
+
+    def test_broken_attribute_quotes_are_repaired(self):
+        records, metadata = build_xml_documents(self.zip_path, "00688996", 2025, "consolidated", "KB금융")
+        self.assertEqual(metadata["normalization"]["repaired_broken_attributes"], 1)
+        self.assertIn("KB손해보험", records[2]["text"])
+
 
 if __name__ == "__main__":
     unittest.main()

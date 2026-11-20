@@ -70,6 +70,8 @@ companies:
         fiscal_month: 12
         disclosure_start: "2026-01-01"
         disclosure_end: "2026-12-31"
+        # 사업보고서 3건(최초 20260313001191, 기재정정 20260324000835·20260619000667) 중 최종 정정본
+        rcept_no: "20260619000667"
 
   # 종목코드: 017670
   - name: "SK텔레콤"
@@ -160,19 +162,9 @@ companies:
         official_pdf:
           provider: "dart"
           dcm_no: "11168903"
-        
+
 
   # 종목코드: 028300
-  - name: "HLB"
-    corp_code: "00199252"
-    reports:
-      "2025":
-        report_type: "business"
-        fiscal_year: 2025
-        fiscal_month: 12
-        disclosure_start: "2026-01-01"
-        disclosure_end: "2026-12-31"
-          # 종목코드: 028300
   - name: "HLB"
     corp_code: "00199252"
     reports:
