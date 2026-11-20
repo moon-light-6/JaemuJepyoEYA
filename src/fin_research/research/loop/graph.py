@@ -1,7 +1,10 @@
 """1회 검색 흐름과 근거 평가·재검색을 수행하는 LangGraph를 제공합니다."""
 
+from __future__ import annotations
+
 from pathlib import Path
 from collections.abc import Callable
+from typing import TYPE_CHECKING
 
 from fin_research.progress import ProgressCallback, report_progress
 from fin_research.research.loop.evaluator import evaluate_evidence
@@ -10,29 +13,44 @@ from fin_research.research.loop.findings import GroundedAnswer, generate_finding
 from fin_research.research.loop.state import LoopState
 from fin_research.tools.doc_search_tool import DocumentSearchTool
 
+if TYPE_CHECKING:
+    from fin_research.llm.budget import Budget
+    from fin_research.retrieval.search_target import SearchTarget
+
+
+def _role_model(role: str, model_name: str | None, budget: Budget | None):
+    """models.yaml roles 기준으로 LLM 생성. model_name을 주면 이번 실행만 large/small 지정.
+
+    budget을 주면 호출 수·토큰이 오케스트레이션 Budget에 집계되고 상한 초과 시 중단된다.
+    """
+    from fin_research.llm.router import get_llm_for_role
+
+    return get_llm_for_role(role, budget=budget, model_key=model_name)
+
 
 def run_once(
     question: str,
     persist_directory: Path,
     top_k: int = 5,
-    model_name: str = "small",
+    model_name: str | None = None,
     search_only: bool = False,
     *,
     progress: ProgressCallback | None = None,
+    budget: Budget | None = None,
+    target: SearchTarget | None = None,
 ) -> dict:
+    """검색 1회 + (선택) 답변 초안. target을 주면 그 기업·공시의 컬렉션을 검색한다."""
     if not question.strip():
         raise ValueError("질문을 입력하세요.")
     report_progress(progress, f"1회 조사 시작 · 질문: {question.strip()}")
 
     model = None
     if not search_only:
-        from fin_research.llm.client import get_chat_model
-
         # 로컬 임베딩 모델을 불러오기 전에 API 키를 확인하고, 누락 시 즉시 중단합니다.
-        model = get_chat_model(model_name)
+        model = _role_model("loop_findings", model_name, budget)
 
     report_progress(progress, "문서 검색 시작 · 임베딩 모델을 처음 불러오면 시간이 걸릴 수 있습니다.")
-    evidences = execute_search(question.strip(), persist_directory, top_k)
+    evidences = execute_search(question.strip(), persist_directory, top_k, target)
     report_progress(progress, f"검색 완료 · 근거 {len(evidences)}개")
     for item in evidences:
         report_progress(progress, f"근거 {item.get('evidence_id', '')} · {item['source_file']} "
@@ -55,6 +73,7 @@ def run_once(
         "evidences": evidences,
         "findings": findings,
         "numeric_verification": "not_performed",
+        "collection": target.collection_name if target else None,
     }
 
 
@@ -62,14 +81,21 @@ def run_research_loop(
     question: str,
     persist_directory: Path,
     top_k: int = 5,
-    model_name: str = "small",
+    model_name: str | None = None,
     max_rounds: int = 3,
     *,
     model=None,
     search_function: Callable[[str, int], list[dict]] | None = None,
     progress: ProgressCallback | None = None,
+    budget: Budget | None = None,
+    target: SearchTarget | None = None,
 ) -> dict:
-    """검색·평가를 제한 횟수만큼 반복하고 근거와 조사 이력을 반환합니다."""
+    """검색·평가를 제한 횟수만큼 반복하고 근거와 조사 이력을 반환합니다.
+
+    model을 주면(테스트) 평가·작성 모두 그 모델을 쓰고, 없으면 models.yaml의
+    loop_evaluator·loop_findings 역할로 각각 생성한다.
+    target(SearchTarget)을 주면 그 기업·공시의 Chroma 컬렉션을 검색한다.
+    """
     if not question.strip():
         raise ValueError("질문을 입력하세요.")
     if not 1 <= max_rounds <= 5:
@@ -77,12 +103,13 @@ def run_research_loop(
     if not 1 <= top_k <= 10:
         raise ValueError("top_k는 1~10 사이여야 합니다.")
     report_progress(progress, f"재검색 조사 시작 · 최대 {max_rounds}회 · 질문: {question.strip()}")
-    if model is None:
-        from fin_research.llm.client import get_chat_model
-
-        model = get_chat_model(model_name)
+    if model is not None:
+        evaluator_model = findings_model = model
+    else:
+        evaluator_model = _role_model("loop_evaluator", model_name, budget)
+        findings_model = _role_model("loop_findings", model_name, budget)
     if search_function is None:
-        search_function = DocumentSearchTool(persist_directory).search
+        search_function = DocumentSearchTool(persist_directory, target).search
 
     from langgraph.graph import END, START, StateGraph
 
@@ -137,7 +164,7 @@ def run_research_loop(
             return {}
         report_progress(progress, f"[조사 {state['rounds']}/{max_rounds}] 근거 충분성 평가 중")
         evaluation = evaluate_evidence(
-            state["question"], state["evidences"], state["queries"], model,
+            state["question"], state["evidences"], state["queries"], evaluator_model,
         )
         next_query = (evaluation.next_query or "").strip()
         normalized_queries = {" ".join(q.split()).casefold() for q in state["queries"]}
@@ -179,7 +206,7 @@ def run_research_loop(
             for attempt in range(2):
                 try:
                     report_progress(progress, f"출처가 연결된 답변 생성 중 · 시도 {attempt + 1}/2")
-                    findings = generate_findings(generation_question, selected, model)
+                    findings = generate_findings(generation_question, selected, findings_model)
                     report_progress(progress, f"답변 생성 완료 · 상태: {findings.status}")
                     return {
                         "findings": findings.model_dump(),
@@ -249,11 +276,13 @@ def run_research_loop(
                     f"LLM 호출 {state['llm_calls']}회 · 누적 근거 {len(state['evidences'])}개")
     return {
         "question": state["question"], "mode": "iterative_research",
-        "model": getattr(model, "model_name", None),
+        "model": getattr(findings_model, "model_name", None),
+        "evaluator_model": getattr(evaluator_model, "model_name", None),
         "stop_reason": state["stop_reason"], "tool_calls": state["rounds"],
         "max_rounds": max_rounds, "llm_calls": state["llm_calls"],
         "evidence_count": len(state["evidences"]), "evidences": state["evidences"],
         "evaluation": state["evaluation"], "history": state["history"],
         "generation_errors": state["generation_errors"],
         "findings": state["findings"], "numeric_verification": "not_performed",
+        "collection": target.collection_name if target else None,
     }

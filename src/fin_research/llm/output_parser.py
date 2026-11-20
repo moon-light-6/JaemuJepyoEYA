@@ -112,6 +112,17 @@ def _retry_message(error: OutputParseError) -> str:
     )
 
 
+def _prepare_messages(
+    messages: str | Sequence[BaseMessage], schema: type[BaseModel]
+) -> list[BaseMessage]:
+    """원본을 건드리지 않도록 복사한 뒤 형식 지시를 붙인다."""
+    msgs: list[BaseMessage] = (
+        [HumanMessage(messages)] if isinstance(messages, str) else list(messages)
+    )
+    msgs.append(HumanMessage(format_instructions(schema)))
+    return msgs
+
+
 def invoke_structured(
     llm: BaseChatModel,
     messages: str | Sequence[BaseMessage],
@@ -122,16 +133,35 @@ def invoke_structured(
 
     messages: 문자열(사용자 메시지 하나) 또는 메시지 리스트. 원본 리스트는 수정하지 않는다.
     """
-    # 원본을 건드리지 않도록 복사 후 형식 지시 추가
-    msgs: list[BaseMessage] = (
-        [HumanMessage(messages)] if isinstance(messages, str) else list(messages)
-    )
-    msgs.append(HumanMessage(format_instructions(schema)))
+    msgs = _prepare_messages(messages, schema)
 
     attempts = max_retries + 1
     last_error: OutputParseError | None = None
     for _ in range(attempts):
         raw = str(llm.invoke(msgs).text)
+        try:
+            return parse_output(raw, schema)
+        except OutputParseError as e:
+            last_error = e
+            msgs += [AIMessage(raw), HumanMessage(_retry_message(e))]
+
+    assert last_error is not None
+    raise OutputParseError(f"{attempts}회 시도 후 실패 — {last_error}", last_error.raw) from last_error
+
+
+async def ainvoke_structured(
+    llm: BaseChatModel,
+    messages: str | Sequence[BaseMessage],
+    schema: type[T],
+    max_retries: int = 2,
+) -> T:
+    """invoke_structured의 async 버전. async 노드에서 이벤트 루프를 막지 않는다."""
+    msgs = _prepare_messages(messages, schema)
+
+    attempts = max_retries + 1
+    last_error: OutputParseError | None = None
+    for _ in range(attempts):
+        raw = str((await llm.ainvoke(msgs)).text)
         try:
             return parse_output(raw, schema)
         except OutputParseError as e:

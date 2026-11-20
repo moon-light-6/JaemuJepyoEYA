@@ -191,6 +191,37 @@ class IterativeLoopTests(unittest.TestCase):
                     tool.search("두 번째 질문")
                     create.assert_called_once_with(root)
 
+    def test_search_target_selects_company_collection(self):
+        from fin_research.retrieval.search_target import SearchTarget
+
+        target = SearchTarget("00126380", 2025, "consolidated", "20260310002820")
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "chroma.sqlite3").touch()
+            with patch("fin_research.retrieval.chroma_retriever.create_chroma") as create:
+                with patch(
+                    "fin_research.retrieval.chroma_retriever.search_chroma",
+                    return_value=[{"chunk_id": "c1"}, {"chunk_id": "c2"}],
+                ) as search:
+                    tool = DocumentSearchTool(root, target)
+                    hits = tool.search("매출액", 2)
+            create.assert_called_once_with(root, collection_name=target.collection_name)
+            self.assertEqual(search.call_args.kwargs["collection_name"], target.collection_name)
+            self.assertEqual([h["evidence_id"] for h in hits], ["S1", "S2"])
+
+    def test_loop_passes_search_target_to_search_tool(self):
+        from fin_research.retrieval.search_target import SearchTarget
+
+        target = SearchTarget("00126380", 2025, "consolidated", "20260310002820")
+        with patch("fin_research.research.loop.graph.DocumentSearchTool") as tool_cls:
+            tool_cls.return_value.search.return_value = []
+            model = model_responses(evaluation(False, next_query=None))
+            result = run_research_loop(
+                "매출액은?", Path("store"), model=model, max_rounds=1, target=target,
+            )
+        tool_cls.assert_called_once_with(Path("store"), target)
+        self.assertEqual(result["collection"], target.collection_name)
+
 
 if __name__ == "__main__":
     unittest.main()
