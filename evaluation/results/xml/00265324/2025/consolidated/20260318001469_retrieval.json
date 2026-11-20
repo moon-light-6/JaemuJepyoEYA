@@ -1,0 +1,1116 @@
+{
+  "config": {
+    "source_format": "xml",
+    "questions": 5,
+    "chunks": 288,
+    "collection_name": "fin_xml_00265324_2025_consolidated_20260318001469_kure_v1"
+  },
+  "summary": {
+    "bm25": {
+      "hit_at_3": 0.0,
+      "hit_at_5": 0.0,
+      "value_hit_at_3": 0.0,
+      "value_hit_at_5": 0.0,
+      "source_value_hit_at_3": 0.0,
+      "source_value_hit_at_5": 0.0,
+      "total": 5
+    },
+    "chroma": {
+      "hit_at_3": 0.8,
+      "hit_at_5": 1.0,
+      "value_hit_at_3": 0.8,
+      "value_hit_at_5": 0.8,
+      "source_value_hit_at_3": 0.6,
+      "source_value_hit_at_5": 0.6,
+      "total": 5
+    },
+    "mmr": {
+      "hit_at_3": 0.8,
+      "hit_at_5": 0.8,
+      "value_hit_at_3": 0.6,
+      "value_hit_at_5": 0.6,
+      "source_value_hit_at_3": 0.6,
+      "source_value_hit_at_5": 0.6,
+      "total": 5
+    },
+    "hybrid": {
+      "hit_at_3": 0.8,
+      "hit_at_5": 0.8,
+      "value_hit_at_3": 0.6,
+      "value_hit_at_5": 0.8,
+      "source_value_hit_at_3": 0.6,
+      "source_value_hit_at_5": 0.6,
+      "total": 5
+    }
+  },
+  "details": {
+    "bm25": [
+      {
+        "id": "X01",
+        "question": "2025년 연결 기준 자산총계는 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00265324_2025_consolidated_xml_0005_36",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반사항 주식회사 씨제이이엔엠(이하 '회사')과 종속기업(이하 회사와 종속기업을 '연결회사')은 종합유선방송사업과 홈쇼핑 프로그램의 제작ㆍ공급 및 도ㆍ소매업, 방송서비스, 음반 및 영화제작투자, 연예매니지먼트, 콘텐츠, 광고 등의 사업을 주요 사업으로 영위하고 있습니다. 회사는 1999년 11월 23일 한국증권업협회에 등록한 공개기업으로, 서울시 서초구 과천대로에 본점을 두고 있습니다. 한편, 회사는 2018년 5월 29일자주주총회 의결을 통하여 사명을 주식회사 씨제이오쇼핑에서 주식회사 씨제이이엔엠으로 변경하였습니다.회사는 2018년 7월 1일을 기준일로 하여 씨제이이앤엠(주)를 흡수합병하였으며, 방송서비스, 음반 및 영화제작투자, 연예 매니지먼트, 콘텐츠, 광고 등의 사업이 추가되었습니다.2025년 12월 31일 현재 주요 주주는 다음과 같습니다."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00265324_2025_consolidated_xml_0005_12",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반사항 주식회사 씨제이이엔엠(이하 '회사')과 종속기업(이하 회사와 종속기업을 '연결회사')은 종합유선방송사업과 홈쇼핑 프로그램의 제작ㆍ공급 및 도ㆍ소매업, 방송서비스, 음반 및 영화제작투자, 연예매니지먼트, 콘텐츠, 광고 등의 사업을 주요 사업으로 영위하고 있습니다. 회사는 1999년 11월 23일 한국증권업협회에 등록한 공개기업으로, 서울시 서초구 과천대로에 본점을 두고 있습니다. 한편, 회사는 2018년 5월 29일자주주총회 의결을 통하여 사명을 주식회사 씨제이오쇼핑에서 주식회사 씨제이이엔엠으로 변경하였습니다.회사는 2018년 7월 1일을 기준일로 하여 씨제이이앤엠(주)를 흡수합병하였으며, 방송서비스, 음반 및 영화제작투자, 연예 매니지먼트, 콘텐츠, 광고 등의 사업이 추가되었습니다.2025년 12월 31일 현재 주요 주주는 다음과 같습니다."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00265324_2025_consolidated_xml_0006_01",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[15]",
+            "title": "2. 중요한 회계정책 다음은 연결재무제표 작성에 적용된 중요한 회계정책입니다. 이러한 정책은 별도의 언급이 없다면, 표시된 회계기간에 계속적으로 적용됩니다. 2.1 재무제표 작성 기준 연결회사의 연결재무제표는 한국채택국제회계기준(이하 기업회계기준)에 따라 작성됐습니다. 한국채택국제회계기준은 국제회계기준위원회(\"IASB\")가 발표한 기준서와 해석서 중 대한민국이 채택한 내용을 의미합니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00265324_2025_consolidated_xml_0006_26",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[15]",
+            "title": "2. 중요한 회계정책 다음은 연결재무제표 작성에 적용된 중요한 회계정책입니다. 이러한 정책은 별도의 언급이 없다면, 표시된 회계기간에 계속적으로 적용됩니다. 2.1 재무제표 작성 기준 연결회사의 연결재무제표는 한국채택국제회계기준(이하 기업회계기준)에 따라 작성됐습니다. 한국채택국제회계기준은 국제회계기준위원회(\"IASB\")가 발표한 기준서와 해석서 중 대한민국이 채택한 내용을 의미합니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00265324_2025_consolidated_xml_0003_01",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          }
+        ]
+      },
+      {
+        "id": "X02",
+        "question": "2025년 연결 기준 재고자산은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00265324_2025_consolidated_xml_0005_36",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반사항 주식회사 씨제이이엔엠(이하 '회사')과 종속기업(이하 회사와 종속기업을 '연결회사')은 종합유선방송사업과 홈쇼핑 프로그램의 제작ㆍ공급 및 도ㆍ소매업, 방송서비스, 음반 및 영화제작투자, 연예매니지먼트, 콘텐츠, 광고 등의 사업을 주요 사업으로 영위하고 있습니다. 회사는 1999년 11월 23일 한국증권업협회에 등록한 공개기업으로, 서울시 서초구 과천대로에 본점을 두고 있습니다. 한편, 회사는 2018년 5월 29일자주주총회 의결을 통하여 사명을 주식회사 씨제이오쇼핑에서 주식회사 씨제이이엔엠으로 변경하였습니다.회사는 2018년 7월 1일을 기준일로 하여 씨제이이앤엠(주)를 흡수합병하였으며, 방송서비스, 음반 및 영화제작투자, 연예 매니지먼트, 콘텐츠, 광고 등의 사업이 추가되었습니다.2025년 12월 31일 현재 주요 주주는 다음과 같습니다."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00265324_2025_consolidated_xml_0005_12",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반사항 주식회사 씨제이이엔엠(이하 '회사')과 종속기업(이하 회사와 종속기업을 '연결회사')은 종합유선방송사업과 홈쇼핑 프로그램의 제작ㆍ공급 및 도ㆍ소매업, 방송서비스, 음반 및 영화제작투자, 연예매니지먼트, 콘텐츠, 광고 등의 사업을 주요 사업으로 영위하고 있습니다. 회사는 1999년 11월 23일 한국증권업협회에 등록한 공개기업으로, 서울시 서초구 과천대로에 본점을 두고 있습니다. 한편, 회사는 2018년 5월 29일자주주총회 의결을 통하여 사명을 주식회사 씨제이오쇼핑에서 주식회사 씨제이이엔엠으로 변경하였습니다.회사는 2018년 7월 1일을 기준일로 하여 씨제이이앤엠(주)를 흡수합병하였으며, 방송서비스, 음반 및 영화제작투자, 연예 매니지먼트, 콘텐츠, 광고 등의 사업이 추가되었습니다.2025년 12월 31일 현재 주요 주주는 다음과 같습니다."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00265324_2025_consolidated_xml_0006_01",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[15]",
+            "title": "2. 중요한 회계정책 다음은 연결재무제표 작성에 적용된 중요한 회계정책입니다. 이러한 정책은 별도의 언급이 없다면, 표시된 회계기간에 계속적으로 적용됩니다. 2.1 재무제표 작성 기준 연결회사의 연결재무제표는 한국채택국제회계기준(이하 기업회계기준)에 따라 작성됐습니다. 한국채택국제회계기준은 국제회계기준위원회(\"IASB\")가 발표한 기준서와 해석서 중 대한민국이 채택한 내용을 의미합니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00265324_2025_consolidated_xml_0006_19",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[15]",
+            "title": "2. 중요한 회계정책 다음은 연결재무제표 작성에 적용된 중요한 회계정책입니다. 이러한 정책은 별도의 언급이 없다면, 표시된 회계기간에 계속적으로 적용됩니다. 2.1 재무제표 작성 기준 연결회사의 연결재무제표는 한국채택국제회계기준(이하 기업회계기준)에 따라 작성됐습니다. 한국채택국제회계기준은 국제회계기준위원회(\"IASB\")가 발표한 기준서와 해석서 중 대한민국이 채택한 내용을 의미합니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00265324_2025_consolidated_xml_0006_26",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[15]",
+            "title": "2. 중요한 회계정책 다음은 연결재무제표 작성에 적용된 중요한 회계정책입니다. 이러한 정책은 별도의 언급이 없다면, 표시된 회계기간에 계속적으로 적용됩니다. 2.1 재무제표 작성 기준 연결회사의 연결재무제표는 한국채택국제회계기준(이하 기업회계기준)에 따라 작성됐습니다. 한국채택국제회계기준은 국제회계기준위원회(\"IASB\")가 발표한 기준서와 해석서 중 대한민국이 채택한 내용을 의미합니다."
+          }
+        ]
+      },
+      {
+        "id": "X03",
+        "question": "2025년 연결 기준 매출액은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00265324_2025_consolidated_xml_0005_36",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반사항 주식회사 씨제이이엔엠(이하 '회사')과 종속기업(이하 회사와 종속기업을 '연결회사')은 종합유선방송사업과 홈쇼핑 프로그램의 제작ㆍ공급 및 도ㆍ소매업, 방송서비스, 음반 및 영화제작투자, 연예매니지먼트, 콘텐츠, 광고 등의 사업을 주요 사업으로 영위하고 있습니다. 회사는 1999년 11월 23일 한국증권업협회에 등록한 공개기업으로, 서울시 서초구 과천대로에 본점을 두고 있습니다. 한편, 회사는 2018년 5월 29일자주주총회 의결을 통하여 사명을 주식회사 씨제이오쇼핑에서 주식회사 씨제이이엔엠으로 변경하였습니다.회사는 2018년 7월 1일을 기준일로 하여 씨제이이앤엠(주)를 흡수합병하였으며, 방송서비스, 음반 및 영화제작투자, 연예 매니지먼트, 콘텐츠, 광고 등의 사업이 추가되었습니다.2025년 12월 31일 현재 주요 주주는 다음과 같습니다."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00265324_2025_consolidated_xml_0005_12",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반사항 주식회사 씨제이이엔엠(이하 '회사')과 종속기업(이하 회사와 종속기업을 '연결회사')은 종합유선방송사업과 홈쇼핑 프로그램의 제작ㆍ공급 및 도ㆍ소매업, 방송서비스, 음반 및 영화제작투자, 연예매니지먼트, 콘텐츠, 광고 등의 사업을 주요 사업으로 영위하고 있습니다. 회사는 1999년 11월 23일 한국증권업협회에 등록한 공개기업으로, 서울시 서초구 과천대로에 본점을 두고 있습니다. 한편, 회사는 2018년 5월 29일자주주총회 의결을 통하여 사명을 주식회사 씨제이오쇼핑에서 주식회사 씨제이이엔엠으로 변경하였습니다.회사는 2018년 7월 1일을 기준일로 하여 씨제이이앤엠(주)를 흡수합병하였으며, 방송서비스, 음반 및 영화제작투자, 연예 매니지먼트, 콘텐츠, 광고 등의 사업이 추가되었습니다.2025년 12월 31일 현재 주요 주주는 다음과 같습니다."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00265324_2025_consolidated_xml_0006_01",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[15]",
+            "title": "2. 중요한 회계정책 다음은 연결재무제표 작성에 적용된 중요한 회계정책입니다. 이러한 정책은 별도의 언급이 없다면, 표시된 회계기간에 계속적으로 적용됩니다. 2.1 재무제표 작성 기준 연결회사의 연결재무제표는 한국채택국제회계기준(이하 기업회계기준)에 따라 작성됐습니다. 한국채택국제회계기준은 국제회계기준위원회(\"IASB\")가 발표한 기준서와 해석서 중 대한민국이 채택한 내용을 의미합니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00265324_2025_consolidated_xml_0006_26",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[15]",
+            "title": "2. 중요한 회계정책 다음은 연결재무제표 작성에 적용된 중요한 회계정책입니다. 이러한 정책은 별도의 언급이 없다면, 표시된 회계기간에 계속적으로 적용됩니다. 2.1 재무제표 작성 기준 연결회사의 연결재무제표는 한국채택국제회계기준(이하 기업회계기준)에 따라 작성됐습니다. 한국채택국제회계기준은 국제회계기준위원회(\"IASB\")가 발표한 기준서와 해석서 중 대한민국이 채택한 내용을 의미합니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00265324_2025_consolidated_xml_0003_01",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          }
+        ]
+      },
+      {
+        "id": "X04",
+        "question": "2025년 연결 기준 자본총계는 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00265324_2025_consolidated_xml_0005_36",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반사항 주식회사 씨제이이엔엠(이하 '회사')과 종속기업(이하 회사와 종속기업을 '연결회사')은 종합유선방송사업과 홈쇼핑 프로그램의 제작ㆍ공급 및 도ㆍ소매업, 방송서비스, 음반 및 영화제작투자, 연예매니지먼트, 콘텐츠, 광고 등의 사업을 주요 사업으로 영위하고 있습니다. 회사는 1999년 11월 23일 한국증권업협회에 등록한 공개기업으로, 서울시 서초구 과천대로에 본점을 두고 있습니다. 한편, 회사는 2018년 5월 29일자주주총회 의결을 통하여 사명을 주식회사 씨제이오쇼핑에서 주식회사 씨제이이엔엠으로 변경하였습니다.회사는 2018년 7월 1일을 기준일로 하여 씨제이이앤엠(주)를 흡수합병하였으며, 방송서비스, 음반 및 영화제작투자, 연예 매니지먼트, 콘텐츠, 광고 등의 사업이 추가되었습니다.2025년 12월 31일 현재 주요 주주는 다음과 같습니다."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00265324_2025_consolidated_xml_0005_12",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반사항 주식회사 씨제이이엔엠(이하 '회사')과 종속기업(이하 회사와 종속기업을 '연결회사')은 종합유선방송사업과 홈쇼핑 프로그램의 제작ㆍ공급 및 도ㆍ소매업, 방송서비스, 음반 및 영화제작투자, 연예매니지먼트, 콘텐츠, 광고 등의 사업을 주요 사업으로 영위하고 있습니다. 회사는 1999년 11월 23일 한국증권업협회에 등록한 공개기업으로, 서울시 서초구 과천대로에 본점을 두고 있습니다. 한편, 회사는 2018년 5월 29일자주주총회 의결을 통하여 사명을 주식회사 씨제이오쇼핑에서 주식회사 씨제이이엔엠으로 변경하였습니다.회사는 2018년 7월 1일을 기준일로 하여 씨제이이앤엠(주)를 흡수합병하였으며, 방송서비스, 음반 및 영화제작투자, 연예 매니지먼트, 콘텐츠, 광고 등의 사업이 추가되었습니다.2025년 12월 31일 현재 주요 주주는 다음과 같습니다."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00265324_2025_consolidated_xml_0006_01",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[15]",
+            "title": "2. 중요한 회계정책 다음은 연결재무제표 작성에 적용된 중요한 회계정책입니다. 이러한 정책은 별도의 언급이 없다면, 표시된 회계기간에 계속적으로 적용됩니다. 2.1 재무제표 작성 기준 연결회사의 연결재무제표는 한국채택국제회계기준(이하 기업회계기준)에 따라 작성됐습니다. 한국채택국제회계기준은 국제회계기준위원회(\"IASB\")가 발표한 기준서와 해석서 중 대한민국이 채택한 내용을 의미합니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00265324_2025_consolidated_xml_0006_26",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[15]",
+            "title": "2. 중요한 회계정책 다음은 연결재무제표 작성에 적용된 중요한 회계정책입니다. 이러한 정책은 별도의 언급이 없다면, 표시된 회계기간에 계속적으로 적용됩니다. 2.1 재무제표 작성 기준 연결회사의 연결재무제표는 한국채택국제회계기준(이하 기업회계기준)에 따라 작성됐습니다. 한국채택국제회계기준은 국제회계기준위원회(\"IASB\")가 발표한 기준서와 해석서 중 대한민국이 채택한 내용을 의미합니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00265324_2025_consolidated_xml_0003_01",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          }
+        ]
+      },
+      {
+        "id": "X05",
+        "question": "2025년과 2024년 연결 기준 매출액은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00265324_2025_consolidated_xml_0005_36",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반사항 주식회사 씨제이이엔엠(이하 '회사')과 종속기업(이하 회사와 종속기업을 '연결회사')은 종합유선방송사업과 홈쇼핑 프로그램의 제작ㆍ공급 및 도ㆍ소매업, 방송서비스, 음반 및 영화제작투자, 연예매니지먼트, 콘텐츠, 광고 등의 사업을 주요 사업으로 영위하고 있습니다. 회사는 1999년 11월 23일 한국증권업협회에 등록한 공개기업으로, 서울시 서초구 과천대로에 본점을 두고 있습니다. 한편, 회사는 2018년 5월 29일자주주총회 의결을 통하여 사명을 주식회사 씨제이오쇼핑에서 주식회사 씨제이이엔엠으로 변경하였습니다.회사는 2018년 7월 1일을 기준일로 하여 씨제이이앤엠(주)를 흡수합병하였으며, 방송서비스, 음반 및 영화제작투자, 연예 매니지먼트, 콘텐츠, 광고 등의 사업이 추가되었습니다.2025년 12월 31일 현재 주요 주주는 다음과 같습니다."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00265324_2025_consolidated_xml_0005_12",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반사항 주식회사 씨제이이엔엠(이하 '회사')과 종속기업(이하 회사와 종속기업을 '연결회사')은 종합유선방송사업과 홈쇼핑 프로그램의 제작ㆍ공급 및 도ㆍ소매업, 방송서비스, 음반 및 영화제작투자, 연예매니지먼트, 콘텐츠, 광고 등의 사업을 주요 사업으로 영위하고 있습니다. 회사는 1999년 11월 23일 한국증권업협회에 등록한 공개기업으로, 서울시 서초구 과천대로에 본점을 두고 있습니다. 한편, 회사는 2018년 5월 29일자주주총회 의결을 통하여 사명을 주식회사 씨제이오쇼핑에서 주식회사 씨제이이엔엠으로 변경하였습니다.회사는 2018년 7월 1일을 기준일로 하여 씨제이이앤엠(주)를 흡수합병하였으며, 방송서비스, 음반 및 영화제작투자, 연예 매니지먼트, 콘텐츠, 광고 등의 사업이 추가되었습니다.2025년 12월 31일 현재 주요 주주는 다음과 같습니다."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00265324_2025_consolidated_xml_0006_01",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[15]",
+            "title": "2. 중요한 회계정책 다음은 연결재무제표 작성에 적용된 중요한 회계정책입니다. 이러한 정책은 별도의 언급이 없다면, 표시된 회계기간에 계속적으로 적용됩니다. 2.1 재무제표 작성 기준 연결회사의 연결재무제표는 한국채택국제회계기준(이하 기업회계기준)에 따라 작성됐습니다. 한국채택국제회계기준은 국제회계기준위원회(\"IASB\")가 발표한 기준서와 해석서 중 대한민국이 채택한 내용을 의미합니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00265324_2025_consolidated_xml_0036_01",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[513]",
+            "title": "32. 배당금 2024년 12월 31일, 2023년 12월 31일로 종료하는 회계기간에 대한 배당은 실시하지않았습니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00265324_2025_consolidated_xml_0009_11",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[310]",
+            "title": "5. 금융상품 공정가치 5.1 금융상품 종류별 공정가치 연결회사의 금융상품 중 상각후원가 측정 금융자산과 상각후원가 측정 금융부채는 장부금액과 공정가치의 차이가 유의적이지 않습니다."
+          }
+        ]
+      }
+    ],
+    "chroma": [
+      {
+        "id": "X01",
+        "question": "2025년 연결 기준 자산총계는 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00265324_2025_consolidated_xml_0001_01",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00265324_2025_consolidated_xml_0003_01",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00265324_2025_consolidated_xml_0002_01",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00265324_2025_consolidated_xml_0003_06",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00265324_2025_consolidated_xml_0008_09",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[286]",
+            "title": "4. 재무위험관리 4.1 재무위험관리요소 연결회사는 시장위험(환위험, 주가변동위험 및 이자율위험), 신용위험 및 유동성위험과 같은 다양한 재무위험에 노출되어 있습니다. 연결회사의 전반적인 위험관리프로그램은 금융시장의 변동성에 초점을 맞추고 있으며 재무성과에 미치는 부정적 영향을 최소화하는데 중점을 두고 있습니다. 연결회사 중 일부 종속기업은 특정 위험을 회피하기 위해 파생상품을 이용하고 있습니다. 위험관리는 이사회에서 승인한 정책에 따라 재무부서의 주관으로 이루어지고 있습니다. 이사회는 전반적인 위험관리에 대한 원칙과 외환위험, 이자율 위험, 신용 위험, 파생금융상품과 비파생금융상품의 이용 및 유동성을 초과하는 투자와 같은 특정 분야에 관한 문서화된 정책을 검토하고 승인합니다."
+          }
+        ]
+      },
+      {
+        "id": "X02",
+        "question": "2025년 연결 기준 재고자산은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00265324_2025_consolidated_xml_0001_01",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00265324_2025_consolidated_xml_0013_01",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[350]",
+            "title": "9. 재고자산 (1) 재고자산의 내역"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00265324_2025_consolidated_xml_0003_06",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00265324_2025_consolidated_xml_0008_09",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[286]",
+            "title": "4. 재무위험관리 4.1 재무위험관리요소 연결회사는 시장위험(환위험, 주가변동위험 및 이자율위험), 신용위험 및 유동성위험과 같은 다양한 재무위험에 노출되어 있습니다. 연결회사의 전반적인 위험관리프로그램은 금융시장의 변동성에 초점을 맞추고 있으며 재무성과에 미치는 부정적 영향을 최소화하는데 중점을 두고 있습니다. 연결회사 중 일부 종속기업은 특정 위험을 회피하기 위해 파생상품을 이용하고 있습니다. 위험관리는 이사회에서 승인한 정책에 따라 재무부서의 주관으로 이루어지고 있습니다. 이사회는 전반적인 위험관리에 대한 원칙과 외환위험, 이자율 위험, 신용 위험, 파생금융상품과 비파생금융상품의 이용 및 유동성을 초과하는 투자와 같은 특정 분야에 관한 문서화된 정책을 검토하고 승인합니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00265324_2025_consolidated_xml_0003_01",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          }
+        ]
+      },
+      {
+        "id": "X03",
+        "question": "2025년 연결 기준 매출액은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00265324_2025_consolidated_xml_0002_01",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00265324_2025_consolidated_xml_0003_01",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00265324_2025_consolidated_xml_0040_02",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[548]",
+            "title": "36. 사업부문별 정보"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00265324_2025_consolidated_xml_0001_01",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00265324_2025_consolidated_xml_0040_03",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[548]",
+            "title": "36. 사업부문별 정보"
+          }
+        ]
+      },
+      {
+        "id": "X04",
+        "question": "2025년 연결 기준 자본총계는 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00265324_2025_consolidated_xml_0003_01",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00265324_2025_consolidated_xml_0003_06",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00265324_2025_consolidated_xml_0003_03",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00265324_2025_consolidated_xml_0001_01",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00265324_2025_consolidated_xml_0002_01",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          }
+        ]
+      },
+      {
+        "id": "X05",
+        "question": "2025년과 2024년 연결 기준 매출액은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00265324_2025_consolidated_xml_0002_01",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00265324_2025_consolidated_xml_0003_01",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00265324_2025_consolidated_xml_0001_01",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00265324_2025_consolidated_xml_0040_02",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[548]",
+            "title": "36. 사업부문별 정보"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00265324_2025_consolidated_xml_0040_03",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[548]",
+            "title": "36. 사업부문별 정보"
+          }
+        ]
+      }
+    ],
+    "mmr": [
+      {
+        "id": "X01",
+        "question": "2025년 연결 기준 자산총계는 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00265324_2025_consolidated_xml_0001_01",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00265324_2025_consolidated_xml_0003_03",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00265324_2025_consolidated_xml_0019_01",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[395]",
+            "title": "15. 유형자산 (1) 유형자산의 내역"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00265324_2025_consolidated_xml_0008_05",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[286]",
+            "title": "4. 재무위험관리 4.1 재무위험관리요소 연결회사는 시장위험(환위험, 주가변동위험 및 이자율위험), 신용위험 및 유동성위험과 같은 다양한 재무위험에 노출되어 있습니다. 연결회사의 전반적인 위험관리프로그램은 금융시장의 변동성에 초점을 맞추고 있으며 재무성과에 미치는 부정적 영향을 최소화하는데 중점을 두고 있습니다. 연결회사 중 일부 종속기업은 특정 위험을 회피하기 위해 파생상품을 이용하고 있습니다. 위험관리는 이사회에서 승인한 정책에 따라 재무부서의 주관으로 이루어지고 있습니다. 이사회는 전반적인 위험관리에 대한 원칙과 외환위험, 이자율 위험, 신용 위험, 파생금융상품과 비파생금융상품의 이용 및 유동성을 초과하는 투자와 같은 특정 분야에 관한 문서화된 정책을 검토하고 승인합니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00265324_2025_consolidated_xml_0006_40",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[15]",
+            "title": "2. 중요한 회계정책 다음은 연결재무제표 작성에 적용된 중요한 회계정책입니다. 이러한 정책은 별도의 언급이 없다면, 표시된 회계기간에 계속적으로 적용됩니다. 2.1 재무제표 작성 기준 연결회사의 연결재무제표는 한국채택국제회계기준(이하 기업회계기준)에 따라 작성됐습니다. 한국채택국제회계기준은 국제회계기준위원회(\"IASB\")가 발표한 기준서와 해석서 중 대한민국이 채택한 내용을 의미합니다."
+          }
+        ]
+      },
+      {
+        "id": "X02",
+        "question": "2025년 연결 기준 재고자산은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00265324_2025_consolidated_xml_0001_01",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00265324_2025_consolidated_xml_0013_01",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[350]",
+            "title": "9. 재고자산 (1) 재고자산의 내역"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00265324_2025_consolidated_xml_0006_19",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[15]",
+            "title": "2. 중요한 회계정책 다음은 연결재무제표 작성에 적용된 중요한 회계정책입니다. 이러한 정책은 별도의 언급이 없다면, 표시된 회계기간에 계속적으로 적용됩니다. 2.1 재무제표 작성 기준 연결회사의 연결재무제표는 한국채택국제회계기준(이하 기업회계기준)에 따라 작성됐습니다. 한국채택국제회계기준은 국제회계기준위원회(\"IASB\")가 발표한 기준서와 해석서 중 대한민국이 채택한 내용을 의미합니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00265324_2025_consolidated_xml_0016_01",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[366]",
+            "title": "12. 매각예정자산"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00265324_2025_consolidated_xml_0019_04",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[395]",
+            "title": "15. 유형자산 (1) 유형자산의 내역"
+          }
+        ]
+      },
+      {
+        "id": "X03",
+        "question": "2025년 연결 기준 매출액은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00265324_2025_consolidated_xml_0002_01",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00265324_2025_consolidated_xml_0005_36",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반사항 주식회사 씨제이이엔엠(이하 '회사')과 종속기업(이하 회사와 종속기업을 '연결회사')은 종합유선방송사업과 홈쇼핑 프로그램의 제작ㆍ공급 및 도ㆍ소매업, 방송서비스, 음반 및 영화제작투자, 연예매니지먼트, 콘텐츠, 광고 등의 사업을 주요 사업으로 영위하고 있습니다. 회사는 1999년 11월 23일 한국증권업협회에 등록한 공개기업으로, 서울시 서초구 과천대로에 본점을 두고 있습니다. 한편, 회사는 2018년 5월 29일자주주총회 의결을 통하여 사명을 주식회사 씨제이오쇼핑에서 주식회사 씨제이이엔엠으로 변경하였습니다.회사는 2018년 7월 1일을 기준일로 하여 씨제이이앤엠(주)를 흡수합병하였으며, 방송서비스, 음반 및 영화제작투자, 연예 매니지먼트, 콘텐츠, 광고 등의 사업이 추가되었습니다.2025년 12월 31일 현재 주요 주주는 다음과 같습니다."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00265324_2025_consolidated_xml_0008_09",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[286]",
+            "title": "4. 재무위험관리 4.1 재무위험관리요소 연결회사는 시장위험(환위험, 주가변동위험 및 이자율위험), 신용위험 및 유동성위험과 같은 다양한 재무위험에 노출되어 있습니다. 연결회사의 전반적인 위험관리프로그램은 금융시장의 변동성에 초점을 맞추고 있으며 재무성과에 미치는 부정적 영향을 최소화하는데 중점을 두고 있습니다. 연결회사 중 일부 종속기업은 특정 위험을 회피하기 위해 파생상품을 이용하고 있습니다. 위험관리는 이사회에서 승인한 정책에 따라 재무부서의 주관으로 이루어지고 있습니다. 이사회는 전반적인 위험관리에 대한 원칙과 외환위험, 이자율 위험, 신용 위험, 파생금융상품과 비파생금융상품의 이용 및 유동성을 초과하는 투자와 같은 특정 분야에 관한 문서화된 정책을 검토하고 승인합니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00265324_2025_consolidated_xml_0040_01",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[548]",
+            "title": "36. 사업부문별 정보"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00265324_2025_consolidated_xml_0029_01",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[485]",
+            "title": "25. 주식기준보상"
+          }
+        ]
+      },
+      {
+        "id": "X04",
+        "question": "2025년 연결 기준 자본총계는 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00265324_2025_consolidated_xml_0003_01",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00265324_2025_consolidated_xml_0038_05",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[520]",
+            "title": "34. 우발부채와 주요 약정사항"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00265324_2025_consolidated_xml_0008_05",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[286]",
+            "title": "4. 재무위험관리 4.1 재무위험관리요소 연결회사는 시장위험(환위험, 주가변동위험 및 이자율위험), 신용위험 및 유동성위험과 같은 다양한 재무위험에 노출되어 있습니다. 연결회사의 전반적인 위험관리프로그램은 금융시장의 변동성에 초점을 맞추고 있으며 재무성과에 미치는 부정적 영향을 최소화하는데 중점을 두고 있습니다. 연결회사 중 일부 종속기업은 특정 위험을 회피하기 위해 파생상품을 이용하고 있습니다. 위험관리는 이사회에서 승인한 정책에 따라 재무부서의 주관으로 이루어지고 있습니다. 이사회는 전반적인 위험관리에 대한 원칙과 외환위험, 이자율 위험, 신용 위험, 파생금융상품과 비파생금융상품의 이용 및 유동성을 초과하는 투자와 같은 특정 분야에 관한 문서화된 정책을 검토하고 승인합니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00265324_2025_consolidated_xml_0022_02",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[427]",
+            "title": "18. 차입금 및 사채"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00265324_2025_consolidated_xml_0042_01",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[566]",
+            "title": "38. 사업결합"
+          }
+        ]
+      },
+      {
+        "id": "X05",
+        "question": "2025년과 2024년 연결 기준 매출액은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00265324_2025_consolidated_xml_0002_01",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00265324_2025_consolidated_xml_0003_06",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00265324_2025_consolidated_xml_0011_01",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[337]",
+            "title": "7. 매출채권 (1) 매출채권 및 손실충당금의 내역"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00265324_2025_consolidated_xml_0026_09",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[467]",
+            "title": "22. 법인세비용"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00265324_2025_consolidated_xml_0029_04",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[485]",
+            "title": "25. 주식기준보상"
+          }
+        ]
+      }
+    ],
+    "hybrid": [
+      {
+        "id": "X01",
+        "question": "2025년 연결 기준 자산총계는 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00265324_2025_consolidated_xml_0003_01",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00265324_2025_consolidated_xml_0002_01",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00265324_2025_consolidated_xml_0001_01",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00265324_2025_consolidated_xml_0005_36",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반사항 주식회사 씨제이이엔엠(이하 '회사')과 종속기업(이하 회사와 종속기업을 '연결회사')은 종합유선방송사업과 홈쇼핑 프로그램의 제작ㆍ공급 및 도ㆍ소매업, 방송서비스, 음반 및 영화제작투자, 연예매니지먼트, 콘텐츠, 광고 등의 사업을 주요 사업으로 영위하고 있습니다. 회사는 1999년 11월 23일 한국증권업협회에 등록한 공개기업으로, 서울시 서초구 과천대로에 본점을 두고 있습니다. 한편, 회사는 2018년 5월 29일자주주총회 의결을 통하여 사명을 주식회사 씨제이오쇼핑에서 주식회사 씨제이이엔엠으로 변경하였습니다.회사는 2018년 7월 1일을 기준일로 하여 씨제이이앤엠(주)를 흡수합병하였으며, 방송서비스, 음반 및 영화제작투자, 연예 매니지먼트, 콘텐츠, 광고 등의 사업이 추가되었습니다.2025년 12월 31일 현재 주요 주주는 다음과 같습니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00265324_2025_consolidated_xml_0005_12",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반사항 주식회사 씨제이이엔엠(이하 '회사')과 종속기업(이하 회사와 종속기업을 '연결회사')은 종합유선방송사업과 홈쇼핑 프로그램의 제작ㆍ공급 및 도ㆍ소매업, 방송서비스, 음반 및 영화제작투자, 연예매니지먼트, 콘텐츠, 광고 등의 사업을 주요 사업으로 영위하고 있습니다. 회사는 1999년 11월 23일 한국증권업협회에 등록한 공개기업으로, 서울시 서초구 과천대로에 본점을 두고 있습니다. 한편, 회사는 2018년 5월 29일자주주총회 의결을 통하여 사명을 주식회사 씨제이오쇼핑에서 주식회사 씨제이이엔엠으로 변경하였습니다.회사는 2018년 7월 1일을 기준일로 하여 씨제이이앤엠(주)를 흡수합병하였으며, 방송서비스, 음반 및 영화제작투자, 연예 매니지먼트, 콘텐츠, 광고 등의 사업이 추가되었습니다.2025년 12월 31일 현재 주요 주주는 다음과 같습니다."
+          }
+        ]
+      },
+      {
+        "id": "X02",
+        "question": "2025년 연결 기준 재고자산은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00265324_2025_consolidated_xml_0003_01",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00265324_2025_consolidated_xml_0006_19",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[15]",
+            "title": "2. 중요한 회계정책 다음은 연결재무제표 작성에 적용된 중요한 회계정책입니다. 이러한 정책은 별도의 언급이 없다면, 표시된 회계기간에 계속적으로 적용됩니다. 2.1 재무제표 작성 기준 연결회사의 연결재무제표는 한국채택국제회계기준(이하 기업회계기준)에 따라 작성됐습니다. 한국채택국제회계기준은 국제회계기준위원회(\"IASB\")가 발표한 기준서와 해석서 중 대한민국이 채택한 내용을 의미합니다."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00265324_2025_consolidated_xml_0001_01",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00265324_2025_consolidated_xml_0005_36",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반사항 주식회사 씨제이이엔엠(이하 '회사')과 종속기업(이하 회사와 종속기업을 '연결회사')은 종합유선방송사업과 홈쇼핑 프로그램의 제작ㆍ공급 및 도ㆍ소매업, 방송서비스, 음반 및 영화제작투자, 연예매니지먼트, 콘텐츠, 광고 등의 사업을 주요 사업으로 영위하고 있습니다. 회사는 1999년 11월 23일 한국증권업협회에 등록한 공개기업으로, 서울시 서초구 과천대로에 본점을 두고 있습니다. 한편, 회사는 2018년 5월 29일자주주총회 의결을 통하여 사명을 주식회사 씨제이오쇼핑에서 주식회사 씨제이이엔엠으로 변경하였습니다.회사는 2018년 7월 1일을 기준일로 하여 씨제이이앤엠(주)를 흡수합병하였으며, 방송서비스, 음반 및 영화제작투자, 연예 매니지먼트, 콘텐츠, 광고 등의 사업이 추가되었습니다.2025년 12월 31일 현재 주요 주주는 다음과 같습니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00265324_2025_consolidated_xml_0005_12",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반사항 주식회사 씨제이이엔엠(이하 '회사')과 종속기업(이하 회사와 종속기업을 '연결회사')은 종합유선방송사업과 홈쇼핑 프로그램의 제작ㆍ공급 및 도ㆍ소매업, 방송서비스, 음반 및 영화제작투자, 연예매니지먼트, 콘텐츠, 광고 등의 사업을 주요 사업으로 영위하고 있습니다. 회사는 1999년 11월 23일 한국증권업협회에 등록한 공개기업으로, 서울시 서초구 과천대로에 본점을 두고 있습니다. 한편, 회사는 2018년 5월 29일자주주총회 의결을 통하여 사명을 주식회사 씨제이오쇼핑에서 주식회사 씨제이이엔엠으로 변경하였습니다.회사는 2018년 7월 1일을 기준일로 하여 씨제이이앤엠(주)를 흡수합병하였으며, 방송서비스, 음반 및 영화제작투자, 연예 매니지먼트, 콘텐츠, 광고 등의 사업이 추가되었습니다.2025년 12월 31일 현재 주요 주주는 다음과 같습니다."
+          }
+        ]
+      },
+      {
+        "id": "X03",
+        "question": "2025년 연결 기준 매출액은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00265324_2025_consolidated_xml_0003_01",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00265324_2025_consolidated_xml_0002_01",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00265324_2025_consolidated_xml_0005_36",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반사항 주식회사 씨제이이엔엠(이하 '회사')과 종속기업(이하 회사와 종속기업을 '연결회사')은 종합유선방송사업과 홈쇼핑 프로그램의 제작ㆍ공급 및 도ㆍ소매업, 방송서비스, 음반 및 영화제작투자, 연예매니지먼트, 콘텐츠, 광고 등의 사업을 주요 사업으로 영위하고 있습니다. 회사는 1999년 11월 23일 한국증권업협회에 등록한 공개기업으로, 서울시 서초구 과천대로에 본점을 두고 있습니다. 한편, 회사는 2018년 5월 29일자주주총회 의결을 통하여 사명을 주식회사 씨제이오쇼핑에서 주식회사 씨제이이엔엠으로 변경하였습니다.회사는 2018년 7월 1일을 기준일로 하여 씨제이이앤엠(주)를 흡수합병하였으며, 방송서비스, 음반 및 영화제작투자, 연예 매니지먼트, 콘텐츠, 광고 등의 사업이 추가되었습니다.2025년 12월 31일 현재 주요 주주는 다음과 같습니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00265324_2025_consolidated_xml_0004_01",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00265324_2025_consolidated_xml_0005_12",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반사항 주식회사 씨제이이엔엠(이하 '회사')과 종속기업(이하 회사와 종속기업을 '연결회사')은 종합유선방송사업과 홈쇼핑 프로그램의 제작ㆍ공급 및 도ㆍ소매업, 방송서비스, 음반 및 영화제작투자, 연예매니지먼트, 콘텐츠, 광고 등의 사업을 주요 사업으로 영위하고 있습니다. 회사는 1999년 11월 23일 한국증권업협회에 등록한 공개기업으로, 서울시 서초구 과천대로에 본점을 두고 있습니다. 한편, 회사는 2018년 5월 29일자주주총회 의결을 통하여 사명을 주식회사 씨제이오쇼핑에서 주식회사 씨제이이엔엠으로 변경하였습니다.회사는 2018년 7월 1일을 기준일로 하여 씨제이이앤엠(주)를 흡수합병하였으며, 방송서비스, 음반 및 영화제작투자, 연예 매니지먼트, 콘텐츠, 광고 등의 사업이 추가되었습니다.2025년 12월 31일 현재 주요 주주는 다음과 같습니다."
+          }
+        ]
+      },
+      {
+        "id": "X04",
+        "question": "2025년 연결 기준 자본총계는 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": false,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00265324_2025_consolidated_xml_0003_01",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00265324_2025_consolidated_xml_0002_01",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00265324_2025_consolidated_xml_0005_36",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반사항 주식회사 씨제이이엔엠(이하 '회사')과 종속기업(이하 회사와 종속기업을 '연결회사')은 종합유선방송사업과 홈쇼핑 프로그램의 제작ㆍ공급 및 도ㆍ소매업, 방송서비스, 음반 및 영화제작투자, 연예매니지먼트, 콘텐츠, 광고 등의 사업을 주요 사업으로 영위하고 있습니다. 회사는 1999년 11월 23일 한국증권업협회에 등록한 공개기업으로, 서울시 서초구 과천대로에 본점을 두고 있습니다. 한편, 회사는 2018년 5월 29일자주주총회 의결을 통하여 사명을 주식회사 씨제이오쇼핑에서 주식회사 씨제이이엔엠으로 변경하였습니다.회사는 2018년 7월 1일을 기준일로 하여 씨제이이앤엠(주)를 흡수합병하였으며, 방송서비스, 음반 및 영화제작투자, 연예 매니지먼트, 콘텐츠, 광고 등의 사업이 추가되었습니다.2025년 12월 31일 현재 주요 주주는 다음과 같습니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00265324_2025_consolidated_xml_0003_06",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00265324_2025_consolidated_xml_0005_12",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반사항 주식회사 씨제이이엔엠(이하 '회사')과 종속기업(이하 회사와 종속기업을 '연결회사')은 종합유선방송사업과 홈쇼핑 프로그램의 제작ㆍ공급 및 도ㆍ소매업, 방송서비스, 음반 및 영화제작투자, 연예매니지먼트, 콘텐츠, 광고 등의 사업을 주요 사업으로 영위하고 있습니다. 회사는 1999년 11월 23일 한국증권업협회에 등록한 공개기업으로, 서울시 서초구 과천대로에 본점을 두고 있습니다. 한편, 회사는 2018년 5월 29일자주주총회 의결을 통하여 사명을 주식회사 씨제이오쇼핑에서 주식회사 씨제이이엔엠으로 변경하였습니다.회사는 2018년 7월 1일을 기준일로 하여 씨제이이앤엠(주)를 흡수합병하였으며, 방송서비스, 음반 및 영화제작투자, 연예 매니지먼트, 콘텐츠, 광고 등의 사업이 추가되었습니다.2025년 12월 31일 현재 주요 주주는 다음과 같습니다."
+          }
+        ]
+      },
+      {
+        "id": "X05",
+        "question": "2025년과 2024년 연결 기준 매출액은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00265324_2025_consolidated_xml_0003_01",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00265324_2025_consolidated_xml_0002_01",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00265324_2025_consolidated_xml_0005_36",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반사항 주식회사 씨제이이엔엠(이하 '회사')과 종속기업(이하 회사와 종속기업을 '연결회사')은 종합유선방송사업과 홈쇼핑 프로그램의 제작ㆍ공급 및 도ㆍ소매업, 방송서비스, 음반 및 영화제작투자, 연예매니지먼트, 콘텐츠, 광고 등의 사업을 주요 사업으로 영위하고 있습니다. 회사는 1999년 11월 23일 한국증권업협회에 등록한 공개기업으로, 서울시 서초구 과천대로에 본점을 두고 있습니다. 한편, 회사는 2018년 5월 29일자주주총회 의결을 통하여 사명을 주식회사 씨제이오쇼핑에서 주식회사 씨제이이엔엠으로 변경하였습니다.회사는 2018년 7월 1일을 기준일로 하여 씨제이이앤엠(주)를 흡수합병하였으며, 방송서비스, 음반 및 영화제작투자, 연예 매니지먼트, 콘텐츠, 광고 등의 사업이 추가되었습니다.2025년 12월 31일 현재 주요 주주는 다음과 같습니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00265324_2025_consolidated_xml_0005_12",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반사항 주식회사 씨제이이엔엠(이하 '회사')과 종속기업(이하 회사와 종속기업을 '연결회사')은 종합유선방송사업과 홈쇼핑 프로그램의 제작ㆍ공급 및 도ㆍ소매업, 방송서비스, 음반 및 영화제작투자, 연예매니지먼트, 콘텐츠, 광고 등의 사업을 주요 사업으로 영위하고 있습니다. 회사는 1999년 11월 23일 한국증권업협회에 등록한 공개기업으로, 서울시 서초구 과천대로에 본점을 두고 있습니다. 한편, 회사는 2018년 5월 29일자주주총회 의결을 통하여 사명을 주식회사 씨제이오쇼핑에서 주식회사 씨제이이엔엠으로 변경하였습니다.회사는 2018년 7월 1일을 기준일로 하여 씨제이이앤엠(주)를 흡수합병하였으며, 방송서비스, 음반 및 영화제작투자, 연예 매니지먼트, 콘텐츠, 광고 등의 사업이 추가되었습니다.2025년 12월 31일 현재 주요 주주는 다음과 같습니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00265324_2025_consolidated_xml_0001_01",
+            "source_file": "20260318001469_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          }
+        ]
+      }
+    ]
+  }
+}
