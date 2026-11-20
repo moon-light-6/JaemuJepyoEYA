@@ -11,6 +11,12 @@ from __future__ import annotations
 import argparse
 import asyncio
 import time
+import sys
+from pathlib import Path
+
+# 패키지를 별도 설치하지 않아도 프로젝트 루트에서 실행할 수 있도록 한다.
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(PROJECT_ROOT / "src"))
 
 from fin_research.llm.budget import Budget, BudgetExceeded
 from fin_research.research.graph import build_graph, run_config

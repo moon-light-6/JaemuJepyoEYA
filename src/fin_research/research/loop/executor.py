@@ -1,4 +1,4 @@
-"""Execute the document-search action for the first Researcher iteration."""
+"""선택한 기업·공시를 대상으로 문서 검색 도구를 실행한다."""
 
 from __future__ import annotations
 
