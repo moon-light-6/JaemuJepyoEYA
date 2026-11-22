@@ -156,7 +156,11 @@ def make_draft_dataset_v2(args: argparse.Namespace, target: SearchTarget, docume
     print(f"draft XML 평가셋 v2: {v2_path} ({len(new_items)}문항)")
     for reason in skipped:
         print(f"  제외: {reason}")
-    print("검증 후 annotation_status를 verified로 바꾸고, 평가는 --include-v2로 실행하세요.")
+    print(
+        "검증 후 annotation_status를 verified로 바꾸세요. "
+        "기존 파이프라인 평가는 --include-v2를 사용하고, "
+        "v2 파이프라인 평가는 추가 평가셋을 자동으로 포함합니다."
+    )
     return 0
 
 
