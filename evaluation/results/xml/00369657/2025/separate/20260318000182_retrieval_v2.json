@@ -1,0 +1,3878 @@
+{
+  "config": {
+    "source_format": "xml",
+    "questions": 18,
+    "chunks": 135,
+    "collection_name": "fin_xml_00369657_2025_separate_20260318000182_kure_v1",
+    "chunks_path": "C:\\Hyeonkyu\\JaemuJepyoEYA\\data\\processed\\xml\\dart\\00369657\\2025\\separate\\20260318000182_xml_chunks_v2.json",
+    "chunks_sha256": "fda418c9dfb3296e922cd92e09973668ab5b417a8822de1a9de9f5d9c9266d64",
+    "dataset_path": "C:\\Hyeonkyu\\JaemuJepyoEYA\\evaluation\\dataset\\xml\\00369657\\2025\\separate\\20260318000182_retrieval.json",
+    "chroma_dir": "C:\\Hyeonkyu\\JaemuJepyoEYA\\data\\chroma_xml_v2\\fda418c9dfb3296e922cd92e09973668ab5b417a8822de1a9de9f5d9c9266d64",
+    "chunk_size": 600,
+    "chunk_overlap": 100
+  },
+  "summary": {
+    "bm25": {
+      "hit_at_3": 0.4444444444444444,
+      "hit_at_5": 0.9444444444444444,
+      "value_hit_at_3": 0.4444444444444444,
+      "value_hit_at_5": 0.6111111111111112,
+      "source_value_hit_at_3": 0.3333333333333333,
+      "source_value_hit_at_5": 0.5555555555555556,
+      "total": 18
+    },
+    "chroma": {
+      "hit_at_3": 0.9444444444444444,
+      "hit_at_5": 1.0,
+      "value_hit_at_3": 1.0,
+      "value_hit_at_5": 1.0,
+      "source_value_hit_at_3": 0.8888888888888888,
+      "source_value_hit_at_5": 0.9444444444444444,
+      "total": 18
+    },
+    "mmr": {
+      "hit_at_3": 0.7222222222222222,
+      "hit_at_5": 0.7222222222222222,
+      "value_hit_at_3": 0.8333333333333334,
+      "value_hit_at_5": 0.8888888888888888,
+      "source_value_hit_at_3": 0.5555555555555556,
+      "source_value_hit_at_5": 0.5555555555555556,
+      "total": 18
+    },
+    "hybrid": {
+      "hit_at_3": 0.9444444444444444,
+      "hit_at_5": 1.0,
+      "value_hit_at_3": 0.8888888888888888,
+      "value_hit_at_5": 1.0,
+      "source_value_hit_at_3": 0.8333333333333334,
+      "source_value_hit_at_5": 1.0,
+      "total": 18
+    }
+  },
+  "details": {
+    "bm25": [
+      {
+        "id": "X01",
+        "question": "2025년 별도 기준 자산총계는 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00369657_2025_separate_xml_0002_03",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00369657_2025_separate_xml_0002_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00369657_2025_separate_xml_0004_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00369657_2025_separate_xml_0001_04",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00369657_2025_separate_xml_0003_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          }
+        ]
+      },
+      {
+        "id": "X02",
+        "question": "2025년 별도 기준 현금및현금성자산은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00369657_2025_separate_xml_0002_03",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00369657_2025_separate_xml_0002_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00369657_2025_separate_xml_0004_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00369657_2025_separate_xml_0001_04",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00369657_2025_separate_xml_0003_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          }
+        ]
+      },
+      {
+        "id": "X03",
+        "question": "2025년 별도 기준 재고자산은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00369657_2025_separate_xml_0002_03",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00369657_2025_separate_xml_0002_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00369657_2025_separate_xml_0004_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00369657_2025_separate_xml_0001_04",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00369657_2025_separate_xml_0003_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          }
+        ]
+      },
+      {
+        "id": "X04",
+        "question": "2025년 별도 기준 영업이익은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00369657_2025_separate_xml_0002_03",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00369657_2025_separate_xml_0002_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00369657_2025_separate_xml_0004_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00369657_2025_separate_xml_0001_04",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00369657_2025_separate_xml_0003_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          }
+        ]
+      },
+      {
+        "id": "X05",
+        "question": "2025년 별도 기준 당기순이익은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00369657_2025_separate_xml_0002_03",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00369657_2025_separate_xml_0002_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00369657_2025_separate_xml_0004_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00369657_2025_separate_xml_0001_04",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00369657_2025_separate_xml_0003_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          }
+        ]
+      },
+      {
+        "id": "X06",
+        "question": "2025년 별도 기준 영업활동으로 인한 현금흐름은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00369657_2025_separate_xml_0004_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00369657_2025_separate_xml_0004_03",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00369657_2025_separate_xml_0002_03",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00369657_2025_separate_xml_0034_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[180]",
+            "title": "31. 현금흐름표(1) 영업으로부터 창출된 현금흐름의 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00369657_2025_separate_xml_0002_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          }
+        ]
+      },
+      {
+        "id": "X07",
+        "question": "2025년 별도 기준 배당금 지급액은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00369657_2025_separate_xml_0024_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[142]",
+            "title": "20. 배당금"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00369657_2025_separate_xml_0023_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[139]",
+            "title": "19. 이익잉여금이익잉여금의 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00369657_2025_separate_xml_0002_03",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00369657_2025_separate_xml_0002_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00369657_2025_separate_xml_0004_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          }
+        ]
+      },
+      {
+        "id": "X08",
+        "question": "2025년 별도 기준 자본총계는 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00369657_2025_separate_xml_0002_03",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00369657_2025_separate_xml_0002_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00369657_2025_separate_xml_0004_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00369657_2025_separate_xml_0001_04",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00369657_2025_separate_xml_0003_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          }
+        ]
+      },
+      {
+        "id": "X09",
+        "question": "2025년과 2024년 별도 기준 배당금 지급액은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00369657_2025_separate_xml_0024_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[142]",
+            "title": "20. 배당금"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00369657_2025_separate_xml_0002_03",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00369657_2025_separate_xml_0002_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00369657_2025_separate_xml_0004_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00369657_2025_separate_xml_0003_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          }
+        ]
+      },
+      {
+        "id": "X10",
+        "question": "2025년과 2024년 별도 기준 당기순이익은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00369657_2025_separate_xml_0002_03",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00369657_2025_separate_xml_0002_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00369657_2025_separate_xml_0004_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00369657_2025_separate_xml_0003_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00369657_2025_separate_xml_0001_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          }
+        ]
+      },
+      {
+        "id": "X11",
+        "question": "2025년과 2024년 별도 기준 자본총계는 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00369657_2025_separate_xml_0002_03",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00369657_2025_separate_xml_0002_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00369657_2025_separate_xml_0004_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00369657_2025_separate_xml_0003_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00369657_2025_separate_xml_0001_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          }
+        ]
+      },
+      {
+        "id": "X12",
+        "question": "2025년과 2024년 별도 기준 영업활동으로 인한 현금흐름은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00369657_2025_separate_xml_0004_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00369657_2025_separate_xml_0004_03",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00369657_2025_separate_xml_0002_03",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00369657_2025_separate_xml_0034_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[180]",
+            "title": "31. 현금흐름표(1) 영업으로부터 창출된 현금흐름의 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00369657_2025_separate_xml_0002_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          }
+        ]
+      },
+      {
+        "id": "X13",
+        "question": "2025년 별도 기준 매출액은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00369657_2025_separate_xml_0002_03",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00369657_2025_separate_xml_0002_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00369657_2025_separate_xml_0004_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00369657_2025_separate_xml_0001_04",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00369657_2025_separate_xml_0003_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          }
+        ]
+      },
+      {
+        "id": "X14",
+        "question": "2025년 별도 기준 부채총계는 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00369657_2025_separate_xml_0002_03",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00369657_2025_separate_xml_0002_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00369657_2025_separate_xml_0004_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00369657_2025_separate_xml_0001_04",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00369657_2025_separate_xml_0003_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          }
+        ]
+      },
+      {
+        "id": "X15",
+        "question": "2025년과 2024년 별도 기준 자산총계는 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00369657_2025_separate_xml_0002_03",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00369657_2025_separate_xml_0002_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00369657_2025_separate_xml_0004_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00369657_2025_separate_xml_0003_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00369657_2025_separate_xml_0001_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          }
+        ]
+      },
+      {
+        "id": "X16",
+        "question": "2025년과 2024년 별도 기준 매출액은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00369657_2025_separate_xml_0002_03",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00369657_2025_separate_xml_0002_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00369657_2025_separate_xml_0004_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00369657_2025_separate_xml_0003_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00369657_2025_separate_xml_0001_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          }
+        ]
+      },
+      {
+        "id": "X17",
+        "question": "2025년과 2024년 별도 기준 영업이익은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00369657_2025_separate_xml_0002_03",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00369657_2025_separate_xml_0002_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00369657_2025_separate_xml_0004_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00369657_2025_separate_xml_0003_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00369657_2025_separate_xml_0001_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          }
+        ]
+      },
+      {
+        "id": "X18",
+        "question": "2025년과 2024년 별도 기준 부채총계는 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00369657_2025_separate_xml_0002_03",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00369657_2025_separate_xml_0002_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00369657_2025_separate_xml_0004_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00369657_2025_separate_xml_0003_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00369657_2025_separate_xml_0001_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          }
+        ]
+      }
+    ],
+    "chroma": [
+      {
+        "id": "X01",
+        "question": "2025년 별도 기준 자산총계는 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00369657_2025_separate_xml_0001_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00369657_2025_separate_xml_0001_04",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00369657_2025_separate_xml_0001_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00369657_2025_separate_xml_0009_04",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[54]",
+            "title": "5. 공정가치(1) 측정분류별 장부금액 및 공정가치는 다음과 같습니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00369657_2025_separate_xml_0002_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          }
+        ]
+      },
+      {
+        "id": "X02",
+        "question": "2025년 별도 기준 현금및현금성자산은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00369657_2025_separate_xml_0004_03",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00369657_2025_separate_xml_0010_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[63]",
+            "title": "6. 현금및현금성자산"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00369657_2025_separate_xml_0004_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00369657_2025_separate_xml_0008_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[45]",
+            "title": "4. 범주별 금융상품4-1. 금융상품의 범주별 장부금액(1) 금융자산의 범주별 금액은 다음과 같습니다.① 당기말"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00369657_2025_separate_xml_0001_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          }
+        ]
+      },
+      {
+        "id": "X03",
+        "question": "2025년 별도 기준 재고자산은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00369657_2025_separate_xml_0001_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00369657_2025_separate_xml_0004_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00369657_2025_separate_xml_0013_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[76]",
+            "title": "9. 재고자산(1) 재고자산의 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00369657_2025_separate_xml_0013_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[76]",
+            "title": "9. 재고자산(1) 재고자산의 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00369657_2025_separate_xml_0001_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          }
+        ]
+      },
+      {
+        "id": "X04",
+        "question": "2025년 별도 기준 영업이익은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00369657_2025_separate_xml_0002_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00369657_2025_separate_xml_0002_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00369657_2025_separate_xml_0002_03",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00369657_2025_separate_xml_0003_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00369657_2025_separate_xml_0023_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[139]",
+            "title": "19. 이익잉여금이익잉여금의 내역은 다음과 같습니다."
+          }
+        ]
+      },
+      {
+        "id": "X05",
+        "question": "2025년 별도 기준 당기순이익은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00369657_2025_separate_xml_0002_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00369657_2025_separate_xml_0003_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00369657_2025_separate_xml_0002_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00369657_2025_separate_xml_0002_03",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00369657_2025_separate_xml_0023_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[139]",
+            "title": "19. 이익잉여금이익잉여금의 내역은 다음과 같습니다."
+          }
+        ]
+      },
+      {
+        "id": "X06",
+        "question": "2025년 별도 기준 영업활동으로 인한 현금흐름은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00369657_2025_separate_xml_0004_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00369657_2025_separate_xml_0004_03",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00369657_2025_separate_xml_0034_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[180]",
+            "title": "31. 현금흐름표(1) 영업으로부터 창출된 현금흐름의 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00369657_2025_separate_xml_0004_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00369657_2025_separate_xml_0034_03",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[180]",
+            "title": "31. 현금흐름표(1) 영업으로부터 창출된 현금흐름의 내역은 다음과 같습니다."
+          }
+        ]
+      },
+      {
+        "id": "X07",
+        "question": "2025년 별도 기준 배당금 지급액은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00369657_2025_separate_xml_0023_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[139]",
+            "title": "19. 이익잉여금이익잉여금의 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00369657_2025_separate_xml_0024_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[142]",
+            "title": "20. 배당금"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00369657_2025_separate_xml_0003_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00369657_2025_separate_xml_0021_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[129]",
+            "title": "17. 자본금 및 자본잉여금(1) 자본금의 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00369657_2025_separate_xml_0003_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          }
+        ]
+      },
+      {
+        "id": "X08",
+        "question": "2025년 별도 기준 자본총계는 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00369657_2025_separate_xml_0021_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[129]",
+            "title": "17. 자본금 및 자본잉여금(1) 자본금의 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00369657_2025_separate_xml_0001_04",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00369657_2025_separate_xml_0003_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00369657_2025_separate_xml_0003_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00369657_2025_separate_xml_0001_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          }
+        ]
+      },
+      {
+        "id": "X09",
+        "question": "2025년과 2024년 별도 기준 배당금 지급액은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00369657_2025_separate_xml_0024_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[142]",
+            "title": "20. 배당금"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00369657_2025_separate_xml_0023_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[139]",
+            "title": "19. 이익잉여금이익잉여금의 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00369657_2025_separate_xml_0003_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00369657_2025_separate_xml_0021_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[129]",
+            "title": "17. 자본금 및 자본잉여금(1) 자본금의 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00369657_2025_separate_xml_0003_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          }
+        ]
+      },
+      {
+        "id": "X10",
+        "question": "2025년과 2024년 별도 기준 당기순이익은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00369657_2025_separate_xml_0002_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00369657_2025_separate_xml_0002_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00369657_2025_separate_xml_0003_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00369657_2025_separate_xml_0003_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00369657_2025_separate_xml_0002_03",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          }
+        ]
+      },
+      {
+        "id": "X11",
+        "question": "2025년과 2024년 별도 기준 자본총계는 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00369657_2025_separate_xml_0021_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[129]",
+            "title": "17. 자본금 및 자본잉여금(1) 자본금의 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00369657_2025_separate_xml_0001_04",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00369657_2025_separate_xml_0003_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00369657_2025_separate_xml_0003_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00369657_2025_separate_xml_0001_03",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          }
+        ]
+      },
+      {
+        "id": "X12",
+        "question": "2025년과 2024년 별도 기준 영업활동으로 인한 현금흐름은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00369657_2025_separate_xml_0004_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00369657_2025_separate_xml_0004_03",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00369657_2025_separate_xml_0004_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00369657_2025_separate_xml_0034_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[180]",
+            "title": "31. 현금흐름표(1) 영업으로부터 창출된 현금흐름의 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00369657_2025_separate_xml_0034_03",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[180]",
+            "title": "31. 현금흐름표(1) 영업으로부터 창출된 현금흐름의 내역은 다음과 같습니다."
+          }
+        ]
+      },
+      {
+        "id": "X13",
+        "question": "2025년 별도 기준 매출액은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00369657_2025_separate_xml_0002_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00369657_2025_separate_xml_0002_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00369657_2025_separate_xml_0002_03",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00369657_2025_separate_xml_0003_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00369657_2025_separate_xml_0025_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[147]",
+            "title": "21. 매출액매출액의 내역은 다음과 같습니다."
+          }
+        ]
+      },
+      {
+        "id": "X14",
+        "question": "2025년 별도 기준 부채총계는 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00369657_2025_separate_xml_0001_04",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00369657_2025_separate_xml_0001_03",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00369657_2025_separate_xml_0035_07",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[188]",
+            "title": "32. 위험관리32-1. 자본위험관리당사의 자본관리는 건전한 자본구조의 유지를 통한 주주이익 극대화를 목적으로 하고 있으며, 당사는 자본관리의 일환으로 안정적인 배당을 시행하고 있습니다.당사는 타인자본조달비율을 기초로 하여 자본을 관리합니다. 이 비율은 차입금을 총자본으로 나누어 산출됩니다. 당사의 전략은 무차입경영을 목표로 타인자본조달비율을 0%로 유지하는 것입니다.타인자본조달비율은 다음과 같습니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00369657_2025_separate_xml_0001_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00369657_2025_separate_xml_0011_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[66]",
+            "title": "7. 매출채권 및 기타채권(1) 매출채권의 내역은 다음과 같습니다."
+          }
+        ]
+      },
+      {
+        "id": "X15",
+        "question": "2025년과 2024년 별도 기준 자산총계는 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00369657_2025_separate_xml_0001_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00369657_2025_separate_xml_0001_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00369657_2025_separate_xml_0001_04",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00369657_2025_separate_xml_0004_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00369657_2025_separate_xml_0007_14",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[28]",
+            "title": "3. 중요한 회계정책"
+          }
+        ]
+      },
+      {
+        "id": "X16",
+        "question": "2025년과 2024년 별도 기준 매출액은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00369657_2025_separate_xml_0002_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00369657_2025_separate_xml_0002_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00369657_2025_separate_xml_0025_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[147]",
+            "title": "21. 매출액매출액의 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00369657_2025_separate_xml_0003_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00369657_2025_separate_xml_0002_03",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          }
+        ]
+      },
+      {
+        "id": "X17",
+        "question": "2025년과 2024년 별도 기준 영업이익은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00369657_2025_separate_xml_0002_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00369657_2025_separate_xml_0002_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00369657_2025_separate_xml_0002_03",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00369657_2025_separate_xml_0003_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00369657_2025_separate_xml_0003_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          }
+        ]
+      },
+      {
+        "id": "X18",
+        "question": "2025년과 2024년 별도 기준 부채총계는 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00369657_2025_separate_xml_0001_04",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00369657_2025_separate_xml_0001_03",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00369657_2025_separate_xml_0035_07",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[188]",
+            "title": "32. 위험관리32-1. 자본위험관리당사의 자본관리는 건전한 자본구조의 유지를 통한 주주이익 극대화를 목적으로 하고 있으며, 당사는 자본관리의 일환으로 안정적인 배당을 시행하고 있습니다.당사는 타인자본조달비율을 기초로 하여 자본을 관리합니다. 이 비율은 차입금을 총자본으로 나누어 산출됩니다. 당사의 전략은 무차입경영을 목표로 타인자본조달비율을 0%로 유지하는 것입니다.타인자본조달비율은 다음과 같습니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00369657_2025_separate_xml_0011_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[66]",
+            "title": "7. 매출채권 및 기타채권(1) 매출채권의 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00369657_2025_separate_xml_0035_06",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[188]",
+            "title": "32. 위험관리32-1. 자본위험관리당사의 자본관리는 건전한 자본구조의 유지를 통한 주주이익 극대화를 목적으로 하고 있으며, 당사는 자본관리의 일환으로 안정적인 배당을 시행하고 있습니다.당사는 타인자본조달비율을 기초로 하여 자본을 관리합니다. 이 비율은 차입금을 총자본으로 나누어 산출됩니다. 당사의 전략은 무차입경영을 목표로 타인자본조달비율을 0%로 유지하는 것입니다.타인자본조달비율은 다음과 같습니다."
+          }
+        ]
+      }
+    ],
+    "mmr": [
+      {
+        "id": "X01",
+        "question": "2025년 별도 기준 자산총계는 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00369657_2025_separate_xml_0001_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00369657_2025_separate_xml_0019_03",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[106]",
+            "title": "15. 종업원급여(1) 확정급여형 퇴직급여제도와 관련하여 재무상태표에 인식한 부채(자산)의 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00369657_2025_separate_xml_0035_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[188]",
+            "title": "32. 위험관리32-1. 자본위험관리당사의 자본관리는 건전한 자본구조의 유지를 통한 주주이익 극대화를 목적으로 하고 있으며, 당사는 자본관리의 일환으로 안정적인 배당을 시행하고 있습니다.당사는 타인자본조달비율을 기초로 하여 자본을 관리합니다. 이 비율은 차입금을 총자본으로 나누어 산출됩니다. 당사의 전략은 무차입경영을 목표로 타인자본조달비율을 0%로 유지하는 것입니다.타인자본조달비율은 다음과 같습니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00369657_2025_separate_xml_0007_18",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[28]",
+            "title": "3. 중요한 회계정책"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00369657_2025_separate_xml_0021_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[129]",
+            "title": "17. 자본금 및 자본잉여금(1) 자본금의 내역은 다음과 같습니다."
+          }
+        ]
+      },
+      {
+        "id": "X02",
+        "question": "2025년 별도 기준 현금및현금성자산은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00369657_2025_separate_xml_0004_03",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00369657_2025_separate_xml_0009_04",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[54]",
+            "title": "5. 공정가치(1) 측정분류별 장부금액 및 공정가치는 다음과 같습니다."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00369657_2025_separate_xml_0035_05",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[188]",
+            "title": "32. 위험관리32-1. 자본위험관리당사의 자본관리는 건전한 자본구조의 유지를 통한 주주이익 극대화를 목적으로 하고 있으며, 당사는 자본관리의 일환으로 안정적인 배당을 시행하고 있습니다.당사는 타인자본조달비율을 기초로 하여 자본을 관리합니다. 이 비율은 차입금을 총자본으로 나누어 산출됩니다. 당사의 전략은 무차입경영을 목표로 타인자본조달비율을 0%로 유지하는 것입니다.타인자본조달비율은 다음과 같습니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00369657_2025_separate_xml_0007_14",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[28]",
+            "title": "3. 중요한 회계정책"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00369657_2025_separate_xml_0021_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[129]",
+            "title": "17. 자본금 및 자본잉여금(1) 자본금의 내역은 다음과 같습니다."
+          }
+        ]
+      },
+      {
+        "id": "X03",
+        "question": "2025년 별도 기준 재고자산은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00369657_2025_separate_xml_0001_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00369657_2025_separate_xml_0013_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[76]",
+            "title": "9. 재고자산(1) 재고자산의 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00369657_2025_separate_xml_0007_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[28]",
+            "title": "3. 중요한 회계정책"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00369657_2025_separate_xml_0035_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[188]",
+            "title": "32. 위험관리32-1. 자본위험관리당사의 자본관리는 건전한 자본구조의 유지를 통한 주주이익 극대화를 목적으로 하고 있으며, 당사는 자본관리의 일환으로 안정적인 배당을 시행하고 있습니다.당사는 타인자본조달비율을 기초로 하여 자본을 관리합니다. 이 비율은 차입금을 총자본으로 나누어 산출됩니다. 당사의 전략은 무차입경영을 목표로 타인자본조달비율을 0%로 유지하는 것입니다.타인자본조달비율은 다음과 같습니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00369657_2025_separate_xml_0007_14",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[28]",
+            "title": "3. 중요한 회계정책"
+          }
+        ]
+      },
+      {
+        "id": "X04",
+        "question": "2025년 별도 기준 영업이익은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00369657_2025_separate_xml_0002_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00369657_2025_separate_xml_0023_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[139]",
+            "title": "19. 이익잉여금이익잉여금의 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00369657_2025_separate_xml_0007_14",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[28]",
+            "title": "3. 중요한 회계정책"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00369657_2025_separate_xml_0029_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[154]",
+            "title": "25. 금융수익 및 금융비용(1) 금융수익 및 금융비용의 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00369657_2025_separate_xml_0035_05",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[188]",
+            "title": "32. 위험관리32-1. 자본위험관리당사의 자본관리는 건전한 자본구조의 유지를 통한 주주이익 극대화를 목적으로 하고 있으며, 당사는 자본관리의 일환으로 안정적인 배당을 시행하고 있습니다.당사는 타인자본조달비율을 기초로 하여 자본을 관리합니다. 이 비율은 차입금을 총자본으로 나누어 산출됩니다. 당사의 전략은 무차입경영을 목표로 타인자본조달비율을 0%로 유지하는 것입니다.타인자본조달비율은 다음과 같습니다."
+          }
+        ]
+      },
+      {
+        "id": "X05",
+        "question": "2025년 별도 기준 당기순이익은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00369657_2025_separate_xml_0002_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00369657_2025_separate_xml_0007_14",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[28]",
+            "title": "3. 중요한 회계정책"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00369657_2025_separate_xml_0021_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[129]",
+            "title": "17. 자본금 및 자본잉여금(1) 자본금의 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00369657_2025_separate_xml_0035_05",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[188]",
+            "title": "32. 위험관리32-1. 자본위험관리당사의 자본관리는 건전한 자본구조의 유지를 통한 주주이익 극대화를 목적으로 하고 있으며, 당사는 자본관리의 일환으로 안정적인 배당을 시행하고 있습니다.당사는 타인자본조달비율을 기초로 하여 자본을 관리합니다. 이 비율은 차입금을 총자본으로 나누어 산출됩니다. 당사의 전략은 무차입경영을 목표로 타인자본조달비율을 0%로 유지하는 것입니다.타인자본조달비율은 다음과 같습니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00369657_2025_separate_xml_0012_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[71]",
+            "title": "8. 기타금융자산(1) 기타금융자산의 내역은 다음과 같습니다."
+          }
+        ]
+      },
+      {
+        "id": "X06",
+        "question": "2025년 별도 기준 영업활동으로 인한 현금흐름은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00369657_2025_separate_xml_0004_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00369657_2025_separate_xml_0034_03",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[180]",
+            "title": "31. 현금흐름표(1) 영업으로부터 창출된 현금흐름의 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00369657_2025_separate_xml_0035_05",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[188]",
+            "title": "32. 위험관리32-1. 자본위험관리당사의 자본관리는 건전한 자본구조의 유지를 통한 주주이익 극대화를 목적으로 하고 있으며, 당사는 자본관리의 일환으로 안정적인 배당을 시행하고 있습니다.당사는 타인자본조달비율을 기초로 하여 자본을 관리합니다. 이 비율은 차입금을 총자본으로 나누어 산출됩니다. 당사의 전략은 무차입경영을 목표로 타인자본조달비율을 0%로 유지하는 것입니다.타인자본조달비율은 다음과 같습니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00369657_2025_separate_xml_0007_18",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[28]",
+            "title": "3. 중요한 회계정책"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00369657_2025_separate_xml_0027_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[150]",
+            "title": "23. 기타수익 및 기타비용기타수익 및 기타비용의 내역은 다음과 같습니다."
+          }
+        ]
+      },
+      {
+        "id": "X07",
+        "question": "2025년 별도 기준 배당금 지급액은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00369657_2025_separate_xml_0023_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[139]",
+            "title": "19. 이익잉여금이익잉여금의 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00369657_2025_separate_xml_0024_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[142]",
+            "title": "20. 배당금"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00369657_2025_separate_xml_0034_05",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[180]",
+            "title": "31. 현금흐름표(1) 영업으로부터 창출된 현금흐름의 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00369657_2025_separate_xml_0004_03",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00369657_2025_separate_xml_0019_05",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[106]",
+            "title": "15. 종업원급여(1) 확정급여형 퇴직급여제도와 관련하여 재무상태표에 인식한 부채(자산)의 내역은 다음과 같습니다."
+          }
+        ]
+      },
+      {
+        "id": "X08",
+        "question": "2025년 별도 기준 자본총계는 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00369657_2025_separate_xml_0021_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[129]",
+            "title": "17. 자본금 및 자본잉여금(1) 자본금의 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00369657_2025_separate_xml_0002_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00369657_2025_separate_xml_0035_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[188]",
+            "title": "32. 위험관리32-1. 자본위험관리당사의 자본관리는 건전한 자본구조의 유지를 통한 주주이익 극대화를 목적으로 하고 있으며, 당사는 자본관리의 일환으로 안정적인 배당을 시행하고 있습니다.당사는 타인자본조달비율을 기초로 하여 자본을 관리합니다. 이 비율은 차입금을 총자본으로 나누어 산출됩니다. 당사의 전략은 무차입경영을 목표로 타인자본조달비율을 0%로 유지하는 것입니다.타인자본조달비율은 다음과 같습니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00369657_2025_separate_xml_0009_04",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[54]",
+            "title": "5. 공정가치(1) 측정분류별 장부금액 및 공정가치는 다음과 같습니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00369657_2025_separate_xml_0007_14",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[28]",
+            "title": "3. 중요한 회계정책"
+          }
+        ]
+      },
+      {
+        "id": "X09",
+        "question": "2025년과 2024년 별도 기준 배당금 지급액은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00369657_2025_separate_xml_0024_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[142]",
+            "title": "20. 배당금"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00369657_2025_separate_xml_0023_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[139]",
+            "title": "19. 이익잉여금이익잉여금의 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00369657_2025_separate_xml_0019_05",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[106]",
+            "title": "15. 종업원급여(1) 확정급여형 퇴직급여제도와 관련하여 재무상태표에 인식한 부채(자산)의 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00369657_2025_separate_xml_0004_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00369657_2025_separate_xml_0012_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[71]",
+            "title": "8. 기타금융자산(1) 기타금융자산의 내역은 다음과 같습니다."
+          }
+        ]
+      },
+      {
+        "id": "X10",
+        "question": "2025년과 2024년 별도 기준 당기순이익은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00369657_2025_separate_xml_0002_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00369657_2025_separate_xml_0023_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[139]",
+            "title": "19. 이익잉여금이익잉여금의 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00369657_2025_separate_xml_0007_14",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[28]",
+            "title": "3. 중요한 회계정책"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00369657_2025_separate_xml_0031_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[169]",
+            "title": "27. 주당이익주당이익의 계산내역은 다음과 같습니다.(1) 기본주당이익"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00369657_2025_separate_xml_0035_06",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[188]",
+            "title": "32. 위험관리32-1. 자본위험관리당사의 자본관리는 건전한 자본구조의 유지를 통한 주주이익 극대화를 목적으로 하고 있으며, 당사는 자본관리의 일환으로 안정적인 배당을 시행하고 있습니다.당사는 타인자본조달비율을 기초로 하여 자본을 관리합니다. 이 비율은 차입금을 총자본으로 나누어 산출됩니다. 당사의 전략은 무차입경영을 목표로 타인자본조달비율을 0%로 유지하는 것입니다.타인자본조달비율은 다음과 같습니다."
+          }
+        ]
+      },
+      {
+        "id": "X11",
+        "question": "2025년과 2024년 별도 기준 자본총계는 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": false,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00369657_2025_separate_xml_0021_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[129]",
+            "title": "17. 자본금 및 자본잉여금(1) 자본금의 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00369657_2025_separate_xml_0002_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00369657_2025_separate_xml_0009_04",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[54]",
+            "title": "5. 공정가치(1) 측정분류별 장부금액 및 공정가치는 다음과 같습니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00369657_2025_separate_xml_0007_14",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[28]",
+            "title": "3. 중요한 회계정책"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00369657_2025_separate_xml_0035_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[188]",
+            "title": "32. 위험관리32-1. 자본위험관리당사의 자본관리는 건전한 자본구조의 유지를 통한 주주이익 극대화를 목적으로 하고 있으며, 당사는 자본관리의 일환으로 안정적인 배당을 시행하고 있습니다.당사는 타인자본조달비율을 기초로 하여 자본을 관리합니다. 이 비율은 차입금을 총자본으로 나누어 산출됩니다. 당사의 전략은 무차입경영을 목표로 타인자본조달비율을 0%로 유지하는 것입니다.타인자본조달비율은 다음과 같습니다."
+          }
+        ]
+      },
+      {
+        "id": "X12",
+        "question": "2025년과 2024년 별도 기준 영업활동으로 인한 현금흐름은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00369657_2025_separate_xml_0004_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00369657_2025_separate_xml_0034_03",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[180]",
+            "title": "31. 현금흐름표(1) 영업으로부터 창출된 현금흐름의 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00369657_2025_separate_xml_0035_05",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[188]",
+            "title": "32. 위험관리32-1. 자본위험관리당사의 자본관리는 건전한 자본구조의 유지를 통한 주주이익 극대화를 목적으로 하고 있으며, 당사는 자본관리의 일환으로 안정적인 배당을 시행하고 있습니다.당사는 타인자본조달비율을 기초로 하여 자본을 관리합니다. 이 비율은 차입금을 총자본으로 나누어 산출됩니다. 당사의 전략은 무차입경영을 목표로 타인자본조달비율을 0%로 유지하는 것입니다.타인자본조달비율은 다음과 같습니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00369657_2025_separate_xml_0007_18",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[28]",
+            "title": "3. 중요한 회계정책"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00369657_2025_separate_xml_0027_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[150]",
+            "title": "23. 기타수익 및 기타비용기타수익 및 기타비용의 내역은 다음과 같습니다."
+          }
+        ]
+      },
+      {
+        "id": "X13",
+        "question": "2025년 별도 기준 매출액은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00369657_2025_separate_xml_0002_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00369657_2025_separate_xml_0021_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[129]",
+            "title": "17. 자본금 및 자본잉여금(1) 자본금의 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00369657_2025_separate_xml_0007_26",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[28]",
+            "title": "3. 중요한 회계정책"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00369657_2025_separate_xml_0035_05",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[188]",
+            "title": "32. 위험관리32-1. 자본위험관리당사의 자본관리는 건전한 자본구조의 유지를 통한 주주이익 극대화를 목적으로 하고 있으며, 당사는 자본관리의 일환으로 안정적인 배당을 시행하고 있습니다.당사는 타인자본조달비율을 기초로 하여 자본을 관리합니다. 이 비율은 차입금을 총자본으로 나누어 산출됩니다. 당사의 전략은 무차입경영을 목표로 타인자본조달비율을 0%로 유지하는 것입니다.타인자본조달비율은 다음과 같습니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00369657_2025_separate_xml_0006_08",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[4]",
+            "title": "2. 재무제표 작성기준"
+          }
+        ]
+      },
+      {
+        "id": "X14",
+        "question": "2025년 별도 기준 부채총계는 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00369657_2025_separate_xml_0001_04",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00369657_2025_separate_xml_0035_06",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[188]",
+            "title": "32. 위험관리32-1. 자본위험관리당사의 자본관리는 건전한 자본구조의 유지를 통한 주주이익 극대화를 목적으로 하고 있으며, 당사는 자본관리의 일환으로 안정적인 배당을 시행하고 있습니다.당사는 타인자본조달비율을 기초로 하여 자본을 관리합니다. 이 비율은 차입금을 총자본으로 나누어 산출됩니다. 당사의 전략은 무차입경영을 목표로 타인자본조달비율을 0%로 유지하는 것입니다.타인자본조달비율은 다음과 같습니다."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00369657_2025_separate_xml_0009_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[54]",
+            "title": "5. 공정가치(1) 측정분류별 장부금액 및 공정가치는 다음과 같습니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00369657_2025_separate_xml_0019_03",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[106]",
+            "title": "15. 종업원급여(1) 확정급여형 퇴직급여제도와 관련하여 재무상태표에 인식한 부채(자산)의 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00369657_2025_separate_xml_0011_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[66]",
+            "title": "7. 매출채권 및 기타채권(1) 매출채권의 내역은 다음과 같습니다."
+          }
+        ]
+      },
+      {
+        "id": "X15",
+        "question": "2025년과 2024년 별도 기준 자산총계는 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00369657_2025_separate_xml_0001_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00369657_2025_separate_xml_0007_14",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[28]",
+            "title": "3. 중요한 회계정책"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00369657_2025_separate_xml_0008_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[45]",
+            "title": "4. 범주별 금융상품4-1. 금융상품의 범주별 장부금액(1) 금융자산의 범주별 금액은 다음과 같습니다.① 당기말"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00369657_2025_separate_xml_0027_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[150]",
+            "title": "23. 기타수익 및 기타비용기타수익 및 기타비용의 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00369657_2025_separate_xml_0021_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[129]",
+            "title": "17. 자본금 및 자본잉여금(1) 자본금의 내역은 다음과 같습니다."
+          }
+        ]
+      },
+      {
+        "id": "X16",
+        "question": "2025년과 2024년 별도 기준 매출액은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00369657_2025_separate_xml_0002_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00369657_2025_separate_xml_0025_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[147]",
+            "title": "21. 매출액매출액의 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00369657_2025_separate_xml_0011_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[66]",
+            "title": "7. 매출채권 및 기타채권(1) 매출채권의 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00369657_2025_separate_xml_0007_14",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[28]",
+            "title": "3. 중요한 회계정책"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00369657_2025_separate_xml_0021_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[129]",
+            "title": "17. 자본금 및 자본잉여금(1) 자본금의 내역은 다음과 같습니다."
+          }
+        ]
+      },
+      {
+        "id": "X17",
+        "question": "2025년과 2024년 별도 기준 영업이익은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00369657_2025_separate_xml_0002_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00369657_2025_separate_xml_0007_14",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[28]",
+            "title": "3. 중요한 회계정책"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00369657_2025_separate_xml_0023_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[139]",
+            "title": "19. 이익잉여금이익잉여금의 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00369657_2025_separate_xml_0029_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[154]",
+            "title": "25. 금융수익 및 금융비용(1) 금융수익 및 금융비용의 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00369657_2025_separate_xml_0027_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[150]",
+            "title": "23. 기타수익 및 기타비용기타수익 및 기타비용의 내역은 다음과 같습니다."
+          }
+        ]
+      },
+      {
+        "id": "X18",
+        "question": "2025년과 2024년 별도 기준 부채총계는 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00369657_2025_separate_xml_0001_04",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00369657_2025_separate_xml_0035_06",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[188]",
+            "title": "32. 위험관리32-1. 자본위험관리당사의 자본관리는 건전한 자본구조의 유지를 통한 주주이익 극대화를 목적으로 하고 있으며, 당사는 자본관리의 일환으로 안정적인 배당을 시행하고 있습니다.당사는 타인자본조달비율을 기초로 하여 자본을 관리합니다. 이 비율은 차입금을 총자본으로 나누어 산출됩니다. 당사의 전략은 무차입경영을 목표로 타인자본조달비율을 0%로 유지하는 것입니다.타인자본조달비율은 다음과 같습니다."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00369657_2025_separate_xml_0009_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[54]",
+            "title": "5. 공정가치(1) 측정분류별 장부금액 및 공정가치는 다음과 같습니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00369657_2025_separate_xml_0019_03",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[106]",
+            "title": "15. 종업원급여(1) 확정급여형 퇴직급여제도와 관련하여 재무상태표에 인식한 부채(자산)의 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00369657_2025_separate_xml_0011_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[66]",
+            "title": "7. 매출채권 및 기타채권(1) 매출채권의 내역은 다음과 같습니다."
+          }
+        ]
+      }
+    ],
+    "hybrid": [
+      {
+        "id": "X01",
+        "question": "2025년 별도 기준 자산총계는 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00369657_2025_separate_xml_0001_04",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00369657_2025_separate_xml_0001_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00369657_2025_separate_xml_0001_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00369657_2025_separate_xml_0002_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00369657_2025_separate_xml_0004_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          }
+        ]
+      },
+      {
+        "id": "X02",
+        "question": "2025년 별도 기준 현금및현금성자산은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00369657_2025_separate_xml_0004_03",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00369657_2025_separate_xml_0004_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00369657_2025_separate_xml_0001_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00369657_2025_separate_xml_0001_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00369657_2025_separate_xml_0002_03",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          }
+        ]
+      },
+      {
+        "id": "X03",
+        "question": "2025년 별도 기준 재고자산은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00369657_2025_separate_xml_0001_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00369657_2025_separate_xml_0004_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00369657_2025_separate_xml_0001_04",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00369657_2025_separate_xml_0001_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00369657_2025_separate_xml_0004_03",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          }
+        ]
+      },
+      {
+        "id": "X04",
+        "question": "2025년 별도 기준 영업이익은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00369657_2025_separate_xml_0002_03",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00369657_2025_separate_xml_0002_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00369657_2025_separate_xml_0004_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00369657_2025_separate_xml_0001_04",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00369657_2025_separate_xml_0002_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          }
+        ]
+      },
+      {
+        "id": "X05",
+        "question": "2025년 별도 기준 당기순이익은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00369657_2025_separate_xml_0002_03",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00369657_2025_separate_xml_0002_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00369657_2025_separate_xml_0002_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00369657_2025_separate_xml_0003_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00369657_2025_separate_xml_0003_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          }
+        ]
+      },
+      {
+        "id": "X06",
+        "question": "2025년 별도 기준 영업활동으로 인한 현금흐름은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00369657_2025_separate_xml_0004_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00369657_2025_separate_xml_0004_03",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00369657_2025_separate_xml_0034_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[180]",
+            "title": "31. 현금흐름표(1) 영업으로부터 창출된 현금흐름의 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00369657_2025_separate_xml_0004_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00369657_2025_separate_xml_0002_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          }
+        ]
+      },
+      {
+        "id": "X07",
+        "question": "2025년 별도 기준 배당금 지급액은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00369657_2025_separate_xml_0023_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[139]",
+            "title": "19. 이익잉여금이익잉여금의 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00369657_2025_separate_xml_0024_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[142]",
+            "title": "20. 배당금"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00369657_2025_separate_xml_0002_03",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00369657_2025_separate_xml_0003_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00369657_2025_separate_xml_0004_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          }
+        ]
+      },
+      {
+        "id": "X08",
+        "question": "2025년 별도 기준 자본총계는 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00369657_2025_separate_xml_0001_04",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00369657_2025_separate_xml_0003_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00369657_2025_separate_xml_0002_03",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00369657_2025_separate_xml_0001_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00369657_2025_separate_xml_0002_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          }
+        ]
+      },
+      {
+        "id": "X09",
+        "question": "2025년과 2024년 별도 기준 배당금 지급액은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00369657_2025_separate_xml_0024_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[142]",
+            "title": "20. 배당금"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00369657_2025_separate_xml_0002_03",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00369657_2025_separate_xml_0003_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00369657_2025_separate_xml_0023_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[139]",
+            "title": "19. 이익잉여금이익잉여금의 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00369657_2025_separate_xml_0004_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          }
+        ]
+      },
+      {
+        "id": "X10",
+        "question": "2025년과 2024년 별도 기준 당기순이익은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00369657_2025_separate_xml_0002_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00369657_2025_separate_xml_0002_03",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00369657_2025_separate_xml_0003_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00369657_2025_separate_xml_0002_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00369657_2025_separate_xml_0003_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          }
+        ]
+      },
+      {
+        "id": "X11",
+        "question": "2025년과 2024년 별도 기준 자본총계는 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00369657_2025_separate_xml_0003_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00369657_2025_separate_xml_0001_04",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00369657_2025_separate_xml_0002_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00369657_2025_separate_xml_0001_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00369657_2025_separate_xml_0001_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          }
+        ]
+      },
+      {
+        "id": "X12",
+        "question": "2025년과 2024년 별도 기준 영업활동으로 인한 현금흐름은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00369657_2025_separate_xml_0004_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00369657_2025_separate_xml_0004_03",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00369657_2025_separate_xml_0002_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00369657_2025_separate_xml_0034_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[180]",
+            "title": "31. 현금흐름표(1) 영업으로부터 창출된 현금흐름의 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00369657_2025_separate_xml_0034_04",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[180]",
+            "title": "31. 현금흐름표(1) 영업으로부터 창출된 현금흐름의 내역은 다음과 같습니다."
+          }
+        ]
+      },
+      {
+        "id": "X13",
+        "question": "2025년 별도 기준 매출액은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00369657_2025_separate_xml_0002_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00369657_2025_separate_xml_0002_03",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00369657_2025_separate_xml_0002_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00369657_2025_separate_xml_0004_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00369657_2025_separate_xml_0001_04",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          }
+        ]
+      },
+      {
+        "id": "X14",
+        "question": "2025년 별도 기준 부채총계는 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00369657_2025_separate_xml_0001_04",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00369657_2025_separate_xml_0001_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00369657_2025_separate_xml_0002_03",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00369657_2025_separate_xml_0001_03",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00369657_2025_separate_xml_0002_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          }
+        ]
+      },
+      {
+        "id": "X15",
+        "question": "2025년과 2024년 별도 기준 자산총계는 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00369657_2025_separate_xml_0001_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00369657_2025_separate_xml_0001_04",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00369657_2025_separate_xml_0001_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00369657_2025_separate_xml_0004_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00369657_2025_separate_xml_0004_03",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          }
+        ]
+      },
+      {
+        "id": "X16",
+        "question": "2025년과 2024년 별도 기준 매출액은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00369657_2025_separate_xml_0002_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00369657_2025_separate_xml_0002_03",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00369657_2025_separate_xml_0003_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00369657_2025_separate_xml_0004_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00369657_2025_separate_xml_0001_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          }
+        ]
+      },
+      {
+        "id": "X17",
+        "question": "2025년과 2024년 별도 기준 영업이익은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00369657_2025_separate_xml_0002_03",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00369657_2025_separate_xml_0002_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00369657_2025_separate_xml_0003_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00369657_2025_separate_xml_0004_01",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00369657_2025_separate_xml_0001_04",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          }
+        ]
+      },
+      {
+        "id": "X18",
+        "question": "2025년과 2024년 별도 기준 부채총계는 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00369657_2025_separate_xml_0001_04",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00369657_2025_separate_xml_0001_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00369657_2025_separate_xml_0004_02",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00369657_2025_separate_xml_0002_03",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00369657_2025_separate_xml_0001_03",
+            "source_file": "20260318000182_00760.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          }
+        ]
+      }
+    ]
+  }
+}
