@@ -26,17 +26,17 @@
       "hit_at_5": 1.0,
       "value_hit_at_3": 0.8333333333333334,
       "value_hit_at_5": 1.0,
-      "source_value_hit_at_3": 0.7777777777777778,
-      "source_value_hit_at_5": 0.8888888888888888,
+      "source_value_hit_at_3": 0.7222222222222222,
+      "source_value_hit_at_5": 0.8333333333333334,
       "total": 18
     },
     "mmr": {
       "hit_at_3": 1.0,
       "hit_at_5": 1.0,
-      "value_hit_at_3": 0.7222222222222222,
-      "value_hit_at_5": 0.7222222222222222,
-      "source_value_hit_at_3": 0.6111111111111112,
-      "source_value_hit_at_5": 0.6111111111111112,
+      "value_hit_at_3": 0.7777777777777778,
+      "value_hit_at_5": 0.7777777777777778,
+      "source_value_hit_at_3": 0.6666666666666666,
+      "source_value_hit_at_5": 0.6666666666666666,
       "total": 18
     },
     "hybrid": {
@@ -1232,8 +1232,8 @@
         "hit_at_5": true,
         "value_hit_at_3": true,
         "value_hit_at_5": true,
-        "source_value_hit_at_3": true,
-        "source_value_hit_at_5": true,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
         "results": [
           {
             "rank": 1,
@@ -2080,10 +2080,10 @@
         ],
         "hit_at_3": true,
         "hit_at_5": true,
-        "value_hit_at_3": false,
-        "value_hit_at_5": false,
-        "source_value_hit_at_3": false,
-        "source_value_hit_at_5": false,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
         "results": [
           {
             "rank": 1,
