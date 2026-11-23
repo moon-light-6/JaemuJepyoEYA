@@ -106,3 +106,22 @@ python scripts/run_pipeline_xml.py \
 | 위치+값@3/@5 | 같은 청크가 Gold XML 위치이면서 기대값도 포함 |
 
 점수가 낮으면 먼저 XML 문서 단위가 너무 큰지, 표가 답 행 기준으로 잘렸는지, 질문의 계정명과 원문 표기가 다른지 확인한다. 현재 기본 청킹은 문서당 600자, 중복 100자이며, 표의 행 구조를 더 엄밀히 보존하는 청킹은 후속 개선 과제다.
+
+## 7. v2 보충 평가셋
+
+`--make-draft-dataset` 실행 때 `제외: ...`로 빠진 문항은 v1 파일을 고치지 않고 v2 파일로 보충한다. v2는 v1에 없는 질문만 담으며, 문항 ID는 v1 다음 번호(`X15`…)부터 이어진다.
+
+```zsh
+python scripts/run_pipeline_xml.py ^
+  --company "현대자동차" ^
+  --corp-code 00164742 ^
+  --fiscal-year 2025 ^
+  --rcept-no 20260318001394 ^
+  --statement-scope consolidated ^
+  --make-draft-dataset-v2
+```
+
+- 결과는 `evaluation/dataset/xml/.../{rcept_no}_retrieval_v2.json`에 `draft`로 저장되며, 이미 있으면 덮어쓰지 않는다.
+- 4절과 같은 방식으로 검증해 `verified`로 바꾼다.
+- 검색 평가에 v1과 v2를 함께 쓰려면 5절 명령에 `--include-v2`를 붙인다. 붙이지 않으면 v1만 평가한다.
+- 재무제표 제목이 `<TABLE>`이 아니라 `<P>`인 XML(예: 현대자동차)은 `<TABLE>` 제목이 하나도 없을 때만 `<P>` 제목으로 재무제표를 문서화한다. 이 XML을 이전 코드로 만든 문서·청크는 `--prepare-only`로 다시 만들고, 평가 때 `--rebuild-index`를 붙인다.

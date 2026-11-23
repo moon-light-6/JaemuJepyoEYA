@@ -80,7 +80,7 @@
     "opendart_account": {
       "sj_div": "BS",
       "account_id": "ifrs-full_Inventories",
-      "account_nm": "유동재고자산"
+      "account_nm": "재고자산"
     },
     "id": "X03",
     "annotation_status": "verified",
@@ -109,7 +109,7 @@
     "opendart_account": {
       "sj_div": "CIS",
       "account_id": "ifrs-full_Revenue",
-      "account_nm": "수익(매출액)"
+      "account_nm": "매출액"
     },
     "id": "X04",
     "annotation_status": "verified",
@@ -138,7 +138,7 @@
     "opendart_account": {
       "sj_div": "CF",
       "account_id": "ifrs-full_CashFlowsFromUsedInOperatingActivities",
-      "account_nm": "영업활동현금흐름"
+      "account_nm": "영업활동으로인한현금흐름"
     },
     "id": "X05",
     "annotation_status": "verified",
@@ -177,7 +177,7 @@
     "question": "2025년과 2024년 연결 기준 자산총계는 각각 얼마인가?",
     "answer_type": "comparison",
     "expected_value": {
-      "2025": "887,892,914,256 ",
+      "2025": "887,892,914,256",
       "2024": "986,824,795,276"
     },
     "unit": "원",
@@ -231,7 +231,7 @@
     "opendart_account": {
       "sj_div": "CIS",
       "account_id": "ifrs-full_Revenue",
-      "account_nm": "수익(매출액)"
+      "account_nm": "매출액"
     },
     "id": "X08",
     "annotation_status": "verified",
@@ -263,7 +263,7 @@
     "opendart_account": {
       "sj_div": "CF",
       "account_id": "ifrs-full_CashFlowsFromUsedInOperatingActivities",
-      "account_nm": "영업활동현금흐름"
+      "account_nm": "영업활동으로인한현금흐름"
     },
     "id": "X09",
     "annotation_status": "verified",

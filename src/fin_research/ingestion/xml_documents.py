@@ -36,6 +36,8 @@ SCOPE_SECTIONS = {
 }
 
 NOTE_HEADING = re.compile(r"^\d+\.\s+.+")
+# 재무제표 제목 P의 최대 길이(공백 제거 후). '연결포괄손익계산서' 같은 제목만 통과시킨다.
+TITLE_PARAGRAPH_MAX_LENGTH = 20
 
 # 사업보고서 본문에서 따옴표가 깨진 속성. 예: ENG="" KB Insurance Co., Ltd ""
 BROKEN_ATTRIBUTE = re.compile(r'(\s[A-Za-z_][\w.-]*)=""([^"<>]*)""')
@@ -312,6 +314,16 @@ def build_xml_documents(
             for index, element in enumerate(statement_children)
             if element.tag == "TABLE" and _statement_kind(element_text(element))
         ]
+        if not starts:
+            # 재무제표 제목이 TABLE이 아니라 P('연 결 현 금 흐 름 표')인 XML. 표 제목이
+            # 하나도 없을 때만 쓰므로, 기존에 TABLE로 처리되던 기업의 결과는 바뀌지 않는다.
+            starts = [
+                (index, _statement_kind(element_text(element)))
+                for index, element in enumerate(statement_children)
+                if element.tag == "P"
+                and len(normalized_label(element_text(element))) <= TITLE_PARAGRAPH_MAX_LENGTH
+                and _statement_kind(element_text(element))
+            ]
         for position, (start, title) in enumerate(starts):
             end = starts[position + 1][0] if position + 1 < len(starts) else len(statement_children)
             parts = [element_text(element) for element in statement_children[start:end]]
