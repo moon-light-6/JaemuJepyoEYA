@@ -15,6 +15,8 @@ from typing import Annotated, Literal
 from pydantic import BaseModel, Field
 from typing_extensions import TypedDict
 
+from fin_research.research.state import override_reducer
+
 # ----------------------
 # 선택지
 # ----------------------
@@ -133,7 +135,8 @@ class VerifyState(TypedDict, total=False):
     rcept_no: str | None
     claims: list[Claim]
     # verify_claim을 주장마다 Send로 병렬 실행 → 각자 [Verdict 하나]를 반환 → 이어 붙임
-    verdicts: Annotated[list[Verdict], operator.add]
+    # aggregate는 {"type": "override", "value": [...]}로 주장 순서대로 다시 정렬해 통째로 바꾼다
+    verdicts: Annotated[list[Verdict], override_reducer]
     summary: dict[str, int]
     errors: Annotated[list[str], operator.add]
     step: str
@@ -153,6 +156,8 @@ class VerifyOutput(TypedDict):
 
     company: str | None
     corp_code: str | None
+    fiscal_year: int | None
+    rcept_no: str | None
     claims: list[Claim]
     verdicts: list[Verdict]
     summary: dict[str, int]
