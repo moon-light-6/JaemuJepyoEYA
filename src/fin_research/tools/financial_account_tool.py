@@ -2,6 +2,7 @@
 
 from decimal import Decimal, InvalidOperation
 
+from fin_research.verify.accounts import load_aliases, normalize_name
 from fin_research.tools.financial_models import FinancialContext, FinancialDataError, FinancialFact
 
 
@@ -44,17 +45,24 @@ class FinancialAccountTool:
         """필요 계정만 읽고 ROE에 필요한 경우 전기말 자본도 같은 공시에서 확보한다."""
         if not metrics or any(metric not in ACCOUNT_SPECS for metric in metrics):
             raise ValueError("지원하는 재무 지표를 지정하세요.")
-        account_ids = sorted({identifier for metric in metrics for identifier in ACCOUNT_SPECS[metric][0]})
-        names = sorted({name for metric in metrics for name in ACCOUNT_SPECS[metric][1]})
+        shared = load_aliases()
+        specs = {}
+        for metric in metrics:
+            ids, names, statements = ACCOUNT_SPECS[metric]
+            alias = shared.get("operating_income" if metric == "operating_profit" else metric)
+            specs[metric] = (tuple(dict.fromkeys(ids + (alias.account_ids if alias else ()))),
+                             {normalize_name(name) for name in names} | (alias.names if alias else set()), statements)
+        account_ids = sorted({identifier for metric in metrics for identifier in specs[metric][0]})
+        names = sorted({name for metric in metrics for name in specs[metric][1]})
         result = self.store.read_financial_accounts(context, account_ids, names)
         if result.truncated:
             raise FinancialDataError("계정 조회 결과가 잘려 정확한 선택을 할 수 없습니다.", "truncated_data")
         facts = []
         for metric in metrics:
-            ids, aliases, statements = ACCOUNT_SPECS[metric]
+            ids, aliases, statements = specs[metric]
             candidates = [row for row in result.rows if row.get("sj_div") in statements
                           and (row.get("account_id") in ids or (
-                              row.get("account_nm") in aliases
+                              normalize_name(row.get("account_nm")) in aliases
                               and not str(row.get("account_id") or "").startswith(("ifrs-full_", "dart_"))
                           ))]
             # 명확한 표준 ID가 있으면 이름만 같은 사용자 정의 계정보다 우선한다.

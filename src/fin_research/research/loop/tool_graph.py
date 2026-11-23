@@ -62,7 +62,7 @@ def compose_tool_result(question: str, context: FinancialContext, state: ToolRes
     answered = state["stop_reason"] in ("completed", "sufficient_evidence")
     numbers, lines, cited = [], [], []
     plan = state["plan"]
-    if answered and plan is not None:
+    if plan is not None:
         for fact in state["facts"]:
             if fact.metric not in plan.metrics or fact.context.year != context.year:
                 continue
@@ -84,8 +84,23 @@ def compose_tool_result(question: str, context: FinancialContext, state: ToolRes
             lines.append(text)
             cited.extend(document_ids[source] for source in findings["evidence_ids"])
     cited = list(dict.fromkeys(cited))
-    answer = "\n".join(lines) if answered else "필요한 자료나 기준을 확인하지 못해 답변을 확정할 수 없습니다."
-    limitations = list(state["limitations"]) + list((document.get("findings") or {}).get("limitations", []))
+    partial = not answered and bool(lines)
+    components = {
+        "metrics": "complete" if plan and plan.metrics and all(
+            any(number["metric"] == metric for number in numbers) for metric in plan.metrics
+        ) else "unavailable" if plan and plan.metrics else "not_requested",
+        "ratios": "complete" if plan and plan.ratios and len(state["calculations"]) == len(plan.ratios)
+        else "unavailable" if plan and plan.ratios else "not_requested",
+        "explanation": "complete" if (document.get("findings") or {}).get("status") == "draft"
+        else "unavailable" if plan and plan.document_question else "not_requested",
+    }
+    if partial:
+        if components["explanation"] == "unavailable":
+            lines.append("설명 부분은 필요한 근거를 확보하지 못해 확정하지 못했습니다.")
+        if components["ratios"] == "unavailable":
+            lines.append("요청한 비율 계산은 입력 자료나 계산 조건을 확인하지 못했습니다.")
+    answer = "\n".join(lines) if answered or partial else "필요한 자료나 기준을 확인하지 못해 답변을 확정할 수 없습니다."
+    limitations = list(dict.fromkeys(list(state["limitations"]) + list((document.get("findings") or {}).get("limitations", []))))
     if not answered and not limitations:
         limitations.append(f"조사 종료: {state['stop_reason']}")
     return {
@@ -99,7 +114,8 @@ def compose_tool_result(question: str, context: FinancialContext, state: ToolRes
         "calculations": [result.model_dump(mode="json") for result in state["calculations"]],
         "evidences": evidences, "evidence_count": len(evidences),
         "document_research": document or None,
-        "findings": {"status": "draft" if answered else "insufficient_evidence",
+        "component_status": components,
+        "findings": {"status": "draft" if answered else "partial" if partial else "insufficient_evidence",
                      "answer": answer, "evidence_ids": cited, "limitations": limitations},
         "numeric_verification": "structured_inputs_checked" if state["facts"] else "not_performed",
         "verification": {"calculation_checked": bool(state["calculations"]),
@@ -109,12 +125,14 @@ def compose_tool_result(question: str, context: FinancialContext, state: ToolRes
 
 def run_tool_research(question: str, context: FinancialContext, persist_directory: Path, *,
                       model=None, model_name=None, account_tool=None, search_function=None,
-                      budget=None, max_rounds: int = 3, top_k: int = 5, progress=None, source_format="xml") -> dict:
+                      budget=None, max_rounds: int = 3, top_k: int = 5, progress=None, source_format="xml", xml_version=1) -> dict:
     """계획·라우팅·도구 실행·검증을 LangGraph로 수행하고 기존 문서 루프는 재사용한다."""
     if not question.strip() or len(question) > 10000 or not 1 <= max_rounds <= 5 or not 1 <= top_k <= 10:
         raise ValueError("질문과 최대 검색 횟수(1~5), top_k(1~10)를 확인하세요.")
     if source_format not in ("xml", "pdf"):
         raise ValueError("source_format은 xml 또는 pdf여야 합니다.")
+    if xml_version not in (1, 2) or (source_format != "xml" and xml_version != 1):
+        raise ValueError("XML 버전은 1 또는 2이며 PDF에는 지정할 수 없습니다.")
     from langgraph.graph import END, START, StateGraph
     from fin_research.retrieval.search_target import SearchTarget
     from fin_research.research.loop.graph import _role_model
@@ -124,7 +142,7 @@ def run_tool_research(question: str, context: FinancialContext, persist_director
     executor = ResearchToolExecutor(
         context, persist_directory, target, account_tool=account_tool, search_function=search_function,
         model=model, model_name=model_name, budget=budget, max_rounds=max_rounds, top_k=top_k, progress=progress,
-        source_format=source_format,
+        source_format=source_format, xml_version=xml_version,
     )
 
     def plan_node(state: ToolResearchState) -> dict:

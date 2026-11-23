@@ -92,5 +92,33 @@ python -X utf8 evaluation\run_eval.py --mode integration-mock --out data\runs\lo
 ```
 
 생산 planner의 구조화 출력, router, executor, 계산 도구, LangGraph와 문서 재검색 루프를
-실행하되 모델 응답·DB·검색 입력만 대체한다. 12개 가상 사례의 통과가 실제 기업 데이터나
+실행하되 모델 응답·DB·검색 입력만 대체한다. 13개 가상 사례의 통과가 실제 기업 데이터나
 GPT의 계획·검색 정확도 100%를 의미하지 않는다.
+
+## XML 재검색 및 v2 청크 사용
+
+첫 검색은 벡터 검색이다. 두 번째부터는 재무제표 주석을 우선 검색하고 같은 필터의 BM25 결과와 RRF로 결합한다. 후보 안에서는 이전에 확보하지 않은 청크를 우선한다. 섹션을 명시했다면 필터를 완화하지 않는다. 키워드 검색은 최대 5천 청크까지만 준비하며, 초과하면 벡터 검색만 사용한다. 문서가 색인 범위에 없으면 이 방식도 근거를 만들 수 없다.
+
+`document_research.history[].search_info`에서 전략, 컬렉션, 필터와 청크 버전을 확인한다. XML 로그에는 페이지 대신 XPath가 표시된다.
+
+새 브랜치의 v2 청크로 이미 색인했다면 다음 명령을 사용한다.
+
+```bat
+python -X utf8 scripts\run_loop.py --multi-tool --xml-version 2 --company "고영" --fiscal-year 2025 --statement-scope consolidated --rcept-no 20260312000804 --question "고영의 2025년 연결 매출액과 회사가 설명한 매출 변화 원인을 알려줘." --max-rounds 3 --out data\runs\multi_tool_goyoung_reason_v2.json
+```
+
+v2는 기본 청크 JSON의 SHA-256으로 `data/chroma_xml_v2/<해시>` 저장소를 찾는다. `--persist-directory`는 해시 폴더의 상위 경로다. 색인이나 청크가 없으면 오류로 종료하며 자동 다운로드·재색인·v1 전환은 하지 않는다. 기본 청크 JSON 경로를 사용하는 v2 파이프라인과 연동한다. 사용자 지정 `--chunks-path`로 만든 v2 자료는 현재 조사 명령에서 지원하지 않는다.
+
+공통 계정 별칭은 `configs/account_aliases.yaml` 및 `verify/accounts.py`의 이름 정규화를 재사용한다. 금액은 기존 Decimal 처리, 동일 공시 필터, 중복 충돌 보류 정책을 유지한다.
+
+## 일부만 확인된 결과
+
+숫자는 확보했으나 설명이 부족하면 `findings.status`는 `partial`이다. `component_status`의 `metrics`, `ratios`, `explanation`이 각각 `complete`, `unavailable`, `not_requested`로 표시된다. 예를 들어 매출액을 출처와 함께 제시한 뒤 설명은 근거 부족으로 확정하지 못했다고 표시한다. 전체 성공(`draft`)과 구분하고 원래 종료 사유도 유지한다.
+
+아직 필요한 작업은 실제 기업 질문으로 검색·모델 성능 검수, 재무제표 주석 밖 사업 현황·경영진 설명 자료의 수집 범위 검토, 상위 Researcher 노드의 다중 도구 루프 연결이다. 원문 대조 판정 전체는 이번 작업의 완료 범위가 아니다.
+
+## 이번 변경의 실행 확인
+
+2026-11-23 기존 고영 XML v1 색인과 실제 GPT·PostgreSQL로 혼합 질문을 실행했다. 첫 검색 5개 이후 주석 하이브리드 재검색에서 신규 근거 5개를 확보했다. 두 번의 검색으로 원인 설명을 확정하지 못해 `max_rounds`로 종료했으며, 최종 결과는 매출액 232,647,218,656원을 보존한 `partial`이었다. 결과는 `data/runs/multi_tool_goyoung_reason_refined.json`에 저장했다. 한 질문의 동작 확인이며 전체 정확도 평가는 아니다. v2 경로 선택은 단위 테스트로 확인했으며 이번 실제 GPT 실행은 v1을 사용했다.
+
+회귀 테스트 361개 중 354개 통과·7개 건너뜀, 실패 0개. 통합 모의 평가 13/13 통과. 실제 기업 질문과 정답을 갖춘 확대 평가가 별도로 필요하다.

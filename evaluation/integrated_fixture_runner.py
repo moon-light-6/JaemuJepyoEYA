@@ -44,7 +44,8 @@ def observation_from_tool_result(case_id: str, result: dict) -> LoopObservation:
         evidences.append(QAEvidence(id=evidence["chunk_id"], text=evidence["text"],
                                      source_file=evidence["source_file"], context=source_context))
     return LoopObservation(
-        case_id=case_id, status="answered" if result["findings"]["status"] == "draft" else "abstained",
+        case_id=case_id, status={"draft": "answered", "partial": "partial"}.get(result["findings"]["status"], "abstained"),
+        component_status=result.get("component_status", {}),
         answer=result["findings"]["answer"],
         numbers=[NumericAnswer(metric=number["metric"], value=number["value"], unit=number["unit"],
                                context=QAContext.model_validate({key: number["context"][key]

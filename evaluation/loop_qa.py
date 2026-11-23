@@ -50,7 +50,8 @@ class ExpectedNumber(StrictModel):
 class ExpectedResult(StrictModel):
     """정답·도구 순서·출처·반복 횟수·종료 사유를 독립적으로 정의한다."""
 
-    status: Literal["answered", "abstained", "error"]
+    status: Literal["answered", "partial", "abstained", "error"]
+    component_status: dict[str, Literal["complete", "unavailable", "not_requested"]] = Field(default_factory=dict)
     numbers: list[ExpectedNumber] = Field(default_factory=list)
     required_phrases: list[str] = Field(default_factory=list)
     required_source_ids: list[str] = Field(default_factory=list)
@@ -66,7 +67,7 @@ class ExpectedResult(StrictModel):
             raise ValueError("최소 반복 횟수가 최대 반복 횟수보다 큽니다.")
         if len({number.metric for number in self.numbers}) != len(self.numbers):
             raise ValueError("정답 지표가 중복되었습니다.")
-        if self.status != "answered" and self.numbers:
+        if self.status not in ("answered", "partial") and self.numbers:
             raise ValueError("보류·오류 정답에 확정 숫자를 넣을 수 없습니다.")
         return self
 
@@ -156,7 +157,8 @@ class LoopObservation(StrictModel):
     """채점할 시스템 출력의 공통 형식으로, 정답 정보는 포함하지 않는다."""
 
     case_id: str
-    status: Literal["answered", "abstained", "error"]
+    status: Literal["answered", "partial", "abstained", "error"]
+    component_status: dict[str, Literal["complete", "unavailable", "not_requested"]] = Field(default_factory=dict)
     answer: str
     numbers: list[NumericAnswer] = Field(default_factory=list)
     evidences: list[QAEvidence] = Field(default_factory=list)

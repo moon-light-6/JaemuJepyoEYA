@@ -163,11 +163,12 @@ class PostgresReadOnlyStore:
             FROM fin.dart_financial_accounts
             WHERE corp_code = %s AND fiscal_year = %s AND fs_div = %s
               AND rcept_no = %s AND reprt_code = '11011'
-              AND (account_id = ANY(%s) OR account_nm = ANY(%s))
+              AND (account_id = ANY(%s) OR
+                     lower(regexp_replace(account_nm, %s, '', 'g')) = ANY(%s))
             ORDER BY record_index
         """
         parameters = (context.corp_code, context.year, "CFS" if context.scope == "consolidated" else "OFS",
-                      context.rcept_no, account_ids, account_names)
+                      context.rcept_no, account_ids, r"[\s()（）\[\]·ㆍ,]", account_names)
         return self._execute_query(query, parameters)
 
     def _execute_query(self, query: str, parameters: tuple, *, display_sql: str | None = None) -> SQLResult:

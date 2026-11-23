@@ -35,11 +35,11 @@ class LoopQATests(unittest.TestCase):
     def test_default_dataset_covers_all_six_categories(self):
         """배포한 기본 질문이 요청한 6가지 유형을 모두 포함하는지 검사한다."""
         self.assertEqual({case.category for case in self.cases}, set(CATEGORY_LABELS))
-        self.assertEqual(len(self.cases), 12)
+        self.assertEqual(len(self.cases), 13)
         self.assertTrue(all(case.data_origin == "synthetic_fixture" for case in self.cases))
 
     def test_fixture_components_satisfy_declared_contracts(self):
-        """모의 도구로 실행한 12개 사례를 정답 계약과 독립적으로 비교한다."""
+        """모의 도구로 실행한 13개 사례를 정답 계약과 독립적으로 비교한다."""
         report = evaluate_observations(self.cases, list(self.observations.values()))
         self.assertEqual(report["summary"]["passed"], len(self.cases))
         self.assertEqual(report["summary"]["failure_types"], {})
@@ -95,6 +95,14 @@ class LoopQATests(unittest.TestCase):
         self.assertEqual(self.observations["LQ06"].rounds, 2)
         self.assertEqual(self.observations["LQ08"].rounds, 1)
 
+    def test_partial_answer_keeps_checked_number_and_exposes_missing_explanation(self):
+        """부분 답변도 금액·출처를 검수하고 미확보 설명을 완료로 표시하지 못하게 한다."""
+        actual = self.observations["LQ13"]
+        self.assertEqual(actual.status, "partial")
+        self.assertEqual(actual.numbers[0].value, Decimal("1000000"))
+        self.assertIn("partial_safety", self.grade("LQ13", limitations=[]).failure_types)
+        self.assertIn("component_status", self.grade("LQ13", component_status={}).failure_types)
+
     def test_abstention_requires_an_explanation(self):
         """보류 상태만 표시하고 이유를 비워 둔 결과를 실패시킨다."""
         self.assertIn("abstention_safety", self.grade("LQ10", limitations=[]).failure_types)
@@ -116,8 +124,8 @@ class LoopQATests(unittest.TestCase):
     def test_missing_result_is_counted_and_unknown_result_is_rejected(self):
         """실패한 질문을 결과 파일에서 빼 통과율을 높이지 못하도록 한다."""
         report = evaluate_observations(self.cases, list(self.observations.values())[:-1])
-        self.assertEqual(report["summary"]["total"], 12)
-        self.assertEqual(report["summary"]["passed"], 11)
+        self.assertEqual(report["summary"]["total"], 13)
+        self.assertEqual(report["summary"]["passed"], 12)
         self.assertEqual(report["summary"]["failure_types"]["missing_prediction"], 1)
         unknown = self.observations["LQ01"].model_copy(update={"case_id": "unknown"})
         with self.assertRaises(ValueError):

@@ -2,7 +2,7 @@
 
 ## 평가 범위
 
-기본 평가셋은 **가상 기업과 가상 숫자**로 구성된 12개 시나리오다. 공시에서 검수한
+기본 평가셋은 **가상 기업과 가상 숫자**로 구성된 13개 시나리오다. 공시에서 검수한
 실제 기업 정답으로 표시하지 않는다. API 키, OpenDART 호출, 실제 DB, 임베딩 모델 없이 실행한다.
 
 기본 모의 실행에서 실제로 동작하는 코드는 다음과 같다.
@@ -48,7 +48,7 @@ python -X utf8 evaluation\run_eval.py --mode mock --out data\runs\loop_qa_report
 - 관측값 JSONL: 도구 이력, 확보한 근거, 반환 숫자, 답변, 종료 사유.
 - 종료 코드: 0=모든 질문 통과, 1=평가 실패, 2=입력 자료 오류.
 
-새 다중 도구 그래프를 같은 12개 시나리오로 평가하려면 다음 명령을 사용한다.
+새 다중 도구 그래프를 같은 13개 시나리오로 평가하려면 다음 명령을 사용한다.
 
 ```bat
 python -X utf8 evaluation\run_eval.py --mode integration-mock --out data\runs\loop_qa_integration_report.json --observations-out data\runs\loop_qa_integration_observations.jsonl
@@ -106,3 +106,7 @@ python -X utf8 -m unittest discover -s tests -p test_loop_qa.py -v
 ```
 
 정상 사례 외에 금액·단위·연도·범위·출처·도구 순서·검색 횟수를 일부러 바꿔 평가가 실패하는지 확인한다.
+
+## 부분 답변 평가
+
+LQ13은 숫자는 조회되었으나 설명 근거가 부족한 상황이다. `partial` 상태에서는 확인된 숫자와 출처를 유지하고, `component_status`에 완료·미확보 항목을 구분한다. 보류(`abstained`)에는 숫자를 넣지 않는 기존 정책을 유지한다. 이 모의 사례가 실제 검색이나 모델의 설명 정확도를 보장하지는 않는다.

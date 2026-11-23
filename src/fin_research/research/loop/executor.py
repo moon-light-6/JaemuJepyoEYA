@@ -22,13 +22,14 @@ class ResearchToolExecutor:
     """계획에서 허용된 SQL·계산·문서 조사만 실행한다."""
 
     def __init__(self, context, persist_directory, target, *, account_tool=None, search_function=None,
-                 model=None, model_name=None, budget=None, max_rounds=3, top_k=5, progress=None, source_format="xml"):
+                 model=None, model_name=None, budget=None, max_rounds=3, top_k=5, progress=None, source_format="xml", xml_version=1):
         """도구와 모델을 주입하고 실제 DB·임베딩은 필요한 단계에서만 준비한다."""
         self.context, self.persist_directory, self.target = context, persist_directory, target
         self.account_tool, self.search_function = account_tool, search_function
         self.model, self.model_name, self.budget = model, model_name, budget
         self.max_rounds, self.top_k, self.progress = max_rounds, top_k, progress
         self.source_format = source_format
+        self.xml_version = xml_version
 
     def lookup(self, route):
         """필요 지표를 조회한 뒤 회사·기간·공시가 맞고 입력이 모두 있는지 확인한다."""
@@ -65,7 +66,8 @@ class ResearchToolExecutor:
 
         if self.search_function is None:
             tool_type = XMLDocumentSearchTool if self.source_format == "xml" else DocumentSearchTool
-            self.search_function = tool_type(self.persist_directory, self.target).search
+            options = {"chunk_version": self.xml_version} if self.source_format == "xml" else {}
+            self.search_function = tool_type(self.persist_directory, self.target, **options).search
         return run_research_loop(
             question, self.persist_directory, self.top_k, self.model_name, self.max_rounds,
             model=self.model, search_function=self.search_function, target=self.target,

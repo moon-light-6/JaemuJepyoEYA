@@ -202,6 +202,12 @@ def run_fixture_case(case: LoopQACase) -> LoopObservation:
         if document_result.status != "answered":
             observation.stop_reason = document_result.stop_reason
             observation.limitations = document_result.limitations
+            observation.status = "partial"
+            observation.numbers = numbers
+            observation.cited_source_ids = [source for number in numbers for source in number.source_ids]
+            observation.component_status = {"metrics": "complete", "ratios": "not_requested", "explanation": "unavailable"}
+            observation.answer = "; ".join(f"{number.metric}: {number.value}{number.unit}" for number in numbers)
+            observation.answer += " 설명 부분은 필요한 근거를 확보하지 못해 확정하지 못했습니다."
             return observation
         observation.answer = document_result.answer + " "
         observation.cited_source_ids = document_result.cited_source_ids

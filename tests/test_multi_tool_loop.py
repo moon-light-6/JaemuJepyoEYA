@@ -1,4 +1,4 @@
-"""다중 도구 계획·라우팅·계산·공시 계정 선택과 12개 통합 시나리오를 검증한다."""
+"""다중 도구 계획·라우팅·계산·공시 계정 선택과 13개 통합 시나리오를 검증한다."""
 
 import sys
 import tempfile
@@ -48,7 +48,7 @@ def account_row(identifier="ifrs-full_Revenue", name="매출액", amount=100, **
 class MultiToolLoopTests(unittest.TestCase):
     """생산 그래프가 여러 도구와 실패 상황을 연결하는지 확인한다."""
 
-    def test_twelve_integration_fixtures_pass_with_production_graph(self):
+    def test_integration_fixtures_pass_with_production_graph(self):
         """정답은 채점기만 읽고 실제 새 그래프의 출력으로 6개 유형을 평가한다."""
         for case in load_jsonl(ROOT / "evaluation/dataset/loop_qa.jsonl", LoopQACase):
             with self.subTest(case=case.id):
@@ -182,6 +182,17 @@ class FinancialAccountTests(unittest.TestCase):
 
 class XMLToolTests(unittest.TestCase):
     """XML 컬렉션·필터·출처 위치를 검사한다."""
+
+    def test_shared_alias_accepts_spacing_but_not_another_standard_concept(self):
+        """공용 별칭의 공백 정규화를 적용하되 지배주주순이익 ID는 대체하지 않는다."""
+        store = Mock()
+        store.read_financial_accounts.return_value = SQLResult("fixed", [], [
+            account_row(identifier="-표준계정코드 미사용-", name="매출 액", amount=150),
+            account_row(identifier="ifrs-full_ProfitLossAttributableToOwnersOfParent", name="당기순이익", amount=90),
+        ], 2, False)
+        facts = FinancialAccountTool(store).lookup(CONTEXT, ["revenue", "net_income"])
+        self.assertEqual([(item.metric, item.value) for item in facts], [("revenue", 150)])
+        self.assertIn("매출액", store.read_financial_accounts.call_args.args[2])
 
     def test_xml_search_preserves_xpath_and_selects_xml_collection(self):
         """PDF 컬렉션으로 섞이지 않고 XML 위치와 필터를 유지한다."""

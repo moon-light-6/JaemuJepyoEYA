@@ -62,15 +62,25 @@ def evaluate_case(case: LoopQACase, actual: LoopObservation | None) -> CaseEvalu
         check("citation_integrity", cited <= evidence_ids, "인용한 출처는 확보한 근거에 실제로 있어야 합니다.")
         check("required_evidence", set(case.expected.required_source_ids) <= cited,
               f"필수 출처={case.expected.required_source_ids}, 실제 인용={sorted(cited)}")
-        if actual.status == "answered":
+        if actual.status in ("answered", "partial"):
             check("answer_grounding", bool(actual.answer.strip()) and bool(cited),
                   "확정 답변에는 내용과 출처가 있어야 합니다.")
+        if actual.status == "answered":
             last_outcomes = {event.tool: event.status for event in actual.tool_trace}
             check("tool_outcomes", all(status == "ok" for status in last_outcomes.values()),
                   "재시도로 복구한 실패는 허용하되 마지막 실행에 미해결 오류·차단·빈 조회가 남으면 실패합니다.")
+        elif actual.status == "partial":
+            check("partial_safety", bool(actual.limitations)
+                  and "complete" in actual.component_status.values()
+                  and "unavailable" in actual.component_status.values(),
+                  "부분 답변은 확인된 항목·확인하지 못한 항목과 한계를 함께 표시해야 합니다.")
         else:
             check("abstention_safety", not actual.numbers and bool(actual.limitations),
                   "보류·오류 시 확정 숫자를 내놓지 않고 이유를 기록해야 합니다.")
+        if case.expected.component_status:
+            check("component_status", all(actual.component_status.get(key) == value
+                  for key, value in case.expected.component_status.items()),
+                  f"기대 항목별 상태={case.expected.component_status}")
         for number in actual.numbers:
             check("numeric_provenance", bool(number.source_ids) and set(number.source_ids) <= cited,
                   f"{number.metric}: 숫자의 출처가 확보·인용된 근거여야 합니다.")

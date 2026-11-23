@@ -28,6 +28,14 @@ def _role_model(role: str, model_name: str | None, budget: Budget | None):
     return get_llm_for_role(role, budget=budget, model_key=model_name)
 
 
+def evidence_location(evidence: dict) -> str:
+    """XML은 XPath를, PDF는 페이지를 표시하고 위치가 없으면 미확인으로 남긴다."""
+    if evidence.get("source_xpath"):
+        return f"XPath {evidence['source_xpath']}"
+    page = evidence.get("pdf_page")
+    return f"{page}쪽" if page is not None else "위치 미확인"
+
+
 def run_once(
     question: str,
     persist_directory: Path,
@@ -54,7 +62,7 @@ def run_once(
     report_progress(progress, f"검색 완료 · 근거 {len(evidences)}개")
     for item in evidences:
         report_progress(progress, f"근거 {item.get('evidence_id', '')} · {item['source_file']} "
-                        f"{item['pdf_page']}쪽 · 청크 {item['chunk_id']}")
+                        f"{evidence_location(item)} · 청크 {item['chunk_id']}")
     findings = None
     if not search_only:
         report_progress(progress, "확보한 근거로 답변 생성 중")
@@ -108,6 +116,7 @@ def run_research_loop(
     else:
         evaluator_model = _role_model("loop_evaluator", model_name, budget)
         findings_model = _role_model("loop_findings", model_name, budget)
+    selected_collection = target.collection_name if search_function is None and target else None
     if search_function is None:
         search_function = DocumentSearchTool(persist_directory, target).search
 
@@ -136,6 +145,10 @@ def run_research_loop(
             }
 
         # 같은 청크는 누적하지 않고, 조사 전체에서 출처 ID를 고정합니다.
+        owner = getattr(search_function, "__self__", None)
+        history["search_info"] = dict(getattr(owner, "last_search_info", {}))
+        if history["search_info"]:
+            report_progress(progress, f"검색 전략: {history['search_info'].get('strategy', 'unknown')}")
         history["retrieved_count"] = len(hits)
         evidences = list(state["evidences"])
         known = {(item["source_file"], item["chunk_id"]) for item in evidences}
@@ -146,7 +159,7 @@ def run_research_loop(
                 known.add(key)
                 history["new_evidence_count"] += 1
                 report_progress(progress, f"새 근거 S{len(evidences)} · {hit['source_file']} "
-                                f"{hit['pdf_page']}쪽 · 청크 {hit['chunk_id']}")
+                                f"{evidence_location(hit)} · 청크 {hit['chunk_id']}")
         no_new_evidence = state["rounds"] > 0 and history["new_evidence_count"] == 0
         report_progress(progress, f"검색 완료 · 반환 {len(hits)}개 · 신규 "
                         f"{history['new_evidence_count']}개 · 누적 {len(evidences)}개")
@@ -285,5 +298,5 @@ def run_research_loop(
         "evaluation": state["evaluation"], "history": state["history"],
         "generation_errors": state["generation_errors"],
         "findings": state["findings"], "numeric_verification": "not_performed",
-        "collection": target.collection_name if target else None,
+        "collection": getattr(getattr(search_function, "__self__", None), "collection_name", selected_collection),
     }
