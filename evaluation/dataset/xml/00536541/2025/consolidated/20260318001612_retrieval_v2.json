@@ -138,7 +138,7 @@
     "opendart_account": {
       "sj_div": "CF",
       "account_id": "ifrs-full_DividendsPaidClassifiedAsFinancingActivities",
-      "account_nm": "주주에 대한 배당금 지급"
+      "account_nm": "주주에대한배당금지급"
     },
     "id": "X14",
     "annotation_status": "verified",

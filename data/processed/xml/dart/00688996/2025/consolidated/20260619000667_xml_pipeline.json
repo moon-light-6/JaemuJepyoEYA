@@ -1,0 +1,18 @@
+{
+  "source_format": "xml",
+  "source_xml": "20260619000667.xml",
+  "source_document": "사업보고서",
+  "statement_scope": "consolidated",
+  "normalization": {
+    "escaped_ampersands": 224,
+    "escaped_bare_less_than": 29,
+    "removed_invalid_control_characters": 0,
+    "repaired_broken_attributes": 4
+  },
+  "financial_statement_documents": 4,
+  "note_documents": 60,
+  "chunk_size": 600,
+  "chunk_overlap": 100,
+  "documents": 64,
+  "chunks": 1070
+}

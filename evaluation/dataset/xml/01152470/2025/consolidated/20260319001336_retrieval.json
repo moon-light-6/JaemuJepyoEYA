@@ -51,7 +51,7 @@
     "opendart_account": {
       "sj_div": "BS",
       "account_id": "ifrs-full_Inventories",
-      "account_nm": "유동재고자산"
+      "account_nm": "재고자산"
     },
     "id": "X02",
     "annotation_status": "verified",

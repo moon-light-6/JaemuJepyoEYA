@@ -1,46 +1,46 @@
 {
   "config": {
     "source_format": "xml",
-    "questions": 7,
+    "questions": 18,
     "chunks": 269,
     "collection_name": "fin_xml_00118804_2025_consolidated_20260319000264_kure_v1"
   },
   "summary": {
     "bm25": {
-      "hit_at_3": 0.2857142857142857,
-      "hit_at_5": 0.7142857142857143,
-      "value_hit_at_3": 0.5714285714285714,
-      "value_hit_at_5": 0.5714285714285714,
-      "source_value_hit_at_3": 0.14285714285714285,
-      "source_value_hit_at_5": 0.14285714285714285,
-      "total": 7
+      "hit_at_3": 0.3333333333333333,
+      "hit_at_5": 0.5555555555555556,
+      "value_hit_at_3": 0.4444444444444444,
+      "value_hit_at_5": 0.4444444444444444,
+      "source_value_hit_at_3": 0.2222222222222222,
+      "source_value_hit_at_5": 0.2222222222222222,
+      "total": 18
     },
     "chroma": {
-      "hit_at_3": 0.7142857142857143,
-      "hit_at_5": 0.7142857142857143,
-      "value_hit_at_3": 0.7142857142857143,
-      "value_hit_at_5": 0.8571428571428571,
-      "source_value_hit_at_3": 0.14285714285714285,
-      "source_value_hit_at_5": 0.2857142857142857,
-      "total": 7
+      "hit_at_3": 0.8333333333333334,
+      "hit_at_5": 0.8333333333333334,
+      "value_hit_at_3": 0.6111111111111112,
+      "value_hit_at_5": 0.8888888888888888,
+      "source_value_hit_at_3": 0.3888888888888889,
+      "source_value_hit_at_5": 0.6111111111111112,
+      "total": 18
     },
     "mmr": {
-      "hit_at_3": 0.42857142857142855,
-      "hit_at_5": 0.7142857142857143,
-      "value_hit_at_3": 0.8571428571428571,
-      "value_hit_at_5": 0.8571428571428571,
-      "source_value_hit_at_3": 0.42857142857142855,
-      "source_value_hit_at_5": 0.7142857142857143,
-      "total": 7
+      "hit_at_3": 0.5555555555555556,
+      "hit_at_5": 0.6666666666666666,
+      "value_hit_at_3": 0.6111111111111112,
+      "value_hit_at_5": 0.6111111111111112,
+      "source_value_hit_at_3": 0.4444444444444444,
+      "source_value_hit_at_5": 0.5555555555555556,
+      "total": 18
     },
     "hybrid": {
-      "hit_at_3": 0.7142857142857143,
-      "hit_at_5": 0.8571428571428571,
-      "value_hit_at_3": 0.5714285714285714,
-      "value_hit_at_5": 0.7142857142857143,
-      "source_value_hit_at_3": 0.14285714285714285,
-      "source_value_hit_at_5": 0.14285714285714285,
-      "total": 7
+      "hit_at_3": 0.8888888888888888,
+      "hit_at_5": 0.9444444444444444,
+      "value_hit_at_3": 0.5555555555555556,
+      "value_hit_at_5": 0.6666666666666666,
+      "source_value_hit_at_3": 0.3333333333333333,
+      "source_value_hit_at_5": 0.3888888888888889,
+      "total": 18
     }
   },
   "details": {
@@ -413,6 +413,589 @@
             "source_file": "20260319000264_00761.xml",
             "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
             "title": "1. 일반적 사항(1) 재무제표기업회계기준서 제1110호 '연결재무제표'에 의한 지배기업인 주식회사 동진쎄미켐과 주식회사 신암정유 등 20개 종속기업을 연결대상으로 하고, 동남산업 주식회사 등 4개 회사를 관계기업으로 하여 연결재무제표를 작성하였습니다.(2) 지배기업의 개요기업회계기준서 제1110호 '연결재무제표'에 의한 지배기업인 주식회사 동진쎄미켐(이하 \"지배기업\"이라 함)은 1973년 7월 10일 설립되어 1999년 12월 18일 주식을 한국증권업협회에 상장한 코스닥상장법인입니다. 지배기업 및 종속기업(이하 주식회사동진쎄미켐과 그 종속기업을 일괄하여 \"연결실체\"라 함)은 지주사업, 반도체 및 LCD등의 전자재료와 발포제의 제조ㆍ판매업 등을 영위하고 있습니다. 지배기업은 인천광역시 서구 가좌동에 본사를 두고 있으며, 경기도 화성군 양감면 소재 공장 등 3개의 공장을 보유 운영하고 있습니다."
+          }
+        ]
+      },
+      {
+        "id": "X08",
+        "question": "2025년 연결 기준 자산총계는 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00118804_2025_consolidated_xml_0003_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00118804_2025_consolidated_xml_0002_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00118804_2025_consolidated_xml_0004_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00118804_2025_consolidated_xml_0025_04",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[197]",
+            "title": "35. 현금흐름관련정보연결실체의 현금흐름표는 간접법에 의해 작성되었으며, 당기 및 전기 중 재무활동에서 생기는 부채의 변동 및 현금의 유입과 유출이 없는 주요거래는 다음과 같습니다.(1) 재무활동에서 생기는 부채의 변동"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00118804_2025_consolidated_xml_0005_34",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반적 사항(1) 재무제표기업회계기준서 제1110호 '연결재무제표'에 의한 지배기업인 주식회사 동진쎄미켐과 주식회사 신암정유 등 20개 종속기업을 연결대상으로 하고, 동남산업 주식회사 등 4개 회사를 관계기업으로 하여 연결재무제표를 작성하였습니다.(2) 지배기업의 개요기업회계기준서 제1110호 '연결재무제표'에 의한 지배기업인 주식회사 동진쎄미켐(이하 \"지배기업\"이라 함)은 1973년 7월 10일 설립되어 1999년 12월 18일 주식을 한국증권업협회에 상장한 코스닥상장법인입니다. 지배기업 및 종속기업(이하 주식회사동진쎄미켐과 그 종속기업을 일괄하여 \"연결실체\"라 함)은 지주사업, 반도체 및 LCD등의 전자재료와 발포제의 제조ㆍ판매업 등을 영위하고 있습니다. 지배기업은 인천광역시 서구 가좌동에 본사를 두고 있으며, 경기도 화성군 양감면 소재 공장 등 3개의 공장을 보유 운영하고 있습니다."
+          }
+        ]
+      },
+      {
+        "id": "X09",
+        "question": "2025년 연결 기준 현금및현금성자산은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00118804_2025_consolidated_xml_0003_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00118804_2025_consolidated_xml_0002_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00118804_2025_consolidated_xml_0004_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00118804_2025_consolidated_xml_0006_19",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[33]",
+            "title": "5. 금융위험관리"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00118804_2025_consolidated_xml_0025_04",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[197]",
+            "title": "35. 현금흐름관련정보연결실체의 현금흐름표는 간접법에 의해 작성되었으며, 당기 및 전기 중 재무활동에서 생기는 부채의 변동 및 현금의 유입과 유출이 없는 주요거래는 다음과 같습니다.(1) 재무활동에서 생기는 부채의 변동"
+          }
+        ]
+      },
+      {
+        "id": "X10",
+        "question": "2025년 연결 기준 재고자산은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00118804_2025_consolidated_xml_0003_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00118804_2025_consolidated_xml_0008_16",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[59]",
+            "title": "8. 범주별금융상품"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00118804_2025_consolidated_xml_0002_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00118804_2025_consolidated_xml_0004_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00118804_2025_consolidated_xml_0025_04",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[197]",
+            "title": "35. 현금흐름관련정보연결실체의 현금흐름표는 간접법에 의해 작성되었으며, 당기 및 전기 중 재무활동에서 생기는 부채의 변동 및 현금의 유입과 유출이 없는 주요거래는 다음과 같습니다.(1) 재무활동에서 생기는 부채의 변동"
+          }
+        ]
+      },
+      {
+        "id": "X11",
+        "question": "2025년 연결 기준 영업이익은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00118804_2025_consolidated_xml_0003_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00118804_2025_consolidated_xml_0002_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00118804_2025_consolidated_xml_0004_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00118804_2025_consolidated_xml_0025_04",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[197]",
+            "title": "35. 현금흐름관련정보연결실체의 현금흐름표는 간접법에 의해 작성되었으며, 당기 및 전기 중 재무활동에서 생기는 부채의 변동 및 현금의 유입과 유출이 없는 주요거래는 다음과 같습니다.(1) 재무활동에서 생기는 부채의 변동"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00118804_2025_consolidated_xml_0005_34",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반적 사항(1) 재무제표기업회계기준서 제1110호 '연결재무제표'에 의한 지배기업인 주식회사 동진쎄미켐과 주식회사 신암정유 등 20개 종속기업을 연결대상으로 하고, 동남산업 주식회사 등 4개 회사를 관계기업으로 하여 연결재무제표를 작성하였습니다.(2) 지배기업의 개요기업회계기준서 제1110호 '연결재무제표'에 의한 지배기업인 주식회사 동진쎄미켐(이하 \"지배기업\"이라 함)은 1973년 7월 10일 설립되어 1999년 12월 18일 주식을 한국증권업협회에 상장한 코스닥상장법인입니다. 지배기업 및 종속기업(이하 주식회사동진쎄미켐과 그 종속기업을 일괄하여 \"연결실체\"라 함)은 지주사업, 반도체 및 LCD등의 전자재료와 발포제의 제조ㆍ판매업 등을 영위하고 있습니다. 지배기업은 인천광역시 서구 가좌동에 본사를 두고 있으며, 경기도 화성군 양감면 소재 공장 등 3개의 공장을 보유 운영하고 있습니다."
+          }
+        ]
+      },
+      {
+        "id": "X12",
+        "question": "2025년 연결 기준 자본총계는 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00118804_2025_consolidated_xml_0003_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00118804_2025_consolidated_xml_0002_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00118804_2025_consolidated_xml_0004_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00118804_2025_consolidated_xml_0025_04",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[197]",
+            "title": "35. 현금흐름관련정보연결실체의 현금흐름표는 간접법에 의해 작성되었으며, 당기 및 전기 중 재무활동에서 생기는 부채의 변동 및 현금의 유입과 유출이 없는 주요거래는 다음과 같습니다.(1) 재무활동에서 생기는 부채의 변동"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00118804_2025_consolidated_xml_0005_34",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반적 사항(1) 재무제표기업회계기준서 제1110호 '연결재무제표'에 의한 지배기업인 주식회사 동진쎄미켐과 주식회사 신암정유 등 20개 종속기업을 연결대상으로 하고, 동남산업 주식회사 등 4개 회사를 관계기업으로 하여 연결재무제표를 작성하였습니다.(2) 지배기업의 개요기업회계기준서 제1110호 '연결재무제표'에 의한 지배기업인 주식회사 동진쎄미켐(이하 \"지배기업\"이라 함)은 1973년 7월 10일 설립되어 1999년 12월 18일 주식을 한국증권업협회에 상장한 코스닥상장법인입니다. 지배기업 및 종속기업(이하 주식회사동진쎄미켐과 그 종속기업을 일괄하여 \"연결실체\"라 함)은 지주사업, 반도체 및 LCD등의 전자재료와 발포제의 제조ㆍ판매업 등을 영위하고 있습니다. 지배기업은 인천광역시 서구 가좌동에 본사를 두고 있으며, 경기도 화성군 양감면 소재 공장 등 3개의 공장을 보유 운영하고 있습니다."
+          }
+        ]
+      },
+      {
+        "id": "X13",
+        "question": "2025년과 2024년 연결 기준 자산총계는 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00118804_2025_consolidated_xml_0003_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00118804_2025_consolidated_xml_0002_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00118804_2025_consolidated_xml_0004_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00118804_2025_consolidated_xml_0005_83",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반적 사항(1) 재무제표기업회계기준서 제1110호 '연결재무제표'에 의한 지배기업인 주식회사 동진쎄미켐과 주식회사 신암정유 등 20개 종속기업을 연결대상으로 하고, 동남산업 주식회사 등 4개 회사를 관계기업으로 하여 연결재무제표를 작성하였습니다.(2) 지배기업의 개요기업회계기준서 제1110호 '연결재무제표'에 의한 지배기업인 주식회사 동진쎄미켐(이하 \"지배기업\"이라 함)은 1973년 7월 10일 설립되어 1999년 12월 18일 주식을 한국증권업협회에 상장한 코스닥상장법인입니다. 지배기업 및 종속기업(이하 주식회사동진쎄미켐과 그 종속기업을 일괄하여 \"연결실체\"라 함)은 지주사업, 반도체 및 LCD등의 전자재료와 발포제의 제조ㆍ판매업 등을 영위하고 있습니다. 지배기업은 인천광역시 서구 가좌동에 본사를 두고 있으며, 경기도 화성군 양감면 소재 공장 등 3개의 공장을 보유 운영하고 있습니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00118804_2025_consolidated_xml_0005_85",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반적 사항(1) 재무제표기업회계기준서 제1110호 '연결재무제표'에 의한 지배기업인 주식회사 동진쎄미켐과 주식회사 신암정유 등 20개 종속기업을 연결대상으로 하고, 동남산업 주식회사 등 4개 회사를 관계기업으로 하여 연결재무제표를 작성하였습니다.(2) 지배기업의 개요기업회계기준서 제1110호 '연결재무제표'에 의한 지배기업인 주식회사 동진쎄미켐(이하 \"지배기업\"이라 함)은 1973년 7월 10일 설립되어 1999년 12월 18일 주식을 한국증권업협회에 상장한 코스닥상장법인입니다. 지배기업 및 종속기업(이하 주식회사동진쎄미켐과 그 종속기업을 일괄하여 \"연결실체\"라 함)은 지주사업, 반도체 및 LCD등의 전자재료와 발포제의 제조ㆍ판매업 등을 영위하고 있습니다. 지배기업은 인천광역시 서구 가좌동에 본사를 두고 있으며, 경기도 화성군 양감면 소재 공장 등 3개의 공장을 보유 운영하고 있습니다."
+          }
+        ]
+      },
+      {
+        "id": "X14",
+        "question": "2025년과 2024년 연결 기준 영업이익은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00118804_2025_consolidated_xml_0003_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00118804_2025_consolidated_xml_0002_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00118804_2025_consolidated_xml_0004_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00118804_2025_consolidated_xml_0005_83",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반적 사항(1) 재무제표기업회계기준서 제1110호 '연결재무제표'에 의한 지배기업인 주식회사 동진쎄미켐과 주식회사 신암정유 등 20개 종속기업을 연결대상으로 하고, 동남산업 주식회사 등 4개 회사를 관계기업으로 하여 연결재무제표를 작성하였습니다.(2) 지배기업의 개요기업회계기준서 제1110호 '연결재무제표'에 의한 지배기업인 주식회사 동진쎄미켐(이하 \"지배기업\"이라 함)은 1973년 7월 10일 설립되어 1999년 12월 18일 주식을 한국증권업협회에 상장한 코스닥상장법인입니다. 지배기업 및 종속기업(이하 주식회사동진쎄미켐과 그 종속기업을 일괄하여 \"연결실체\"라 함)은 지주사업, 반도체 및 LCD등의 전자재료와 발포제의 제조ㆍ판매업 등을 영위하고 있습니다. 지배기업은 인천광역시 서구 가좌동에 본사를 두고 있으며, 경기도 화성군 양감면 소재 공장 등 3개의 공장을 보유 운영하고 있습니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00118804_2025_consolidated_xml_0005_85",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반적 사항(1) 재무제표기업회계기준서 제1110호 '연결재무제표'에 의한 지배기업인 주식회사 동진쎄미켐과 주식회사 신암정유 등 20개 종속기업을 연결대상으로 하고, 동남산업 주식회사 등 4개 회사를 관계기업으로 하여 연결재무제표를 작성하였습니다.(2) 지배기업의 개요기업회계기준서 제1110호 '연결재무제표'에 의한 지배기업인 주식회사 동진쎄미켐(이하 \"지배기업\"이라 함)은 1973년 7월 10일 설립되어 1999년 12월 18일 주식을 한국증권업협회에 상장한 코스닥상장법인입니다. 지배기업 및 종속기업(이하 주식회사동진쎄미켐과 그 종속기업을 일괄하여 \"연결실체\"라 함)은 지주사업, 반도체 및 LCD등의 전자재료와 발포제의 제조ㆍ판매업 등을 영위하고 있습니다. 지배기업은 인천광역시 서구 가좌동에 본사를 두고 있으며, 경기도 화성군 양감면 소재 공장 등 3개의 공장을 보유 운영하고 있습니다."
+          }
+        ]
+      },
+      {
+        "id": "X15",
+        "question": "2025년과 2024년 연결 기준 배당금 지급액은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00118804_2025_consolidated_xml_0024_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[196]",
+            "title": "34. 배당금 지급지배기업이 주주총회 결의에 따라 지배기업 주주에게 지급한 배당금은 다음과 같습니다."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00118804_2025_consolidated_xml_0005_29",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반적 사항(1) 재무제표기업회계기준서 제1110호 '연결재무제표'에 의한 지배기업인 주식회사 동진쎄미켐과 주식회사 신암정유 등 20개 종속기업을 연결대상으로 하고, 동남산업 주식회사 등 4개 회사를 관계기업으로 하여 연결재무제표를 작성하였습니다.(2) 지배기업의 개요기업회계기준서 제1110호 '연결재무제표'에 의한 지배기업인 주식회사 동진쎄미켐(이하 \"지배기업\"이라 함)은 1973년 7월 10일 설립되어 1999년 12월 18일 주식을 한국증권업협회에 상장한 코스닥상장법인입니다. 지배기업 및 종속기업(이하 주식회사동진쎄미켐과 그 종속기업을 일괄하여 \"연결실체\"라 함)은 지주사업, 반도체 및 LCD등의 전자재료와 발포제의 제조ㆍ판매업 등을 영위하고 있습니다. 지배기업은 인천광역시 서구 가좌동에 본사를 두고 있으며, 경기도 화성군 양감면 소재 공장 등 3개의 공장을 보유 운영하고 있습니다."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00118804_2025_consolidated_xml_0003_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00118804_2025_consolidated_xml_0002_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00118804_2025_consolidated_xml_0004_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          }
+        ]
+      },
+      {
+        "id": "X16",
+        "question": "2025년과 2024년 연결 기준 당기순이익은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00118804_2025_consolidated_xml_0003_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00118804_2025_consolidated_xml_0002_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00118804_2025_consolidated_xml_0004_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00118804_2025_consolidated_xml_0005_83",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반적 사항(1) 재무제표기업회계기준서 제1110호 '연결재무제표'에 의한 지배기업인 주식회사 동진쎄미켐과 주식회사 신암정유 등 20개 종속기업을 연결대상으로 하고, 동남산업 주식회사 등 4개 회사를 관계기업으로 하여 연결재무제표를 작성하였습니다.(2) 지배기업의 개요기업회계기준서 제1110호 '연결재무제표'에 의한 지배기업인 주식회사 동진쎄미켐(이하 \"지배기업\"이라 함)은 1973년 7월 10일 설립되어 1999년 12월 18일 주식을 한국증권업협회에 상장한 코스닥상장법인입니다. 지배기업 및 종속기업(이하 주식회사동진쎄미켐과 그 종속기업을 일괄하여 \"연결실체\"라 함)은 지주사업, 반도체 및 LCD등의 전자재료와 발포제의 제조ㆍ판매업 등을 영위하고 있습니다. 지배기업은 인천광역시 서구 가좌동에 본사를 두고 있으며, 경기도 화성군 양감면 소재 공장 등 3개의 공장을 보유 운영하고 있습니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00118804_2025_consolidated_xml_0005_85",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반적 사항(1) 재무제표기업회계기준서 제1110호 '연결재무제표'에 의한 지배기업인 주식회사 동진쎄미켐과 주식회사 신암정유 등 20개 종속기업을 연결대상으로 하고, 동남산업 주식회사 등 4개 회사를 관계기업으로 하여 연결재무제표를 작성하였습니다.(2) 지배기업의 개요기업회계기준서 제1110호 '연결재무제표'에 의한 지배기업인 주식회사 동진쎄미켐(이하 \"지배기업\"이라 함)은 1973년 7월 10일 설립되어 1999년 12월 18일 주식을 한국증권업협회에 상장한 코스닥상장법인입니다. 지배기업 및 종속기업(이하 주식회사동진쎄미켐과 그 종속기업을 일괄하여 \"연결실체\"라 함)은 지주사업, 반도체 및 LCD등의 전자재료와 발포제의 제조ㆍ판매업 등을 영위하고 있습니다. 지배기업은 인천광역시 서구 가좌동에 본사를 두고 있으며, 경기도 화성군 양감면 소재 공장 등 3개의 공장을 보유 운영하고 있습니다."
+          }
+        ]
+      },
+      {
+        "id": "X17",
+        "question": "2025년과 2024년 연결 기준 자본총계는 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00118804_2025_consolidated_xml_0003_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00118804_2025_consolidated_xml_0002_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00118804_2025_consolidated_xml_0004_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00118804_2025_consolidated_xml_0005_83",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반적 사항(1) 재무제표기업회계기준서 제1110호 '연결재무제표'에 의한 지배기업인 주식회사 동진쎄미켐과 주식회사 신암정유 등 20개 종속기업을 연결대상으로 하고, 동남산업 주식회사 등 4개 회사를 관계기업으로 하여 연결재무제표를 작성하였습니다.(2) 지배기업의 개요기업회계기준서 제1110호 '연결재무제표'에 의한 지배기업인 주식회사 동진쎄미켐(이하 \"지배기업\"이라 함)은 1973년 7월 10일 설립되어 1999년 12월 18일 주식을 한국증권업협회에 상장한 코스닥상장법인입니다. 지배기업 및 종속기업(이하 주식회사동진쎄미켐과 그 종속기업을 일괄하여 \"연결실체\"라 함)은 지주사업, 반도체 및 LCD등의 전자재료와 발포제의 제조ㆍ판매업 등을 영위하고 있습니다. 지배기업은 인천광역시 서구 가좌동에 본사를 두고 있으며, 경기도 화성군 양감면 소재 공장 등 3개의 공장을 보유 운영하고 있습니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00118804_2025_consolidated_xml_0005_85",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반적 사항(1) 재무제표기업회계기준서 제1110호 '연결재무제표'에 의한 지배기업인 주식회사 동진쎄미켐과 주식회사 신암정유 등 20개 종속기업을 연결대상으로 하고, 동남산업 주식회사 등 4개 회사를 관계기업으로 하여 연결재무제표를 작성하였습니다.(2) 지배기업의 개요기업회계기준서 제1110호 '연결재무제표'에 의한 지배기업인 주식회사 동진쎄미켐(이하 \"지배기업\"이라 함)은 1973년 7월 10일 설립되어 1999년 12월 18일 주식을 한국증권업협회에 상장한 코스닥상장법인입니다. 지배기업 및 종속기업(이하 주식회사동진쎄미켐과 그 종속기업을 일괄하여 \"연결실체\"라 함)은 지주사업, 반도체 및 LCD등의 전자재료와 발포제의 제조ㆍ판매업 등을 영위하고 있습니다. 지배기업은 인천광역시 서구 가좌동에 본사를 두고 있으며, 경기도 화성군 양감면 소재 공장 등 3개의 공장을 보유 운영하고 있습니다."
+          }
+        ]
+      },
+      {
+        "id": "X18",
+        "question": "2025년과 2024년 연결 기준 영업활동으로 인한 현금흐름은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00118804_2025_consolidated_xml_0004_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00118804_2025_consolidated_xml_0004_05",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00118804_2025_consolidated_xml_0005_83",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반적 사항(1) 재무제표기업회계기준서 제1110호 '연결재무제표'에 의한 지배기업인 주식회사 동진쎄미켐과 주식회사 신암정유 등 20개 종속기업을 연결대상으로 하고, 동남산업 주식회사 등 4개 회사를 관계기업으로 하여 연결재무제표를 작성하였습니다.(2) 지배기업의 개요기업회계기준서 제1110호 '연결재무제표'에 의한 지배기업인 주식회사 동진쎄미켐(이하 \"지배기업\"이라 함)은 1973년 7월 10일 설립되어 1999년 12월 18일 주식을 한국증권업협회에 상장한 코스닥상장법인입니다. 지배기업 및 종속기업(이하 주식회사동진쎄미켐과 그 종속기업을 일괄하여 \"연결실체\"라 함)은 지주사업, 반도체 및 LCD등의 전자재료와 발포제의 제조ㆍ판매업 등을 영위하고 있습니다. 지배기업은 인천광역시 서구 가좌동에 본사를 두고 있으며, 경기도 화성군 양감면 소재 공장 등 3개의 공장을 보유 운영하고 있습니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00118804_2025_consolidated_xml_0006_07",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[33]",
+            "title": "5. 금융위험관리"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00118804_2025_consolidated_xml_0003_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
           }
         ]
       }
@@ -788,6 +1371,589 @@
             "title": "19. 기타부채보고기간종료일 현재 기타부채의 내역은 다음과 같습니다."
           }
         ]
+      },
+      {
+        "id": "X08",
+        "question": "2025년 연결 기준 자산총계는 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00118804_2025_consolidated_xml_0001_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00118804_2025_consolidated_xml_0003_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00118804_2025_consolidated_xml_0012_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[99]",
+            "title": "15. 무형자산(1) 보고기간종료일 현재 무형자산의 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00118804_2025_consolidated_xml_0007_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[55]",
+            "title": "7. 투자금융자산(1) 보고기간종료일 현재 투자금융자산의 내역은 다음과 같습니다.<당기말>"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00118804_2025_consolidated_xml_0001_05",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          }
+        ]
+      },
+      {
+        "id": "X09",
+        "question": "2025년 연결 기준 현금및현금성자산은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00118804_2025_consolidated_xml_0001_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00118804_2025_consolidated_xml_0006_19",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[33]",
+            "title": "5. 금융위험관리"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00118804_2025_consolidated_xml_0004_08",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00118804_2025_consolidated_xml_0006_10",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[33]",
+            "title": "5. 금융위험관리"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00118804_2025_consolidated_xml_0006_22",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[33]",
+            "title": "5. 금융위험관리"
+          }
+        ]
+      },
+      {
+        "id": "X10",
+        "question": "2025년 연결 기준 재고자산은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00118804_2025_consolidated_xml_0008_14",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[59]",
+            "title": "8. 범주별금융상품"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00118804_2025_consolidated_xml_0001_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00118804_2025_consolidated_xml_0008_16",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[59]",
+            "title": "8. 범주별금융상품"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00118804_2025_consolidated_xml_0012_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[99]",
+            "title": "15. 무형자산(1) 보고기간종료일 현재 무형자산의 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00118804_2025_consolidated_xml_0016_20",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[135]",
+            "title": "19. 기타부채보고기간종료일 현재 기타부채의 내역은 다음과 같습니다."
+          }
+        ]
+      },
+      {
+        "id": "X11",
+        "question": "2025년 연결 기준 영업이익은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00118804_2025_consolidated_xml_0002_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00118804_2025_consolidated_xml_0003_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00118804_2025_consolidated_xml_0004_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00118804_2025_consolidated_xml_0002_02",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00118804_2025_consolidated_xml_0017_03",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[150]",
+            "title": "21. 순확정급여부채(1) 보고기간종료일 현재 확정급여형 퇴직급여제도와 관련하여 연결재무상태표에 인식된 금액은 다음과 같습니다."
+          }
+        ]
+      },
+      {
+        "id": "X12",
+        "question": "2025년 연결 기준 자본총계는 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00118804_2025_consolidated_xml_0003_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00118804_2025_consolidated_xml_0001_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00118804_2025_consolidated_xml_0001_05",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00118804_2025_consolidated_xml_0018_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[158]",
+            "title": "22. 자본금(1) 보고기간종료일 현재 지배기업의 자본금 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00118804_2025_consolidated_xml_0006_14",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[33]",
+            "title": "5. 금융위험관리"
+          }
+        ]
+      },
+      {
+        "id": "X13",
+        "question": "2025년과 2024년 연결 기준 자산총계는 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00118804_2025_consolidated_xml_0001_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00118804_2025_consolidated_xml_0003_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00118804_2025_consolidated_xml_0007_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[55]",
+            "title": "7. 투자금융자산(1) 보고기간종료일 현재 투자금융자산의 내역은 다음과 같습니다.<당기말>"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00118804_2025_consolidated_xml_0001_05",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00118804_2025_consolidated_xml_0018_05",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[158]",
+            "title": "22. 자본금(1) 보고기간종료일 현재 지배기업의 자본금 내역은 다음과 같습니다."
+          }
+        ]
+      },
+      {
+        "id": "X14",
+        "question": "2025년과 2024년 연결 기준 영업이익은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00118804_2025_consolidated_xml_0002_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00118804_2025_consolidated_xml_0003_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00118804_2025_consolidated_xml_0004_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00118804_2025_consolidated_xml_0003_03",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00118804_2025_consolidated_xml_0002_02",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          }
+        ]
+      },
+      {
+        "id": "X15",
+        "question": "2025년과 2024년 연결 기준 배당금 지급액은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00118804_2025_consolidated_xml_0003_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00118804_2025_consolidated_xml_0003_03",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00118804_2025_consolidated_xml_0024_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[196]",
+            "title": "34. 배당금 지급지배기업이 주주총회 결의에 따라 지배기업 주주에게 지급한 배당금은 다음과 같습니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00118804_2025_consolidated_xml_0008_05",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[59]",
+            "title": "8. 범주별금융상품"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00118804_2025_consolidated_xml_0021_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[172]",
+            "title": "30. 주당이익(1) 당기 및 전기 기본주당이익은 다음과 같습니다."
+          }
+        ]
+      },
+      {
+        "id": "X16",
+        "question": "2025년과 2024년 연결 기준 당기순이익은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00118804_2025_consolidated_xml_0003_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00118804_2025_consolidated_xml_0003_03",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00118804_2025_consolidated_xml_0002_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00118804_2025_consolidated_xml_0004_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00118804_2025_consolidated_xml_0017_03",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[150]",
+            "title": "21. 순확정급여부채(1) 보고기간종료일 현재 확정급여형 퇴직급여제도와 관련하여 연결재무상태표에 인식된 금액은 다음과 같습니다."
+          }
+        ]
+      },
+      {
+        "id": "X17",
+        "question": "2025년과 2024년 연결 기준 자본총계는 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00118804_2025_consolidated_xml_0003_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00118804_2025_consolidated_xml_0001_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00118804_2025_consolidated_xml_0018_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[158]",
+            "title": "22. 자본금(1) 보고기간종료일 현재 지배기업의 자본금 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00118804_2025_consolidated_xml_0001_05",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00118804_2025_consolidated_xml_0002_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          }
+        ]
+      },
+      {
+        "id": "X18",
+        "question": "2025년과 2024년 연결 기준 영업활동으로 인한 현금흐름은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00118804_2025_consolidated_xml_0004_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00118804_2025_consolidated_xml_0008_18",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[59]",
+            "title": "8. 범주별금융상품"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00118804_2025_consolidated_xml_0004_05",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00118804_2025_consolidated_xml_0003_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00118804_2025_consolidated_xml_0025_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[197]",
+            "title": "35. 현금흐름관련정보연결실체의 현금흐름표는 간접법에 의해 작성되었으며, 당기 및 전기 중 재무활동에서 생기는 부채의 변동 및 현금의 유입과 유출이 없는 주요거래는 다음과 같습니다.(1) 재무활동에서 생기는 부채의 변동"
+          }
+        ]
       }
     ],
     "mmr": [
@@ -1161,6 +2327,589 @@
             "title": "8. 범주별금융상품"
           }
         ]
+      },
+      {
+        "id": "X08",
+        "question": "2025년 연결 기준 자산총계는 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00118804_2025_consolidated_xml_0001_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00118804_2025_consolidated_xml_0012_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[99]",
+            "title": "15. 무형자산(1) 보고기간종료일 현재 무형자산의 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00118804_2025_consolidated_xml_0016_22",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[135]",
+            "title": "19. 기타부채보고기간종료일 현재 기타부채의 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00118804_2025_consolidated_xml_0015_06",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[124]",
+            "title": "18. 차입금(1) 보고기간종료일 현재 차입금의 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00118804_2025_consolidated_xml_0017_03",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[150]",
+            "title": "21. 순확정급여부채(1) 보고기간종료일 현재 확정급여형 퇴직급여제도와 관련하여 연결재무상태표에 인식된 금액은 다음과 같습니다."
+          }
+        ]
+      },
+      {
+        "id": "X09",
+        "question": "2025년 연결 기준 현금및현금성자산은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00118804_2025_consolidated_xml_0001_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00118804_2025_consolidated_xml_0006_19",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[33]",
+            "title": "5. 금융위험관리"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00118804_2025_consolidated_xml_0004_08",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00118804_2025_consolidated_xml_0006_22",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[33]",
+            "title": "5. 금융위험관리"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00118804_2025_consolidated_xml_0012_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[99]",
+            "title": "15. 무형자산(1) 보고기간종료일 현재 무형자산의 내역은 다음과 같습니다."
+          }
+        ]
+      },
+      {
+        "id": "X10",
+        "question": "2025년 연결 기준 재고자산은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00118804_2025_consolidated_xml_0008_14",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[59]",
+            "title": "8. 범주별금융상품"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00118804_2025_consolidated_xml_0001_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00118804_2025_consolidated_xml_0008_16",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[59]",
+            "title": "8. 범주별금융상품"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00118804_2025_consolidated_xml_0016_22",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[135]",
+            "title": "19. 기타부채보고기간종료일 현재 기타부채의 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00118804_2025_consolidated_xml_0008_15",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[59]",
+            "title": "8. 범주별금융상품"
+          }
+        ]
+      },
+      {
+        "id": "X11",
+        "question": "2025년 연결 기준 영업이익은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00118804_2025_consolidated_xml_0002_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00118804_2025_consolidated_xml_0017_03",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[150]",
+            "title": "21. 순확정급여부채(1) 보고기간종료일 현재 확정급여형 퇴직급여제도와 관련하여 연결재무상태표에 인식된 금액은 다음과 같습니다."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00118804_2025_consolidated_xml_0002_04",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00118804_2025_consolidated_xml_0005_88",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반적 사항(1) 재무제표기업회계기준서 제1110호 '연결재무제표'에 의한 지배기업인 주식회사 동진쎄미켐과 주식회사 신암정유 등 20개 종속기업을 연결대상으로 하고, 동남산업 주식회사 등 4개 회사를 관계기업으로 하여 연결재무제표를 작성하였습니다.(2) 지배기업의 개요기업회계기준서 제1110호 '연결재무제표'에 의한 지배기업인 주식회사 동진쎄미켐(이하 \"지배기업\"이라 함)은 1973년 7월 10일 설립되어 1999년 12월 18일 주식을 한국증권업협회에 상장한 코스닥상장법인입니다. 지배기업 및 종속기업(이하 주식회사동진쎄미켐과 그 종속기업을 일괄하여 \"연결실체\"라 함)은 지주사업, 반도체 및 LCD등의 전자재료와 발포제의 제조ㆍ판매업 등을 영위하고 있습니다. 지배기업은 인천광역시 서구 가좌동에 본사를 두고 있으며, 경기도 화성군 양감면 소재 공장 등 3개의 공장을 보유 운영하고 있습니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00118804_2025_consolidated_xml_0018_05",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[158]",
+            "title": "22. 자본금(1) 보고기간종료일 현재 지배기업의 자본금 내역은 다음과 같습니다."
+          }
+        ]
+      },
+      {
+        "id": "X12",
+        "question": "2025년 연결 기준 자본총계는 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00118804_2025_consolidated_xml_0003_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00118804_2025_consolidated_xml_0018_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[158]",
+            "title": "22. 자본금(1) 보고기간종료일 현재 지배기업의 자본금 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00118804_2025_consolidated_xml_0006_14",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[33]",
+            "title": "5. 금융위험관리"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00118804_2025_consolidated_xml_0012_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[99]",
+            "title": "15. 무형자산(1) 보고기간종료일 현재 무형자산의 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00118804_2025_consolidated_xml_0021_04",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[172]",
+            "title": "30. 주당이익(1) 당기 및 전기 기본주당이익은 다음과 같습니다."
+          }
+        ]
+      },
+      {
+        "id": "X13",
+        "question": "2025년과 2024년 연결 기준 자산총계는 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00118804_2025_consolidated_xml_0001_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00118804_2025_consolidated_xml_0003_03",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00118804_2025_consolidated_xml_0011_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[90]",
+            "title": "14. 투자부동산(1) 보고기간종료일 현재 투자부동산의 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00118804_2025_consolidated_xml_0016_22",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[135]",
+            "title": "19. 기타부채보고기간종료일 현재 기타부채의 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00118804_2025_consolidated_xml_0015_06",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[124]",
+            "title": "18. 차입금(1) 보고기간종료일 현재 차입금의 내역은 다음과 같습니다."
+          }
+        ]
+      },
+      {
+        "id": "X14",
+        "question": "2025년과 2024년 연결 기준 영업이익은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00118804_2025_consolidated_xml_0002_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00118804_2025_consolidated_xml_0003_03",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00118804_2025_consolidated_xml_0017_03",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[150]",
+            "title": "21. 순확정급여부채(1) 보고기간종료일 현재 확정급여형 퇴직급여제도와 관련하여 연결재무상태표에 인식된 금액은 다음과 같습니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00118804_2025_consolidated_xml_0018_05",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[158]",
+            "title": "22. 자본금(1) 보고기간종료일 현재 지배기업의 자본금 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00118804_2025_consolidated_xml_0005_88",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반적 사항(1) 재무제표기업회계기준서 제1110호 '연결재무제표'에 의한 지배기업인 주식회사 동진쎄미켐과 주식회사 신암정유 등 20개 종속기업을 연결대상으로 하고, 동남산업 주식회사 등 4개 회사를 관계기업으로 하여 연결재무제표를 작성하였습니다.(2) 지배기업의 개요기업회계기준서 제1110호 '연결재무제표'에 의한 지배기업인 주식회사 동진쎄미켐(이하 \"지배기업\"이라 함)은 1973년 7월 10일 설립되어 1999년 12월 18일 주식을 한국증권업협회에 상장한 코스닥상장법인입니다. 지배기업 및 종속기업(이하 주식회사동진쎄미켐과 그 종속기업을 일괄하여 \"연결실체\"라 함)은 지주사업, 반도체 및 LCD등의 전자재료와 발포제의 제조ㆍ판매업 등을 영위하고 있습니다. 지배기업은 인천광역시 서구 가좌동에 본사를 두고 있으며, 경기도 화성군 양감면 소재 공장 등 3개의 공장을 보유 운영하고 있습니다."
+          }
+        ]
+      },
+      {
+        "id": "X15",
+        "question": "2025년과 2024년 연결 기준 배당금 지급액은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00118804_2025_consolidated_xml_0003_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00118804_2025_consolidated_xml_0024_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[196]",
+            "title": "34. 배당금 지급지배기업이 주주총회 결의에 따라 지배기업 주주에게 지급한 배당금은 다음과 같습니다."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00118804_2025_consolidated_xml_0017_02",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[150]",
+            "title": "21. 순확정급여부채(1) 보고기간종료일 현재 확정급여형 퇴직급여제도와 관련하여 연결재무상태표에 인식된 금액은 다음과 같습니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00118804_2025_consolidated_xml_0021_02",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[172]",
+            "title": "30. 주당이익(1) 당기 및 전기 기본주당이익은 다음과 같습니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00118804_2025_consolidated_xml_0005_80",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반적 사항(1) 재무제표기업회계기준서 제1110호 '연결재무제표'에 의한 지배기업인 주식회사 동진쎄미켐과 주식회사 신암정유 등 20개 종속기업을 연결대상으로 하고, 동남산업 주식회사 등 4개 회사를 관계기업으로 하여 연결재무제표를 작성하였습니다.(2) 지배기업의 개요기업회계기준서 제1110호 '연결재무제표'에 의한 지배기업인 주식회사 동진쎄미켐(이하 \"지배기업\"이라 함)은 1973년 7월 10일 설립되어 1999년 12월 18일 주식을 한국증권업협회에 상장한 코스닥상장법인입니다. 지배기업 및 종속기업(이하 주식회사동진쎄미켐과 그 종속기업을 일괄하여 \"연결실체\"라 함)은 지주사업, 반도체 및 LCD등의 전자재료와 발포제의 제조ㆍ판매업 등을 영위하고 있습니다. 지배기업은 인천광역시 서구 가좌동에 본사를 두고 있으며, 경기도 화성군 양감면 소재 공장 등 3개의 공장을 보유 운영하고 있습니다."
+          }
+        ]
+      },
+      {
+        "id": "X16",
+        "question": "2025년과 2024년 연결 기준 당기순이익은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00118804_2025_consolidated_xml_0003_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00118804_2025_consolidated_xml_0003_03",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00118804_2025_consolidated_xml_0017_03",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[150]",
+            "title": "21. 순확정급여부채(1) 보고기간종료일 현재 확정급여형 퇴직급여제도와 관련하여 연결재무상태표에 인식된 금액은 다음과 같습니다."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00118804_2025_consolidated_xml_0021_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[172]",
+            "title": "30. 주당이익(1) 당기 및 전기 기본주당이익은 다음과 같습니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00118804_2025_consolidated_xml_0018_05",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[158]",
+            "title": "22. 자본금(1) 보고기간종료일 현재 지배기업의 자본금 내역은 다음과 같습니다."
+          }
+        ]
+      },
+      {
+        "id": "X17",
+        "question": "2025년과 2024년 연결 기준 자본총계는 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00118804_2025_consolidated_xml_0003_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00118804_2025_consolidated_xml_0018_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[158]",
+            "title": "22. 자본금(1) 보고기간종료일 현재 지배기업의 자본금 내역은 다음과 같습니다."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00118804_2025_consolidated_xml_0006_14",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[33]",
+            "title": "5. 금융위험관리"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00118804_2025_consolidated_xml_0017_03",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[150]",
+            "title": "21. 순확정급여부채(1) 보고기간종료일 현재 확정급여형 퇴직급여제도와 관련하여 연결재무상태표에 인식된 금액은 다음과 같습니다."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00118804_2025_consolidated_xml_0012_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[99]",
+            "title": "15. 무형자산(1) 보고기간종료일 현재 무형자산의 내역은 다음과 같습니다."
+          }
+        ]
+      },
+      {
+        "id": "X18",
+        "question": "2025년과 2024년 연결 기준 영업활동으로 인한 현금흐름은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00118804_2025_consolidated_xml_0004_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00118804_2025_consolidated_xml_0025_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[197]",
+            "title": "35. 현금흐름관련정보연결실체의 현금흐름표는 간접법에 의해 작성되었으며, 당기 및 전기 중 재무활동에서 생기는 부채의 변동 및 현금의 유입과 유출이 없는 주요거래는 다음과 같습니다.(1) 재무활동에서 생기는 부채의 변동"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00118804_2025_consolidated_xml_0004_07",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00118804_2025_consolidated_xml_0006_11",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[33]",
+            "title": "5. 금융위험관리"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00118804_2025_consolidated_xml_0005_36",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반적 사항(1) 재무제표기업회계기준서 제1110호 '연결재무제표'에 의한 지배기업인 주식회사 동진쎄미켐과 주식회사 신암정유 등 20개 종속기업을 연결대상으로 하고, 동남산업 주식회사 등 4개 회사를 관계기업으로 하여 연결재무제표를 작성하였습니다.(2) 지배기업의 개요기업회계기준서 제1110호 '연결재무제표'에 의한 지배기업인 주식회사 동진쎄미켐(이하 \"지배기업\"이라 함)은 1973년 7월 10일 설립되어 1999년 12월 18일 주식을 한국증권업협회에 상장한 코스닥상장법인입니다. 지배기업 및 종속기업(이하 주식회사동진쎄미켐과 그 종속기업을 일괄하여 \"연결실체\"라 함)은 지주사업, 반도체 및 LCD등의 전자재료와 발포제의 제조ㆍ판매업 등을 영위하고 있습니다. 지배기업은 인천광역시 서구 가좌동에 본사를 두고 있으며, 경기도 화성군 양감면 소재 공장 등 3개의 공장을 보유 운영하고 있습니다."
+          }
+        ]
       }
     ],
     "hybrid": [
@@ -1532,6 +3281,589 @@
             "source_file": "20260319000264_00761.xml",
             "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
             "title": "현금흐름표"
+          }
+        ]
+      },
+      {
+        "id": "X08",
+        "question": "2025년 연결 기준 자산총계는 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00118804_2025_consolidated_xml_0003_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00118804_2025_consolidated_xml_0001_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00118804_2025_consolidated_xml_0002_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00118804_2025_consolidated_xml_0004_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00118804_2025_consolidated_xml_0012_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[99]",
+            "title": "15. 무형자산(1) 보고기간종료일 현재 무형자산의 내역은 다음과 같습니다."
+          }
+        ]
+      },
+      {
+        "id": "X09",
+        "question": "2025년 연결 기준 현금및현금성자산은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00118804_2025_consolidated_xml_0006_19",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[33]",
+            "title": "5. 금융위험관리"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00118804_2025_consolidated_xml_0001_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00118804_2025_consolidated_xml_0004_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00118804_2025_consolidated_xml_0003_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00118804_2025_consolidated_xml_0002_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          }
+        ]
+      },
+      {
+        "id": "X10",
+        "question": "2025년 연결 기준 재고자산은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00118804_2025_consolidated_xml_0008_16",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[59]",
+            "title": "8. 범주별금융상품"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00118804_2025_consolidated_xml_0001_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00118804_2025_consolidated_xml_0003_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00118804_2025_consolidated_xml_0008_14",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[59]",
+            "title": "8. 범주별금융상품"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00118804_2025_consolidated_xml_0002_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          }
+        ]
+      },
+      {
+        "id": "X11",
+        "question": "2025년 연결 기준 영업이익은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00118804_2025_consolidated_xml_0002_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00118804_2025_consolidated_xml_0003_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00118804_2025_consolidated_xml_0004_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00118804_2025_consolidated_xml_0001_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00118804_2025_consolidated_xml_0002_02",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          }
+        ]
+      },
+      {
+        "id": "X12",
+        "question": "2025년 연결 기준 자본총계는 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00118804_2025_consolidated_xml_0003_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00118804_2025_consolidated_xml_0001_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00118804_2025_consolidated_xml_0002_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00118804_2025_consolidated_xml_0004_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00118804_2025_consolidated_xml_0001_05",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          }
+        ]
+      },
+      {
+        "id": "X13",
+        "question": "2025년과 2024년 연결 기준 자산총계는 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00118804_2025_consolidated_xml_0003_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00118804_2025_consolidated_xml_0001_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00118804_2025_consolidated_xml_0002_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00118804_2025_consolidated_xml_0004_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00118804_2025_consolidated_xml_0007_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[55]",
+            "title": "7. 투자금융자산(1) 보고기간종료일 현재 투자금융자산의 내역은 다음과 같습니다.<당기말>"
+          }
+        ]
+      },
+      {
+        "id": "X14",
+        "question": "2025년과 2024년 연결 기준 영업이익은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00118804_2025_consolidated_xml_0002_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00118804_2025_consolidated_xml_0003_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00118804_2025_consolidated_xml_0004_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00118804_2025_consolidated_xml_0001_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00118804_2025_consolidated_xml_0003_03",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          }
+        ]
+      },
+      {
+        "id": "X15",
+        "question": "2025년과 2024년 연결 기준 배당금 지급액은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00118804_2025_consolidated_xml_0003_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00118804_2025_consolidated_xml_0024_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[196]",
+            "title": "34. 배당금 지급지배기업이 주주총회 결의에 따라 지배기업 주주에게 지급한 배당금은 다음과 같습니다."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00118804_2025_consolidated_xml_0004_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00118804_2025_consolidated_xml_0003_03",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00118804_2025_consolidated_xml_0005_29",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반적 사항(1) 재무제표기업회계기준서 제1110호 '연결재무제표'에 의한 지배기업인 주식회사 동진쎄미켐과 주식회사 신암정유 등 20개 종속기업을 연결대상으로 하고, 동남산업 주식회사 등 4개 회사를 관계기업으로 하여 연결재무제표를 작성하였습니다.(2) 지배기업의 개요기업회계기준서 제1110호 '연결재무제표'에 의한 지배기업인 주식회사 동진쎄미켐(이하 \"지배기업\"이라 함)은 1973년 7월 10일 설립되어 1999년 12월 18일 주식을 한국증권업협회에 상장한 코스닥상장법인입니다. 지배기업 및 종속기업(이하 주식회사동진쎄미켐과 그 종속기업을 일괄하여 \"연결실체\"라 함)은 지주사업, 반도체 및 LCD등의 전자재료와 발포제의 제조ㆍ판매업 등을 영위하고 있습니다. 지배기업은 인천광역시 서구 가좌동에 본사를 두고 있으며, 경기도 화성군 양감면 소재 공장 등 3개의 공장을 보유 운영하고 있습니다."
+          }
+        ]
+      },
+      {
+        "id": "X16",
+        "question": "2025년과 2024년 연결 기준 당기순이익은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00118804_2025_consolidated_xml_0003_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00118804_2025_consolidated_xml_0002_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00118804_2025_consolidated_xml_0004_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00118804_2025_consolidated_xml_0003_03",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00118804_2025_consolidated_xml_0005_83",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[2]",
+            "title": "1. 일반적 사항(1) 재무제표기업회계기준서 제1110호 '연결재무제표'에 의한 지배기업인 주식회사 동진쎄미켐과 주식회사 신암정유 등 20개 종속기업을 연결대상으로 하고, 동남산업 주식회사 등 4개 회사를 관계기업으로 하여 연결재무제표를 작성하였습니다.(2) 지배기업의 개요기업회계기준서 제1110호 '연결재무제표'에 의한 지배기업인 주식회사 동진쎄미켐(이하 \"지배기업\"이라 함)은 1973년 7월 10일 설립되어 1999년 12월 18일 주식을 한국증권업협회에 상장한 코스닥상장법인입니다. 지배기업 및 종속기업(이하 주식회사동진쎄미켐과 그 종속기업을 일괄하여 \"연결실체\"라 함)은 지주사업, 반도체 및 LCD등의 전자재료와 발포제의 제조ㆍ판매업 등을 영위하고 있습니다. 지배기업은 인천광역시 서구 가좌동에 본사를 두고 있으며, 경기도 화성군 양감면 소재 공장 등 3개의 공장을 보유 운영하고 있습니다."
+          }
+        ]
+      },
+      {
+        "id": "X17",
+        "question": "2025년과 2024년 연결 기준 자본총계는 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00118804_2025_consolidated_xml_0003_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00118804_2025_consolidated_xml_0002_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00118804_2025_consolidated_xml_0001_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00118804_2025_consolidated_xml_0004_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00118804_2025_consolidated_xml_0018_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[158]",
+            "title": "22. 자본금(1) 보고기간종료일 현재 지배기업의 자본금 내역은 다음과 같습니다."
+          }
+        ]
+      },
+      {
+        "id": "X18",
+        "question": "2025년과 2024년 연결 기준 영업활동으로 인한 현금흐름은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "00118804_2025_consolidated_xml_0004_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "00118804_2025_consolidated_xml_0004_05",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "00118804_2025_consolidated_xml_0003_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "00118804_2025_consolidated_xml_0008_18",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[59]",
+            "title": "8. 범주별금융상품"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "00118804_2025_consolidated_xml_0002_01",
+            "source_file": "20260319000264_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
           }
         ]
       }
