@@ -51,7 +51,7 @@
     "opendart_account": {
       "sj_div": "CF",
       "account_id": "ifrs-full_CashFlowsFromUsedInOperatingActivities",
-      "account_nm": "영업활동현금흐름"
+      "account_nm": "영업활동으로인한현금흐름"
     },
     "id": "X02",
     "annotation_status": "verified",
@@ -60,7 +60,7 @@
   {
     "question": "2025년 연결 기준 배당금 지급액은 얼마인가?",
     "answer_type": "numeric",
-    "expected_value": "(14,839,403,800)",
+    "expected_value": "(14,848,302,300)",
     "unit": "원",
     "gold_sources": [
       {
@@ -80,7 +80,7 @@
     "opendart_account": {
       "sj_div": "CF",
       "account_id": "ifrs-full_DividendsPaidClassifiedAsFinancingActivities",
-      "account_nm": "재무활동으로 분류된 배당금 지급"
+      "account_nm": "배당금지급"
     },
     "id": "X03",
     "annotation_status": "verified",
@@ -119,7 +119,7 @@
     "question": "2025년과 2024년 연결 기준 배당금 지급액은 각각 얼마인가?",
     "answer_type": "comparison",
     "expected_value": {
-      "2025": "(14,839,403,800)",
+      "2025": "(14,848,302,300)",
       "2024": "(14,839,403,800)"
     },
     "unit": "원",
@@ -141,7 +141,7 @@
     "opendart_account": {
       "sj_div": "CF",
       "account_id": "ifrs-full_DividendsPaidClassifiedAsFinancingActivities",
-      "account_nm": "재무활동으로 분류된 배당금 지급"
+      "account_nm": "배당금지급"
     },
     "id": "X05",
     "annotation_status": "verified",
@@ -173,7 +173,7 @@
     "opendart_account": {
       "sj_div": "CF",
       "account_id": "ifrs-full_CashFlowsFromUsedInOperatingActivities",
-      "account_nm": "영업활동현금흐름"
+      "account_nm": "영업활동으로인한현금흐름"
     },
     "id": "X06",
     "annotation_status": "verified",
