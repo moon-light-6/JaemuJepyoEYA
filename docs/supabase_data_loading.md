@@ -66,86 +66,86 @@ python -c "import chromadb; c=chromadb.PersistentClient(path='data/chroma_multi'
 
 
 # 261123
+## 7. XML v2 ChromaDB 적재 및 확인 (2026-11-23)
 
-> **목적:** 기존 OpenDART 수치 재적재 절차를 팀 공용으로 정리하고, 기존 평가 문항(v1) 수정 및 추가 평가 문항(v2)과의 관계를 명확히 합니다. 아래 명령어는 기존 0~5절의 **Windows CMD 형식**을 그대로 따릅니다.
+> **목적:** 개선된 XML v2 청크가 로컬 ChromaDB에 정상적으로 적재되었는지 확인하고, 누락된 경우에만 기존 적재 함수를 사용합니다.
 >
-> **주의:** 문항을 추가하거나 정답을 수정했다고 해서 OpenDART 원본 재무계정 데이터가 자동으로 바뀌는 것은 아닙니다. 현재 `load_dart_accounts.py`는 `fin.dart_financial_accounts`의 수치만 적재하며, v1/v2 평가 문항 JSON이나 검색 평가 결과를 Supabase에 적재하지 않습니다.
+> Supabase의 재무 수치 적재와 ChromaDB의 XML 청크 적재는 별개의 작업입니다.
 
-## 1. 각자 담당 기업 정보 설정
+### 7-1. 담당 기업 정보 설정
 
-프로젝트 루트의 Windows CMD에서 기존 문서 0절과 같은 방식으로 설정합니다. `...`는 실제 값으로 변경하세요. 한 기업을 완료한 뒤 다음 기업으로 이동할 때는 다시 설정합니다.
+Windows CMD에서 각자 담당 기업 정보로 설정합니다.
 
 ```cmd
-set CORP_CODE=본인기업의8자리DART고유번호
+set CORP_CODE=본인기업고유번호8자리
 set YEAR=2025
 set SCOPE=consolidated
-set RCEPT_NO=해당공시의14자리접수번호
+set RCEPT_NO=공시접수번호14자리
 ```
 
-- `CORP_CODE`는 종목코드(6자리)가 아닌 DART 기업고유번호(8자리)입니다. 앞의 `0`도 포함합니다.
-- `SCOPE`는 연결 `consolidated`, 별도 `separate`입니다.
-- `.env`에 `DART_API_KEY`와 `DATABASE_URL`이 설정되어 있어야 합니다.
-- 팀원별 수집 대상 공시와 평가셋의 `rcept_no`를 일치시킵니다.
+`CORP_CODE`는 종목코드 6자리가 아닌 DART 기업고유번호 8자리입니다.
 
-## 2. OpenDART 수치 JSON 수집 또는 재수집
-
-**기존 JSON이 없는 경우: 기존 문서의 명령어 그대로 실행**
+### 7-2. XML v2 청크 파일 확인
 
 ```cmd
-python scripts\fetch_dart_accounts.py --corp-code %CORP_CODE% --year %YEAR% --scope %SCOPE% --expected-rcept-no %RCEPT_NO%
+dir data\processed\xml\dart\%CORP_CODE%\%YEAR%\%SCOPE%\%RCEPT_NO%_xml_chunks_v2.json
 ```
 
-**기존 JSON이 있고 수치를 다시 조회해야 하는 경우에만:** 기존 명령어 맨 끝에 `--overwrite`를 추가합니다.
+파일이 존재하면 다음 단계로 진행합니다.
+
+파일이 없다면 해당 기업의 XML v2 청킹 작업이 완료됐는지, 다른 PC에 생성된 파일이 있는지 먼저 확인합니다.
+
+### 7-3. ChromaDB 적재 상태 확인
 
 ```cmd
-python scripts\fetch_dart_accounts.py --corp-code %CORP_CODE% --year %YEAR% --scope %SCOPE% --expected-rcept-no %RCEPT_NO% --overwrite
+python -c "import hashlib,json,chromadb; from pathlib import Path; p=Path('data/processed/xml/dart/%CORP_CODE%/%YEAR%/%SCOPE%/%RCEPT_NO%_xml_chunks_v2.json'); d=Path('data/chroma_xml_v2')/hashlib.sha256(p.read_bytes()).hexdigest(); n='fin_xml_%CORP_CODE%_%YEAR%_%SCOPE%_%RCEPT_NO%_kure_v1'; assert (d/'chroma.sqlite3').is_file(), 'ChromaDB not found: '+str(d); data=json.loads(p.read_text(encoding='utf-8')); got=set(chromadb.PersistentClient(path=str(d)).get_collection(n).get(include=[])['ids']); ids={str(x['chunk_id']) for x in data}; print('XML:',len(data),'Chroma:',len(got),'Match:',len(got)==len(data) and ids==got)"
 ```
 
-- `--overwrite`는 `data/processed/financial/`의 **로컬 수치 JSON을 덮어쓰는 옵션**입니다. Supabase 초기화 옵션이 아닙니다. 기존 파일 보존이 필요하면 먼저 백업하세요.
-- API 응답 접수번호와 `%RCEPT_NO%`가 다르면 수집을 중단합니다. 임의로 번호를 변경하지 마세요.
-- 문항 추가가 유일한 변경 사항이라면 이 수치 JSON 재조회는 필수 단계가 아닙니다.
+**결과 해석**
 
-## 3. 적재 전 검증: DRY-RUN (기존 명령어와 동일)
+- `Match: True`: XML v2 JSON과 ChromaDB의 청크 개수 및 ID가 일치합니다.
+- `Match: False`: 청크 수 또는 ID가 일치하지 않습니다.
+- `ChromaDB not found`: 현재 PC에서 해당 청크 파일의 해시에 대응하는 Chroma 저장소를 찾지 못했습니다.
+
+`Match: True`이면 재적재할 필요가 없습니다.
+
+### 7-4. ChromaDB에 색인이 없을 경우에만 적재
+
+기존 `xml_retrieval.py`에 구현된 `build_xml_chroma()` 함수를 재사용합니다. 새로운 스크립트를 만들 필요가 없습니다.
 
 ```cmd
-python scripts\load_dart_accounts.py --corp-code %CORP_CODE% --year %YEAR% --scope %SCOPE% --expected-rcept-no %RCEPT_NO%
+python -c "import sys,hashlib,json,chromadb; from pathlib import Path; sys.path.insert(0,'src'); from fin_research.retrieval.xml_retrieval import build_xml_chroma; p=Path('data/processed/xml/dart/%CORP_CODE%/%YEAR%/%SCOPE%/%RCEPT_NO%_xml_chunks_v2.json'); d=Path('data/chroma_xml_v2')/hashlib.sha256(p.read_bytes()).hexdigest(); n='fin_xml_%CORP_CODE%_%YEAR%_%SCOPE%_%RCEPT_NO%_kure_v1'; count=build_xml_chroma(p,d,n); ids={str(x['chunk_id']) for x in json.loads(p.read_text(encoding='utf-8'))}; stored=set(chromadb.PersistentClient(path=str(d)).get_collection(n).get(include=[])['ids']); print('XML:',len(ids),'Chroma:',count,'Match:',ids==stored); assert ids==stored"
 ```
 
-`확인 완료`와 `DRY-RUN: DB를 변경하지 않았습니다`를 확인합니다. 이 단계에서는 DB를 수정하지 않습니다.
+적재 후 `Match: True`가 출력되는지 확인합니다.
 
-## 4. Supabase INSERT / UPSERT (기존 명령어와 동일)
+기존 인덱스와 입력 청크 ID가 다르다면 임의로 삭제하지 말고 원인을 먼저 확인합니다.
 
-```cmd
-python scripts\load_dart_accounts.py --corp-code %CORP_CODE% --year %YEAR% --scope %SCOPE% --expected-rcept-no %RCEPT_NO% --apply
-```
+### 7-5. PC별 저장소 주의사항
 
-- `fin.dart_financial_accounts` 테이블에 적재합니다. 동일 `(rcept_no, fs_div, record_index)`의 행은 UPDATE, 없으면 INSERT합니다.
-- 기존 동일 공시의 행 수가 새 JSON의 계정 수보다 많으면 스크립트가 오류를 내고 중단합니다. 임의 삭제·강제 초기화하지 마세요.
-- `적재 완료: fin.dart_financial_accounts / N건 (트랜잭션 COMMIT)` 메시지와 계정 수를 확인합니다.
+ChromaDB는 각 PC의 로컬 디렉터리에 저장됩니다.
 
-## 5. Supabase 적재 결과 확인 (팀 공통)
+- `data/chroma_xml_v2/{SHA-256 해시}`: 개선된 XML v2 색인
+- `data/chroma_multi`: 기존 검색 인덱스
 
-Supabase SQL Editor에서 적재된 전체 기업을 확인하려면 다음 SQL을 실행합니다.
+따라서 노트북에 ChromaDB가 적재되어 있더라도 데스크톱에 자동으로 생성되는 것은 아닙니다.
 
-```sql
-SELECT corp_code, fiscal_year, fs_div, rcept_no, COUNT(*) AS account_rows
-FROM fin.dart_financial_accounts
-GROUP BY corp_code, fiscal_year, fs_div, rcept_no
-ORDER BY corp_code, fiscal_year, fs_div, rcept_no;
-```
+Git에서 XML 청크 JSON을 가져온 경우에도 **실제로 검색할 PC에서 ChromaDB 적재 상태를 별도로 확인해야 합니다.**
 
-담당 기업의 `account_rows`와 수집·적재 로그의 계정 수를 대조합니다.
+### 7-6. 완료 확인 및 공유
 
-## 6. 수정된 v1 / 추가된 v2 평가 문항 확인 (수치 적재와 별개)
+각 기업별로 다음 항목을 확인합니다.
 
-```cmd
-dir evaluation\dataset\xml\%CORP_CODE%\%YEAR%\%SCOPE%\%RCEPT_NO%_retrieval*.json
-```
+- Supabase `fin.dart_financial_accounts` 적재 완료 (`COMMIT`)
+- XML v2 청크 JSON 존재
+- ChromaDB 저장 개수 및 ID 일치 (`Match: True`)
+- ChromaDB 적재·확인을 수행한 PC
 
-- `{rcept_no}_retrieval.json`: 기존 v1 평가 문항과 수정된 정답.
-- `{rcept_no}_retrieval_v2.json`: 추가 생성·검증한 v2 평가 문항.
-- 각 파일의 `id`, `question`, `expected_value`, `unit`, `gold_sources`, `annotation_status`를 확인하고, `verified` 여부를 점검합니다.
-- **현재 `scripts/load_dart_accounts.py`로는 이 문항을 Supabase에 넣을 수 없습니다.** 실제 DB에 문항 수정·추가를 반영하려면 별도 테이블/UPSERT 스크립트가 필요하며, 확인된 현행 적재 명령어는 없습니다.
-- XML 청크와 Chroma 인덱스, `evaluation/results/xml/`의 기존/개선 청킹 평가 결과 또한 위 수치 적재 명령어로는 저장되지 않습니다.
+**주의:** 이 절차는 데이터 적재 및 저장 상태 확인을 위한 것입니다. 검색기·LangGraph 연결이나 검색 정확도 검증은 별도 작업입니다.
 
-> **팀 공통 완료 기록:** 기업명 / DART 고유번호 / 연도 / 연결·별도 / 접수번호 / 수치 JSON 계정 수 / DRY-RUN / Supabase 적재 건수 / v1·v2 `verified` 문항 수.
+### 평가 문항 관리 주의사항
+신규 v2 문항 및 수정된 v1 정답은 evaluation/dataset/xml/에 저장됩니다.
+
+기존 XML v2 평가 파이프라인은 검증 완료(verified)된 v1·v2 문항을 함께 불러와 평가할 수 있습니다.
+
+단, Supabase 재무 수치 적재 및 ChromaDB 청크 색인 명령어로는 평가 문항 자체가 DB에 저장되지 않습니다. 문항을 추가했다는 이유만으로 재무 수치나 XML 청크를 다시 적재할 필요는 없습니다.
