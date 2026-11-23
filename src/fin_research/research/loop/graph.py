@@ -136,6 +136,7 @@ def run_research_loop(
             }
 
         # 같은 청크는 누적하지 않고, 조사 전체에서 출처 ID를 고정합니다.
+        history["retrieved_count"] = len(hits)
         evidences = list(state["evidences"])
         known = {(item["source_file"], item["chunk_id"]) for item in evidences}
         for hit in hits:

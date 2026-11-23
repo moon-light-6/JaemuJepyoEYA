@@ -150,7 +150,28 @@ class PostgresReadOnlyStore:
         self.timeout_ms = timeout_ms
 
     def execute(self, sql: str) -> SQLResult:
+        """모델 생성 SELECT를 검사하고 리터럴의 %를 DB 매개변수 문법과 구분한다."""
         normalized = validate_readonly_sql(sql)
+        return self._execute_query(normalized.replace("%", "%%"), (), display_sql=normalized)
+
+    def read_financial_accounts(self, context, account_ids: list[str], account_names: list[str]) -> SQLResult:
+        """고정된 매개변수 쿼리로 연간 공시 계정만 조회한다. 임의 테이블 접근은 허용하지 않는다."""
+        query = """
+            SELECT rcept_no, fs_div, record_index, corp_code, fiscal_year, reprt_code,
+                   sj_div, account_id, account_nm, account_detail, currency,
+                   thstrm_amount, frmtrm_amount
+            FROM fin.dart_financial_accounts
+            WHERE corp_code = %s AND fiscal_year = %s AND fs_div = %s
+              AND rcept_no = %s AND reprt_code = '11011'
+              AND (account_id = ANY(%s) OR account_nm = ANY(%s))
+            ORDER BY record_index
+        """
+        parameters = (context.corp_code, context.year, "CFS" if context.scope == "consolidated" else "OFS",
+                      context.rcept_no, account_ids, account_names)
+        return self._execute_query(query, parameters)
+
+    def _execute_query(self, query: str, parameters: tuple, *, display_sql: str | None = None) -> SQLResult:
+        """검사한 SQL 또는 고정 쿼리에 동일한 읽기 전용·시간·행 수 제한을 적용한다."""
         connection = None
         try:
             connection = psycopg2.connect(
@@ -163,15 +184,15 @@ class PostgresReadOnlyStore:
             with connection.cursor() as cursor:
                 # 바깥 쿼리에도 상한을 적용해 모델이 LIMIT을 생략해도 대량 조회하지 않는다.
                 cursor.execute(
-                    f"SELECT * FROM ({normalized}) AS _fin_result LIMIT %s",
-                    (self.max_rows + 1,),
+                    f"SELECT * FROM ({query}) AS _fin_result LIMIT %s",
+                    (*parameters, self.max_rows + 1),
                 )
                 columns = [column[0] for column in cursor.description]
                 if len(columns) != len(set(columns)):
                     raise SQLExecutionError("출력 열 이름이 중복됩니다. AS로 별칭을 지정하세요.")
                 fetched = cursor.fetchmany(self.max_rows + 1)
                 rows = [dict(zip(columns, row)) for row in fetched[:self.max_rows]]
-                return SQLResult(normalized, columns, rows, len(rows), len(fetched) > self.max_rows)
+                return SQLResult(display_sql or query, columns, rows, len(rows), len(fetched) > self.max_rows)
         except psycopg2.Error as exc:
             # DB 원본 오류에는 접속·인증 정보가 포함될 수 있어 출력하지 않는다.
             code = exc.pgcode or "connection"

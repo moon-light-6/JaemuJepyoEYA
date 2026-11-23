@@ -12,8 +12,9 @@
 - `scripts/run_sql.py`: 모델 없는 직접 조회와 GPT 기반 Text-to-SQL 테스트 명령.
 - `tools/ratios.py`: 부채비율·유동비율·평균자본 ROE·영업이익률의 공통 공식(기존 구현 유지).
 
-1주차 완료 범위는 SQL 도구의 독립 실행이다. LangGraph의 planner/router/executor에
-SQL 도구를 연결하고 계산 도구를 호출하는 작업은 2주차 범위로 남겨 둔다.
+기존 Text-to-SQL 독립 실행은 유지한다. 추가된 2주차 `run_loop.py --multi-tool` 모드는
+planner/router/executor와 새 계정 테이블의 매개변수 조회·계산을 연결한다.
+사용법과 두 조회 경로의 차이는 `docs/multi_tool_research.md`를 참고한다.
 
 ## 환경
 

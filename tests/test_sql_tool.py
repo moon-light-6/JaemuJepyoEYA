@@ -122,6 +122,14 @@ class SQLStoreTests(unittest.TestCase):
             PostgresReadOnlyStore("unused").execute("DELETE FROM fin.company")
         self.mock_connect.assert_not_called()
 
+    def test_like_percent_is_escaped_for_driver_parameters(self):
+        """LIKE의 %를 psycopg2 매개변수 문법으로 잘못 해석하지 않게 한다."""
+        result = PostgresReadOnlyStore("unused").execute(
+            "SELECT amount FROM fin.v_fin_value WHERE account_name_raw LIKE '%영업이익%'"
+        )
+        self.assertIn("%%영업이익%%", self.cursor.execute.call_args.args[0])
+        self.assertIn("%영업이익%", result.sql)
+
     def test_connection_error_does_not_expose_credentials(self):
         self.mock_connect.side_effect = psycopg2.OperationalError("secret_password@private-host")
         with self.assertRaises(SQLExecutionError) as caught:
