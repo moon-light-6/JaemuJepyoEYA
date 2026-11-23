@@ -13,6 +13,9 @@ dependencies = [
     "pyyaml>=6.0.3",
     "psycopg2-binary>=2.9,<3",
     "sqlglot>=28,<29",
+    "fastapi>=0.165.0",
+    "python-multipart>=0.0.34",
+    "uvicorn>=0.54.0",
 ]
 
 [build-system]
