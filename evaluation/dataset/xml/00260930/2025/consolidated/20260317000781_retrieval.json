@@ -60,7 +60,7 @@
   {
     "question": "2025년 연결 기준 배당금 지급액은 얼마인가?",
     "answer_type": "numeric",
-    "expected_value": "(12,890,253,049) ",
+    "expected_value": "(12,890,253,049)",
     "unit": "원",
     "gold_sources": [
       {
