@@ -1,0 +1,3454 @@
+{
+  "config": {
+    "source_format": "xml",
+    "questions": 16,
+    "chunks": 173,
+    "collection_name": "fin_xml_01152470_2025_consolidated_20260319001336_kure_v1",
+    "chunks_path": "/Users/99yoo/Desktop/JaemuJepyoEYA/data/processed/xml/dart/01152470/2025/consolidated/20260319001336_xml_chunks_v2.json",
+    "chunks_sha256": "e6f8b7be42c791ab5f8f503f44b068e83d6e3458370fb5aa02a177c77baae959",
+    "dataset_path": "/Users/99yoo/Desktop/JaemuJepyoEYA/evaluation/dataset/xml/01152470/2025/consolidated/20260319001336_retrieval.json",
+    "chroma_dir": "/Users/99yoo/Desktop/JaemuJepyoEYA/data/chroma_xml_v2/e6f8b7be42c791ab5f8f503f44b068e83d6e3458370fb5aa02a177c77baae959",
+    "chunk_size": 600,
+    "chunk_overlap": 100
+  },
+  "summary": {
+    "bm25": {
+      "hit_at_3": 0.5,
+      "hit_at_5": 0.6875,
+      "value_hit_at_3": 0.375,
+      "value_hit_at_5": 0.4375,
+      "source_value_hit_at_3": 0.25,
+      "source_value_hit_at_5": 0.25,
+      "total": 16
+    },
+    "chroma": {
+      "hit_at_3": 1.0,
+      "hit_at_5": 1.0,
+      "value_hit_at_3": 0.875,
+      "value_hit_at_5": 1.0,
+      "source_value_hit_at_3": 0.875,
+      "source_value_hit_at_5": 1.0,
+      "total": 16
+    },
+    "mmr": {
+      "hit_at_3": 0.875,
+      "hit_at_5": 0.875,
+      "value_hit_at_3": 0.8125,
+      "value_hit_at_5": 0.8125,
+      "source_value_hit_at_3": 0.75,
+      "source_value_hit_at_5": 0.75,
+      "total": 16
+    },
+    "hybrid": {
+      "hit_at_3": 1.0,
+      "hit_at_5": 1.0,
+      "value_hit_at_3": 0.625,
+      "value_hit_at_5": 0.75,
+      "source_value_hit_at_3": 0.5,
+      "source_value_hit_at_5": 0.5625,
+      "total": 16
+    }
+  },
+  "details": {
+    "bm25": [
+      {
+        "id": "X01",
+        "question": "2025년 연결 기준 자산총계는 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "01152470_2025_consolidated_xml_0006_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[20]",
+            "title": "2. 중요한 회계정책"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "01152470_2025_consolidated_xml_0003_04",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "01152470_2025_consolidated_xml_0002_03",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "01152470_2025_consolidated_xml_0003_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          }
+        ]
+      },
+      {
+        "id": "X02",
+        "question": "2025년 연결 기준 재고자산은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "01152470_2025_consolidated_xml_0006_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[20]",
+            "title": "2. 중요한 회계정책"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "01152470_2025_consolidated_xml_0003_04",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "01152470_2025_consolidated_xml_0002_03",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "01152470_2025_consolidated_xml_0003_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          }
+        ]
+      },
+      {
+        "id": "X03",
+        "question": "2025년 연결 기준 부채총계는 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "01152470_2025_consolidated_xml_0006_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[20]",
+            "title": "2. 중요한 회계정책"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "01152470_2025_consolidated_xml_0003_04",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "01152470_2025_consolidated_xml_0002_03",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "01152470_2025_consolidated_xml_0003_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          }
+        ]
+      },
+      {
+        "id": "X04",
+        "question": "2025년과 2024년 연결 기준 자산총계는 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "01152470_2025_consolidated_xml_0003_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "01152470_2025_consolidated_xml_0002_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "01152470_2025_consolidated_xml_0006_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[20]",
+            "title": "2. 중요한 회계정책"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "01152470_2025_consolidated_xml_0001_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          }
+        ]
+      },
+      {
+        "id": "X05",
+        "question": "2025년과 2024년 연결 기준 부채총계는 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "01152470_2025_consolidated_xml_0003_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "01152470_2025_consolidated_xml_0002_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "01152470_2025_consolidated_xml_0006_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[20]",
+            "title": "2. 중요한 회계정책"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "01152470_2025_consolidated_xml_0001_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          }
+        ]
+      },
+      {
+        "id": "X06",
+        "question": "2025년 연결 기준 현금및현금성자산은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "01152470_2025_consolidated_xml_0006_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[20]",
+            "title": "2. 중요한 회계정책"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "01152470_2025_consolidated_xml_0003_04",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "01152470_2025_consolidated_xml_0002_03",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "01152470_2025_consolidated_xml_0003_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          }
+        ]
+      },
+      {
+        "id": "X07",
+        "question": "2025년 연결 기준 영업수익은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "01152470_2025_consolidated_xml_0006_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[20]",
+            "title": "2. 중요한 회계정책"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "01152470_2025_consolidated_xml_0003_04",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "01152470_2025_consolidated_xml_0002_03",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "01152470_2025_consolidated_xml_0003_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          }
+        ]
+      },
+      {
+        "id": "X08",
+        "question": "2025년 연결 기준 영업손익은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "01152470_2025_consolidated_xml_0006_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[20]",
+            "title": "2. 중요한 회계정책"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "01152470_2025_consolidated_xml_0003_04",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "01152470_2025_consolidated_xml_0002_03",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "01152470_2025_consolidated_xml_0003_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          }
+        ]
+      },
+      {
+        "id": "X09",
+        "question": "2025년 연결 기준 당기순이익은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "01152470_2025_consolidated_xml_0006_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[20]",
+            "title": "2. 중요한 회계정책"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "01152470_2025_consolidated_xml_0003_04",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "01152470_2025_consolidated_xml_0002_03",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "01152470_2025_consolidated_xml_0003_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          }
+        ]
+      },
+      {
+        "id": "X10",
+        "question": "2025년 연결 기준 영업활동으로 인한 현금흐름은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_07",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_06",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_05",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "01152470_2025_consolidated_xml_0006_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[20]",
+            "title": "2. 중요한 회계정책"
+          }
+        ]
+      },
+      {
+        "id": "X11",
+        "question": "2025년 연결 기준 자본총계는 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "01152470_2025_consolidated_xml_0006_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[20]",
+            "title": "2. 중요한 회계정책"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "01152470_2025_consolidated_xml_0003_04",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "01152470_2025_consolidated_xml_0002_03",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "01152470_2025_consolidated_xml_0003_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          }
+        ]
+      },
+      {
+        "id": "X12",
+        "question": "2025년과 2024년 연결 기준 영업수익은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "01152470_2025_consolidated_xml_0003_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "01152470_2025_consolidated_xml_0002_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "01152470_2025_consolidated_xml_0006_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[20]",
+            "title": "2. 중요한 회계정책"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "01152470_2025_consolidated_xml_0001_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          }
+        ]
+      },
+      {
+        "id": "X13",
+        "question": "2025년과 2024년 연결 기준 영업손익은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "01152470_2025_consolidated_xml_0003_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "01152470_2025_consolidated_xml_0002_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "01152470_2025_consolidated_xml_0006_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[20]",
+            "title": "2. 중요한 회계정책"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "01152470_2025_consolidated_xml_0001_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          }
+        ]
+      },
+      {
+        "id": "X14",
+        "question": "2025년과 2024년 연결 기준 당기순이익은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "01152470_2025_consolidated_xml_0003_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "01152470_2025_consolidated_xml_0002_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "01152470_2025_consolidated_xml_0006_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[20]",
+            "title": "2. 중요한 회계정책"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "01152470_2025_consolidated_xml_0001_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          }
+        ]
+      },
+      {
+        "id": "X15",
+        "question": "2025년과 2024년 연결 기준 자본총계는 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "01152470_2025_consolidated_xml_0003_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "01152470_2025_consolidated_xml_0002_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "01152470_2025_consolidated_xml_0006_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[20]",
+            "title": "2. 중요한 회계정책"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "01152470_2025_consolidated_xml_0001_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          }
+        ]
+      },
+      {
+        "id": "X16",
+        "question": "2025년과 2024년 연결 기준 영업활동으로 인한 현금흐름은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_07",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_06",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_05",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "01152470_2025_consolidated_xml_0042_03",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[727]",
+            "title": "38. 비현금거래 정보"
+          }
+        ]
+      }
+    ],
+    "chroma": [
+      {
+        "id": "X01",
+        "question": "2025년 연결 기준 자산총계는 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "01152470_2025_consolidated_xml_0001_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "01152470_2025_consolidated_xml_0001_03",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "01152470_2025_consolidated_xml_0001_05",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "01152470_2025_consolidated_xml_0001_02",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "01152470_2025_consolidated_xml_0003_04",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          }
+        ]
+      },
+      {
+        "id": "X02",
+        "question": "2025년 연결 기준 재고자산은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "01152470_2025_consolidated_xml_0001_02",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "01152470_2025_consolidated_xml_0001_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "01152470_2025_consolidated_xml_0017_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[471]",
+            "title": "13. 재고자산"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "01152470_2025_consolidated_xml_0001_03",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_08",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          }
+        ]
+      },
+      {
+        "id": "X03",
+        "question": "2025년 연결 기준 부채총계는 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "01152470_2025_consolidated_xml_0001_05",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "01152470_2025_consolidated_xml_0001_04",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "01152470_2025_consolidated_xml_0001_03",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "01152470_2025_consolidated_xml_0001_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_08",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          }
+        ]
+      },
+      {
+        "id": "X04",
+        "question": "2025년과 2024년 연결 기준 자산총계는 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "01152470_2025_consolidated_xml_0001_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "01152470_2025_consolidated_xml_0003_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "01152470_2025_consolidated_xml_0001_03",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "01152470_2025_consolidated_xml_0001_05",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "01152470_2025_consolidated_xml_0001_02",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          }
+        ]
+      },
+      {
+        "id": "X05",
+        "question": "2025년과 2024년 연결 기준 부채총계는 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "01152470_2025_consolidated_xml_0001_05",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "01152470_2025_consolidated_xml_0001_04",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_08",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "01152470_2025_consolidated_xml_0001_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "01152470_2025_consolidated_xml_0001_03",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          }
+        ]
+      },
+      {
+        "id": "X06",
+        "question": "2025년 연결 기준 현금및현금성자산은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_08",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "01152470_2025_consolidated_xml_0001_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "01152470_2025_consolidated_xml_0012_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[439]",
+            "title": "8. 현금및현금성자산"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "01152470_2025_consolidated_xml_0001_03",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_05",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          }
+        ]
+      },
+      {
+        "id": "X07",
+        "question": "2025년 연결 기준 영업수익은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "01152470_2025_consolidated_xml_0002_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "01152470_2025_consolidated_xml_0003_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_02",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "01152470_2025_consolidated_xml_0001_05",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          }
+        ]
+      },
+      {
+        "id": "X08",
+        "question": "2025년 연결 기준 영업손익은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "01152470_2025_consolidated_xml_0002_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "01152470_2025_consolidated_xml_0002_02",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "01152470_2025_consolidated_xml_0002_03",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "01152470_2025_consolidated_xml_0003_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          }
+        ]
+      },
+      {
+        "id": "X09",
+        "question": "2025년 연결 기준 당기순이익은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "01152470_2025_consolidated_xml_0002_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "01152470_2025_consolidated_xml_0003_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "01152470_2025_consolidated_xml_0002_03",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "01152470_2025_consolidated_xml_0002_02",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          }
+        ]
+      },
+      {
+        "id": "X10",
+        "question": "2025년 연결 기준 영업활동으로 인한 현금흐름은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_05",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_07",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_06",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "01152470_2025_consolidated_xml_0022_05",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[528]",
+            "title": "18. 무형자산"
+          }
+        ]
+      },
+      {
+        "id": "X11",
+        "question": "2025년 연결 기준 자본총계는 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "01152470_2025_consolidated_xml_0001_05",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "01152470_2025_consolidated_xml_0003_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "01152470_2025_consolidated_xml_0003_04",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "01152470_2025_consolidated_xml_0003_02",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "01152470_2025_consolidated_xml_0001_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          }
+        ]
+      },
+      {
+        "id": "X12",
+        "question": "2025년과 2024년 연결 기준 영업수익은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "01152470_2025_consolidated_xml_0002_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "01152470_2025_consolidated_xml_0003_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_02",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "01152470_2025_consolidated_xml_0001_05",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          }
+        ]
+      },
+      {
+        "id": "X13",
+        "question": "2025년과 2024년 연결 기준 영업손익은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "01152470_2025_consolidated_xml_0002_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "01152470_2025_consolidated_xml_0003_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "01152470_2025_consolidated_xml_0002_03",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "01152470_2025_consolidated_xml_0002_02",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          }
+        ]
+      },
+      {
+        "id": "X14",
+        "question": "2025년과 2024년 연결 기준 당기순이익은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "01152470_2025_consolidated_xml_0003_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "01152470_2025_consolidated_xml_0002_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "01152470_2025_consolidated_xml_0002_03",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "01152470_2025_consolidated_xml_0002_02",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          }
+        ]
+      },
+      {
+        "id": "X15",
+        "question": "2025년과 2024년 연결 기준 자본총계는 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "01152470_2025_consolidated_xml_0003_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "01152470_2025_consolidated_xml_0001_05",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "01152470_2025_consolidated_xml_0001_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "01152470_2025_consolidated_xml_0003_04",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "01152470_2025_consolidated_xml_0003_02",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          }
+        ]
+      },
+      {
+        "id": "X16",
+        "question": "2025년과 2024년 연결 기준 영업활동으로 인한 현금흐름은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_06",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_05",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_07",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_08",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          }
+        ]
+      }
+    ],
+    "mmr": [
+      {
+        "id": "X01",
+        "question": "2025년 연결 기준 자산총계는 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "01152470_2025_consolidated_xml_0001_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "01152470_2025_consolidated_xml_0001_05",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "01152470_2025_consolidated_xml_0003_04",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "01152470_2025_consolidated_xml_0008_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[313]",
+            "title": "4. 영업부문"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "01152470_2025_consolidated_xml_0002_03",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          }
+        ]
+      },
+      {
+        "id": "X02",
+        "question": "2025년 연결 기준 재고자산은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "01152470_2025_consolidated_xml_0001_02",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "01152470_2025_consolidated_xml_0017_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[471]",
+            "title": "13. 재고자산"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "01152470_2025_consolidated_xml_0009_06",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[331]",
+            "title": "5. 위험관리"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "01152470_2025_consolidated_xml_0003_04",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "01152470_2025_consolidated_xml_0008_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[313]",
+            "title": "4. 영업부문"
+          }
+        ]
+      },
+      {
+        "id": "X03",
+        "question": "2025년 연결 기준 부채총계는 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "01152470_2025_consolidated_xml_0001_05",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "01152470_2025_consolidated_xml_0009_14",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[331]",
+            "title": "5. 위험관리"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "01152470_2025_consolidated_xml_0027_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[601]",
+            "title": "23. 충당부채"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "01152470_2025_consolidated_xml_0009_06",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[331]",
+            "title": "5. 위험관리"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "01152470_2025_consolidated_xml_0042_03",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[727]",
+            "title": "38. 비현금거래 정보"
+          }
+        ]
+      },
+      {
+        "id": "X04",
+        "question": "2025년과 2024년 연결 기준 자산총계는 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "01152470_2025_consolidated_xml_0001_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "01152470_2025_consolidated_xml_0003_04",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "01152470_2025_consolidated_xml_0003_02",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_07",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "01152470_2025_consolidated_xml_0008_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[313]",
+            "title": "4. 영업부문"
+          }
+        ]
+      },
+      {
+        "id": "X05",
+        "question": "2025년과 2024년 연결 기준 부채총계는 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "01152470_2025_consolidated_xml_0001_05",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "01152470_2025_consolidated_xml_0027_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[601]",
+            "title": "23. 충당부채"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "01152470_2025_consolidated_xml_0009_14",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[331]",
+            "title": "5. 위험관리"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "01152470_2025_consolidated_xml_0016_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[459]",
+            "title": "12. 매출채권및기타채권"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "01152470_2025_consolidated_xml_0009_06",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[331]",
+            "title": "5. 위험관리"
+          }
+        ]
+      },
+      {
+        "id": "X06",
+        "question": "2025년 연결 기준 현금및현금성자산은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_08",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "01152470_2025_consolidated_xml_0012_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[439]",
+            "title": "8. 현금및현금성자산"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "01152470_2025_consolidated_xml_0022_05",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[528]",
+            "title": "18. 무형자산"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "01152470_2025_consolidated_xml_0009_05",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[331]",
+            "title": "5. 위험관리"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "01152470_2025_consolidated_xml_0022_08",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[528]",
+            "title": "18. 무형자산"
+          }
+        ]
+      },
+      {
+        "id": "X07",
+        "question": "2025년 연결 기준 영업수익은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "01152470_2025_consolidated_xml_0002_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "01152470_2025_consolidated_xml_0003_02",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "01152470_2025_consolidated_xml_0008_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[313]",
+            "title": "4. 영업부문"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "01152470_2025_consolidated_xml_0022_05",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[528]",
+            "title": "18. 무형자산"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "01152470_2025_consolidated_xml_0006_06",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[20]",
+            "title": "2. 중요한 회계정책"
+          }
+        ]
+      },
+      {
+        "id": "X08",
+        "question": "2025년 연결 기준 영업손익은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "01152470_2025_consolidated_xml_0002_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "01152470_2025_consolidated_xml_0006_06",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[20]",
+            "title": "2. 중요한 회계정책"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "01152470_2025_consolidated_xml_0008_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[313]",
+            "title": "4. 영업부문"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "01152470_2025_consolidated_xml_0022_05",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[528]",
+            "title": "18. 무형자산"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "01152470_2025_consolidated_xml_0038_05",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[664]",
+            "title": "34. 법인세비용(수익)"
+          }
+        ]
+      },
+      {
+        "id": "X09",
+        "question": "2025년 연결 기준 당기순이익은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "01152470_2025_consolidated_xml_0002_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "01152470_2025_consolidated_xml_0019_04",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[479]",
+            "title": "15. 관계기업투자"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "01152470_2025_consolidated_xml_0022_05",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[528]",
+            "title": "18. 무형자산"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "01152470_2025_consolidated_xml_0006_06",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[20]",
+            "title": "2. 중요한 회계정책"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "01152470_2025_consolidated_xml_0008_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[313]",
+            "title": "4. 영업부문"
+          }
+        ]
+      },
+      {
+        "id": "X10",
+        "question": "2025년 연결 기준 영업활동으로 인한 현금흐름은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "01152470_2025_consolidated_xml_0022_05",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[528]",
+            "title": "18. 무형자산"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "01152470_2025_consolidated_xml_0042_03",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[727]",
+            "title": "38. 비현금거래 정보"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "01152470_2025_consolidated_xml_0008_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[313]",
+            "title": "4. 영업부문"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "01152470_2025_consolidated_xml_0009_04",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[331]",
+            "title": "5. 위험관리"
+          }
+        ]
+      },
+      {
+        "id": "X11",
+        "question": "2025년 연결 기준 자본총계는 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "01152470_2025_consolidated_xml_0001_05",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "01152470_2025_consolidated_xml_0009_14",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[331]",
+            "title": "5. 위험관리"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "01152470_2025_consolidated_xml_0029_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[612]",
+            "title": "25. 자본금과 주식발행초과금"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "01152470_2025_consolidated_xml_0019_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[479]",
+            "title": "15. 관계기업투자"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "01152470_2025_consolidated_xml_0008_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[313]",
+            "title": "4. 영업부문"
+          }
+        ]
+      },
+      {
+        "id": "X12",
+        "question": "2025년과 2024년 연결 기준 영업수익은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "01152470_2025_consolidated_xml_0002_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "01152470_2025_consolidated_xml_0003_02",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "01152470_2025_consolidated_xml_0022_05",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[528]",
+            "title": "18. 무형자산"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "01152470_2025_consolidated_xml_0008_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[313]",
+            "title": "4. 영업부문"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "01152470_2025_consolidated_xml_0006_06",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[20]",
+            "title": "2. 중요한 회계정책"
+          }
+        ]
+      },
+      {
+        "id": "X13",
+        "question": "2025년과 2024년 연결 기준 영업손익은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "01152470_2025_consolidated_xml_0002_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "01152470_2025_consolidated_xml_0022_05",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[528]",
+            "title": "18. 무형자산"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "01152470_2025_consolidated_xml_0006_06",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[20]",
+            "title": "2. 중요한 회계정책"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "01152470_2025_consolidated_xml_0008_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[313]",
+            "title": "4. 영업부문"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "01152470_2025_consolidated_xml_0037_02",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[660]",
+            "title": "33. 기타손익"
+          }
+        ]
+      },
+      {
+        "id": "X14",
+        "question": "2025년과 2024년 연결 기준 당기순이익은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "01152470_2025_consolidated_xml_0003_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "01152470_2025_consolidated_xml_0022_05",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[528]",
+            "title": "18. 무형자산"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "01152470_2025_consolidated_xml_0019_04",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[479]",
+            "title": "15. 관계기업투자"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "01152470_2025_consolidated_xml_0006_06",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[20]",
+            "title": "2. 중요한 회계정책"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "01152470_2025_consolidated_xml_0036_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[656]",
+            "title": "32. 금융손익"
+          }
+        ]
+      },
+      {
+        "id": "X15",
+        "question": "2025년과 2024년 연결 기준 자본총계는 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "01152470_2025_consolidated_xml_0003_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "01152470_2025_consolidated_xml_0001_05",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "01152470_2025_consolidated_xml_0029_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[612]",
+            "title": "25. 자본금과 주식발행초과금"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "01152470_2025_consolidated_xml_0009_14",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[331]",
+            "title": "5. 위험관리"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "01152470_2025_consolidated_xml_0019_05",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[479]",
+            "title": "15. 관계기업투자"
+          }
+        ]
+      },
+      {
+        "id": "X16",
+        "question": "2025년과 2024년 연결 기준 영업활동으로 인한 현금흐름은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_08",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "01152470_2025_consolidated_xml_0022_05",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[528]",
+            "title": "18. 무형자산"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "01152470_2025_consolidated_xml_0022_04",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[528]",
+            "title": "18. 무형자산"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "01152470_2025_consolidated_xml_0042_03",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[727]",
+            "title": "38. 비현금거래 정보"
+          }
+        ]
+      }
+    ],
+    "hybrid": [
+      {
+        "id": "X01",
+        "question": "2025년 연결 기준 자산총계는 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "01152470_2025_consolidated_xml_0003_04",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "01152470_2025_consolidated_xml_0001_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "01152470_2025_consolidated_xml_0003_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_08",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "01152470_2025_consolidated_xml_0003_02",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          }
+        ]
+      },
+      {
+        "id": "X02",
+        "question": "2025년 연결 기준 재고자산은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "01152470_2025_consolidated_xml_0001_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "01152470_2025_consolidated_xml_0003_04",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_08",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "01152470_2025_consolidated_xml_0001_02",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "01152470_2025_consolidated_xml_0006_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[20]",
+            "title": "2. 중요한 회계정책"
+          }
+        ]
+      },
+      {
+        "id": "X03",
+        "question": "2025년 연결 기준 부채총계는 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "01152470_2025_consolidated_xml_0003_04",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "01152470_2025_consolidated_xml_0001_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_08",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "01152470_2025_consolidated_xml_0001_05",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "01152470_2025_consolidated_xml_0006_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[20]",
+            "title": "2. 중요한 회계정책"
+          }
+        ]
+      },
+      {
+        "id": "X04",
+        "question": "2025년과 2024년 연결 기준 자산총계는 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "01152470_2025_consolidated_xml_0003_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "01152470_2025_consolidated_xml_0001_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "01152470_2025_consolidated_xml_0002_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_08",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_04",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          }
+        ]
+      },
+      {
+        "id": "X05",
+        "question": "2025년과 2024년 연결 기준 부채총계는 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "01152470_2025_consolidated_xml_0003_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "01152470_2025_consolidated_xml_0001_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_08",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_03",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_04",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          }
+        ]
+      },
+      {
+        "id": "X06",
+        "question": "2025년 연결 기준 현금및현금성자산은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_08",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "01152470_2025_consolidated_xml_0001_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "01152470_2025_consolidated_xml_0006_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[20]",
+            "title": "2. 중요한 회계정책"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "01152470_2025_consolidated_xml_0003_04",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          }
+        ]
+      },
+      {
+        "id": "X07",
+        "question": "2025년 연결 기준 영업수익은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "01152470_2025_consolidated_xml_0002_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "01152470_2025_consolidated_xml_0003_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "01152470_2025_consolidated_xml_0002_03",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_03",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          }
+        ]
+      },
+      {
+        "id": "X08",
+        "question": "2025년 연결 기준 영업손익은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "01152470_2025_consolidated_xml_0002_03",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "01152470_2025_consolidated_xml_0002_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "01152470_2025_consolidated_xml_0003_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_03",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          }
+        ]
+      },
+      {
+        "id": "X09",
+        "question": "2025년 연결 기준 당기순이익은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "01152470_2025_consolidated_xml_0003_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "01152470_2025_consolidated_xml_0002_03",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "01152470_2025_consolidated_xml_0002_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_03",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          }
+        ]
+      },
+      {
+        "id": "X10",
+        "question": "2025년 연결 기준 영업활동으로 인한 현금흐름은 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_07",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_05",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_06",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "01152470_2025_consolidated_xml_0006_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[20]",
+            "title": "2. 중요한 회계정책"
+          }
+        ]
+      },
+      {
+        "id": "X11",
+        "question": "2025년 연결 기준 자본총계는 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "01152470_2025_consolidated_xml_0003_04",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "01152470_2025_consolidated_xml_0003_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "01152470_2025_consolidated_xml_0001_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "01152470_2025_consolidated_xml_0003_02",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "01152470_2025_consolidated_xml_0002_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          }
+        ]
+      },
+      {
+        "id": "X12",
+        "question": "2025년과 2024년 연결 기준 영업수익은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "01152470_2025_consolidated_xml_0003_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "01152470_2025_consolidated_xml_0002_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "01152470_2025_consolidated_xml_0002_03",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "01152470_2025_consolidated_xml_0001_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          }
+        ]
+      },
+      {
+        "id": "X13",
+        "question": "2025년과 2024년 연결 기준 영업손익은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "01152470_2025_consolidated_xml_0003_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "01152470_2025_consolidated_xml_0002_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "01152470_2025_consolidated_xml_0002_03",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_03",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          }
+        ]
+      },
+      {
+        "id": "X14",
+        "question": "2025년과 2024년 연결 기준 당기순이익은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "01152470_2025_consolidated_xml_0003_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "01152470_2025_consolidated_xml_0002_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "01152470_2025_consolidated_xml_0002_03",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "01152470_2025_consolidated_xml_0001_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          }
+        ]
+      },
+      {
+        "id": "X15",
+        "question": "2025년과 2024년 연결 기준 자본총계는 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": false,
+        "value_hit_at_5": false,
+        "source_value_hit_at_3": false,
+        "source_value_hit_at_5": false,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "01152470_2025_consolidated_xml_0003_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "01152470_2025_consolidated_xml_0001_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+            "title": "재무상태표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "01152470_2025_consolidated_xml_0002_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+            "title": "포괄손익계산서"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "01152470_2025_consolidated_xml_0003_02",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_08",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          }
+        ]
+      },
+      {
+        "id": "X16",
+        "question": "2025년과 2024년 연결 기준 영업활동으로 인한 현금흐름은 각각 얼마인가?",
+        "gold_sources": [
+          {
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]"
+          }
+        ],
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "value_hit_at_3": true,
+        "value_hit_at_5": true,
+        "source_value_hit_at_3": true,
+        "source_value_hit_at_5": true,
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_06",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_07",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "01152470_2025_consolidated_xml_0004_05",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+            "title": "현금흐름표"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "01152470_2025_consolidated_xml_0003_01",
+            "source_file": "20260319001336_00761.xml",
+            "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[11]",
+            "title": "자본변동표"
+          }
+        ]
+      }
+    ]
+  }
+}
