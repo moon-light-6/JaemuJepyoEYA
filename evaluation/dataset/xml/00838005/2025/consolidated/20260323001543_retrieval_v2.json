@@ -1,0 +1,98 @@
+[
+  {
+    "question": "2025년과 2024년 연결 기준 자산총계는 각각 얼마인가?",
+    "answer_type": "comparison",
+    "expected_value": {
+      "2025": "2,306,446,623,339",
+      "2024": "2,103,214,252,543"
+    },
+    "unit": "원",
+    "gold_sources": [
+      {
+        "source_file": "20260323001543_00761.xml",
+        "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+      }
+    ],
+    "candidate_sources": [
+      {
+        "source_file": "20260323001543_00761.xml",
+        "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+        "title": "재무상태표",
+        "match_reason": "계정명과 당기·전기 금액이 같은 XML 문서"
+      }
+    ],
+    "category": "financial_position",
+    "opendart_account": {
+      "sj_div": "BS",
+      "account_id": "ifrs-full_Assets",
+      "account_nm": "자산총계"
+    },
+    "id": "X14",
+    "annotation_status": "verified",
+    "annotation_method": "auto_opendart_xml_xpath_candidate"
+  },
+  {
+    "question": "2025년과 2024년 연결 기준 당기순이익은 각각 얼마인가?",
+    "answer_type": "comparison",
+    "expected_value": {
+      "2025": "(102,420,702,080)",
+      "2024": "83,921,126,833"
+    },
+    "unit": "원",
+    "gold_sources": [
+      {
+        "source_file": "20260323001543_00761.xml",
+        "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+      }
+    ],
+    "candidate_sources": [
+      {
+        "source_file": "20260323001543_00761.xml",
+        "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+        "title": "포괄손익계산서",
+        "match_reason": "계정명과 당기·전기 금액이 같은 XML 문서"
+      }
+    ],
+    "category": "income_statement",
+    "opendart_account": {
+      "sj_div": "CIS",
+      "account_id": "ifrs-full_ProfitLoss",
+      "account_nm": "당기순이익(손실)"
+    },
+    "id": "X15",
+    "annotation_status": "verified",
+    "annotation_method": "auto_opendart_xml_xpath_candidate"
+  },
+  {
+    "question": "2025년과 2024년 연결 기준 영업활동으로 인한 현금흐름은 각각 얼마인가?",
+    "answer_type": "comparison",
+    "expected_value": {
+      "2025": "(39,756,707,314)",
+      "2024": "(113,461,112,534)"
+    },
+    "unit": "원",
+    "gold_sources": [
+      {
+        "source_file": "20260323001543_00761.xml",
+        "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]"
+      }
+    ],
+    "candidate_sources": [
+      {
+        "source_file": "20260323001543_00761.xml",
+        "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
+        "title": "현금흐름표",
+        "match_reason": "계정명과 당기·전기 금액이 같은 XML 문서"
+      }
+    ],
+    "category": "cash_flow",
+    "opendart_account": {
+      "sj_div": "CF",
+      "account_id": "ifrs-full_CashFlowsFromUsedInOperatingActivities",
+      "account_nm": "영업활동으로인한순현금흐름액"
+    },
+    "id": "X16",
+    "annotation_status": "verified",
+    "annotation_method": "auto_opendart_xml_xpath_candidate"
+  }
+]

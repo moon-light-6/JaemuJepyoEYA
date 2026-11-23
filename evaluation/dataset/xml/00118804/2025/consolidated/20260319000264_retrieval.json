@@ -22,7 +22,7 @@
     "opendart_account": {
       "sj_div": "CIS",
       "account_id": "ifrs-full_Revenue",
-      "account_nm": "수익"
+      "account_nm": "수익(매출액)"
     },
     "id": "X01",
     "annotation_status": "verified",
@@ -170,7 +170,7 @@
     "opendart_account": {
       "sj_div": "CIS",
       "account_id": "ifrs-full_Revenue",
-      "account_nm": "수익"
+      "account_nm": "수익(매출액)"
     },
     "id": "X06",
     "annotation_status": "verified",
