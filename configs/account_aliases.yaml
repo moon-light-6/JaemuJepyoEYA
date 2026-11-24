@@ -1,0 +1,66 @@
+# 재무 항목 이름 → DB account_id 대응표 (verify/accounts.py가 읽는다)
+#
+# - names: PDF(AI 보고서)에 나올 수 있는 이름. 공백·괄호·가운뎃점은 무시하고 "정확히 같을 때만" 일치.
+#          ('매출'이 '매출원가'에 걸리지 않도록 부분 일치는 쓰지 않는다)
+# - account_ids: fin.dart_financial_accounts.account_id. 앞에 있을수록 우선.
+# - DB에서 확인한 실제 계정명(2025 연결)도 names에 넣어 둔다.
+items:
+  revenue:
+    label: 매출액
+    names: [매출액, 매출, 영업수익, 수익, 수익(매출액), 총매출액]
+    account_ids: [ifrs-full_Revenue]
+
+  operating_income:
+    label: 영업이익
+    names: [영업이익, 영업이익(손실), 영업손익, 영업손실]
+    account_ids: [dart_OperatingIncomeLoss]
+
+  net_income:
+    label: 당기순이익
+    names: [당기순이익, 당기순이익(손실), 순이익, 당기순손익, 당기순손실, 연결당기순이익, 당기연결순이익]
+    account_ids: [ifrs-full_ProfitLoss]
+
+  total_assets:
+    label: 자산총계
+    names: [자산총계, 총자산, 자산]
+    account_ids: [ifrs-full_Assets]
+
+  total_liabilities:
+    label: 부채총계
+    names: [부채총계, 총부채, 부채]
+    account_ids: [ifrs-full_Liabilities]
+
+  total_equity:
+    label: 자본총계
+    names: [자본총계, 총자본, 자기자본, 자본]
+    account_ids: [ifrs-full_Equity]
+
+  current_assets:
+    label: 유동자산
+    names: [유동자산]
+    account_ids: [ifrs-full_CurrentAssets]
+
+  current_liabilities:
+    label: 유동부채
+    names: [유동부채]
+    account_ids: [ifrs-full_CurrentLiabilities]
+
+  operating_cash_flow:
+    label: 영업활동현금흐름
+    names: [영업활동현금흐름, 영업활동으로인한현금흐름, 영업활동으로인한순현금흐름, 영업활동으로인한순현금흐름액, 영업활동으로부터의현금흐름]
+    account_ids: [ifrs-full_CashFlowsFromUsedInOperatingActivities]
+
+  investing_cash_flow:
+    label: 투자활동현금흐름
+    names: [투자활동현금흐름, 투자활동으로인한현금흐름, 투자활동으로인한순현금흐름, 투자활동으로인한순현금흐름액, 투자활동으로부터의현금흐름]
+    account_ids: [ifrs-full_CashFlowsFromUsedInInvestingActivities]
+
+  financing_cash_flow:
+    label: 재무활동현금흐름
+    names: [재무활동현금흐름, 재무활동으로인한현금흐름, 재무활동으로인한순현금흐름, 재무활동으로인한순현금흐름액, 재무활동으로부터의현금흐름]
+    account_ids: [ifrs-full_CashFlowsFromUsedInFinancingActivities]
+
+  cash_and_equivalents:
+    label: 현금및현금성자산
+    names: [현금및현금성자산, 현금성자산, 기말현금및현금성자산]
+    account_ids: [ifrs-full_CashAndCashEquivalents]

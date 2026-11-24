@@ -13,3 +13,9 @@ research:
   questions_per_subtopic: 2    # researcher가 하위 주제당 조사할 질문 수 상한 (비용 조절)
   max_rounds: 2                # 계획서: 조사 단계 최대 2라운드 (누락 주제 재분배 포함)
   loop_max_iterations: 3       # researcher 내부 루프 반복 상한 (루프 담당과 협의)
+
+verify:
+  max_claims: 40               # PDF 한 개에서 검증할 주장 수 상한 (주장마다 verify_claim 1회)
+  max_concurrent_extract: 4    # claim_extract가 동시에 보내는 LLM 호출 수 (페이지 묶음 단위)
+  batch_max_chars: 6000        # LLM 한 번에 넣을 페이지 텍스트 글자 수
+  max_concurrent_verify: 8     # 동시에 실행할 verify_claim 수 (DB 조회는 기업당 1번, 나머지는 캐시)
