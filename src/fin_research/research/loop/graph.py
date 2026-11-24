@@ -28,6 +28,13 @@ def _role_model(role: str, model_name: str | None, budget: Budget | None):
     return get_llm_for_role(role, budget=budget, model_key=model_name)
 
 
+def _location(item: dict) -> str:
+    """진행 메시지용 근거 위치. PDF는 쪽, XML은 표 제목(없으면 XPath)."""
+    if item.get("pdf_page") is not None:
+        return f"{item['pdf_page']}쪽"
+    return item.get("title") or item.get("source_xpath") or "위치 정보 없음"
+
+
 def run_once(
     question: str,
     persist_directory: Path,
@@ -54,7 +61,7 @@ def run_once(
     report_progress(progress, f"검색 완료 · 근거 {len(evidences)}개")
     for item in evidences:
         report_progress(progress, f"근거 {item.get('evidence_id', '')} · {item['source_file']} "
-                        f"{item['pdf_page']}쪽 · 청크 {item['chunk_id']}")
+                        f"{_location(item)} · 청크 {item['chunk_id']}")
     findings = None
     if not search_only:
         report_progress(progress, "확보한 근거로 답변 생성 중")
@@ -145,7 +152,7 @@ def run_research_loop(
                 known.add(key)
                 history["new_evidence_count"] += 1
                 report_progress(progress, f"새 근거 S{len(evidences)} · {hit['source_file']} "
-                                f"{hit['pdf_page']}쪽 · 청크 {hit['chunk_id']}")
+                                f"{_location(hit)} · 청크 {hit['chunk_id']}")
         no_new_evidence = state["rounds"] > 0 and history["new_evidence_count"] == 0
         report_progress(progress, f"검색 완료 · 반환 {len(hits)}개 · 신규 "
                         f"{history['new_evidence_count']}개 · 누적 {len(evidences)}개")
@@ -207,6 +214,13 @@ def run_research_loop(
                 try:
                     report_progress(progress, f"출처가 연결된 답변 생성 중 · 시도 {attempt + 1}/2")
                     findings = generate_findings(generation_question, selected, findings_model)
+                    # 부분 답변: 평가가 '충분'이라도 못 찾은 항목이 있으면 한계로 남긴다
+                    partial = [item for item in evaluation.get("missing_items", [])
+                               if item not in findings.limitations]
+                    if partial:
+                        findings = findings.model_copy(update={
+                            "limitations": [*findings.limitations, *(f"근거 미확보: {item}" for item in partial)],
+                        })
                     report_progress(progress, f"답변 생성 완료 · 상태: {findings.status}")
                     return {
                         "findings": findings.model_dump(),

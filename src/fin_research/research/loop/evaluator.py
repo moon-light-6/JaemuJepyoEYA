@@ -39,8 +39,24 @@ def evaluate_evidence(
         "evidences": json.dumps(evidences, ensure_ascii=False),
     }))
     available = {item["evidence_id"] for item in evidences}
-    if not set(result.evidence_ids).issubset(available):
-        raise ValueError("근거 평가에 검색되지 않은 출처 ID가 포함되어 있습니다.")
-    if result.sufficient and (not result.evidence_ids or result.missing_items):
-        raise ValueError("근거 충분 판정에 유효한 출처가 없거나 미해결 항목이 남아 있습니다.")
-    return result
+    return normalize_evaluation(result, available)
+
+
+def normalize_evaluation(result: EvidenceEvaluation, available: set[str]) -> EvidenceEvaluation:
+    """모델 평가의 모순을 예외 대신 보정한다. 예외를 던지면 이미 찾은 근거까지 버리고 질문 전체가 실패한다.
+
+    - 검색되지 않은 출처 ID는 빼고, reason에 뺀 ID를 남긴다
+    - '충분'인데 쓸 출처가 하나도 없으면 '부족'으로 바꾼다 (다음 검색어가 있으면 재검색)
+    - '충분'인데 missing_items가 남아 있으면 '충분'을 유지한다 (부분 답변).
+      찾은 근거로 답하고, 남은 항목은 findings_node가 limitations에 붙인다
+    """
+    known = [evidence_id for evidence_id in result.evidence_ids if evidence_id in available]
+    dropped = [evidence_id for evidence_id in result.evidence_ids if evidence_id not in available]
+    updates: dict = {}
+    if dropped:
+        updates["evidence_ids"] = known
+        updates["reason"] = f"{result.reason} (검색되지 않은 출처 {', '.join(dropped)} 제외)"
+    if result.sufficient and not known:
+        updates["sufficient"] = False
+        updates["missing_items"] = result.missing_items or ["답변에 사용할 출처가 지정되지 않았습니다."]
+    return result.model_copy(update=updates) if updates else result
