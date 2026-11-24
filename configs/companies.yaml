@@ -26,6 +26,8 @@ companies:
         fiscal_month: 12
         disclosure_start: "2026-01-01"
         disclosure_end: "2026-12-31"
+        # Supabase fin.dart_financial_accounts 적재 공시와 같은 번호
+        rcept_no: "20260317000635"
 
   # 종목코드: 005380
   - name: "현대자동차"
@@ -37,6 +39,8 @@ companies:
         fiscal_month: 12
         disclosure_start: "2026-01-01"
         disclosure_end: "2026-12-31"
+        # Supabase fin.dart_financial_accounts 적재 공시와 같은 번호
+        rcept_no: "20260318001394"
 
   # 종목코드: 051910
   - name: "LG화학"
@@ -48,6 +52,8 @@ companies:
         fiscal_month: 12
         disclosure_start: "2026-01-01"
         disclosure_end: "2026-12-31"
+        # Supabase fin.dart_financial_accounts 적재 공시와 같은 번호
+        rcept_no: "20260313001195"
 
   # 종목코드: 005490
   - name: "POSCO홀딩스"
@@ -59,6 +65,8 @@ companies:
         fiscal_month: 12
         disclosure_start: "2026-01-01"
         disclosure_end: "2026-12-31"
+        # Supabase fin.dart_financial_accounts 적재 공시와 같은 번호
+        rcept_no: "20260311004517"
 
   # 종목코드: 105560
   - name: "KB금융"
@@ -197,6 +205,8 @@ companies:
         fiscal_month: 12
         disclosure_start: "2026-01-01"
         disclosure_end: "2026-12-31"
+        # Supabase fin.dart_financial_accounts 적재 공시와 같은 번호 (별도 기준만 공시)
+        rcept_no: "20260318000182"
 
   # 종목코드: 036930
   - name: "주성엔지니어링"
@@ -208,6 +218,8 @@ companies:
         fiscal_month: 12
         disclosure_start: "2026-01-01"
         disclosure_end: "2026-12-31"
+        # Supabase fin.dart_financial_accounts 적재 공시와 같은 번호
+        rcept_no: "20260318000323"
 
   # 종목코드: 222800
   - name: "심텍"
@@ -219,6 +231,8 @@ companies:
         fiscal_month: 12
         disclosure_start: "2026-01-01"
         disclosure_end: "2026-12-31"
+        # Supabase fin.dart_financial_accounts 적재 공시와 같은 번호
+        rcept_no: "20260317000641"
 
   # 종목코드: 277810
   - name: "레인보우로보틱스"
@@ -230,6 +244,8 @@ companies:
         fiscal_month: 12
         disclosure_start: "2026-01-01"
         disclosure_end: "2026-12-31"
+        # Supabase fin.dart_financial_accounts 적재 공시와 같은 번호
+        rcept_no: "20260320000803"
 
   # 종목코드: 214150
   - name: "클래시스"
@@ -241,6 +257,8 @@ companies:
         fiscal_month: 12
         disclosure_start: "2026-01-01"
         disclosure_end: "2026-12-31"
+        # Supabase fin.dart_financial_accounts 적재 공시와 같은 번호
+        rcept_no: "20260323001541"
 
   # 종목코드: 214450
   - name: "파마리서치"
@@ -252,6 +270,8 @@ companies:
         fiscal_month: 12
         disclosure_start: "2026-01-01"
         disclosure_end: "2026-12-31"
+        # Supabase fin.dart_financial_accounts 적재 공시와 같은 번호
+        rcept_no: "20260319001417"
 
   # 종목코드: 035900
   - name: "JYP Ent."
@@ -293,6 +313,8 @@ companies:
         fiscal_month: 12
         disclosure_start: "2026-01-01"
         disclosure_end: "2026-12-31"
+        # Supabase fin.dart_financial_accounts 적재 공시와 같은 번호
+        rcept_no: "20260319001336"
 
   # 종목코드: 078340
   - name: "컴투스"
@@ -304,6 +326,8 @@ companies:
         fiscal_month: 12
         disclosure_start: "2026-01-01"
         disclosure_end: "2026-12-31"
+        # Supabase fin.dart_financial_accounts 적재 공시와 같은 번호
+        rcept_no: "20260320001410"
 
   # 종목코드: 042000
   - name: "카페24"
@@ -315,6 +339,8 @@ companies:
         fiscal_month: 12
         disclosure_start: "2026-01-01"
         disclosure_end: "2026-12-31"
+        # Supabase fin.dart_financial_accounts 적재 공시와 같은 번호
+        rcept_no: "20260317000899"
 
   # 종목코드: 304100
   - name: "솔트룩스"
@@ -326,6 +352,8 @@ companies:
         fiscal_month: 12
         disclosure_start: "2026-01-01"
         disclosure_end: "2026-12-31"
+        # Supabase fin.dart_financial_accounts 적재 공시와 같은 번호
+        rcept_no: "20260319001029"
 
   # 종목코드: 035760
   - name: "CJ ENM"
@@ -337,6 +365,8 @@ companies:
         fiscal_month: 12
         disclosure_start: "2026-01-01"
         disclosure_end: "2026-12-31"
+        # Supabase fin.dart_financial_accounts 적재 공시와 같은 번호
+        rcept_no: "20260318001469"
 
   # 종목코드: 005290
   - name: "동진쎄미켐"
@@ -348,6 +378,8 @@ companies:
         fiscal_month: 12
         disclosure_start: "2026-01-01"
         disclosure_end: "2026-12-31"
+        # Supabase fin.dart_financial_accounts 적재 공시와 같은 번호
+        rcept_no: "20260319000264"
 
   # 종목코드: 098460
   - name: "고영"
@@ -359,6 +391,8 @@ companies:
         fiscal_month: 12
         disclosure_start: "2026-01-01"
         disclosure_end: "2026-12-31"
+        # Supabase fin.dart_financial_accounts 적재 공시와 같은 번호
+        rcept_no: "20260312000804"
 
   # 종목코드: 178320
   - name: "서진시스템"
@@ -370,3 +404,5 @@ companies:
         fiscal_month: 12
         disclosure_start: "2026-01-01"
         disclosure_end: "2026-12-31"
+        # Supabase fin.dart_financial_accounts 적재 공시와 같은 번호
+        rcept_no: "20260323001543"

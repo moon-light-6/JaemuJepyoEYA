@@ -6,7 +6,7 @@
   · 근거는 실행 전체가 함께 쓰는 EvidenceRegistry(장부)에 등록해 전역 S#로 바꾼다
     (같은 청크는 어느 researcher가 찾아도 같은 S#). 장부가 없으면 '{하위주제}.r{라운드}.q{질문}.' 임시 번호
   · 검색 도구(KURE 2.3GB)는 기업별로 한 번만 만들어 공유한다
-  · 색인은 XML(fin_xml_...)을 먼저 쓰고, 없으면 PDF(fin_...) 색인으로 대체한다
+  · 색인은 로컬 XML(fin_xml_...) → 로컬 PDF(fin_...) → 팀 공용 ChromaDB(XML) 순서로 찾는다
 """
 
 from __future__ import annotations
@@ -68,21 +68,42 @@ class SearchToolCache:
     병렬 researcher가 각자 도구를 만들면 KURE 모델이 여러 번 메모리에 올라간다.
     임베딩 계산도 스레드 간 공유가 안전하지 않아 검색 자체는 잠금으로 순서대로 한다 (LLM 대기가 더 길다).
 
-    색인 선택: XML 색인(데이터팀 run_pipeline_xml.py)에 청크가 있으면 XML, 없으면 PDF 색인.
-    둘 다 없으면 ValueError — 없는 컬렉션을 열면 Chroma가 빈 컬렉션을 새로 만들어
+    색인 선택 (청크가 있는 첫 번째):
+      1) 로컬 XML 색인 (data/chroma_multi, scripts/pipelines/run_pipeline_xml.py)
+      2) 로컬 PDF 색인
+      3) 팀 공용 ChromaDB의 XML 색인 (.env의 CHROMA_SHARED_HOST, 현규 PC) — 로컬에 없을 때만 접속
+    모두 없으면 ValueError — 없는 컬렉션을 열면 Chroma가 빈 컬렉션을 새로 만들어
     "검색 결과 0건"으로 조용히 넘어가므로, 열기 전에 먼저 확인한다.
     """
 
-    SOURCES = ("xml", "pdf")  # 앞에 있을수록 우선
+    SOURCES = ("xml", "pdf", "shared")  # 앞에 있을수록 우선
 
     def __init__(self, persist_directory: Path = CHROMA_DIR,
-                 collection_counts: Callable[[], dict[str, int]] | None = None):
+                 collection_counts: Callable[[], dict[str, int]] | None = None,
+                 shared_counts: Callable[[], dict[str, int]] | None = None,
+                 shared_client=None):
         self.persist_directory = Path(persist_directory)
         self._tools: dict[SearchTarget, Callable[[str, int], list[dict]]] = {}
         self._sources: dict[SearchTarget, str] = {}
         self._lock = threading.Lock()
         self._collection_counts = collection_counts or self._read_collection_counts
         self._counts: dict[str, int] | None = None
+        self._shared_client = shared_client
+        self._shared_counts_fn = shared_counts or self._read_shared_counts
+        self._shared_counts: dict[str, int] | None = None
+
+    def _read_shared_counts(self) -> dict[str, int]:
+        """공용 ChromaDB 컬렉션 → 청크 수. 주소가 없거나 서버가 꺼져 있으면 빈 dict."""
+        if self._shared_client is None:
+            from fin_research.tools.doc_search_tool import shared_chroma_client
+
+            self._shared_client = shared_chroma_client()
+        if self._shared_client is None:
+            return {}
+        try:
+            return {c.name: c.count() for c in self._shared_client.list_collections()}
+        except Exception:  # 목록 조회 중 연결이 끊긴 경우도 로컬만으로 판단한다
+            return {}
 
     def _read_collection_counts(self) -> dict[str, int]:
         """컬렉션 이름 → 청크 수. 임베딩 모델 없이 Chroma 메타데이터만 읽는다."""
@@ -98,16 +119,21 @@ class SearchToolCache:
         return counts
 
     def source_for(self, target: SearchTarget) -> str:
-        """이 기업·공시에 쓸 색인 종류 (xml/pdf). 둘 다 비어 있으면 ValueError."""
+        """이 기업·공시에 쓸 색인 (xml/pdf/shared). 모두 비어 있으면 ValueError."""
         if self._counts is None:
             self._counts = self._collection_counts()
         names = {"xml": target.xml_collection_name, "pdf": target.collection_name}
-        for source in self.SOURCES:
+        for source in ("xml", "pdf"):
             if self._counts.get(names[source], 0) > 0:
                 return source
+        if self._shared_counts is None:  # 로컬에 없을 때만 공용 서버에 접속한다
+            self._shared_counts = self._shared_counts_fn()
+        if self._shared_counts.get(names["xml"], 0) > 0:
+            return "shared"
         raise ValueError(
-            f"검색 색인이 없습니다: {names['xml']} 또는 {names['pdf']}. "
-            "scripts/pipelines/run_pipeline_xml.py로 XML 색인을 먼저 만드세요."
+            f"검색 색인이 없습니다: {names['xml']} (로컬·공용 ChromaDB) 또는 {names['pdf']}. "
+            "scripts/pipelines/run_pipeline_xml.py로 로컬 색인을 만들거나, 공용 ChromaDB(현규 PC)가 "
+            "켜져 있는지와 .env의 CHROMA_SHARED_HOST를 확인하세요."
         )
 
     def source_used(self, target: SearchTarget) -> str | None:
@@ -121,7 +147,10 @@ class SearchToolCache:
 
                 source = self.source_for(target)
                 self._sources[target] = source
-                tool = DocumentSearchTool(self.persist_directory, target, source)
+                if source == "shared":
+                    tool = DocumentSearchTool(self.persist_directory, target, "xml", client=self._shared_client)
+                else:
+                    tool = DocumentSearchTool(self.persist_directory, target, source)
                 search_lock = threading.Lock()
 
                 def search(question: str, top_k: int) -> list[dict]:
