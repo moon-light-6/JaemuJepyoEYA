@@ -54,6 +54,8 @@ class SubTopic(BaseModel):
     title: str = Field(description="보고서 섹션 제목. 예: 수익성")
     questions: list[str] = Field(description="researcher가 답해야 할 구체 질문 2~4개")
     metrics: list[str] = Field(default_factory=list, description="확인할 지표. 예: 매출액, 영업이익률")
+    fixed_questions: bool = Field(
+        default=False, description="true면 brief·supervisor가 질문을 바꾸지 않는다 (공시 용어가 중요한 주제)")
 
 
 class Brief(BaseModel):
@@ -79,6 +81,8 @@ class EvidenceRef(BaseModel):
     chunk_id: str| None=None
     source_xpath:str|None=Field(default=None, description="XML 근거의 원본 요소 위치")
     title: str | None = Field(default=None, description="원본 표·섹션 제목 (화면 표시용)")
+    quote: str | None = Field(
+        default=None, description="청크 안에서 질문·답변에 맞는 짧은 원문 조각 (청크가 짧으면 없음)")
     @classmethod
     def from_evidence(cls, evidence: Evidence) -> EvidenceRef:
         """장부에 등록된 근거 → state에 남길 위치 정보 (원문 text는 버린다)."""

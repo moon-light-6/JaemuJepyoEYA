@@ -70,6 +70,8 @@ def load_template(path: Path = TEMPLATE_PATH) -> tuple[dict, ...]:
             raise ValueError(f"템플릿 항목에 {sorted(missing)}가 없습니다: {item}")
         if len(item["default_questions"]) < 2:
             raise ValueError(f"default_questions는 2개 이상이어야 합니다: {item['id']}")
+        if not isinstance(item.get("fixed_questions", False), bool):
+            raise ValueError(f"fixed_questions는 true/false여야 합니다: {item['id']}")
 
     ids = [item["id"] for item in subtopics]
     if sorted(ids) != sorted(get_args(SubtopicId)):
@@ -117,10 +119,11 @@ def build_brief(
     subtopics = []
     for spec in template:
         item = drafted.get(spec["id"])
-        if item:
+        fixed = bool(spec.get("fixed_questions", False))
+        if item and not fixed:
             questions = item.questions
             extra_metrics = item.metrics
-        else:
+        else:  # LLM 초안이 없거나, 템플릿 질문을 그대로 써야 하는 주제
             questions = [q.format(company=company, years=years_text) for q in spec["default_questions"]]
             extra_metrics = []
         subtopics.append(SubTopic(
@@ -128,6 +131,7 @@ def build_brief(
             title=spec["title"],
             questions=[_with_company(q, company) for q in _unique(questions)],
             metrics=_unique(list(spec["required_metrics"]) + list(extra_metrics)),
+            fixed_questions=fixed,
         ))
 
     focus_text = f" ({', '.join(clarify.focus)} 중점)" if clarify.focus else ""

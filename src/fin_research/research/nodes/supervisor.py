@@ -89,10 +89,27 @@ def _with_company(question: str, company: str) -> str:
     return question if company in question else f"{company} {question}"
 
 
+def rotate_questions(subtopic: SubTopic) -> SubTopic:
+    """질문을 바꿀 수 없는 주제: 순서만 한 칸 돌려 재조사 때 아직 안 쓴 질문이 먼저 오게 한다.
+
+    researcher는 앞에서부터 questions_per_subtopic개만 쓰므로, ['Q1','Q2'] → ['Q2','Q1'].
+    """
+    q = subtopic.questions
+    return subtopic.model_copy(update={"questions": q[1:] + q[:1]}) if len(q) > 1 else subtopic
+
+
 async def rewrite_questions(
     lacking: list[SubTopic], latest: dict[str, Finding], brief: Brief, config: RunnableConfig
 ) -> tuple[list[SubTopic], list[str]]:
-    """부족한 하위 주제의 질문을 LLM으로 다시 쓴다. 실패하거나 빠진 주제는 기존 질문 그대로."""
+    """부족한 하위 주제의 질문을 LLM으로 다시 쓴다. 실패하거나 빠진 주제는 기존 질문 그대로.
+
+    fixed_questions 주제는 LLM에 넘기지 않고 순서만 돌린다 (공시 용어가 흐려지지 않게).
+    """
+    rewritable = [s for s in lacking if not s.fixed_questions]
+    errors: list[str] = []
+    rewritten: dict[str, list[str]] = {}
+    if not rewritable:  # 모두 고정 질문이면 LLM을 부르지 않는다
+        return [rotate_questions(s) for s in lacking], errors
     payload = {
         "company": brief.company,
         "years": brief.years,
@@ -102,18 +119,16 @@ async def rewrite_questions(
                 "previous_questions": s.questions,
                 "previous_limitations": latest[s.id].limitations if s.id in latest else ["결과 없음"],
             }
-            for s in lacking
+            for s in rewritable
         ],
     }
-    errors: list[str] = []
-    rewritten: dict[str, list[str]] = {}
     try:
         llm = get_llm_for_role("supervisor", budget=get_budget(config))
         result = await ainvoke_structured(llm, [
             SystemMessage(load_prompt("supervisor")),
             HumanMessage(f"재조사할 하위 주제:\n{json.dumps(payload, ensure_ascii=False, indent=2)}"),
         ], RetryQuestions)
-        allowed = {s.id for s in lacking}
+        allowed = {s.id for s in rewritable}
         for item in result.subtopics:
             if item.id in allowed and item.id not in rewritten:
                 rewritten[item.id] = [_with_company(q, brief.company) for q in item.questions]
@@ -121,7 +136,9 @@ async def rewrite_questions(
         errors.append(f"supervisor: 질문 재작성 실패, 기존 질문으로 재조사 — {e}")
 
     return [
-        s.model_copy(update={"questions": rewritten[s.id]}) if s.id in rewritten else s
+        rotate_questions(s) if s.fixed_questions
+        else s.model_copy(update={"questions": rewritten[s.id]}) if s.id in rewritten
+        else s
         for s in lacking
     ], errors
 
