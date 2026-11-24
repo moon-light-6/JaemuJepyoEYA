@@ -116,35 +116,6 @@
     "annotation_method": "auto_opendart_xml_xpath_candidate"
   },
   {
-    "question": "2025년 연결 기준 주주에 대한 배당금 지급액은 얼마인가?",
-    "answer_type": "numeric",
-    "expected_value": "(13,191,054,254)",
-    "unit": "원",
-    "gold_sources": [
-      {
-        "source_file": "20260318001612_00761.xml",
-        "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]"
-      }
-    ],
-    "candidate_sources": [
-      {
-        "source_file": "20260318001612_00761.xml",
-        "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[14]",
-        "title": "현금흐름표",
-        "match_reason": "계정명과 당기 금액이 같은 XML 문서"
-      }
-    ],
-    "category": "cash_flow",
-    "opendart_account": {
-      "sj_div": "CF",
-      "account_id": "ifrs-full_DividendsPaidClassifiedAsFinancingActivities",
-      "account_nm": "주주에대한배당금지급"
-    },
-    "id": "X14",
-    "annotation_status": "verified",
-    "annotation_method": "auto_opendart_xml_xpath_candidate"
-  },
-  {
     "question": "2025년과 2024년 연결 기준 자산총계는 각각 얼마인가?",
     "answer_type": "comparison",
     "expected_value": {
@@ -172,7 +143,7 @@
       "account_id": "ifrs-full_Assets",
       "account_nm": "자산총계"
     },
-    "id": "X15",
+    "id": "X14",
     "annotation_status": "verified",
     "annotation_method": "auto_opendart_xml_xpath_candidate"
   },
@@ -204,7 +175,7 @@
       "account_id": "ifrs-full_Revenue",
       "account_nm": "매출액"
     },
-    "id": "X16",
+    "id": "X15",
     "annotation_status": "verified",
     "annotation_method": "auto_opendart_xml_xpath_candidate"
   },
@@ -236,7 +207,7 @@
       "account_id": "dart_OperatingIncomeLoss",
       "account_nm": "영업이익(손실)"
     },
-    "id": "X17",
+    "id": "X16",
     "annotation_status": "verified",
     "annotation_method": "auto_opendart_xml_xpath_candidate"
   },
@@ -268,7 +239,7 @@
       "account_id": "ifrs-full_ProfitLoss",
       "account_nm": "당기순손익"
     },
-    "id": "X18",
+    "id": "X17",
     "annotation_status": "verified",
     "annotation_method": "auto_opendart_xml_xpath_candidate"
   }

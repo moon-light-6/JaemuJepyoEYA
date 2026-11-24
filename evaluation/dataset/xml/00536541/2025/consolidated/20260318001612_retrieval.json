@@ -89,7 +89,7 @@
   {
     "question": "2025년 연결 기준 주주에 대한 배당금 지급액은 얼마인가?",
     "answer_type": "numeric",
-    "expected_value": "13,191,054,254",
+    "expected_value": "(13,191,054,254)",
     "unit": "원",
     "gold_sources": [
       {
@@ -109,7 +109,7 @@
     "opendart_account": {
       "sj_div": "CF",
       "account_id": "ifrs-full_DividendsPaidClassifiedAsFinancingActivities",
-      "account_nm": "배당금지급"
+      "account_nm": "주주에대한배당금지급"
     },
     "id": "X04",
     "annotation_status": "verified",
