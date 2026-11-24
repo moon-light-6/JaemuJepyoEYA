@@ -1,10 +1,10 @@
 """Fetch DART annual-report financial statement accounts into a loader-ready JSON.
 
 Use from repository root (requires src/fin_research/ingestion/auto_resolve.py):
-    python scripts/fetch_dart_accounts.py --corp-code 01095722 --year 2025 --scope consolidated
-    python scripts/fetch_dart_accounts.py --corp-code 01095722 --year 2025 --scope separate
+    python scripts/ingestion/fetch_dart_accounts.py --corp-code 01095722 --year 2025 --scope consolidated
+    python scripts/ingestion/fetch_dart_accounts.py --corp-code 01095722 --year 2025 --scope separate
 
-The output is consumed by scripts/load_dart_accounts.py. No database writes.
+The output is consumed by scripts/storage/load_dart_accounts.py. No database writes.
 """
 
 from __future__ import annotations
@@ -15,7 +15,7 @@ import re
 import sys
 from pathlib import Path
 
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(PROJECT_ROOT / 'src'))
 
 
@@ -74,7 +74,7 @@ def main() -> None:
     out.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     print(f'조회/저장 완료: 기업 {args.corp_code} / {args.year} / {expected_div} / 공시 {receipt} / 계정 {len(rows)}건')
     print(f'수치용 파일: {out}')
-    print('다음 단계: python scripts/load_dart_accounts.py --corp-code ... --year ... --scope ... --expected-rcept-no ... (--apply)')
+    print('다음 단계: python scripts/storage/load_dart_accounts.py --corp-code ... --year ... --scope ... --expected-rcept-no ... (--apply)')
 
 
 if __name__ == '__main__':

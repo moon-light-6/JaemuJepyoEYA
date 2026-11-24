@@ -10,7 +10,7 @@ from chromadb.errors import NotFoundError
 from dotenv import load_dotenv
 import os
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "src"))
 
 from fin_research.retrieval.search_target import SearchTarget

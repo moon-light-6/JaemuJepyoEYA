@@ -14,7 +14,7 @@ import sys
 from pathlib import Path
 from typing import Any
 
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(PROJECT_ROOT))
 sys.path.insert(0, str(PROJECT_ROOT / "src"))
 
@@ -34,7 +34,7 @@ from fin_research.retrieval.xml_retrieval import (
     load_xml_eval_dataset,
     result_from_document,
 )
-from scripts.build_xml_chunks import build_xml_chunks
+from scripts.processing.build_xml_chunks import build_xml_chunks
 
 
 DEFAULT_CHROMA_DIR = PROJECT_ROOT / "data" / "chroma_multi"

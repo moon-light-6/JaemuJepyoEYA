@@ -16,7 +16,7 @@ from decimal import Decimal, InvalidOperation
 from pathlib import Path
 from urllib.parse import urlsplit
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 TABLE = "fin.xml_eval_ground_truth_v2"
 COLUMNS = (
     "corp_code", "fiscal_year", "statement_scope", "rcept_no",

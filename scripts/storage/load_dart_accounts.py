@@ -5,8 +5,8 @@ existing fin.fin_value and related PDF-oriented tables. It does not load Chroma
 chunks, XML text, or authentication data.
 
 Usage (from repository root, with this file placed in scripts/):
-    python scripts/load_dart_accounts.py
-    python scripts/load_dart_accounts.py --apply
+    python scripts/storage/load_dart_accounts.py
+    python scripts/storage/load_dart_accounts.py --apply
 """
 from __future__ import annotations
 
@@ -21,7 +21,7 @@ import psycopg2
 from psycopg2.extras import Json, execute_values
 from dotenv import load_dotenv
 
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
 
 CREATE_SQL = """
 CREATE TABLE IF NOT EXISTS fin.dart_financial_accounts (

@@ -1,7 +1,7 @@
 """Read-only smoke test: Supabase financial value + Chroma XML evidence.
 
 From the repository root, after placing this file in scripts/:
-    python scripts/test_simtek_sources.py
+    python scripts/diagnostics/test_simtek_sources.py
 
 This checks one known 2025 consolidated operating-income claim for Simmtech.
 It does not change either database or integrate the project's Researcher agents.
@@ -16,7 +16,7 @@ from pathlib import Path
 import psycopg2
 from dotenv import load_dotenv
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "src"))
 
 CORP_CODE = "01095722"

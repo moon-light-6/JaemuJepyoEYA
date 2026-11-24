@@ -5,10 +5,10 @@
 
 사용 예:
   # DB 없이 파싱 결과와 합계 검증만 확인
-  python scripts/load_financials.py --corp-code 01160363 --dry-run
+  python scripts/storage/load_financials.py --corp-code 01160363 --dry-run
 
   # 적재 (접속 정보는 .env 의 DATABASE_URL 또는 --database-url)
-  python scripts/load_financials.py --corp-code 01160363
+  python scripts/storage/load_financials.py --corp-code 01160363
 
 스키마는 먼저 만들어 두어야 한다: psql -f src/fin_research/storage/schema.sql
 같은 보고서를 다시 적재하면 그 보고서의 표를 지우고 다시 넣는다(중복 없음).
@@ -24,7 +24,7 @@ import re
 import sys
 from pathlib import Path
 
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(PROJECT_ROOT / "src"))
 
 from fin_research.ingestion.statement_parser import (  # noqa: E402

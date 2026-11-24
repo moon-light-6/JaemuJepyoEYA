@@ -8,7 +8,7 @@ import json
 import sys
 from pathlib import Path
 
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(PROJECT_ROOT))
 sys.path.insert(0, str(PROJECT_ROOT / "src"))
 
@@ -18,9 +18,9 @@ from fin_research.ingestion.dart_client import DartClient
 from fin_research.ingestion.xml_documents import build_xml_documents
 from fin_research.retrieval.search_target import SearchTarget
 from fin_research.retrieval.xml_retrieval import build_xml_chroma, load_xml_eval_dataset
-from scripts.build_xml_chunks_v2 import build_xml_chunks
-from scripts.collect import load_target
-from scripts.run_pipeline_xml import evaluate_xml, load_questions, make_draft_dataset_v2, write_json
+from scripts.processing.build_xml_chunks_v2 import build_xml_chunks
+from scripts.ingestion.collect import load_target
+from scripts.pipelines.run_pipeline_xml import evaluate_xml, load_questions, make_draft_dataset_v2, write_json
 
 
 def main() -> None:
@@ -87,7 +87,7 @@ def main() -> None:
             if not zip_path.is_file():
                 raise SystemExit(
                     f"원본 ZIP을 찾지 못했습니다: {zip_path}\n"
-                    f"먼저 python scripts/collect.py --corp-code {target.corp_code} "
+                    f"먼저 python scripts/ingestion/collect.py --corp-code {target.corp_code} "
                     f"--fiscal-year {target.fiscal_year} 명령으로 수집하세요."
                 )
             company = args.company

@@ -9,7 +9,7 @@ from pathlib import Path
 import yaml
 
 
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
 # src 레이아웃을 패키지 설치 전에도 CLI로 바로 실행할 수 있게 한다.
 sys.path.insert(0, str(PROJECT_ROOT / "src"))
 

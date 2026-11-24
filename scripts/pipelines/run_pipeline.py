@@ -9,10 +9,10 @@
 companies.yaml에 rcept_no, official_pdf.dcm_no가 있으면 그 값을 우선한다.
 
 예)
-  python scripts/run_pipeline.py --companies 파마리서치
-  python scripts/run_pipeline.py --companies 파마리서치 HLB 214150
-  python scripts/run_pipeline.py --from-config
-  python scripts/run_pipeline.py --companies 삼성전자 HLB 에코프로 --resolve-only
+  python scripts/pipelines/run_pipeline.py --companies 파마리서치
+  python scripts/pipelines/run_pipeline.py --companies 파마리서치 HLB 214150
+  python scripts/pipelines/run_pipeline.py --from-config
+  python scripts/pipelines/run_pipeline.py --companies 삼성전자 HLB 에코프로 --resolve-only
 """
 
 from __future__ import annotations
@@ -30,7 +30,7 @@ from pathlib import Path
 import yaml
 
 
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(PROJECT_ROOT))
 sys.path.insert(0, str(PROJECT_ROOT / "src"))
 
@@ -229,7 +229,7 @@ class Pipeline:
              ["--zip-path", zip_path, "--structure-path", structure]),
             ("연결 주석 추출", "src/fin_research/ingestion/notes_parser.py",
              ["--zip-path", zip_path, "--structure-path", structure]),
-            ("XML 최종 점검", "scripts/check_documents.py",
+            ("XML 최종 점검", "scripts/processing/check_documents.py",
              ["--zip-path", zip_path, "--structure-path", structure,
               "--tables-path", f"{base}_consolidated_tables.json",
               "--notes-path", f"{base}_consolidated_notes.json",
@@ -357,15 +357,15 @@ class Pipeline:
         section_arguments = []
         for page_range in plan.ranges:
             section_arguments += ["--section-range", page_range.as_argument()]
-        run_step("페이지 표준화", "scripts/prepare_pages.py",
+        run_step("페이지 표준화", "scripts/processing/prepare_pages.py",
                  "--company", name, "--corp-code", corp.corp_code,
                  "--fiscal-year", args.fiscal_year, "--rcept-no", rcept_no,
                  "--statement-scope", scope, *section_arguments,
                  "--output-path", pages_path)
-        run_step("청킹", "scripts/build_chunks.py",
+        run_step("청킹", "scripts/processing/build_chunks.py",
                  "--input-path", pages_path, "--output-path", chunks_path,
                  "--chunk-size", args.chunk_size, "--chunk-overlap", args.chunk_overlap)
-        run_step("청크 검증", "scripts/check_chunks.py",
+        run_step("청크 검증", "scripts/processing/check_chunks.py",
                  "--pages-path", pages_path, "--chunks-path", chunks_path,
                  "--output-path", validation_path,
                  "--chunk-size", args.chunk_size)
@@ -374,7 +374,7 @@ class Pipeline:
         if args.rebuild:
             self.delete_collection(name, target.collection_name)
         try:
-            run_step("Chroma 색인", "scripts/build_chroma.py",
+            run_step("Chroma 색인", "scripts/storage/build_chroma.py",
                      "--corp-code", corp.corp_code, "--fiscal-year", args.fiscal_year,
                      "--statement-scope", scope, "--rcept-no", rcept_no,
                      "--persist-directory", args.chroma_dir)
@@ -391,7 +391,7 @@ class Pipeline:
             row.update(status="indexed", message="평가셋 없음")
             return row
 
-        run_step("Hit@K 평가", "scripts/evaluate_retrieval.py",
+        run_step("Hit@K 평가", "scripts/evaluation/evaluate_retrieval.py",
                  "--corp-code", corp.corp_code, "--fiscal-year", args.fiscal_year,
                  "--statement-scope", scope, "--rcept-no", rcept_no,
                  "--dataset-path", dataset_path, "--chroma-path", args.chroma_dir)
