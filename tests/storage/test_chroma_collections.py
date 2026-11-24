@@ -12,7 +12,7 @@ import chromadb
 from langchain_chroma import Chroma
 from langchain_core.embeddings import Embeddings
 
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(PROJECT_ROOT / "src"))
 
 from fin_research.retrieval.search_target import SearchTarget

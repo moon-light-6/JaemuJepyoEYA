@@ -9,7 +9,7 @@ from pathlib import Path
 from xml.etree import ElementTree
 
 
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(PROJECT_ROOT / "src"))
 
 from fin_research.ingestion.notes_parser import (

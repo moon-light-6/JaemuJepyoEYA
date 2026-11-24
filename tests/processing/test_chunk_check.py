@@ -7,10 +7,10 @@ import unittest
 from pathlib import Path
 
 
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(PROJECT_ROOT / "scripts"))
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(PROJECT_ROOT))
 
-from scripts.check_chunks import validate_chunks
+from scripts.processing.check_chunks import validate_chunks
 
 
 def page(page_id: str = "corp_2025_consolidated_0001") -> dict:

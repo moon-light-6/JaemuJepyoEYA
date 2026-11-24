@@ -8,10 +8,10 @@ import unittest
 from pathlib import Path
 
 
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(PROJECT_ROOT / "scripts"))
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(PROJECT_ROOT))
 
-from scripts.prepare_pages import (
+from scripts.processing.prepare_pages import (
     PageCut,
     SectionRange,
     clipped_page_text,

@@ -9,12 +9,12 @@ import zipfile
 from pathlib import Path
 
 
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(PROJECT_ROOT / "src"))
-sys.path.insert(0, str(PROJECT_ROOT / "scripts"))
+sys.path.insert(0, str(PROJECT_ROOT))
 
 from fin_research.ingestion.xml_documents import build_xml_documents
-from scripts.build_xml_chunks import build_xml_chunks
+from scripts.processing.build_xml_chunks import build_xml_chunks
 
 
 def audit_xml(document_name: str, prefix: str) -> str:

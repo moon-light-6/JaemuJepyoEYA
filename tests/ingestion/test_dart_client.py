@@ -11,7 +11,7 @@ import unittest
 import zipfile
 
 
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(PROJECT_ROOT / "src"))
 
 from fin_research.ingestion.dart_client import AmbiguousReportError, DartClient, ReportCandidate

@@ -13,7 +13,7 @@ import psycopg2
 from langchain_core.runnables import RunnableLambda
 from sqlglot import parse_one
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "src"))
 
 from fin_research.storage.sql_store import (

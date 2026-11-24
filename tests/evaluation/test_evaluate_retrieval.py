@@ -12,7 +12,7 @@ from langchain_core.documents import Document
 
 
 # 프로젝트 경로 등록
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(PROJECT_ROOT))
 sys.path.insert(0, str(PROJECT_ROOT / "src"))
 
@@ -21,7 +21,7 @@ from fin_research.retrieval.search_target import SearchTarget
 
 
 # 평가 스크립트 불러오기
-SCRIPT_PATH = PROJECT_ROOT / "scripts" / "evaluate_retrieval.py"
+SCRIPT_PATH = PROJECT_ROOT / "scripts" / "evaluation" / "evaluate_retrieval.py"
 
 spec = importlib.util.spec_from_file_location(
     "evaluate_retrieval_script", SCRIPT_PATH

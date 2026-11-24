@@ -10,7 +10,7 @@ import tempfile
 from pathlib import Path
 
 
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(PROJECT_ROOT))
 sys.path.insert(0, str(PROJECT_ROOT / "src"))
 
@@ -33,7 +33,7 @@ from fin_research.ingestion.section_detector import (
     SectionDetectionError,
     detect_sections,
 )
-from scripts.run_pipeline import SUMMARY_FIELDS, save_summary
+from scripts.pipelines.run_pipeline import SUMMARY_FIELDS, save_summary
 
 
 CORP_XML = """<?xml version="1.0" encoding="UTF-8"?>
