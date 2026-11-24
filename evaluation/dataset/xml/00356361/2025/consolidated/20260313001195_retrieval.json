@@ -196,7 +196,7 @@
     "opendart_account": {
       "sj_div": "CF",
       "account_id": "ifrs-full_CashFlowsFromUsedInOperatingActivities",
-      "account_nm": "영업활동으로 인한 현금흐름"
+      "account_nm": "영업활동으로인한현금흐름"
     },
     "id": "X07",
     "annotation_status": "verified",
@@ -225,7 +225,7 @@
     "opendart_account": {
       "sj_div": "CF",
       "account_id": "ifrs-full_DividendsPaidClassifiedAsFinancingActivities",
-      "account_nm": "배당금의 지급"
+      "account_nm": "배당금의지급"
     },
     "id": "X08",
     "annotation_status": "verified",
@@ -254,7 +254,7 @@
     "opendart_account": {
       "sj_div": "BS",
       "account_id": "ifrs-full_Liabilities",
-      "account_nm": "부채 총계"
+      "account_nm": "부채총계"
     },
     "id": "X09",
     "annotation_status": "verified",
@@ -411,7 +411,7 @@
     "opendart_account": {
       "sj_div": "CF",
       "account_id": "ifrs-full_DividendsPaidClassifiedAsFinancingActivities",
-      "account_nm": "배당금의 지급"
+      "account_nm": "배당금의지급"
     },
     "id": "X14",
     "annotation_status": "verified",
@@ -539,7 +539,7 @@
     "opendart_account": {
       "sj_div": "CF",
       "account_id": "ifrs-full_CashFlowsFromUsedInOperatingActivities",
-      "account_nm": "영업활동으로 인한 현금 흐름"
+      "account_nm": "영업활동으로인한현금흐름"
     },
     "id": "X18",
     "annotation_status": "verified",
