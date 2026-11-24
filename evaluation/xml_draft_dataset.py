@@ -39,6 +39,23 @@ def _detect_unit(documents: list[dict[str, Any]]) -> str:
     return "백만원"
 
 
+def detect_statement_unit(documents: list[dict[str, Any]]) -> str:
+    """재무제표 문서에 적힌 '(단위: 원)' 표기를 우선 읽는다. v2 생성에서만 사용한다.
+
+    ``_detect_unit``은 앞쪽 문서 8개에 '백만원'이 한 번이라도 나오면(주석 설명 등)
+    그 단위를 고르므로, 본문이 '단위: 원'인 공시를 백만원으로 잘못 판정할 수 있다.
+    재무제표에 단위 표기가 없으면 기존 판정으로 되돌아간다.
+    """
+
+    for document in documents:
+        if document.get("document_type") != "xml_financial_statement":
+            continue
+        match = re.search(r"단위\s*:\s*(백만원|천원|원)", str(document.get("text", "")))
+        if match:
+            return match.group(1)
+    return _detect_unit(documents)
+
+
 def _candidate(
     documents: list[dict[str, Any]], names: tuple[str, ...], values: list[str]
 ) -> dict[str, Any] | None:
@@ -68,8 +85,12 @@ def build_xml_draft_dataset(
     fiscal_year: int,
     statement_scope: str,
     max_questions: int = 20,
+    unit: str | None = None,
 ) -> tuple[list[dict[str, Any]], list[str]]:
-    """XML 본문에서 계정명·표시금액이 함께 확인된 질문 후보를 만든다."""
+    """XML 본문에서 계정명·표시금액이 함께 확인된 질문 후보를 만든다.
+
+    ``unit``을 주지 않으면 기존 ``_detect_unit`` 판정을 그대로 쓴다(v1 생성 동작 유지).
+    """
 
     if statement_scope not in SCOPE_LABEL:
         raise ValueError("statement_scope는 consolidated 또는 separate여야 합니다.")
@@ -78,7 +99,9 @@ def build_xml_draft_dataset(
     if not documents:
         raise ValueError("XML 문서가 비어 있습니다.")
 
-    unit = _detect_unit(documents)
+    if unit is not None and unit not in UNIT_SCALE:
+        raise ValueError(f"지원하지 않는 단위입니다: {unit}")
+    unit = unit or _detect_unit(documents)
     scope = SCOPE_LABEL[statement_scope]
     items: list[dict[str, Any]] = []
     skipped: list[str] = []

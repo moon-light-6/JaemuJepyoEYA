@@ -1,0 +1,217 @@
+[
+  {
+    "question": "2025년 연결 기준 영업이익은 얼마인가?",
+    "answer_type": "numeric",
+    "expected_value": "31,257,811,742",
+    "unit": "원",
+    "gold_sources": [
+      {
+        "source_file": "20260318000323_00761.xml",
+        "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+      }
+    ],
+    "candidate_sources": [
+      {
+        "source_file": "20260318000323_00761.xml",
+        "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+        "title": "포괄손익계산서",
+        "match_reason": "계정명과 당기 금액이 같은 XML 문서"
+      }
+    ],
+    "category": "income_statement",
+    "opendart_account": {
+      "sj_div": "CIS",
+      "account_id": "dart_OperatingIncomeLoss",
+      "account_nm": "영업이익"
+    },
+    "id": "X10",
+    "annotation_status": "verified",
+    "annotation_method": "auto_opendart_xml_xpath_candidate"
+  },
+  {
+    "question": "2025년 연결 기준 당기순이익은 얼마인가?",
+    "answer_type": "numeric",
+    "expected_value": "35,693,416,702",
+    "unit": "원",
+    "gold_sources": [
+      {
+        "source_file": "20260318000323_00761.xml",
+        "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+      }
+    ],
+    "candidate_sources": [
+      {
+        "source_file": "20260318000323_00761.xml",
+        "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+        "title": "포괄손익계산서",
+        "match_reason": "계정명과 당기 금액이 같은 XML 문서"
+      }
+    ],
+    "category": "income_statement",
+    "opendart_account": {
+      "sj_div": "CIS",
+      "account_id": "ifrs-full_ProfitLoss",
+      "account_nm": "당기순이익"
+    },
+    "id": "X11",
+    "annotation_status": "verified",
+    "annotation_method": "auto_opendart_xml_xpath_candidate"
+  },
+  {
+    "question": "2025년 연결 기준 부채총계는 얼마인가?",
+    "answer_type": "numeric",
+    "expected_value": "297,436,347,858",
+    "unit": "원",
+    "gold_sources": [
+      {
+        "source_file": "20260318000323_00761.xml",
+        "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+      }
+    ],
+    "candidate_sources": [
+      {
+        "source_file": "20260318000323_00761.xml",
+        "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+        "title": "재무상태표",
+        "match_reason": "계정명과 당기 금액이 같은 XML 문서"
+      }
+    ],
+    "category": "financial_position",
+    "opendart_account": {
+      "sj_div": "BS",
+      "account_id": "ifrs-full_Liabilities",
+      "account_nm": "부채총계"
+    },
+    "id": "X12",
+    "annotation_status": "verified",
+    "annotation_method": "auto_opendart_xml_xpath_candidate"
+  },
+  {
+    "question": "2025년과 2024년 연결 기준 영업이익은 각각 얼마인가?",
+    "answer_type": "comparison",
+    "expected_value": {
+      "2025": "31,257,811,742",
+      "2024": "97,196,211,588"
+    },
+    "unit": "원",
+    "gold_sources": [
+      {
+        "source_file": "20260318000323_00761.xml",
+        "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+      }
+    ],
+    "candidate_sources": [
+      {
+        "source_file": "20260318000323_00761.xml",
+        "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+        "title": "포괄손익계산서",
+        "match_reason": "계정명과 당기·전기 금액이 같은 XML 문서"
+      }
+    ],
+    "category": "income_statement",
+    "opendart_account": {
+      "sj_div": "CIS",
+      "account_id": "dart_OperatingIncomeLoss",
+      "account_nm": "영업이익"
+    },
+    "id": "X13",
+    "annotation_status": "verified",
+    "annotation_method": "auto_opendart_xml_xpath_candidate"
+  },
+  {
+    "question": "2025년과 2024년 연결 기준 당기순이익은 각각 얼마인가?",
+    "answer_type": "comparison",
+    "expected_value": {
+      "2025": "35,693,416,702",
+      "2024": "106,814,110,967"
+    },
+    "unit": "원",
+    "gold_sources": [
+      {
+        "source_file": "20260318000323_00761.xml",
+        "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
+      }
+    ],
+    "candidate_sources": [
+      {
+        "source_file": "20260318000323_00761.xml",
+        "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
+        "title": "포괄손익계산서",
+        "match_reason": "계정명과 당기·전기 금액이 같은 XML 문서"
+      }
+    ],
+    "category": "income_statement",
+    "opendart_account": {
+      "sj_div": "CIS",
+      "account_id": "ifrs-full_ProfitLoss",
+      "account_nm": "당기순이익"
+    },
+    "id": "X14",
+    "annotation_status": "verified",
+    "annotation_method": "auto_opendart_xml_xpath_candidate"
+  },
+  {
+    "question": "2025년과 2024년 연결 기준 자본총계는 각각 얼마인가?",
+    "answer_type": "comparison",
+    "expected_value": {
+      "2025": "590,456,566,398",
+      "2024": "566,590,299,600"
+    },
+    "unit": "원",
+    "gold_sources": [
+      {
+        "source_file": "20260318000323_00761.xml",
+        "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+      }
+    ],
+    "candidate_sources": [
+      {
+        "source_file": "20260318000323_00761.xml",
+        "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+        "title": "재무상태표",
+        "match_reason": "계정명과 당기·전기 금액이 같은 XML 문서"
+      }
+    ],
+    "category": "financial_position",
+    "opendart_account": {
+      "sj_div": "BS",
+      "account_id": "ifrs-full_Equity",
+      "account_nm": "자본총계"
+    },
+    "id": "X15",
+    "annotation_status": "verified",
+    "annotation_method": "auto_opendart_xml_xpath_candidate"
+  },
+  {
+    "question": "2025년과 2024년 연결 기준 부채총계는 각각 얼마인가?",
+    "answer_type": "comparison",
+    "expected_value": {
+      "2025": "297,436,347,858",
+      "2024": "420,234,495,676"
+    },
+    "unit": "원",
+    "gold_sources": [
+      {
+        "source_file": "20260318000323_00761.xml",
+        "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]"
+      }
+    ],
+    "candidate_sources": [
+      {
+        "source_file": "20260318000323_00761.xml",
+        "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[5]",
+        "title": "재무상태표",
+        "match_reason": "계정명과 당기·전기 금액이 같은 XML 문서"
+      }
+    ],
+    "category": "financial_position",
+    "opendart_account": {
+      "sj_div": "BS",
+      "account_id": "ifrs-full_Liabilities",
+      "account_nm": "부채총계"
+    },
+    "id": "X16",
+    "annotation_status": "verified",
+    "annotation_method": "auto_opendart_xml_xpath_candidate"
+  }
+]

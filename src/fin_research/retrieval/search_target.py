@@ -133,6 +133,12 @@ class SearchTarget:
             / f"{self.rcept_no}_retrieval.json"
         )
 
+    def xml_dataset_v2_path(self, project_root: str | Path) -> Path:
+        """v1 평가셋에 빠진 문항을 따로 모은 보충 평가셋 경로."""
+
+        path = self.xml_dataset_path(project_root)
+        return path.with_name(f"{self.rcept_no}_retrieval_v2.json")
+
     def xml_result_path(self, project_root: str | Path) -> Path:
         return (
             Path(project_root) / "evaluation" / "results" / "xml"

@@ -86,6 +86,50 @@ class XmlDocumentTest(unittest.TestCase):
         self.assertEqual(metadata["source_document"], "감사보고서")
 
 
+def paragraph_title_audit_xml() -> str:
+    """재무제표 제목이 TABLE이 아니라 P인 연결감사보고서."""
+
+    return """<?xml version=\"1.0\" encoding=\"utf-8\"?>
+<DOCUMENT>
+  <DOCUMENT-NAME>연결감사보고서</DOCUMENT-NAME>
+  <BODY>
+    <SECTION-1>
+      <TITLE ATOC=\"Y\">(첨부)연 결 재 무 제 표</TITLE>
+      <TABLE><TR><TD>회사와 그 종속기업</TD></TR></TABLE>
+      <P>연 결 재 무 상 태 표</P>
+      <TABLE><TR><TD>자산총계</TD><TD>1,234,567</TD></TR></TABLE>
+      <TABLE><TR><TD>별첨 주석 참조</TD></TR></TABLE>
+      <P>연 결 현 금 흐 름 표</P>
+      <TABLE><TR><TD>영업활동으로 인한 현금흐름</TD><TD>(765,432)</TD></TR></TABLE>
+      <P>본 재무제표는 재무상태표와 현금흐름표를 포함하며 별첨 주석과 함께 읽어야 합니다.</P>
+      <SECTION-2>
+        <TITLE ATOC=\"Y\">주석</TITLE>
+        <P>1. 회사의 개요</P>
+        <P>테스트 회사의 본사입니다.</P>
+      </SECTION-2>
+    </SECTION-1>
+  </BODY>
+</DOCUMENT>"""
+
+
+class ParagraphTitleStatementTest(unittest.TestCase):
+    def test_statements_with_paragraph_titles_are_documented(self):
+        with tempfile.TemporaryDirectory() as directory:
+            zip_path = Path(directory) / "sample.zip"
+            with zipfile.ZipFile(zip_path, "w") as archive:
+                archive.writestr("sample_00761.xml", paragraph_title_audit_xml())
+            records, metadata = build_xml_documents(zip_path, "00164742", 2025, "consolidated", "테스트")
+
+        statements = [item for item in records if item["document_type"] == "xml_financial_statement"]
+        self.assertEqual(metadata["financial_statement_documents"], 2)
+        self.assertEqual([item["title"] for item in statements], ["재무상태표", "현금흐름표"])
+        self.assertIn("(765,432)", statements[1]["text"])
+        # 재무제표를 언급하는 긴 설명 문단(P)은 제목으로 오인되어 문서가 늘어나지 않는다(2건 유지).
+        # 문서 위치는 제목 P의 XPath다.
+        self.assertTrue(statements[1]["source_xpath"].endswith("/P[2]"))
+        self.assertEqual(metadata["note_documents"], 1)
+
+
 def business_report_xml() -> str:
     """기재정정 사업보고서처럼 본문만 있는 XML. TABLE-GROUP 하나가 재무제표·주석 하나."""
     return """<?xml version="1.0" encoding="utf-8"?>
