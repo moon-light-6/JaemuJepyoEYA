@@ -106,12 +106,26 @@ def sync_company_config(
 
 
 def resolve_target_from_company(args: argparse.Namespace, parser: argparse.ArgumentParser) -> str | None:
-    """기업명만 받은 경우 OpenDART 식별자를 확정하고 필요하면 설정에 동기화한다."""
+    """입력 식별자를 확정하고 새 기업이면 설정 맨 아래에 추가한다."""
 
     if not args.company:
         if not args.corp_code or not args.rcept_no:
             parser.error("--company 또는 --corp-code와 --rcept-no를 함께 지정해야 합니다.")
-        return None
+        if not args.sync_config:
+            return None
+        client = DartClient.from_environment()
+        corp = find_corp(
+            args.corp_code,
+            load_corp_codes(client, CORP_CODE_CACHE, refresh=args.refresh_corp_codes),
+        )
+        added = sync_company_config(
+            CONFIG_PATH, name=corp.corp_name, corp_code=corp.corp_code,
+            fiscal_year=args.fiscal_year, rcept_no=args.rcept_no,
+            report_name=f"사업보고서 ({args.fiscal_year}.12)",
+        )
+        if added:
+            print(f"기업 설정 추가: {CONFIG_PATH}", flush=True)
+        return corp.corp_name
 
     client = DartClient.from_environment()
     corps = load_corp_codes(client, CORP_CODE_CACHE, refresh=args.refresh_corp_codes)
