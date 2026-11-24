@@ -8,7 +8,7 @@
 청킹과 정답지 생성에 앞서 **원본 ZIP이 있는지 확인하고, 없으면 `collect.py`로 받는다.** 삼성전자 예시는 다음과 같다.
 
 ```zsh
-python scripts/collect.py --corp-code 00126380 --fiscal-year 2025
+python scripts/ingestion/collect.py --corp-code 00126380 --fiscal-year 2025
 ```
 
 기존에 ZIP이 있다면 다시 수집할 필요는 없다. 다른 기업에서는 수집된 접수번호가 앞으로 사용할 정답지와 같은지 확인한다.
@@ -81,7 +81,7 @@ evaluation/results/xml/00126380/2025/consolidated/
 원본 ZIP을 수집한 뒤(`collect.py`실행) v2 파이프라인의 `--make-draft-dataset`으로 정답지 후보와 v2 청크를 만든다. 다음은 명령 형식을 보여 주는 삼성전자 예시다. **현재 삼성전자는 기존 정답지가 있어 실행하면 해당 평가셋을 덮어쓰지 않는다.**
 
 ```zsh
-python scripts/run_pipeline_xml_v2.py \
+python scripts/pipelines/run_pipeline_xml_v2.py \
   --company "삼성전자" \
   --corp-code 00126380 \
   --fiscal-year 2025 \
@@ -104,7 +104,7 @@ python scripts/run_pipeline_xml_v2.py \
 
 
 ```zsh
-python scripts/run_pipeline_xml_v2.py \
+python scripts/pipelines/run_pipeline_xml_v2.py \
   --corp-code 00260879 \
   --fiscal-year 2025 \
   --rcept-no 20260317000899 \
@@ -137,7 +137,7 @@ python scripts/run_pipeline_xml_v2.py \
 삼성전자는 기존 정답지의 18문항이 모두 `verified`이고, 그 18문항으로 평가한 기존 결과도 있다. 따라서 추가 정답지를 만들지 않고 `--baseline-path`를 지정해 바로 비교할 수 있다.
 
 ```zsh
-python scripts/run_pipeline_xml_v2.py \
+python scripts/pipelines/run_pipeline_xml_v2.py \
   --corp-code 00126380 \
   --fiscal-year 2025 \
   --rcept-no 20260310002820 \
@@ -163,7 +163,7 @@ python scripts/run_pipeline_xml_v2.py \
 기존 파이프라인에 `--include-v2`를 붙여 기존 정답지와 추가 정답지의 `verified` 문항을 함께 평가한다.
 
 ```zsh
-python scripts/run_pipeline_xml.py \
+python scripts/pipelines/run_pipeline_xml.py \
   --company "카페24" \
   --corp-code 00260879 \
   --fiscal-year 2025 \
@@ -177,7 +177,7 @@ python scripts/run_pipeline_xml.py \
 **2. v2 청킹을 평가하고 baseline과 비교**
 
 ```zsh
-python scripts/run_pipeline_xml_v2.py \
+python scripts/pipelines/run_pipeline_xml_v2.py \
   --corp-code 00260879 \
   --fiscal-year 2025 \
   --rcept-no 20260317000899 \
