@@ -14,6 +14,7 @@ from typing import Annotated, Any, Literal
 
 from pydantic import BaseModel, Field
 from typing_extensions import TypedDict
+from fin_research.evidence.models import Evidence
 
 
 # ─────────────────────────────────────────────
@@ -68,13 +69,27 @@ class Brief(BaseModel):
 
 
 class EvidenceRef(BaseModel):
-    """Finding이 인용한 근거의 위치 (Evidence Registry 전 임시: 원문 대신 출처만 보관)."""
+    """Finding이 인용한 근거의 위치. 원문(text)은 EvidenceRegistry(장부)에만 있고 여기에는 위치만 둔다.
 
-    id: str = Field(description="전역 근거 ID. 예: profitability.r1.q1.S1")
-    source_file: str | None = None
-    pdf_page: int | None = None
-    chunk_id: str | None = None
-
+    장부를 쓰는 실행이면 id는 실행 전체에서 유일한 S#, 장부가 없으면(mock·테스트) 임시 번호.
+    """
+    id:str=Field(description="근거 ID 장부 번호 S# 또는 임시번호")
+    source_file:str|None=None
+    pdf_page:int|None=None
+    chunk_id: str| None=None
+    source_xpath:str|None=Field(default=None, description="XML 근거의 원본 요소 위치")
+    title: str | None = Field(default=None, description="원본 표·섹션 제목 (화면 표시용)")
+    @classmethod
+    def from_evidence(cls, evidence: Evidence) -> EvidenceRef:
+        """장부에 등록된 근거 → state에 남길 위치 정보 (원문 text는 버린다)."""
+        return cls(
+            id=evidence.evidence_id,
+            source_file=evidence.source_file,
+            pdf_page=evidence.pdf_page,
+            chunk_id=evidence.chunk_id,
+            source_xpath=evidence.source_xpath,
+            title=evidence.title,
+        )
 
 class Finding(BaseModel):
     """researcher 1회 결과 (researcher 안에서 압축 완료된 것).
@@ -226,3 +241,8 @@ if __name__ == "__main__":
     # override_reducer 단독 확인
     print(override_reducer([1, 2], [3]))                                # [1, 2, 3]
     print(override_reducer([1, 2], {"type": "override", "value": []}))  # []
+
+
+
+
+   

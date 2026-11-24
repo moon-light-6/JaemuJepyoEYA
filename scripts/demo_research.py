@@ -18,9 +18,33 @@ from pathlib import Path
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT_ROOT / "src"))
 
+from fin_research.evidence.registry import EvidenceRegistry
 from fin_research.llm.budget import Budget, BudgetExceeded
 from fin_research.research.graph import build_graph, run_config
 from fin_research.research.nodes.researcher import make_loop_researcher, mock_researcher
+
+
+def describe_location(source) -> str:
+    """EvidenceRef·Evidence 공통: 'PDF 84쪽' 또는 '연결 손익계산서 · 파일 · XPath'."""
+    if source.pdf_page:
+        return f"{source.source_file or ''} PDF {source.pdf_page}쪽".strip()
+    if source.source_xpath:
+        title = f"{source.title} · " if source.title else ""
+        return f"{title}{source.source_file} {source.source_xpath}"
+    return "위치 정보 없음"
+
+
+def print_sources(registry: EvidenceRegistry, preview: int = 60) -> None:
+    """보고서 전체 출처 목록 (장부 번호 순). --mock은 장부를 쓰지 않아 비어 있다."""
+    evidences = registry.values()
+    if not evidences:
+        print("\n[출처] 장부에 등록된 근거가 없습니다 (--mock은 임시 번호만 씁니다).")
+        return
+    print(f"\n[출처] 근거 {len(evidences)}개")
+    for e in evidences:
+        text = " ".join(e.text.split())
+        print(f"  {e.evidence_id:>4}  {describe_location(e)}")
+        print(f"        \"{text[:preview]}{'…' if len(text) > preview else ''}\"")
 
 
 def print_result(state: dict) -> None:
@@ -40,8 +64,7 @@ def print_result(state: dict) -> None:
         for line in f.summary.splitlines():
             print(f"   {line}")
         for src in f.sources:
-            where = f"PDF {src.pdf_page}쪽" if src.pdf_page else "위치 정보 없음"
-            print(f"   - {src.id}: {where}")
+            print(f"   - {src.id}: {describe_location(src)}")
         for note in f.limitations:
             print(f"   ! {note}")
 
@@ -61,15 +84,17 @@ async def main() -> int:
 
     researcher = mock_researcher if args.mock else make_loop_researcher(questions_per_subtopic=args.questions)
     budget = Budget.from_config()
+    registry = EvidenceRegistry()  # 실행 하나에 장부 하나. 끝난 뒤 출처 목록을 읽으려고 직접 만든다
     started = time.monotonic()
     try:
         state = await build_graph(researcher).ainvoke(
-            {"request": args.request, "findings": []}, run_config(budget),
+            {"request": args.request, "findings": []}, run_config(budget, registry),
         )
     except BudgetExceeded as e:
         print(f"예산 초과로 중단: {e}")
         return 1
     print_result(state)
+    print_sources(registry)
 
     s = budget.summary()
     by_role = ", ".join(f"{role} {u['calls']}" for role, u in s["by_role"].items())

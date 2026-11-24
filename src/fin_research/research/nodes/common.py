@@ -9,15 +9,30 @@ from langchain_core.runnables import RunnableConfig
 from fin_research.llm.client import PROJECT_ROOT
 
 if TYPE_CHECKING:
+    from fin_research.evidence.registry import EvidenceRegistry
     from fin_research.llm.budget import Budget
 
 PROMPTS_ROOT = PROJECT_ROOT / "configs" / "prompts"
 PROMPT_DIR = PROMPTS_ROOT / "research"
 
 
+def _configurable(config: RunnableConfig | None) -> dict:
+    return (config or {}).get("configurable") or {}
+
+
 def get_budget(config: RunnableConfig | None) -> Budget | None:
     """config["configurable"]["budget"] (없으면 None)."""
-    return ((config or {}).get("configurable") or {}).get("budget")
+    return _configurable(config).get("budget")
+
+
+def get_evidence_registry(config: RunnableConfig | None) -> EvidenceRegistry | None:
+    """config["configurable"]["evidence_registry"] (없으면 None).
+
+    실행(run) 하나에 장부 하나. 병렬 researcher가 같은 장부에 등록해야 같은 근거가 같은 S#가 된다.
+    잠금·원문을 가지고 있어 state에 넣지 않는다 (Budget과 같은 이유).
+    None이면 researcher는 장부 없이 임시 번호(profitability.r1.q1.S1)를 쓴다.
+    """
+    return _configurable(config).get("evidence_registry")
 
 
 def load_prompt(name: str, folder: str = "research") -> str:

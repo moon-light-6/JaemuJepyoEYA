@@ -3,7 +3,8 @@
 - mock_researcher: 검색·LLM 없이 고정 결과 (supervisor·그래프 테스트용)
 - make_loop_researcher(): 루프 담당의 run_research_loop를 고치지 않고 감싸는 어댑터
   · 질문마다 루프를 한 번씩 돌리고 결과를 Finding 하나로 합친다
-  · 근거 ID에 '{하위주제}.r{라운드}.q{질문}.' 접두어를 붙여 researcher 간 충돌을 막는다
+  · 근거는 실행 전체가 함께 쓰는 EvidenceRegistry(장부)에 등록해 전역 S#로 바꾼다
+    (같은 청크는 어느 researcher가 찾아도 같은 S#). 장부가 없으면 '{하위주제}.r{라운드}.q{질문}.' 임시 번호
   · 검색 도구(KURE 2.3GB)는 기업별로 한 번만 만들어 공유한다
 """
 
@@ -16,11 +17,13 @@ from collections.abc import Callable
 from pathlib import Path
 
 from langchain_core.runnables import RunnableConfig
+from pydantic import ValidationError
 
 from fin_research.companies import load_companies
 from fin_research.llm.budget import BudgetExceeded, load_budget_config
 from fin_research.llm.client import PROJECT_ROOT
-from fin_research.research.nodes.common import get_budget
+from fin_research.evidence.registry import EvidenceRegistry
+from fin_research.research.nodes.common import get_budget, get_evidence_registry
 from fin_research.research.state import (
     Brief,
     EvidenceRef,
@@ -31,9 +34,12 @@ from fin_research.research.state import (
 )
 from fin_research.retrieval.search_target import SearchTarget
 
+
 CHROMA_DIR = PROJECT_ROOT / "data" / "chroma_multi"
 BUDGET_EXCEEDED_MARK = "[예산 초과]"  # supervisor가 재조사를 멈추는 신호
 _SOURCE_ID = re.compile(r"\[(S\d+)\]")
+_CITATION=re.compile(r"\[([^\[\]]*?\bS\d+\b[^\[\]]*?)\]")
+_LOCAL_ID=re.compile(r"\bS\d+\b")
 
 
 # ─────────────────────────── 검색 대상·도구 ───────────────────────────
@@ -91,11 +97,60 @@ def prefix_sources(answer: str, evidence_ids: list[str], prefix: str) -> tuple[s
     summary = _SOURCE_ID.sub(lambda m: f"[{prefix}.{m.group(1)}]", answer)
     return summary, [f"{prefix}.{i}" for i in evidence_ids]
 
+def rewrite_citations(text:str, mapping:dict[str,str])->str:
+    """답변 속 루프 번호를 전역 번호로 한 번에 바꾼다. '[S1, S3]' → '[S12, S4]'.
+
+    mapping에 없는 번호(근거 없이 인용한 번호)는 지우고, 괄호가 비면 괄호째 지운다.
+    한 번의 re.sub로 바꿔서 S1→S12, S12→S3처럼 연쇄로 바뀌지 않는다.
+    """
+    def bracket(match:re.Match)->str:
+        ids=[mapping[i] for i in _LOCAL_ID.findall(match.group(1)) if i in mapping] 
+        return f"[{', '.join(dict.fromkeys(ids))}]" if ids else ""
+
+    return re.sub(r" +([.,])", r"\1", _CITATION.sub(bracket, text)).strip()
+
+def to_candidate(evidence:dict )->dict:
+    """루프의 검색 결과-> 장부 등록 형식. XML 위치·제목은 metadata 안에 있을 수 있다."""
+    meta=evidence.get("metadata") or {}
+    return {**evidence,
+        "source_xpath": evidence.get("source_xpath") or meta.get("source_xpath"),
+        "title": evidence.get("title") or meta.get("title"),}
+
+def register_citations(
+    answer: dict, evidences: list[dict], registry: EvidenceRegistry
+) -> tuple[dict[str, str], list[str]]:
+
+    """루프 답변이 인용한 근거를 장부에 등록. ({루프 번호: 전역 번호}, 안내 메시지)."""
+
+    by_id={e.get("evidence_id"): e for e in evidences}
+    # evidence_ids에 빠졌어도 본문에 쓴 번호까지 (답변 순서대로)
+
+    # 본문에서는 [S1]·[S1, S3]처럼 대괄호 안의 번호만 인용으로 본다 ('갤럭시 S25' 같은 제품명 제외)
+    in_text = [i for group in _CITATION.findall(answer.get("answer") or "") for i in _LOCAL_ID.findall(group)]
+    cited=list(dict.fromkeys([*(answer.get("evidence_ids") or []), *in_text]))
+    mapping:dict[str,str]={}
+    notes:list[str]=[]
+    for local_id in cited:
+        evidence=by_id.get(local_id)
+        if evidence is None:
+            notes.append(f"검색 결과에 없는 근거 {local_id}를 인용해 제외했습니다.")
+            continue
+        try:
+            mapping[local_id]=registry.register(to_candidate(evidence))
+        except ValidationError:
+            notes.append(f"근거 {local_id}에 원문이나 위치(XPath·쪽)가 없어 제외했습니다.")
+    return mapping, notes
+
+
 
 def merge_loop_results(
-    subtopic: SubTopic, round_: int, results: list[tuple[str, dict | None, str | None]]
+    subtopic: SubTopic, round_: int, results: list[tuple[str, dict | None, str | None]],
+    registry: EvidenceRegistry | None = None,
 ) -> Finding:
-    """질문별 루프 결과 [(질문, 결과 dict 또는 None, 오류 메시지 또는 None)] → Finding 하나."""
+    """질문별 루프 결과 [(질문, 결과 dict 또는 None, 오류 메시지 또는 None)] → Finding 하나.
+
+    registry가 있으면 근거를 장부에 등록해 전역 S#로 바꾸고, 없으면 임시 번호를 붙인다.
+    """
     parts: list[str] = []
     ids: list[str] = []
     sources: list[EvidenceRef] = []
@@ -111,17 +166,27 @@ def merge_loop_results(
             limitations.append(f"{question} — 답변 불가: {reasons}")
             continue
 
-        prefix = f"{subtopic.id}.r{round_}.q{n}"
-        summary, prefixed = prefix_sources(answer["answer"], answer.get("evidence_ids") or [], prefix)
-        parts.append(summary)
-        ids.extend(prefixed)
-        by_id = {e.get("evidence_id"): e for e in (result or {}).get("evidences", [])}
-        for raw_id, new_id in zip(answer.get("evidence_ids") or [], prefixed):
-            e = by_id.get(raw_id, {})
-            sources.append(EvidenceRef(
-                id=new_id, source_file=e.get("source_file"),
-                pdf_page=e.get("pdf_page"), chunk_id=e.get("chunk_id"),
-            ))
+        evidences = (result or {}).get("evidences", [])
+        if registry is not None:
+            mapping, notes = register_citations(answer, evidences, registry)
+            parts.append(rewrite_citations(answer["answer"], mapping))
+            for global_id in mapping.values():
+                if global_id not in ids:  # 같은 근거를 여러 질문이 인용해도 출처는 한 번
+                    ids.append(global_id)
+                    sources.append(EvidenceRef.from_evidence(registry.require(global_id)))
+            limitations.extend(notes)
+        else:
+            prefix = f"{subtopic.id}.r{round_}.q{n}"
+            summary, prefixed = prefix_sources(answer["answer"], answer.get("evidence_ids") or [], prefix)
+            parts.append(summary)
+            ids.extend(prefixed)
+            by_id = {e.get("evidence_id"): e for e in evidences}
+            for raw_id, new_id in zip(answer.get("evidence_ids") or [], prefixed):
+                e = by_id.get(raw_id, {})
+                sources.append(EvidenceRef(
+                    id=new_id, source_file=e.get("source_file"),
+                    pdf_page=e.get("pdf_page"), chunk_id=e.get("chunk_id"),
+                ))
         limitations.extend(answer.get("limitations") or [])
 
     return Finding(
@@ -194,6 +259,6 @@ def make_loop_researcher(
                 break
             except Exception as e:  # 한 질문 실패가 하위 주제 전체를 죽이지 않게
                 results.append((question, None, f"조사 실패: {type(e).__name__}: {e}"))
-        return {"findings": [merge_loop_results(subtopic, round_, results)]}
+        return {"findings": [merge_loop_results(subtopic, round_, results, get_evidence_registry(config))]}
 
     return loop_researcher
