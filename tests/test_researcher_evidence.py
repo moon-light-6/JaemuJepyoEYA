@@ -165,9 +165,11 @@ class TestSearchToolCacheSource(unittest.TestCase):
     from fin_research.retrieval.search_target import SearchTarget as _Target
     TARGET = _Target("00266961", 2025, "consolidated", "20260313001021")
 
-    def cache(self, counts):
+    def cache(self, counts, shared=None, client=None):
         from fin_research.research.nodes.researcher import SearchToolCache
-        return SearchToolCache(Path("."), collection_counts=lambda: counts)
+        # 공용 서버는 기본으로 '없음' (테스트가 네트워크에 접속하지 않게)
+        return SearchToolCache(Path("."), collection_counts=lambda: counts,
+                               shared_counts=lambda: shared or {}, shared_client=client)
 
     def test_xml_preferred(self):
         cache = self.cache({self.TARGET.xml_collection_name: 327, self.TARGET.collection_name: 294})
@@ -182,6 +184,26 @@ class TestSearchToolCacheSource(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "검색 색인이 없습니다"):
             self.cache({}).source_for(self.TARGET)
 
+    def test_shared_used_when_local_missing(self):
+        client = object()
+        cache = self.cache({}, shared={self.TARGET.xml_collection_name: 330}, client=client)
+        self.assertEqual(cache.source_for(self.TARGET), "shared")
+        cache.search_function(self.TARGET)
+        self.assertEqual(cache.source_used(self.TARGET), "shared")
+
+    def test_local_preferred_over_shared_and_shared_not_contacted(self):
+        contacted = []
+        from fin_research.research.nodes.researcher import SearchToolCache
+        cache = SearchToolCache(Path("."), collection_counts=lambda: {self.TARGET.collection_name: 294},
+                                shared_counts=lambda: contacted.append(1) or {})
+        self.assertEqual(cache.source_for(self.TARGET), "pdf")
+        self.assertEqual(contacted, [])  # 로컬에 있으면 공용 서버에 접속하지 않는다
+
+    def test_empty_shared_collection_ignored(self):
+        cache = self.cache({}, shared={self.TARGET.xml_collection_name: 0})
+        with self.assertRaisesRegex(ValueError, "공용 ChromaDB"):
+            cache.source_for(self.TARGET)
+
     def test_search_function_records_source_and_reads_counts_once(self):
         calls = []
 
@@ -189,7 +211,7 @@ class TestSearchToolCacheSource(unittest.TestCase):
             calls.append(1)
             return {self.TARGET.xml_collection_name: 10}
         from fin_research.research.nodes.researcher import SearchToolCache
-        cache = SearchToolCache(Path("."), collection_counts=counts)
+        cache = SearchToolCache(Path("."), collection_counts=counts, shared_counts=dict)
         first = cache.search_function(self.TARGET)
         self.assertIs(cache.search_function(self.TARGET), first)  # 기업당 도구 하나
         self.assertEqual(cache.source_used(self.TARGET), "xml")

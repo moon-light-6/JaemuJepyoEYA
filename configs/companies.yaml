@@ -26,6 +26,7 @@ companies:
         fiscal_month: 12
         disclosure_start: "2026-01-01"
         disclosure_end: "2026-12-31"
+        # Supabase fin.dart_financial_accounts 적재 공시와 같은 번호
         rcept_no: "20260317000635"
 
   # 종목코드: 005380
@@ -38,6 +39,7 @@ companies:
         fiscal_month: 12
         disclosure_start: "2026-01-01"
         disclosure_end: "2026-12-31"
+        # Supabase fin.dart_financial_accounts 적재 공시와 같은 번호
         rcept_no: "20260318001394"
 
   # 종목코드: 051910
@@ -50,6 +52,7 @@ companies:
         fiscal_month: 12
         disclosure_start: "2026-01-01"
         disclosure_end: "2026-12-31"
+        # Supabase fin.dart_financial_accounts 적재 공시와 같은 번호
         rcept_no: "20260313001195"
 
   # 종목코드: 005490
@@ -62,6 +65,7 @@ companies:
         fiscal_month: 12
         disclosure_start: "2026-01-01"
         disclosure_end: "2026-12-31"
+        # Supabase fin.dart_financial_accounts 적재 공시와 같은 번호
         rcept_no: "20260311004517"
 
   # 종목코드: 105560
@@ -201,6 +205,7 @@ companies:
         fiscal_month: 12
         disclosure_start: "2026-01-01"
         disclosure_end: "2026-12-31"
+        # Supabase fin.dart_financial_accounts 적재 공시와 같은 번호 (별도 기준만 공시)
         rcept_no: "20260318000182"
 
   # 종목코드: 036930
@@ -213,6 +218,7 @@ companies:
         fiscal_month: 12
         disclosure_start: "2026-01-01"
         disclosure_end: "2026-12-31"
+        # Supabase fin.dart_financial_accounts 적재 공시와 같은 번호
         rcept_no: "20260318000323"
 
   # 종목코드: 222800
@@ -225,6 +231,7 @@ companies:
         fiscal_month: 12
         disclosure_start: "2026-01-01"
         disclosure_end: "2026-12-31"
+        # Supabase fin.dart_financial_accounts 적재 공시와 같은 번호
         rcept_no: "20260317000641"
 
   # 종목코드: 277810
@@ -237,6 +244,7 @@ companies:
         fiscal_month: 12
         disclosure_start: "2026-01-01"
         disclosure_end: "2026-12-31"
+        # Supabase fin.dart_financial_accounts 적재 공시와 같은 번호
         rcept_no: "20260320000803"
 
   # 종목코드: 214150
@@ -249,6 +257,7 @@ companies:
         fiscal_month: 12
         disclosure_start: "2026-01-01"
         disclosure_end: "2026-12-31"
+        # Supabase fin.dart_financial_accounts 적재 공시와 같은 번호
         rcept_no: "20260323001541"
 
   # 종목코드: 214450
@@ -261,6 +270,7 @@ companies:
         fiscal_month: 12
         disclosure_start: "2026-01-01"
         disclosure_end: "2026-12-31"
+        # Supabase fin.dart_financial_accounts 적재 공시와 같은 번호
         rcept_no: "20260319001417"
 
   # 종목코드: 035900
@@ -303,6 +313,7 @@ companies:
         fiscal_month: 12
         disclosure_start: "2026-01-01"
         disclosure_end: "2026-12-31"
+        # Supabase fin.dart_financial_accounts 적재 공시와 같은 번호
         rcept_no: "20260319001336"
 
   # 종목코드: 078340
@@ -315,6 +326,7 @@ companies:
         fiscal_month: 12
         disclosure_start: "2026-01-01"
         disclosure_end: "2026-12-31"
+        # Supabase fin.dart_financial_accounts 적재 공시와 같은 번호
         rcept_no: "20260320001410"
 
   # 종목코드: 042000
@@ -327,6 +339,7 @@ companies:
         fiscal_month: 12
         disclosure_start: "2026-01-01"
         disclosure_end: "2026-12-31"
+        # Supabase fin.dart_financial_accounts 적재 공시와 같은 번호
         rcept_no: "20260317000899"
 
   # 종목코드: 304100
@@ -339,6 +352,7 @@ companies:
         fiscal_month: 12
         disclosure_start: "2026-01-01"
         disclosure_end: "2026-12-31"
+        # Supabase fin.dart_financial_accounts 적재 공시와 같은 번호
         rcept_no: "20260319001029"
 
   # 종목코드: 035760
@@ -351,6 +365,7 @@ companies:
         fiscal_month: 12
         disclosure_start: "2026-01-01"
         disclosure_end: "2026-12-31"
+        # Supabase fin.dart_financial_accounts 적재 공시와 같은 번호
         rcept_no: "20260318001469"
 
   # 종목코드: 005290
@@ -363,6 +378,7 @@ companies:
         fiscal_month: 12
         disclosure_start: "2026-01-01"
         disclosure_end: "2026-12-31"
+        # Supabase fin.dart_financial_accounts 적재 공시와 같은 번호
         rcept_no: "20260319000264"
 
   # 종목코드: 098460
@@ -375,6 +391,7 @@ companies:
         fiscal_month: 12
         disclosure_start: "2026-01-01"
         disclosure_end: "2026-12-31"
+        # Supabase fin.dart_financial_accounts 적재 공시와 같은 번호
         rcept_no: "20260312000804"
 
   # 종목코드: 178320
@@ -387,4 +404,5 @@ companies:
         fiscal_month: 12
         disclosure_start: "2026-01-01"
         disclosure_end: "2026-12-31"
+        # Supabase fin.dart_financial_accounts 적재 공시와 같은 번호
         rcept_no: "20260323001543"

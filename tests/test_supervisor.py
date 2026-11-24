@@ -252,9 +252,13 @@ class TestLoopResearcherAdapter(unittest.TestCase):
         self.assertIn(BUDGET_EXCEEDED_MARK, f.limitations[0])
 
     def test_missing_report_number_returns_failed_finding(self):
-        brief = BRIEF.model_copy(update={"corp_code": "00164779"})  # SK하이닉스: rcept_no 없음
+        # companies.yaml 내용과 무관하게, 접수번호가 없는 기업을 fixture로 둔다
+        no_rcept = ({"name": "접수번호없음", "corp_code": "99999999",
+                     "reports": {"2025": {"fiscal_year": 2025}}},)
+        brief = BRIEF.model_copy(update={"corp_code": "99999999"})
         node = make_loop_researcher(search_tools=SearchToolCache(Path("unused"), collection_counts=ANY_INDEX), loop_fn=lambda *a, **k: {})
-        out = asyncio.run(node({"subtopic": SUBTOPICS[0], "brief": brief, "round": 1}, {}))
+        with patch.object(researcher_module, "load_companies", return_value=no_rcept):
+            out = asyncio.run(node({"subtopic": SUBTOPICS[0], "brief": brief, "round": 1}, {}))
         self.assertIn("접수번호", out["findings"][0].limitations[0])
 
     def test_search_tool_created_once_per_target_across_threads(self):
