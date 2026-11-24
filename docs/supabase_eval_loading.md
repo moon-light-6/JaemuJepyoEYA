@@ -7,8 +7,8 @@
 
 | 데이터 | 저장소 | 실행 파일 |
 |---|---|---|
-| 검증된 XML 평가 정답표(v1·v2) | Supabase `fin.xml_eval_ground_truth_v2` | `scripts/load_xml_eval_ground_truth.py` |
-| 검색용 XML v2 청크 및 임베딩 | **현규 PC** 공용 ChromaDB | `scripts/load_shared_chroma.py` |
+| 검증된 XML 평가 정답표(v1·v2) | Supabase `fin.xml_eval_ground_truth_v2` | `scripts/storage/load_xml_eval_ground_truth.py` |
+| 검색용 XML v2 청크 및 임베딩 | **현규 PC** 공용 ChromaDB | `scripts/storage/load_shared_chroma.py` |
 
 두 적재 작업은 **서로 별개**입니다. Supabase에 정답표를 넣어도 ChromaDB에는 자동 반영되지 않습니다. OpenDART 원천 재무 수치(`fin.dart_financial_accounts`) 적재는 별도 `docs/supabase_data_loading.md`를 참고합니다.
 
@@ -16,8 +16,8 @@
 
 ```cmd
 git branch --show-current
-dir scripts\load_xml_eval_ground_truth.py
-dir scripts\load_shared_chroma.py
+dir scripts\storage\load_xml_eval_ground_truth.py
+dir scripts\storage\load_shared_chroma.py
 ```
 
 **확인 당시 GitHub 기준(2026-11-24):** `load_xml_eval_ground_truth.py`는 `data/seungah`에서, `load_shared_chroma.py`는 `feat/api-serving`에서 확인됐습니다. 따라서 **현재 체크아웃한 브랜치에 두 파일이 모두 있다고 가정하면 안 됩니다.** 필요한 스크립트가 없으면 담당자에게 작업 브랜치로 반영해 달라고 요청한 후 진행하세요.
@@ -55,7 +55,7 @@ dir evaluation\dataset\xml\%CORP_CODE%\%YEAR%\%SCOPE%\%RCEPT_NO%_retrieval_v2.js
 ### ② DRY-RUN (DB 변경 없음)
 
 ```cmd
-python scripts\load_xml_eval_ground_truth.py --corp-code %CORP_CODE% --year %YEAR% --scope %SCOPE% --rcept-no %RCEPT_NO%
+python scripts\storage\load_xml_eval_ground_truth.py --corp-code %CORP_CODE% --year %YEAR% --scope %SCOPE% --rcept-no %RCEPT_NO%
 ```
 
 출력된 **기업 정보, v1·v2 파일명, `verified` 건수, 적재 대상 합계**를 확인합니다. 이 단계는 JSON을 검증하며 Supabase에는 연결하지 않습니다.
@@ -63,7 +63,7 @@ python scripts\load_xml_eval_ground_truth.py --corp-code %CORP_CODE% --year %YEA
 ### ③ 실제 적재
 
 ```cmd
-python scripts\load_xml_eval_ground_truth.py --corp-code %CORP_CODE% --year %YEAR% --scope %SCOPE% --rcept-no %RCEPT_NO% --apply
+python scripts\storage\load_xml_eval_ground_truth.py --corp-code %CORP_CODE% --year %YEAR% --scope %SCOPE% --rcept-no %RCEPT_NO% --apply
 ```
 
 `COMMIT 완료: 동일 공시 N건 → M건` 출력에서 **M이 DRY-RUN의 적재 대상 건수와 일치**하는지 확인하세요.
@@ -114,7 +114,7 @@ python -c "import os,chromadb; from dotenv import load_dotenv; load_dotenv(); c=
 
 ```cmd
 dir data\processed\xml\dart\%CORP_CODE%\%YEAR%\%SCOPE%\%RCEPT_NO%_xml_chunks_v2.json
-python scripts\load_shared_chroma.py --corp-code %CORP_CODE% --year %YEAR% --scope %SCOPE% --rcept-no %RCEPT_NO%
+python scripts\storage\load_shared_chroma.py --corp-code %CORP_CODE% --year %YEAR% --scope %SCOPE% --rcept-no %RCEPT_NO%
 ```
 
 DRY-RUN 출력의 `XML v2`, `공용 저장`, `추가 필요`, `로컬 임베딩` 수를 확인합니다.
@@ -126,7 +126,7 @@ DRY-RUN 출력의 `XML v2`, `공용 저장`, `추가 필요`, `로컬 임베딩`
 ### ③ 실제 적재 및 검증
 
 ```cmd
-python scripts\load_shared_chroma.py --corp-code %CORP_CODE% --year %YEAR% --scope %SCOPE% --rcept-no %RCEPT_NO% --apply
+python scripts\storage\load_shared_chroma.py --corp-code %CORP_CODE% --year %YEAR% --scope %SCOPE% --rcept-no %RCEPT_NO% --apply
 ```
 
 정상 완료 시 `공용 적재 검증 완료: N개`, `Match: True`를 확인합니다. `Match: True`는 **청크 ID와 본문 일치**를 뜻하며, 임베딩 값의 동일성이나 검색 성능까지 검증한 것은 아닙니다.
@@ -148,7 +148,7 @@ python -c "import os,chromadb; from dotenv import load_dotenv; load_dotenv(); c=
 | Supabase `v1 정답 파일이 없습니다` | 기업고유번호·접수번호·JSON 파일 경로 |
 | Supabase 미검증 문항 오류 | `annotation_status` 및 검수 완료 여부 |
 | Supabase 연결/테이블 오류 | `.env`의 `DATABASE_URL`, DB 권한, 테이블 존재 여부 |
-| ChromaDB 스크립트 파일 없음 | **현재 브랜치**에 `scripts/load_shared_chroma.py` 반영 여부 |
+| ChromaDB 스크립트 파일 없음 | **현재 브랜치**에 `scripts/storage/load_shared_chroma.py` 반영 여부 |
 | ChromaDB DNS·접속 실패 | 현규 PC의 실제 호스트명, Tailscale 승인·연결, Serve 및 Docker 상태 |
 | ChromaDB 원본 해시·본문 불일치 | XML v2 파일 버전과 기존 공용 컬렉션의 일치 여부. **임의 삭제 금지** |
 
