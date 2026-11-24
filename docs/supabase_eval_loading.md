@@ -20,7 +20,7 @@ dir scripts\storage\load_xml_eval_ground_truth.py
 dir scripts\storage\load_shared_chroma.py
 ```
 
-**확인 당시 GitHub 기준(2026-11-24):** `load_xml_eval_ground_truth.py`는 `data/seungah`에서, `load_shared_chroma.py`는 `feat/api-serving`에서 확인됐습니다. 따라서 **현재 체크아웃한 브랜치에 두 파일이 모두 있다고 가정하면 안 됩니다.** 필요한 스크립트가 없으면 담당자에게 작업 브랜치로 반영해 달라고 요청한 후 진행하세요.
+**확인 당시 GitHub 기준(2026-11-24):** 두 스크립트는 `data/pdf_processing` 브랜치의 `scripts/storage/` 폴더에 있습니다. 이전 작업 브랜치에는 없거나 `scripts/` 바로 아래에 있을 수 있으므로, **현재 체크아웃한 브랜치에 두 파일이 같은 경로로 있다고 가정하면 안 됩니다.** 필요한 스크립트가 없으면 최신 `data/pdf_processing`를 받거나 담당자에게 작업 브랜치로 반영해 달라고 요청한 후 진행하세요.
 
 ## 2. 담당 공시 정보 설정
 
@@ -108,7 +108,7 @@ CHROMA_SHARED_HOST=현규_PC의_실제_호스트명
 python -c "import os,chromadb; from dotenv import load_dotenv; load_dotenv(); c=chromadb.HttpClient(host=os.environ['CHROMA_SHARED_HOST'],port=443,ssl=True); print('Heartbeat:',c.heartbeat())"
 ```
 
-`Heartbeat:` 뒤 응답이 나오면 **서버 연결**을 확인한 것입니다. 접속에 실패하면 현규에게 Docker 컨테이너·Tailscale Serve의 실행 상태를 확인받으세요.
+`Heartbeat:` 뒤 응답이 나오면 **서버 연결**을 확인한 것입니다. 접속에 실패하면 현규에게 Docker 컨테이너·Tailscale Serve의 실행 상태를 확인받으세요. 서버는 현규 PC에서 수동으로 실행하므로, PC가 꺼져 있거나 절전 상태이면 접속되지 않습니다.
 
 ### ② XML v2 파일 및 로컬 임베딩 확인
 
@@ -117,11 +117,14 @@ dir data\processed\xml\dart\%CORP_CODE%\%YEAR%\%SCOPE%\%RCEPT_NO%_xml_chunks_v2.
 python scripts\storage\load_shared_chroma.py --corp-code %CORP_CODE% --year %YEAR% --scope %SCOPE% --rcept-no %RCEPT_NO%
 ```
 
+- `dir`에서 파일을 찾지 못하면 **적재를 진행하지 마세요.** 스크립트가 `FileNotFoundError`로 종료됩니다. 해당 기업의 XML v2 청킹이 끝났는지, 다른 PC에 생성된 파일이 있는지 먼저 확인합니다.
+- DRY-RUN(`--apply` 없음)도 **공용 서버에 접속해 읽기만** 합니다. 서버에는 쓰지 않지만, 위 ①의 접속 설정이 되어 있어야 실행됩니다.
+
 DRY-RUN 출력의 `XML v2`, `공용 저장`, `추가 필요`, `로컬 임베딩` 수를 확인합니다.
 
 - `추가 필요: 0개` → 해당 입력 파일 기준, 새로 추가할 청크 없음
 - `로컬 임베딩`이 XML v2 청크 수와 일치 → 기존 벡터 재사용 가능
-- `로컬 임베딩: 0개` → `--apply` 시 KURE-v1 임베딩을 새로 생성할 수 있음. 기존 임베딩이 다른 PC에 있다면 **그 PC에서 적재**하는 것이 재생성을 줄입니다.
+- `로컬 임베딩: 0개` → `--apply` 시 KURE-v1 임베딩을 새로 생성할 수 있음. 기존 임베딩이 다른 PC에 있다면 **그 PC에서 적재**하는 것이 재생성을 줄입니다. 임베딩 모델 다운로드와 연산에 시간이 걸리고, GPU 메모리를 많이 쓰는 다른 작업(예: LLM 서버)이 실행 중이면 메모리 부족이 날 수 있으므로 먼저 종료하세요.
 
 ### ③ 실제 적재 및 검증
 
@@ -149,6 +152,7 @@ python -c "import os,chromadb; from dotenv import load_dotenv; load_dotenv(); c=
 | Supabase 미검증 문항 오류 | `annotation_status` 및 검수 완료 여부 |
 | Supabase 연결/테이블 오류 | `.env`의 `DATABASE_URL`, DB 권한, 테이블 존재 여부 |
 | ChromaDB 스크립트 파일 없음 | **현재 브랜치**에 `scripts/storage/load_shared_chroma.py` 반영 여부 |
+| ChromaDB `FileNotFoundError` (`..._xml_chunks_v2.json`) | `data\processed\xml\dart\...` 경로의 XML v2 청크 파일 존재 여부, 청킹 작업 완료 여부 |
 | ChromaDB DNS·접속 실패 | 현규 PC의 실제 호스트명, Tailscale 승인·연결, Serve 및 Docker 상태 |
 | ChromaDB 원본 해시·본문 불일치 | XML v2 파일 버전과 기존 공용 컬렉션의 일치 여부. **임의 삭제 금지** |
 
