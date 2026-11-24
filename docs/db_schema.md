@@ -132,17 +132,17 @@ WHERE corp_code = '01160363' AND statement_type = 'CIS'
   AND account_name_norm LIKE '영업이익%' AND period_role = 'current';
 ```
 
-## 데이터 적재 (`scripts/load_financials.py`)
+## 데이터 적재 (`scripts/storage/load_financials.py`)
 
 `data/processed/dart/{corp_code}/{year}/{rcept_no}_pages.json`(+ `_chunks.json`)에서 연결재무제표 수치를 읽어 위 테이블에 넣는다.
-파서는 `src/fin_research/ingestion/statement_parser.py`(DB 불필요), 적재는 `scripts/load_financials.py`.
+파서는 `src/fin_research/ingestion/statement_parser.py`(DB 불필요), 적재는 `scripts/storage/load_financials.py`.
 
 ```bash
 pip install psycopg2-binary              # requirements.txt 에 추가됨
 cp .env.example .env                     # DATABASE_URL 채우기 (.env 는 git 에 안 올라감)
 
-python scripts/load_financials.py --corp-code 01160363 --dry-run   # DB 없이 파싱+검증만
-python scripts/load_financials.py --corp-code 01160363             # 적재
+python scripts/storage/load_financials.py --corp-code 01160363 --dry-run   # DB 없이 파싱+검증만
+python scripts/storage/load_financials.py --corp-code 01160363             # 적재
 ```
 
 - **합계 검증**: 재무상태표(자산 = 부채 + 자본), 현금흐름표 기말 현금 = 재무상태표 현금, 자본변동표 기말자본 = 재무상태표 자본총계를 확인한다. 하나라도 FAIL이면 적재하지 않는다(`--force`로만 예외).
