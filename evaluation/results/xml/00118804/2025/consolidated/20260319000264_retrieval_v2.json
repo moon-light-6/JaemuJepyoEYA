@@ -4,10 +4,10 @@
     "questions": 18,
     "chunks": 273,
     "collection_name": "fin_xml_00118804_2025_consolidated_20260319000264_kure_v1",
-    "chunks_path": "C:\\Hyeonkyu\\JaemuJepyoEYA\\data\\processed\\xml\\dart\\00118804\\2025\\consolidated\\20260319000264_xml_chunks_v2.json",
+    "chunks_path": "C:\\PGH\\최종프로젝트\\DeepResearch\\JaemuJepyoEYA\\data\\processed\\xml\\dart\\00118804\\2025\\consolidated\\20260319000264_xml_chunks_v2.json",
     "chunks_sha256": "4efdac93b24cad4e00fc0910bcafd6e6ac95326962e90a4649ef1f9b96d26652",
-    "dataset_path": "C:\\Hyeonkyu\\JaemuJepyoEYA\\evaluation\\dataset\\xml\\00118804\\2025\\consolidated\\20260319000264_retrieval.json",
-    "chroma_dir": "C:\\Hyeonkyu\\JaemuJepyoEYA\\data\\chroma_xml_v2\\4efdac93b24cad4e00fc0910bcafd6e6ac95326962e90a4649ef1f9b96d26652",
+    "dataset_path": "C:\\PGH\\최종프로젝트\\DeepResearch\\JaemuJepyoEYA\\evaluation\\dataset\\xml\\00118804\\2025\\consolidated\\20260319000264_retrieval.json",
+    "chroma_dir": "C:\\PGH\\최종프로젝트\\DeepResearch\\JaemuJepyoEYA\\data\\chroma_xml_v2\\4efdac93b24cad4e00fc0910bcafd6e6ac95326962e90a4649ef1f9b96d26652",
     "chunk_size": 600,
     "chunk_overlap": 100
   },
