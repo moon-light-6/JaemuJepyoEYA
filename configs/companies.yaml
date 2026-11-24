@@ -362,3 +362,14 @@ companies:
         fiscal_month: 12
         disclosure_start: "2026-01-01"
         disclosure_end: "2026-12-31"
+
+  - name: 한미반도체
+    corp_code: 00161383
+    reports:
+      '2025':
+        report_type: business
+        fiscal_year: 2025
+        fiscal_month: 12
+        disclosure_start: '2026-01-01'
+        disclosure_end: '2026-12-31'
+        rcept_no: '20260312001230'
