@@ -28,7 +28,7 @@ def load_model_config(path: Path = CONFIG_PATH) -> dict:
 def _resolve_api_key(name: str, cfg: dict) -> str:
     """cfg에서 api_key_env를 꺼내(cfg에서 제거됨) 실제 키 값을 반환한다.
 
-    base_url이 없으면(OpenAI) 키가 반드시 필요하고, 있으면(vLLM) 더미 값을 쓴다.
+    GPT에는 OpenAI 키가 필요하다. 별도 모델 서버는 설정된 키를 쓰고, 없으면 더미 값을 쓴다.
     """
     key_env = cfg.pop("api_key_env", None)
     api_key = os.getenv(key_env) if key_env else None
@@ -37,8 +37,29 @@ def _resolve_api_key(name: str, cfg: dict) -> str:
             raise RuntimeError(
                 f"'{name}' 모델의 API 키가 없습니다. .env에 {key_env}를 설정하세요."
             )
-        api_key = "EMPTY"  # vLLM은 키를 검사하지 않지만 클라이언트는 값이 필요함
+        # 인증 없는 로컬 모델 서버용 기본값이다. 인증된 서버는 api_key_env의 키가 필요하다.
+        api_key = "EMPTY"
     return api_key
+
+
+def _resolve_base_url(cfg: dict) -> None:
+    """Qwen 서버 주소를 환경변수로 덮어쓰고 잘못된 주소는 호출 전에 거부한다."""
+    from urllib.parse import urlparse
+
+    # 환경변수 이름은 클라이언트 생성자에 넘길 수 없으므로 설정에서 꺼낸다.
+    variable = cfg.pop("base_url_env", None)
+    if not variable:
+        return
+    value = os.getenv(variable)
+    if value is not None:
+        if not value.strip():
+            raise ValueError(f"{variable}가 비어 있습니다. Qwen 서버의 /v1 주소를 지정하세요.")
+        cfg["base_url"] = value.strip().rstrip("/")
+    parsed = urlparse(str(cfg.get("base_url") or ""))
+    if parsed.scheme not in ("http", "https") or not parsed.hostname or parsed.query or parsed.fragment:
+        raise ValueError(f"{variable}에는 올바른 HTTP(S) 서버 주소를 지정하세요.")
+    if parsed.path.rstrip("/") != "/v1":
+        raise ValueError(f"{variable} 주소는 /v1로 끝나야 합니다.")
 
 
 def get_chat_model(name: str, **overrides) -> ChatOpenAI:
@@ -52,6 +73,10 @@ def get_chat_model(name: str, **overrides) -> ChatOpenAI:
 
     # ② 캐시 원본을 건드리지 않도록 새 dict로 합치기 (뒤의 overrides가 우선)
     cfg = {**models[name], **overrides}
+
+    # Qwen 모델은 QWEN_BASE_URL 또는 명시한 기본 서버로만 연결한다.
+    # 기존 GPT 모델은 base_url_env가 없으므로 기존 설정을 그대로 사용한다.
+    _resolve_base_url(cfg)
 
     # ③ API 키: 환경변수 이름을 꺼내고(cfg에서 제거) 실제 값을 읽기
     api_key = _resolve_api_key(name, cfg)
