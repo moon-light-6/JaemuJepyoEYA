@@ -1,9 +1,9 @@
 """PDF 검증 데모: AI가 쓴 재무 보고서 PDF의 숫자 주장을 DART DB(Supabase)와 대조한다.
 
 실행 (프로젝트 루트, .env에 OPENAI_API_KEY·DATABASE_URL 필요):
-    python scripts/demo_verify.py --pdf 보고서.pdf --company NAVER
-    python scripts/demo_verify.py --pdf data/processed/uploads/{job_id}_pages.json --company NAVER   # API 추출 결과
-    python scripts/demo_verify.py --pdf 보고서.pdf --company NAVER --json 결과.json                  # React용 JSON 저장
+    python scripts/demo/demo_verify.py --pdf 보고서.pdf --company NAVER
+    python scripts/demo/demo_verify.py --pdf data/processed/uploads/{job_id}_pages.json --company NAVER   # API 추출 결과
+    python scripts/demo/demo_verify.py --pdf 보고서.pdf --company NAVER --json 결과.json                  # React용 JSON 저장
 """
 
 from __future__ import annotations
@@ -16,7 +16,7 @@ import time
 from pathlib import Path
 
 # 패키지를 별도 설치하지 않아도 프로젝트 루트에서 실행할 수 있도록 한다.
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
+PROJECT_ROOT = Path(__file__).resolve().parents[2]  # scripts/demo/ → 프로젝트 루트
 sys.path.insert(0, str(PROJECT_ROOT / "src"))
 
 from fin_research.llm.budget import Budget

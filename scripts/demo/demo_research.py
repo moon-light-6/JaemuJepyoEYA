@@ -1,9 +1,9 @@
 """clarify → brief → researcher 병렬 조사 → supervisor 검토(최대 2라운드) 시연.
 
 실행 (프로젝트 루트, .env에 OPENAI_API_KEY, data/chroma_multi에 해당 기업 색인 필요):
-    python scripts/demo_research.py "삼성전자 수익성 위주로 분석해줘"
-    python scripts/demo_research.py "삼성전자 재무 분석" --mock          # 검색·루프 없이 흐름만
-    python scripts/demo_research.py "삼성전자 재무 분석" --questions 1   # 하위 주제당 질문 1개 (비용 절약)
+    python scripts/demo/demo_research.py "삼성전자 수익성 위주로 분석해줘"
+    python scripts/demo/demo_research.py "삼성전자 재무 분석" --mock          # 검색·루프 없이 흐름만
+    python scripts/demo/demo_research.py "삼성전자 재무 분석" --questions 1   # 하위 주제당 질문 1개 (비용 절약)
 """
 
 from __future__ import annotations
@@ -15,7 +15,7 @@ import sys
 from pathlib import Path
 
 # 패키지를 별도 설치하지 않아도 프로젝트 루트에서 실행할 수 있도록 한다.
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
+PROJECT_ROOT = Path(__file__).resolve().parents[2]  # scripts/demo/ → 프로젝트 루트
 sys.path.insert(0, str(PROJECT_ROOT / "src"))
 
 from fin_research.evidence.registry import EvidenceRegistry

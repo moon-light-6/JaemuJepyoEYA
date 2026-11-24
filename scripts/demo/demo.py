@@ -1,10 +1,10 @@
 """터미널 데모: 1) 보고서 생성  2) 보고서 검증 (프로젝트 루트의 보고서.pdf만).
 
 실행 (프로젝트 루트, .env에 OPENAI_API_KEY·DATABASE_URL 필요):
-    python scripts/demo.py                 # 메뉴에서 고르기
-    python scripts/demo.py --mode 1        # 바로 보고서 생성 (요청을 물어봄)
-    python scripts/demo.py --mode 2        # 바로 보고서.pdf 검증 (기업명을 물어봄)
-    python scripts/demo.py --mode 1 --mock # 검색·루프 없이 흐름만 (빠르고 저렴)
+    python scripts/demo/demo.py                 # 메뉴에서 고르기
+    python scripts/demo/demo.py --mode 1        # 바로 보고서 생성 (요청을 물어봄)
+    python scripts/demo/demo.py --mode 2        # 바로 보고서.pdf 검증 (기업명을 물어봄)
+    python scripts/demo/demo.py --mode 1 --mock # 검색·루프 없이 흐름만 (빠르고 저렴)
 
 - 보고서 생성: 리서치 그래프(clarify → brief → researcher ×4 → supervisor)로 조사하고,
   주제별 결과와 출처(S#)를 Markdown 보고서로 저장한다 (생성보고서_{기업}.md).
@@ -24,7 +24,7 @@ from datetime import date
 from pathlib import Path
 
 # 패키지를 별도 설치하지 않아도 프로젝트 루트에서 실행할 수 있도록 한다.
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
+PROJECT_ROOT = Path(__file__).resolve().parents[2]  # scripts/demo/ → 프로젝트 루트
 sys.path.insert(0, str(PROJECT_ROOT / "src"))
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
