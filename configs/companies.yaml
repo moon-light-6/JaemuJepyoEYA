@@ -83,6 +83,8 @@ companies:
         fiscal_month: 12
         disclosure_start: "2026-01-01"
         disclosure_end: "2026-12-31"
+        # OpenDART 재무계정 API·XML 공시와 일치 확인 (2026-11-20 DB 적재 시)
+        rcept_no: "20260318000532"
 
   # 종목코드: 035420
   - name: "NAVER"
@@ -94,6 +96,8 @@ companies:
         fiscal_month: 12
         disclosure_start: "2026-01-01"
         disclosure_end: "2026-12-31"
+        # OpenDART 재무계정 API·XML 공시와 일치 확인 (2026-11-20 DB 적재 시)
+        rcept_no: "20260313001021"
 
 
   # 종목코드: 000720
@@ -106,6 +110,8 @@ companies:
         fiscal_month: 12
         disclosure_start: "2026-01-01"
         disclosure_end: "2026-12-31"
+        # OpenDART 재무계정 API·XML 공시와 일치 확인 (2026-11-20 DB 적재 시)
+        rcept_no: "20260318001395"
 
   # 종목코드: 139480
   - name: "이마트"
@@ -117,6 +123,8 @@ companies:
         fiscal_month: 12
         disclosure_start: "2026-01-01"
         disclosure_end: "2026-12-31"
+        # OpenDART 재무계정 API·XML 공시와 일치 확인 (2026-11-20 DB 적재 시)
+        rcept_no: "20260318001024"
 
   # 종목코드: 247540
   - name: "에코프로비엠"

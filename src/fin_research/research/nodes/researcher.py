@@ -6,6 +6,7 @@
   · 근거는 실행 전체가 함께 쓰는 EvidenceRegistry(장부)에 등록해 전역 S#로 바꾼다
     (같은 청크는 어느 researcher가 찾아도 같은 S#). 장부가 없으면 '{하위주제}.r{라운드}.q{질문}.' 임시 번호
   · 검색 도구(KURE 2.3GB)는 기업별로 한 번만 만들어 공유한다
+  · 색인은 XML(fin_xml_...)을 먼저 쓰고, 없으면 PDF(fin_...) 색인으로 대체한다
 """
 
 from __future__ import annotations
@@ -66,19 +67,61 @@ class SearchToolCache:
 
     병렬 researcher가 각자 도구를 만들면 KURE 모델이 여러 번 메모리에 올라간다.
     임베딩 계산도 스레드 간 공유가 안전하지 않아 검색 자체는 잠금으로 순서대로 한다 (LLM 대기가 더 길다).
+
+    색인 선택: XML 색인(데이터팀 run_pipeline_xml.py)에 청크가 있으면 XML, 없으면 PDF 색인.
+    둘 다 없으면 ValueError — 없는 컬렉션을 열면 Chroma가 빈 컬렉션을 새로 만들어
+    "검색 결과 0건"으로 조용히 넘어가므로, 열기 전에 먼저 확인한다.
     """
 
-    def __init__(self, persist_directory: Path = CHROMA_DIR):
+    SOURCES = ("xml", "pdf")  # 앞에 있을수록 우선
+
+    def __init__(self, persist_directory: Path = CHROMA_DIR,
+                 collection_counts: Callable[[], dict[str, int]] | None = None):
         self.persist_directory = Path(persist_directory)
         self._tools: dict[SearchTarget, Callable[[str, int], list[dict]]] = {}
+        self._sources: dict[SearchTarget, str] = {}
         self._lock = threading.Lock()
+        self._collection_counts = collection_counts or self._read_collection_counts
+        self._counts: dict[str, int] | None = None
+
+    def _read_collection_counts(self) -> dict[str, int]:
+        """컬렉션 이름 → 청크 수. 임베딩 모델 없이 Chroma 메타데이터만 읽는다."""
+        if not (self.persist_directory / "chroma.sqlite3").is_file():
+            return {}
+        import chromadb
+
+        client = chromadb.PersistentClient(path=str(self.persist_directory))
+        counts: dict[str, int] = {}
+        for collection in client.list_collections():
+            name = collection if isinstance(collection, str) else collection.name
+            counts[name] = client.get_collection(name).count()
+        return counts
+
+    def source_for(self, target: SearchTarget) -> str:
+        """이 기업·공시에 쓸 색인 종류 (xml/pdf). 둘 다 비어 있으면 ValueError."""
+        if self._counts is None:
+            self._counts = self._collection_counts()
+        names = {"xml": target.xml_collection_name, "pdf": target.collection_name}
+        for source in self.SOURCES:
+            if self._counts.get(names[source], 0) > 0:
+                return source
+        raise ValueError(
+            f"검색 색인이 없습니다: {names['xml']} 또는 {names['pdf']}. "
+            "scripts/run_pipeline_xml.py로 XML 색인을 먼저 만드세요."
+        )
+
+    def source_used(self, target: SearchTarget) -> str | None:
+        """search_function으로 이미 정해진 색인 종류 (진행 표시·테스트용)."""
+        return self._sources.get(target)
 
     def search_function(self, target: SearchTarget) -> Callable[[str, int], list[dict]]:
         with self._lock:
             if target not in self._tools:
                 from fin_research.tools.doc_search_tool import DocumentSearchTool
 
-                tool = DocumentSearchTool(self.persist_directory, target)
+                source = self.source_for(target)
+                self._sources[target] = source
+                tool = DocumentSearchTool(self.persist_directory, target, source)
                 search_lock = threading.Lock()
 
                 def search(question: str, top_k: int) -> list[dict]:
@@ -240,10 +283,9 @@ def make_loop_researcher(
         subtopic, brief, round_ = inp["subtopic"], inp["brief"], inp["round"]
         try:
             target = search_target_for(brief)
+            search = tools.search_function(target)  # 색인이 없으면 여기서 ValueError
         except ValueError as e:
             return {"findings": [failed_finding(subtopic, round_, str(e))]}
-
-        search = tools.search_function(target)
         budget = get_budget(config)
         results: list[tuple[str, dict | None, str | None]] = []
         for question in subtopic.questions[:n_questions]:

@@ -157,3 +157,49 @@ class TestLoopResearcherUsesConfigRegistry(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestSearchToolCacheSource(unittest.TestCase):
+    """색인 선택: XML 우선, 없으면 PDF, 둘 다 없으면 researcher가 실패 결과를 돌려준다."""
+
+    from fin_research.retrieval.search_target import SearchTarget as _Target
+    TARGET = _Target("00266961", 2025, "consolidated", "20260313001021")
+
+    def cache(self, counts):
+        from fin_research.research.nodes.researcher import SearchToolCache
+        return SearchToolCache(Path("."), collection_counts=lambda: counts)
+
+    def test_xml_preferred(self):
+        cache = self.cache({self.TARGET.xml_collection_name: 327, self.TARGET.collection_name: 294})
+        self.assertEqual(cache.source_for(self.TARGET), "xml")
+
+    def test_pdf_fallback_and_empty_xml_ignored(self):
+        # 현대건설처럼 XML 컬렉션은 있지만 비어 있으면 쓰지 않는다
+        cache = self.cache({self.TARGET.xml_collection_name: 0, self.TARGET.collection_name: 294})
+        self.assertEqual(cache.source_for(self.TARGET), "pdf")
+
+    def test_no_index_raises(self):
+        with self.assertRaisesRegex(ValueError, "검색 색인이 없습니다"):
+            self.cache({}).source_for(self.TARGET)
+
+    def test_search_function_records_source_and_reads_counts_once(self):
+        calls = []
+
+        def counts():
+            calls.append(1)
+            return {self.TARGET.xml_collection_name: 10}
+        from fin_research.research.nodes.researcher import SearchToolCache
+        cache = SearchToolCache(Path("."), collection_counts=counts)
+        first = cache.search_function(self.TARGET)
+        self.assertIs(cache.search_function(self.TARGET), first)  # 기업당 도구 하나
+        self.assertEqual(cache.source_used(self.TARGET), "xml")
+        self.assertEqual(len(calls), 1)
+
+    def test_researcher_without_index_returns_failed_finding(self):
+        researcher = make_loop_researcher(search_tools=self.cache({}), questions_per_subtopic=1,
+                                          loop_fn=lambda *a, **k: self.fail("색인이 없으면 루프를 돌리면 안 됩니다"))
+        brief = Brief(company="NAVER", corp_code="00266961", years=[2025], objective="분석", subtopics=[subtopic()])
+        out = asyncio.run(researcher({"subtopic": subtopic(), "brief": brief, "round": 1}, {}))
+        finding = out["findings"][0]
+        self.assertEqual(finding.status, "insufficient_evidence")
+        self.assertIn("검색 색인이 없습니다", finding.limitations[0])
