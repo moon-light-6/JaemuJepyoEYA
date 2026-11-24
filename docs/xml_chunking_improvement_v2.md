@@ -76,9 +76,29 @@ evaluation/results/xml/00126380/2025/consolidated/
 
 ## 4. 정답지가 없거나 문항이 부족할 때
 
+### 빠른 실행: 기업명만 입력
+
+이제 `run_pipeline_xml_v2.py`는 기업명(또는 종목코드), 사업연도, 연결/별도만으로도 실행할 수 있다.
+OpenDART 고유번호 파일에서 `corp_code`를 찾고, 사업보고서 목록에서 접수번호를 고른 뒤
+새 기업이면 `configs/companies.yaml` 맨 아래에 `corp_code`와 `rcept_no` 설정을 추가한다.
+이미 있는 기업 설정은 자동으로 변경하지 않는다.
+정정본이 여러 개면 기본으로 최신 접수본을 사용한다. 필요한 XML 원본 ZIP도 없으면 같은 실행에서
+다운로드한 뒤 XML 문서 생성·청킹·색인·평가까지 이어 간다.
+
+```zsh
+python scripts/pipelines/run_pipeline_xml_v2.py \
+  --company "카페24" \
+  --fiscal-year 2025 \
+  --statement-scope consolidated \
+  --make-draft-dataset
+```
+
+설정 파일을 변경하지 않고 조회·실행만 하려면 `--no-sync-config`를 붙인다. 접수번호를 고정하려면
+`--rcept-no 202603...`를 함께 지정한다.
+
 ### 4-1. 기존 정답지가 없는 기업
 
-원본 ZIP을 수집한 뒤(`collect.py`실행) v2 파이프라인의 `--make-draft-dataset`으로 정답지 후보와 v2 청크를 만든다. 다음은 명령 형식을 보여 주는 삼성전자 예시다. **현재 삼성전자는 기존 정답지가 있어 실행하면 해당 평가셋을 덮어쓰지 않는다.**
+v2 파이프라인의 `--make-draft-dataset`은 XML 원본 ZIP이 없으면 먼저 자동 수집한 뒤 정답지 후보와 v2 청크를 만든다. 다음은 명령 형식을 보여 주는 삼성전자 예시다. **현재 삼성전자는 기존 정답지가 있어 실행하면 해당 평가셋을 덮어쓰지 않는다.**
 
 ```zsh
 python scripts/pipelines/run_pipeline_xml_v2.py \
