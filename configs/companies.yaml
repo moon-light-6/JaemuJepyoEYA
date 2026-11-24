@@ -363,16 +363,6 @@ companies:
         disclosure_start: "2026-01-01"
         disclosure_end: "2026-12-31"
 
-  - name: 한미반도체
-    corp_code: 00161383
-    reports:
-      '2025':
-        report_type: business
-        fiscal_year: 2025
-        fiscal_month: 12
-        disclosure_start: '2026-01-01'
-        disclosure_end: '2026-12-31'
-        rcept_no: '20260312001230'
 
   - name: "동국제약"
     corp_code: "00114808"
@@ -385,13 +375,25 @@ companies:
         disclosure_end: "2025-12-31"
         rcept_no: "20250313001454"
 
-  - name: 두산로보틱스
-    corp_code: '01105153'
+
+  - name: "한미반도체"
+    corp_code: "00161383"
     reports:
-      '2025':
-        report_type: business
+      "2025":
+        report_type: "business"
         fiscal_year: 2025
         fiscal_month: 12
-        disclosure_start: '2026-01-01'
-        disclosure_end: '2026-12-31'
-        rcept_no: '20260318001562'
+        disclosure_start: "2026-01-01"
+        disclosure_end: "2026-12-31"
+        rcept_no: "20260312001230"
+
+  - name: "두산로보틱스"
+    corp_code: "01105153"
+    reports:
+      "2025":
+        report_type: "business"
+        fiscal_year: 2025
+        fiscal_month: 12
+        disclosure_start: "2026-01-01"
+        disclosure_end: "2026-12-31"
+        rcept_no: "20260318001562"

@@ -80,23 +80,22 @@ def sync_company_config(
         )
         return False
 
-    new_company = {
-        "name": name,
-        "corp_code": corp_code,
-        "reports": {
-            str(fiscal_year): {
-                "report_type": "business",
-                "fiscal_year": fiscal_year,
-                "fiscal_month": fiscal_month(report_name),
-                "disclosure_start": f"{fiscal_year + 1}-01-01",
-                "disclosure_end": f"{fiscal_year + 1}-12-31",
-                "rcept_no": rcept_no,
-            }
-        },
-    }
-    body = yaml.safe_dump(new_company, allow_unicode=True, sort_keys=False, default_flow_style=False)
-    lines = body.splitlines()
-    entry = "  - " + lines[0] + "\n" + "\n".join(f"    {line}" for line in lines[1:]) + "\n"
+    # corp_code·rcept_no는 앞의 0이 식별값의 일부다. YAML serializer가 무따옴표
+    # scalar로 출력하면 다른 YAML 구현에서 숫자로 취급될 수 있으므로 모든 문자열을
+    # 명시적으로 큰따옴표로 쓴다.
+    quote = lambda value: json.dumps(str(value), ensure_ascii=False)
+    entry = (
+        f"  - name: {quote(name)}\n"
+        f"    corp_code: {quote(corp_code)}\n"
+        "    reports:\n"
+        f"      {quote(fiscal_year)}:\n"
+        f"        report_type: {quote('business')}\n"
+        f"        fiscal_year: {fiscal_year}\n"
+        f"        fiscal_month: {fiscal_month(report_name)}\n"
+        f"        disclosure_start: {quote(f'{fiscal_year + 1}-01-01')}\n"
+        f"        disclosure_end: {quote(f'{fiscal_year + 1}-12-31')}\n"
+        f"        rcept_no: {quote(rcept_no)}\n"
+    )
     if not original:
         config_path.write_text("companies:\n" + entry, encoding="utf-8")
         return True
