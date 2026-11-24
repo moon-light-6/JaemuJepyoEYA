@@ -80,23 +80,22 @@ def sync_company_config(
         )
         return False
 
-    new_company = {
-        "name": name,
-        "corp_code": corp_code,
-        "reports": {
-            str(fiscal_year): {
-                "report_type": "business",
-                "fiscal_year": fiscal_year,
-                "fiscal_month": fiscal_month(report_name),
-                "disclosure_start": f"{fiscal_year + 1}-01-01",
-                "disclosure_end": f"{fiscal_year + 1}-12-31",
-                "rcept_no": rcept_no,
-            }
-        },
-    }
-    body = yaml.safe_dump(new_company, allow_unicode=True, sort_keys=False, default_flow_style=False)
-    lines = body.splitlines()
-    entry = "  - " + lines[0] + "\n" + "\n".join(f"    {line}" for line in lines[1:]) + "\n"
+    # corp_code·rcept_no는 앞의 0이 식별값의 일부다. YAML serializer가 무따옴표
+    # scalar로 출력하면 다른 YAML 구현에서 숫자로 취급될 수 있으므로 모든 문자열을
+    # 명시적으로 큰따옴표로 쓴다.
+    quote = lambda value: json.dumps(str(value), ensure_ascii=False)
+    entry = (
+        f"  - name: {quote(name)}\n"
+        f"    corp_code: {quote(corp_code)}\n"
+        "    reports:\n"
+        f"      {quote(fiscal_year)}:\n"
+        f"        report_type: {quote('business')}\n"
+        f"        fiscal_year: {fiscal_year}\n"
+        f"        fiscal_month: {fiscal_month(report_name)}\n"
+        f"        disclosure_start: {quote(f'{fiscal_year + 1}-01-01')}\n"
+        f"        disclosure_end: {quote(f'{fiscal_year + 1}-12-31')}\n"
+        f"        rcept_no: {quote(rcept_no)}\n"
+    )
     if not original:
         config_path.write_text("companies:\n" + entry, encoding="utf-8")
         return True
@@ -106,12 +105,26 @@ def sync_company_config(
 
 
 def resolve_target_from_company(args: argparse.Namespace, parser: argparse.ArgumentParser) -> str | None:
-    """기업명만 받은 경우 OpenDART 식별자를 확정하고 필요하면 설정에 동기화한다."""
+    """입력 식별자를 확정하고 새 기업이면 설정 맨 아래에 추가한다."""
 
     if not args.company:
         if not args.corp_code or not args.rcept_no:
             parser.error("--company 또는 --corp-code와 --rcept-no를 함께 지정해야 합니다.")
-        return None
+        if not args.sync_config:
+            return None
+        client = DartClient.from_environment()
+        corp = find_corp(
+            args.corp_code,
+            load_corp_codes(client, CORP_CODE_CACHE, refresh=args.refresh_corp_codes),
+        )
+        added = sync_company_config(
+            CONFIG_PATH, name=corp.corp_name, corp_code=corp.corp_code,
+            fiscal_year=args.fiscal_year, rcept_no=args.rcept_no,
+            report_name=f"사업보고서 ({args.fiscal_year}.12)",
+        )
+        if added:
+            print(f"기업 설정 추가: {CONFIG_PATH}", flush=True)
+        return corp.corp_name
 
     client = DartClient.from_environment()
     corps = load_corp_codes(client, CORP_CODE_CACHE, refresh=args.refresh_corp_codes)

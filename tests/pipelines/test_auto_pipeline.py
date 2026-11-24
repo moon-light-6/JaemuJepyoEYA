@@ -132,8 +132,12 @@ class XmlV2ConfigSyncTest(unittest.TestCase):
                 path, name="새회사", corp_code="00000002", fiscal_year=2025,
                 rcept_no="20260318000001", report_name="사업보고서 (2025.12)",
             )
-            config = __import__("yaml").safe_load(path.read_text(encoding="utf-8"))
-            self.assertTrue(path.read_text(encoding="utf-8").startswith(original))
+            content = path.read_text(encoding="utf-8")
+            config = __import__("yaml").safe_load(content)
+            self.assertTrue(content.startswith(original))
+            self.assertIn('name: "새회사"', content)
+            self.assertIn('corp_code: "00000002"', content)
+            self.assertIn('rcept_no: "20260318000001"', content)
             report = config["companies"][1]["reports"]["2025"]
             self.assertEqual(config["companies"][0]["corp_code"], "00000001")
             self.assertEqual(config["companies"][1]["corp_code"], "00000002")
