@@ -25,6 +25,7 @@ from fin_research.llm.budget import BudgetExceeded, load_budget_config
 from fin_research.llm.client import PROJECT_ROOT
 from fin_research.evidence.registry import EvidenceRegistry
 from fin_research.research.nodes.common import get_budget, get_evidence_registry
+from fin_research.retrieval.span_select import select_quote
 from fin_research.research.state import (
     Brief,
     EvidenceRef,
@@ -245,7 +246,10 @@ def merge_loop_results(
             for global_id in mapping.values():
                 if global_id not in ids:  # 같은 근거를 여러 질문이 인용해도 출처는 한 번
                     ids.append(global_id)
-                    sources.append(EvidenceRef.from_evidence(registry.require(global_id)))
+                    evidence = registry.require(global_id)
+                    # 2단계 근거: 청크에서 이 질문·답변에 맞는 짧은 조각 (보여 주기용, 원문을 자르기만 함)
+                    quote = select_quote(evidence.text, question, answer["answer"])
+                    sources.append(EvidenceRef.from_evidence(evidence).model_copy(update={"quote": quote}))
             limitations.extend(notes)
         else:
             prefix = f"{subtopic.id}.r{round_}.q{n}"

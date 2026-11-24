@@ -90,8 +90,11 @@ def report_markdown(state: dict, registry: EvidenceRegistry) -> str:
     evidences = registry.values()
     if not evidences:
         lines.append("_등록된 근거가 없습니다._")
+    quotes = demo_research.quotes_by_id(state)
     for e in evidences:
         lines.append(f"- **{e.evidence_id}** {demo_research.describe_location(e)}")
+        if quotes.get(e.evidence_id):  # 청크 안에서 고른 짧은 근거 조각
+            lines.append(f"  > {' '.join(quotes[e.evidence_id].split())}")
     return "\n".join(lines) + "\n"
 
 
@@ -116,7 +119,7 @@ async def run_generate(request: str, mock: bool, questions: int | None) -> int:
     if state.get("clarify") and state["clarify"].need_clarification:
         print_usage(budget, started)
         return 1
-    demo_research.print_sources(registry)
+    demo_research.print_sources(registry, demo_research.quotes_by_id(state))
 
     path = PROJECT_ROOT / f"생성보고서_{state['brief'].company}.md"
     path.write_text(report_markdown(state, registry), encoding="utf-8")
