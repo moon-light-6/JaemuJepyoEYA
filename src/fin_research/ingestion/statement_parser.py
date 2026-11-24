@@ -1,6 +1,6 @@
 """PDF 쪽 텍스트(`*_pages.json`)에서 연결재무제표 4종의 수치를 뽑는 파서.
 
-DB 없이 동작한다. 결과(ParseResult)를 scripts/load_financials.py 가 PostgreSQL에 넣는다.
+DB 없이 동작한다. 결과(ParseResult)를 scripts/storage/load_financials.py 가 PostgreSQL에 넣는다.
 
 텍스트 규칙(에코프로비엠 2025 사업보고서에서 확인):
 - 표 제목 줄(예: '연결 재무상태표') 바로 다음 줄이 '제 10 기 2025.12.31 현재' 형태의 기간 줄이다.

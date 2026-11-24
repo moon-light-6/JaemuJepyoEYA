@@ -13,8 +13,8 @@ class DocumentSearchTool:
     """한 번의 조사에서 임베딩 모델과 검색 저장소를 재사용합니다.
 
     target(SearchTarget)을 주면 그 기업·연도·공시의 컬렉션을 검색합니다
-    (scripts/build_chroma.py가 만드는 기업별 컬렉션). 주지 않으면 기존 단일 컬렉션을 씁니다.
-    source="xml"이면 XML 청크 컬렉션(fin_xml_...)을 검색합니다 (run_pipeline_xml.py가 만드는 색인).
+    (scripts/storage/build_chroma.py가 만드는 기업별 컬렉션). 주지 않으면 기존 단일 컬렉션을 씁니다.
+    source="xml"이면 XML 청크 컬렉션(fin_xml_...)을 검색합니다 (scripts/pipelines/run_pipeline_xml.py가 만드는 색인).
     """
 
     def __init__(self, persist_directory: Path, target: SearchTarget | None = None, source: str = "pdf"):
@@ -45,7 +45,7 @@ class DocumentSearchTool:
         if not (self.persist_directory / "chroma.sqlite3").is_file():
             raise FileNotFoundError(
                 f"Chroma 저장소가 없습니다: {self.persist_directory}. "
-                "scripts/build_chroma.py를 먼저 실행하세요."
+                "scripts/storage/build_chroma.py를 먼저 실행하세요."
             )
 
         # 명령어 도움말 조회 시에는 임베딩 모델을 불러오지 않습니다.

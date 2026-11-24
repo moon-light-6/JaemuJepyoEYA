@@ -107,7 +107,7 @@ class SearchToolCache:
                 return source
         raise ValueError(
             f"검색 색인이 없습니다: {names['xml']} 또는 {names['pdf']}. "
-            "scripts/run_pipeline_xml.py로 XML 색인을 먼저 만드세요."
+            "scripts/pipelines/run_pipeline_xml.py로 XML 색인을 먼저 만드세요."
         )
 
     def source_used(self, target: SearchTarget) -> str | None:

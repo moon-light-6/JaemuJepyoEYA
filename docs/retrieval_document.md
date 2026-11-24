@@ -14,22 +14,22 @@
 | `evaluation/dataset/eval_retrieval.json` | 검색 성능 평가용 질문·정답·Gold page 20개(10번에서 사용) |
 | `src/fin_research/retrieval/bm25_retriever.py` | 청크 로드, 토큰화, BM25 생성 및 검색 함수 |
 | `src/fin_research/retrieval/__init__.py` | 검색 모듈 패키지 파일 |
-| `scripts/search_bm25.py` | CLI에서 질문을 입력하고 상위 청크를 확인하는 실행 스크립트 |
-| `tests/test_bm25_retriever.py` | BM25 단위 테스트 9개 |
+| `scripts/retrieval/search_bm25.py` | CLI에서 질문을 입력하고 상위 청크를 확인하는 실행 스크립트 |
+| `tests/retrieval/test_bm25_retriever.py` | BM25 단위 테스트 9개 |
 | `src/fin_research/retrieval/chroma_retriever.py` | KURE-v1 로드, Chroma 색인·재사용·유사도 검색 |
-| `scripts/build_chroma.py` | 청크 임베딩 및 ChromaDB 최초 색인 실행 |
-| `scripts/search_chroma.py` | Chroma Top-K 유사도 검색 CLI |
-| `tests/test_chroma_retriever.py` | 가짜 임베딩·메모리 Chroma 기반 단위 테스트 9개 |
+| `scripts/storage/build_chroma.py` | 청크 임베딩 및 ChromaDB 최초 색인 실행 |
+| `scripts/retrieval/search_chroma.py` | Chroma Top-K 유사도 검색 CLI |
+| `tests/retrieval/test_chroma_retriever.py` | 가짜 임베딩·메모리 Chroma 기반 단위 테스트 9개 |
 | `data/chroma_samsung/` | 로컬 Chroma 영구 저장소(Git 커밋 대상 아님) |
 | `src/fin_research/retrieval/hybrid_retriever.py` | BM25와 Chroma 검색 결과를 `chunk_id` 기준으로 RRF 병합 |
-| `scripts/search_mmr.py` | Chroma MMR 검색 실행 CLI |
-| `scripts/search_hybrid.py` | BM25 + Chroma Hybrid-RRF 검색 실행 CLI |
-| `tests/test_mmr_retriever.py` | MMR 옵션·결과·입력 검증 단위 테스트 7개 |
-| `tests/test_hybrid_retriever.py` | RRF 점수·중복·통합 검색 단위 테스트 9개 |
+| `scripts/retrieval/search_mmr.py` | Chroma MMR 검색 실행 CLI |
+| `scripts/retrieval/search_hybrid.py` | BM25 + Chroma Hybrid-RRF 검색 실행 CLI |
+| `tests/retrieval/test_mmr_retriever.py` | MMR 옵션·결과·입력 검증 단위 테스트 7개 |
+| `tests/retrieval/test_hybrid_retriever.py` | RRF 점수·중복·통합 검색 단위 테스트 9개 |
 | `evaluation/retrieval_metrics.py` | 평가셋 로드, 출처 일치 판정, Hit@K 집계 |
-| `scripts/evaluate_retrieval.py` | 네 가지 검색 방식의 20문항 자동 평가·결과 저장 |
-| `tests/test_retrieval_metrics.py` | 평가 지표 계산 단위 테스트 7개 |
-| `tests/test_evaluate_retrieval.py` | 평가 실행 흐름·JSON 저장 단위 테스트 5개 |
+| `scripts/evaluation/evaluate_retrieval.py` | 네 가지 검색 방식의 20문항 자동 평가·결과 저장 |
+| `tests/evaluation/test_retrieval_metrics.py` | 평가 지표 계산 단위 테스트 7개 |
+| `tests/evaluation/test_evaluate_retrieval.py` | 평가 실행 흐름·JSON 저장 단위 테스트 5개 |
 | `evaluation/results/retrieval_baseline.json` | 개선 전 기준선: 검색 방식별 성능·문항별 결과 |
 
 `pdf_page`는 PDF 내부에 인쇄된 번호가 아니라 실제 PDF 파일의 **물리 페이지 번호**다. 검색 결과의 출처를 비교할 때는 `source_file`과 `pdf_page`를 함께 확인한다.
@@ -78,7 +78,7 @@ python -m pip install -r requirements.txt
 ### 1-5. 실행 명령
 
 ```powershell
-python scripts/search_bm25.py --question "2025년 연결 기준 매출액은 얼마인가?" --top-k 5
+python scripts/retrieval/search_bm25.py --question "2025년 연결 기준 매출액은 얼마인가?" --top-k 5
 ```
 
 정상 실행 시 검색 질문, 검색 대상 청크 수, 상위 5개 청크의 순위·PDF 페이지·`chunk_id`·본문 일부를 출력한다. 실행 당시 검색 대상은 **294개 청크**였다.
@@ -103,7 +103,7 @@ python scripts/search_bm25.py --question "2025년 연결 기준 매출액은 얼
 
 ## 3. 단위 테스트 및 회귀 테스트
 
-`tests/test_bm25_retriever.py`에서 실제 PDF 대신 임시 가상 청크를 사용해 다음 항목을 검증했다.
+`tests/retrieval/test_bm25_retriever.py`에서 실제 PDF 대신 임시 가상 청크를 사용해 다음 항목을 검증했다.
 
 - 토큰화 결과
 - JSON을 LangChain Document로 변환하는지
@@ -186,7 +186,7 @@ embedding_model = HuggingFaceEmbeddings(
 
 ### 4-2. 최초 색인 및 기존 데이터 재사용
 
-`scripts/build_chroma.py`는 기존 `load_chunk_documents()`로 JSON 청크를 읽고, `chroma_retriever.py`의 `build_chroma()`를 호출한다.
+`scripts/storage/build_chroma.py`는 기존 `load_chunk_documents()`로 JSON 청크를 읽고, `chroma_retriever.py`의 `build_chroma()`를 호출한다.
 
 - 컬렉션 이름: `samsung_2025_consolidated_kure_v1`
 - 저장 경로: `data/chroma_samsung/`
@@ -196,7 +196,7 @@ embedding_model = HuggingFaceEmbeddings(
 - 최초 색인 시 문서 저장; 재실행 시 문서 수와 ID가 같으면 기존 컬렉션 재사용
 
 ```powershell
-python scripts/build_chroma.py
+python scripts/storage/build_chroma.py
 ```
 
 **첫 실행 결과**
@@ -228,7 +228,7 @@ python scripts/build_chroma.py
 반환 필드는 `rank`, `chunk_id`, `text`, `source_file`, `pdf_page`, `metadata`, `distance`다. BM25와 동일한 출처 필드를 제공하므로 이후 Hybrid-RRF와 검색 성능 평가에서 결과를 연결할 수 있다.
 
 ```powershell
-python scripts/search_chroma.py --question "2025년 연결 기준 매출액은 얼마인가?" --top-k 5
+python scripts/retrieval/search_chroma.py --question "2025년 연결 기준 매출액은 얼마인가?" --top-k 5
 ```
 
 질문 임베딩은 실행 시 계산하지만, 저장된 **294개 문서의 임베딩을 매 검색마다 다시 생성하지는 않는다**.
@@ -253,7 +253,7 @@ python scripts/search_chroma.py --question "2025년 연결 기준 매출액은 �
 
 ### 4-5. Chroma 단위 테스트 및 회귀 테스트
 
-`tests/test_chroma_retriever.py`는 실제 KURE-v1 대신 고정된 3차원 벡터를 반환하는 테스트용 `Embeddings`를 사용한다. 또한 Windows에서 임시 디스크 Chroma 파일 삭제 시 `WinError 32`가 발생하여, 테스트에서는 `chromadb.EphemeralClient()`를 사용하는 **메모리 기반 ChromaDB**로 변경했다. 실제 `data/chroma_samsung/`은 수정하지 않는다.
+`tests/retrieval/test_chroma_retriever.py`는 실제 KURE-v1 대신 고정된 3차원 벡터를 반환하는 테스트용 `Embeddings`를 사용한다. 또한 Windows에서 임시 디스크 Chroma 파일 삭제 시 `WinError 32`가 발생하여, 테스트에서는 `chromadb.EphemeralClient()`를 사용하는 **메모리 기반 ChromaDB**로 변경했다. 실제 `data/chroma_samsung/`은 수정하지 않는다.
 
 검증 항목:
 
@@ -331,7 +331,7 @@ MMR(Maximal Marginal Relevance)은 질문과의 관련성뿐 아니라 검색 �
 ### 5-2. 실행 명령 및 결과
 
 ```powershell
-python scripts/search_mmr.py --question "2025년 연결 기준 매출액은 얼마인가?" --top-k 5 --fetch-k 20 --lambda-mult 0.5
+python scripts/retrieval/search_mmr.py --question "2025년 연결 기준 매출액은 얼마인가?" --top-k 5 --fetch-k 20 --lambda-mult 0.5
 ```
 
 실제 실행 결과의 상위 5개 PDF 물리 페이지는 다음과 같다.
@@ -348,7 +348,7 @@ python scripts/search_mmr.py --question "2025년 연결 기준 매출액은 얼�
 
 ### 5-3. 단위 테스트
 
-`tests/test_mmr_retriever.py`에서는 `MagicMock`으로 실제 Chroma와 임베딩 모델 로드를 대체한다. MMR 옵션 전달, 반환 필드, 빈 질문·잘못된 `k`·`fetch_k`·`lambda_mult`, 미색인 컬렉션 처리를 확인한다.
+`tests/retrieval/test_mmr_retriever.py`에서는 `MagicMock`으로 실제 Chroma와 임베딩 모델 로드를 대체한다. MMR 옵션 전달, 반환 필드, 빈 질문·잘못된 `k`·`fetch_k`·`lambda_mult`, 미색인 컬렉션 처리를 확인한다.
 
 ```powershell
 python -m unittest discover -s tests -p "test_mmr_retriever.py" -v
@@ -388,7 +388,7 @@ RRF 결과에는 공통 출처 필드와 `rrf_score`를 반환한다. 점수는 
 ### 6-2. 실행 명령 및 결과
 
 ```powershell
-python scripts/search_hybrid.py --question "2025년 연결 기준 매출액은 얼마인가?" --top-k 5 --candidate-k 10
+python scripts/retrieval/search_hybrid.py --question "2025년 연결 기준 매출액은 얼마인가?" --top-k 5 --candidate-k 10
 ```
 
 실제 실행 결과는 다음과 같다.
@@ -407,7 +407,7 @@ python scripts/search_hybrid.py --question "2025년 연결 기준 매출액은 �
 
 ### 6-3. 단위 테스트
 
-`tests/test_hybrid_retriever.py`에서는 RRF 계산 함수를 직접 검증하고, BM25·Chroma 호출은 Mock 결과로 대체한다.
+`tests/retrieval/test_hybrid_retriever.py`에서는 RRF 계산 함수를 직접 검증하고, BM25·Chroma 호출은 Mock 결과로 대체한다.
 
 - 중복 청크의 점수 합산과 중복 제거
 - 순위별 RRF 점수 및 정렬
@@ -496,7 +496,7 @@ python -m unittest discover -s tests -p "test_retrieval_metrics.py" -v
 
 ### 8-3. 네 가지 검색 방식 자동 평가
 
-`scripts/evaluate_retrieval.py`는 평가셋의 질문을 네 가지 검색기에 순서대로 입력한다. BM25 검색기와 KURE-v1 임베딩 모델·Chroma 저장소는 평가 시작 시 각각 한 번 생성하거나 로드하고, 질문마다 재사용한다.
+`scripts/evaluation/evaluate_retrieval.py`는 평가셋의 질문을 네 가지 검색기에 순서대로 입력한다. BM25 검색기와 KURE-v1 임베딩 모델·Chroma 저장소는 평가 시작 시 각각 한 번 생성하거나 로드하고, 질문마다 재사용한다.
 
 | 검색 방식 | 평가 설정 |
 | --- | --- |
@@ -510,7 +510,7 @@ python -m unittest discover -s tests -p "test_retrieval_metrics.py" -v
 실행 명령:
 
 ```powershell
-python scripts/evaluate_retrieval.py
+python scripts/evaluation/evaluate_retrieval.py
 ```
 
 결과는 `evaluation/results/retrieval_baseline.json`에 기록한다.
@@ -536,7 +536,7 @@ python scripts/evaluate_retrieval.py
 
 ### 8-5. 평가 스크립트 테스트 및 최종 회귀 테스트
 
-`tests/test_evaluate_retrieval.py`는 실제 KURE-v1을 로드하지 않고 Mock 검색 결과로 평가 실행 흐름을 검증한다.
+`tests/evaluation/test_evaluate_retrieval.py`는 실제 KURE-v1을 로드하지 않고 Mock 검색 결과로 평가 실행 흐름을 검증한다.
 
 - 네 검색 방식이 모두 평가되고 문항 수가 집계되는지
 - Hit@3·Hit@5 비율 및 성공 개수가 정확한지
@@ -605,8 +605,8 @@ python -m unittest discover -s tests -p "test_evaluate_retrieval.py" -v
 평가·색인 스크립트는 검색 대상(기업·연도·연결 기준·접수번호)을 인자로 받는다. 청크 파일과 Chroma 컬렉션은 인자로 자동 결정된다.
 
 ```powershell
-python scripts/build_chroma.py --corp-code 00536541 --fiscal-year 2025 --statement-scope consolidated --rcept-no 20260318001612
-python scripts/evaluate_retrieval.py --corp-code 00536541 --fiscal-year 2025 --statement-scope consolidated --rcept-no 20260318001612 --dataset-path evaluation/dataset/eval_retrieval_ecopro_holding.json --output-path evaluation/results/retrieval_v2_ecopro.json
+python scripts/storage/build_chroma.py --corp-code 00536541 --fiscal-year 2025 --statement-scope consolidated --rcept-no 20260318001612
+python scripts/evaluation/evaluate_retrieval.py --corp-code 00536541 --fiscal-year 2025 --statement-scope consolidated --rcept-no 20260318001612 --dataset-path evaluation/dataset/eval_retrieval_ecopro_holding.json --output-path evaluation/results/retrieval_v2_ecopro.json
 ```
 
 - `summary`: 기존 키 외에 `value_total`, `value_hit_at_3/5`, `page_value_hit_at_3/5`(비율)와 `value_hits_at_3/5`, `page_value_hits_at_3/5`(개수)

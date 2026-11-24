@@ -1,4 +1,4 @@
-# 여러 기업 자동 처리 (`scripts/run_pipeline.py`)
+# 여러 기업 자동 처리 (`scripts/pipelines/run_pipeline.py`)
 
 기업명이나 종목코드만 넣으면 공식 PDF 수집부터 Hit@3·Hit@5 평가까지 한 번에 실행한다.
 기존 스크립트(`prepare_pages.py` → `build_chunks.py` → `check_chunks.py` → `build_chroma.py`
@@ -18,12 +18,12 @@
 
 ```powershell
 # 1) 자동 조회값이 기존에 손으로 확인한 값과 같은지 먼저 확인 (수집·색인 없음)
-python scripts/run_pipeline.py --companies 삼성전자 HLB 에코프로 --resolve-only
+python scripts/pipelines/run_pipeline.py --companies 삼성전자 HLB 에코프로 --resolve-only
 
 # 2) 기업 하나 / 여러 개 / companies.yaml 전체
-python scripts/run_pipeline.py --companies 파마리서치
-python scripts/run_pipeline.py --companies 파마리서치 클래시스 214150
-python scripts/run_pipeline.py --from-config
+python scripts/pipelines/run_pipeline.py --companies 파마리서치
+python scripts/pipelines/run_pipeline.py --companies 파마리서치 클래시스 214150
+python scripts/pipelines/run_pipeline.py --from-config
 ```
 
 주요 옵션
@@ -64,7 +64,7 @@ python scripts/run_pipeline.py --from-config
 - 삼성전자 수동 평가셋과 비교하면 같은 계정 12문항 중 11문항의 Gold page가 같았다. 당기순이익은
   손익계산서(85쪽)에 더해 같은 값이 적힌 포괄손익계산서(86쪽)도 Gold page로 잡는다.
 - 페이지 범위 자동 판정은 삼성전자·HLB·에코프로의 수동 범위와 모두 일치했다
-  (`tests/test_auto_pipeline.py`).
+  (`tests/pipelines/test_auto_pipeline.py`).
 
 ## 자동 판정이 실패할 때
 

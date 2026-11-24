@@ -157,7 +157,7 @@ def search_chroma(
     if count == 0:
         raise ValueError(
             "Chroma에 저장된 청크가 없습니다. "
-            "먼저 python scripts/build_chroma.py를 실행하세요."
+            "먼저 python scripts/storage/build_chroma.py를 실행하세요."
         )
 
     # 수업의 similarity_search_with_score 활용
@@ -218,7 +218,7 @@ def search_mmr(
     if vectorstore._collection.count() == 0:
         raise ValueError(
             "Chroma에 저장된 청크가 없습니다. "
-            "먼저 python scripts/build_chroma.py를 실행하세요."
+            "먼저 python scripts/storage/build_chroma.py를 실행하세요."
         )
 
     # 수업에서 사용한 MMR Retriever 방식
