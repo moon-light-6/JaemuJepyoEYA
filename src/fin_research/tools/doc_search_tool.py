@@ -99,28 +99,60 @@ class XMLDocumentSearchTool(DocumentSearchTool):
             conditions.append({"section": section})
         return {"$and": conditions}
 
-    def _lexical_hits(self, question, where, top_k):
-        """최대 5천 청크의 BM25 검색기를 재사용하고 초과 시 키워드 검색을 생략한다."""
+    def _documents(self, where):
+        """필터가 일치하는 최대 5천 청크를 캐시하고 과다한 원문 로딩은 생략한다."""
         import json
         from langchain_core.documents import Document
-        from fin_research.retrieval.bm25_retriever import build_bm25_retriever, simple_tokens
         key = json.dumps(where, sort_keys=True, ensure_ascii=False)
         if key not in self._lexical_cache:
             rows = self._vectorstore._collection.get(where=where, include=["documents", "metadatas"], limit=5001)
-            documents = [Document(page_content=text, metadata=metadata)
-                         for text, metadata in zip(rows.get("documents") or [], rows.get("metadatas") or [])
-                         if text and metadata]
-            self._lexical_cache[key] = (
-                build_bm25_retriever(documents, k=top_k) if 0 < len(documents) <= 5000 else None
-            )
-        retriever = self._lexical_cache[key]
-        if retriever is None:
+            texts = rows.get("documents") if isinstance(rows, dict) else []
+            metadata = rows.get("metadatas") if isinstance(rows, dict) else []
+            documents = [Document(page_content=text, metadata=meta)
+                         for text, meta in zip(texts or [], metadata or []) if text and meta]
+            self._lexical_cache[key] = documents if len(documents) <= 5000 else []
+        return self._lexical_cache[key]
+
+    def _lexical_hits(self, question, where, top_k):
+        """제목·핵심어를 우선하고 BM25도 결합해 조사·공시 공통어의 영향을 줄인다."""
+        from fin_research.retrieval.bm25_retriever import build_bm25_retriever, simple_tokens
+        documents = self._documents(where)
+        if not documents:
             return []
-        retriever.k = top_k
-        tokens = set(simple_tokens(question))
-        # 토큰이 하나도 겹치지 않는 문단을 BM25의 동점 결과로 추가하지 않는다.
-        return [doc for doc in retriever.invoke(question)
-                if tokens.intersection(simple_tokens(doc.page_content))]
+        tokens = set(simple_tokens(question)) - {"기준", "연결", "별도", "관련", "대한", "내용", "설명", "현황"}
+        topics = [word for word in ("소송", "우발", "약정", "감사의견", "내부통제", "경영진", "매출", "원인", "차입", "현금흐름") if word in question]
+        if "우발" in topics:
+            tokens.update(["우발채무", "우발부채"])
+        def score(doc):
+            """제목과 본문에서 질문의 주요 용어가 실제 등장하는 후보를 우선한다."""
+            title, text = doc.metadata.get("title", ""), doc.page_content
+            return sum(5 * (word in title) + 3 * (word in text) for word in topics) + sum(word in text for word in tokens)
+        focused = sorted(documents, key=score, reverse=True)
+        focused = [doc for doc in focused if score(doc) > 0][:top_k]
+        bm25 = build_bm25_retriever(documents, k=top_k).invoke(question)
+        combined = focused + [doc for doc in bm25 if tokens.intersection(simple_tokens(doc.page_content))]
+        return list({doc.metadata["chunk_id"]: doc for doc in combined}.values())[:top_k]
+
+    def _expand_neighbors(self, seeds, where, limit):
+        """같은 XML·동일 원문 문서의 바로 앞뒤 청크만 제한적으로 확장한다."""
+        documents = self._documents(where)
+        by_id = {doc.metadata["chunk_id"]: doc for doc in documents}
+        expanded, known = [], {doc.metadata["chunk_id"] for doc in seeds}
+        for seed in seeds:
+            identifier = seed.metadata["chunk_id"]
+            group, _, suffix = identifier.rpartition("_")
+            if not suffix.isdigit():
+                continue
+            for number in (int(suffix) - 1, int(suffix) + 1):
+                key = f"{group}_{number:0{len(suffix)}d}"
+                neighbor = by_id.get(key)
+                if (neighbor and key not in known
+                        and neighbor.metadata.get("source_file") == seed.metadata.get("source_file")
+                        and neighbor.metadata.get("title") == seed.metadata.get("title")):
+                    expanded.append(neighbor); known.add(key)
+                if len(expanded) >= limit:
+                    return expanded
+        return expanded
 
     def search(self, question: str, top_k: int = 5) -> list[dict]:
         """첫 검색은 벡터, 이후 검색은 주석 우선 벡터·BM25 결합으로 새 근거를 찾는다."""
@@ -136,17 +168,17 @@ class XMLDocumentSearchTool(DocumentSearchTool):
             raise ValueError("선택한 XML 컬렉션에 청크가 없습니다.")
         retry = self._calls > 0
         section = self.section
-        if retry and not section:
+        if retry and not section and not any(word in question for word in ("감사", "내부통제", "내부회계", "경영진", "원인", "분석")):
             section = "연결재무제표 주석" if self.target.statement_scope == "consolidated" else "재무제표 주석"
         where = self._filter(section)
-        count = min(top_k * 2, 20) if retry else top_k
+        count = min(top_k * 2, 20)
         hits = self._vectorstore.similarity_search_with_score(question, k=count, filter=where)
         if retry and not hits and not self.section:
             where = self._filter()
             hits = self._vectorstore.similarity_search_with_score(question, k=count, filter=where)
         ranked = [[(document, float(distance)) for document, distance in hits]]
-        if retry:
-            ranked.append([(document, None) for document in self._lexical_hits(question, where, count)])
+        lexical = self._lexical_hits(question, where, count)
+        ranked.append([(document, None) for document in lexical])
         scores, candidates = {}, {}
         prefix = f"{self.target.corp_code}_{self.target.fiscal_year}_{self.target.statement_scope}_xml_"
         for ranking in ranked:
@@ -159,16 +191,29 @@ class XMLDocumentSearchTool(DocumentSearchTool):
                 if identifier in seen:
                     continue
                 seen.add(identifier)
-                scores[identifier] = scores.get(identifier, 0) + 1 / (60 + rank)
+                scores[identifier] = scores.get(identifier, 0) + (2 if ranking is ranked[-1] else 1) / (60 + rank)
                 candidates.setdefault(identifier, result)
-        identifiers = sorted(candidates, key=lambda key: (retry and key in self._seen, -scores[key], key))[:top_k]
+        identifiers = sorted(candidates, key=lambda key: (key in self._seen, -scores[key], key))[:top_k]
+        # 검색 상위 근거는 유지하고 최대 top_k개의 인접 청크를 추가한다(총 2*top_k 한도).
+        seed_docs = [doc for ranking in ranked for doc, _ in ranking
+                     if doc.metadata["chunk_id"] in identifiers]
+        neighbors = self._expand_neighbors(seed_docs, where, top_k)
+        for doc in neighbors:
+            key = doc.metadata["chunk_id"]
+            if key not in candidates:
+                candidates[key] = result_from_document(doc, 0)
+            if key not in identifiers:
+                identifiers.append(key)
+        if any(not key.startswith(prefix) or not candidates[key]["source_file"].startswith(self.target.rcept_no)
+               for key in identifiers):
+            raise ValueError("XML 검색 결과의 기업 또는 접수번호가 다릅니다.")
         results = [{**candidates[key], "rank": rank, "pdf_page": None, "evidence_id": f"S{rank}",
-                    **({"rrf_score": scores[key]} if retry else {})}
+                    "rrf_score": scores.get(key, 0), "neighbor_expansion": key not in scores}
                    for rank, key in enumerate(identifiers, 1)]
         self._seen.update(identifiers)
         self._calls += 1
-        self.last_search_info = {"strategy": "hybrid_notes" if retry else "vector",
+        self.last_search_info = {"strategy": "hybrid_notes" if retry else "hybrid_title",
                                  "collection": self.collection_name, "chunk_version": self.chunk_version,
                                  "persist_directory": str(self.persist_directory), "filter": where,
-                                 "candidate_count": len(candidates)}
+                                 "candidate_count": len(candidates), "neighbor_count": len(neighbors)}
         return results

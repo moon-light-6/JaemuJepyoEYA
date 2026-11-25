@@ -7,16 +7,10 @@ from fin_research.tools.financial_models import FinancialContext, FinancialDataE
 
 
 # 계정 ID와 원문 이름은 같은 지표임이 명확한 것만 허용한다.
-ACCOUNT_SPECS = {
-    "revenue": (("ifrs-full_Revenue",), ("매출액", "수익", "수익(매출액)", "영업수익"), ("IS", "CIS")),
-    "operating_profit": (("dart_OperatingIncomeLoss",), ("영업이익", "영업이익(손실)", "영업손익"), ("IS", "CIS")),
-    "net_income": (("ifrs-full_ProfitLoss",), ("당기순이익", "당기순이익(손실)", "당기순손익", "연결당기순이익"), ("IS", "CIS")),
-    "total_assets": (("ifrs-full_Assets",), ("자산총계",), ("BS",)),
-    "total_equity": (("ifrs-full_Equity",), ("자본총계",), ("BS",)),
-    "total_liabilities": (("ifrs-full_Liabilities",), ("부채총계",), ("BS",)),
-    "current_assets": (("ifrs-full_CurrentAssets",), ("유동자산",), ("BS",)),
-    "current_liabilities": (("ifrs-full_CurrentLiabilities",), ("유동부채",), ("BS",)),
-}
+from fin_research.tools.financial_catalog import CATALOG
+
+ACCOUNT_SPECS = {key: (item["ids"], tuple(item["names"]), item["statements"])
+                 for key, item in CATALOG.items()}
 
 
 def _amount(value) -> Decimal | None:

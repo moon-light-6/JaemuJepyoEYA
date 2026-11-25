@@ -14,6 +14,7 @@
 from __future__ import annotations
 
 from collections.abc import Callable
+from uuid import uuid4
 
 from langgraph.graph import START, StateGraph
 
@@ -43,5 +44,5 @@ def run_config(budget: Budget | None = None, **configurable) -> dict:
     research = load_budget_config().get("research") or {}
     return {
         "max_concurrency": research.get("max_concurrent_researchers") or 3,
-        "configurable": {"budget": budget, **configurable},
+        "configurable": {"budget": budget, "research_session_id": uuid4().hex, **configurable},
     }

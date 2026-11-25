@@ -7,6 +7,7 @@ from pathlib import Path
 from typing import TypedDict
 
 from fin_research.progress import report_progress
+from fin_research.llm.budget import BudgetExceeded
 from fin_research.research.loop.executor import ResearchToolExecutor
 from fin_research.research.loop.planner import ResearchPlan, create_plan
 from fin_research.research.loop.router import ToolRoute, route_plan
@@ -23,6 +24,8 @@ LABELS = {
     "current_assets": "유동자산", "current_liabilities": "유동부채", "debt_ratio": "부채비율",
     "current_ratio": "유동비율", "roe": "ROE", "operating_margin": "영업이익률",
 }
+from fin_research.tools.financial_catalog import CATALOG
+LABELS.update({key: item["label"] for key, item in CATALOG.items()})
 
 
 class ToolResearchState(TypedDict):
@@ -59,7 +62,7 @@ def compose_tool_result(question: str, context: FinancialContext, state: ToolRes
         identifier = f"S{len(evidences) + 1}"
         document_ids[evidence["evidence_id"]] = identifier
         evidences.append({**evidence, "evidence_id": identifier})
-    answered = state["stop_reason"] in ("completed", "sufficient_evidence")
+    answered = state["stop_reason"] in ("completed", "sufficient_evidence") and not (state["plan"] and state["plan"].unsupported_items)
     numbers, lines, cited = [], [], []
     plan = state["plan"]
     if plan is not None:
@@ -101,6 +104,8 @@ def compose_tool_result(question: str, context: FinancialContext, state: ToolRes
             lines.append("요청한 비율 계산은 입력 자료나 계산 조건을 확인하지 못했습니다.")
     answer = "\n".join(lines) if answered or partial else "필요한 자료나 기준을 확인하지 못해 답변을 확정할 수 없습니다."
     limitations = list(dict.fromkeys(list(state["limitations"]) + list((document.get("findings") or {}).get("limitations", []))))
+    if plan:
+        limitations += [f"미지원 요구: {item}" for item in plan.unsupported_items]
     if not answered and not limitations:
         limitations.append(f"조사 종료: {state['stop_reason']}")
     return {
@@ -115,6 +120,7 @@ def compose_tool_result(question: str, context: FinancialContext, state: ToolRes
         "evidences": evidences, "evidence_count": len(evidences),
         "document_research": document or None,
         "component_status": components,
+        "unsupported_items": plan.unsupported_items if plan else [],
         "findings": {"status": "draft" if answered else "partial" if partial else "insufficient_evidence",
                      "answer": answer, "evidence_ids": cited, "limitations": limitations},
         "numeric_verification": "structured_inputs_checked" if state["facts"] else "not_performed",
@@ -125,7 +131,8 @@ def compose_tool_result(question: str, context: FinancialContext, state: ToolRes
 
 def run_tool_research(question: str, context: FinancialContext, persist_directory: Path, *,
                       model=None, model_name=None, account_tool=None, search_function=None,
-                      budget=None, max_rounds: int = 3, top_k: int = 5, progress=None, source_format="xml", xml_version=1) -> dict:
+                      budget=None, max_rounds: int = 3, top_k: int = 5, progress=None, source_format="xml", xml_version=1,
+                      document_memory=None) -> dict:
     """계획·라우팅·도구 실행·검증을 LangGraph로 수행하고 기존 문서 루프는 재사용한다."""
     if not question.strip() or len(question) > 10000 or not 1 <= max_rounds <= 5 or not 1 <= top_k <= 10:
         raise ValueError("질문과 최대 검색 횟수(1~5), top_k(1~10)를 확인하세요.")
@@ -143,6 +150,7 @@ def run_tool_research(question: str, context: FinancialContext, persist_director
         context, persist_directory, target, account_tool=account_tool, search_function=search_function,
         model=model, model_name=model_name, budget=budget, max_rounds=max_rounds, top_k=top_k, progress=progress,
         source_format=source_format, xml_version=xml_version,
+        document_memory=document_memory,
     )
 
     def plan_node(state: ToolResearchState) -> dict:
@@ -168,6 +176,7 @@ def run_tool_research(question: str, context: FinancialContext, persist_director
             if action == "sql":
                 facts = executor.lookup(state["route"])
                 update["facts"] = facts
+                update["limitations"] = list(state["limitations"]) + executor.lookup_limitations
                 trace.append({"tool": "sql", "status": "ok", "detail": f"동일 공시의 금액 {len(facts)}개 확보"})
             elif action == "calc":
                 update["calculations"] = executor.calculate(state["plan"].ratios, state["facts"])
@@ -175,12 +184,18 @@ def run_tool_research(question: str, context: FinancialContext, persist_director
             else:
                 result = executor.research_documents(state["plan"].document_question)
                 update["document_result"] = result
-                for history in result["history"]:
+                for history in result["history"][result.get("history_start", 0):]:
+                    if history.get("skipped"):
+                        continue
                     trace.append({"tool": "doc_search", "status": "error" if history.get("error") else (
                         "ok" if history.get("retrieved_count", history["new_evidence_count"]) else "empty"),
                         "detail": history["query"]})
             update["trace"] = trace
             return update
+        except BudgetExceeded as exc:
+            # 앞 단계의 SQL 결과를 보존하면서 공통 예산 중단을 상위에 명시한다.
+            trace.append({"tool": action, "status": "blocked", "detail": "공통 예산 초과"})
+            return {"trace": trace, "stop_reason": "budget_exceeded", "limitations": [f"[예산 초과] {exc}"]}
         except (ValueError, RuntimeError, OSError) as exc:
             reason = exc.reason if isinstance(exc, FinancialDataError) else (
                 "invalid_denominator" if isinstance(exc, UndefinedRatioError) else "tool_error")
@@ -195,7 +210,9 @@ def run_tool_research(question: str, context: FinancialContext, persist_director
             return {}
         document = state["document_result"]
         if document and document["findings"]["status"] != "draft":
-            return {"stop_reason": document["stop_reason"], "limitations": document["findings"]["limitations"]}
+            return {"stop_reason": document["stop_reason"], "limitations": list(state["limitations"]) + document["findings"]["limitations"]}
+        if state["limitations"]:
+            return {"stop_reason": "missing_data"}
         only_document = state["route"].steps == ["doc_search"]
         return {"stop_reason": document["stop_reason"] if only_document else "completed"}
 

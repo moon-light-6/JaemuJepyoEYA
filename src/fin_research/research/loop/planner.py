@@ -7,6 +7,7 @@ from langchain_core.prompts import ChatPromptTemplate
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from fin_research.tools.financial_models import FinancialContext, Metric, RatioName
+from fin_research.tools.financial_catalog import capabilities, CATALOG
 
 
 class ResearchPlan(BaseModel):
@@ -14,10 +15,11 @@ class ResearchPlan(BaseModel):
 
     model_config = ConfigDict(extra="forbid")
     status: Literal["ready", "needs_clarification"]
-    metrics: list[Metric] = Field(max_length=8)
+    metrics: list[Metric] = Field(max_length=len(CATALOG))
     ratios: list[RatioName] = Field(max_length=4)
     document_question: str | None
     reason: str = Field(min_length=1)
+    unsupported_items: list[str] = Field(default_factory=list, description="현재 처리할 수 없는 요구만 별도 기록. 지원 항목은 계속 실행")
 
     @model_validator(mode="after")
     def check_actions(self):
@@ -30,7 +32,10 @@ class ResearchPlan(BaseModel):
         if self.status == "ready" and not has_actions:
             raise ValueError("실행할 조사가 없습니다.")
         if self.status == "needs_clarification" and has_actions:
-            raise ValueError("확인이 필요한 상태에서는 실행 과제를 비워야 합니다.")
+            if not self.unsupported_items:
+                raise ValueError("확인이 필요한 상태에서는 실행 과제를 비워야 합니다.")
+            # 지원 항목을 선택했고 미지원 요구도 명시한 혼합 계획은 부분 실행한다.
+            self.status = "ready"
         return self
 
 
@@ -41,7 +46,8 @@ def create_plan(question: str, context: FinancialContext, model) -> ResearchPlan
     path = Path(__file__).resolve().parents[4] / "configs/prompts/research/loop_planner.md"
     prompt = ChatPromptTemplate.from_messages([
         ("system", path.read_text(encoding="utf-8")),
-        ("human", "고정 조사 기준\n{context}\n\n질문\n{question}"),
+        ("human", "지원 기능\n{capabilities}\n고정 조사 기준\n{context}\n\n질문\n{question}"),
     ])
     chain = prompt | model.with_structured_output(ResearchPlan, method="json_schema", strict=True)
-    return ResearchPlan.model_validate(chain.invoke({"context": context.model_dump_json(), "question": question}))
+    return ResearchPlan.model_validate(chain.invoke({"context": context.model_dump_json(), "question": question,
+                                                     "capabilities": capabilities()}))

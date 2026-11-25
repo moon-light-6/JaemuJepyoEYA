@@ -11,9 +11,54 @@
  → 숫자·계산은 코드로 작성하고 문서 답변의 출처 ID를 재연결
 ```
 
-기존 문서 전용 `run_once`, `run_research_loop`는 유지한다. 새 흐름은 `--multi-tool`로 선택한다.
-상위 보고서 그래프의 기존 Researcher 어댑터는 아직 문서 전용 루프를 사용한다.
-이번 변경은 다중 도구 조사 함수와 독립 실행 명령, 통합 평가까지다.
+기존 문서 전용 `run_once`, `run_research_loop`는 유지한다. 독립 실행에서는 `--multi-tool`로 선택한다.
+상위 그래프의 기본 `make_loop_researcher()`도 다중 도구 루프를 사용한다.
+기존 문서 전용 상위 어댑터는 `make_document_researcher()`로 별도 유지한다.
+
+## 상위 Researcher 연결
+
+```text
+clarify: 기업·연도·연결/별도 확정
+ → brief: 하위 주제와 질문 생성
+ → Researcher: 질문마다 다중 도구 루프 실행
+   → SQL 숫자 조회 → 필요한 비율 계산 → 필요한 설명 문서 검색
+ → Supervisor: 완료 여부 확인 → 미완료 질문만 다음 라운드로 전달
+```
+
+`research/multi_tool_adapter.py`가 입력 기준과 질문별 결과를 연결한다.
+기업·단일 사업연도·연결/별도·공시 접수번호를 고정하며, 서로 다른 연도의 요청은 임의로 최신 연도로 바꾸지 않고 보류한다.
+기준 미지정 시 연결로 진행한다는 안내를 남긴다. 접수번호는 `--rcept-no`, 기업 설정,
+동일 기준의 단일 XML 처리 기록 순서로 확인하며 모호하면 보류한다.
+
+숫자와 계산은 성공했지만 설명 근거가 부족하면 `partial`로 남긴다. 다음 상위 라운드에서는
+설명만 다시 질문하고 앞서 확인한 숫자와 DB 출처를 보존한다. 질문 수 한도로 미실행한 질문도
+완료로 처리하지 않는다. 예산 초과·조건 오류는 자동 재시도를 중단하며 확인된 부분 결과는 유지한다.
+상위 라운드 한도와 질문 하나의 문서 재검색 한도(`--loop-rounds`)는 별도다.
+
+질문별 `numbers`, `sources`, `component_status`, `attempts`를 저장하고 근거 ID에
+하위 주제·라운드·질문 번호를 붙인다. SQL은 접수번호·계정, XML은 XPath를 보존한다.
+임베딩 저장소는 공유하지만 XML 재검색 이력은 질문별로 분리한다. 같은 질문의 상위 재조사는
+기존 검색어·근거·검색 세션을 이어받고, 이미 사용한 검색어와 신규 근거가 없는 반복을 중단한다.
+상위 결과의 `search_memory`에는 검색어·청크 ID·호출 수만 남긴다. 원문은 실행 메모리에서 유지한다.
+새 실행은 별도의 세션 ID로 분리한다. 숫자만 조회하면 색인을 로드하지 않는다.
+
+프로젝트 루트의 CMD 또는 PowerShell에서 실행한다. PostgreSQL 조회 설정과 GPT 키가 필요하며,
+설명을 조사할 때에는 해당 공시의 XML 색인도 필요하다.
+
+```bat
+python -X utf8 scripts\demo_research.py "서진시스템의 2025년 연결 기준 수익성과 재무 상태를 조사해줘." --rcept-no 20260323001543 --questions 2 --loop-rounds 2 --out data\runs\seojin_upper_research.json
+```
+
+진행 과정은 터미널에 출력된다. XML v2 색인은 `--xml-version 2`, 별도 저장소는
+`--persist-directory "저장소 경로"`로 지정한다. `--questions`는 하위 주제당 **한 라운드에 실행할 질문 수**다.
+현재 그래프는 Supervisor의 조사 결과 확인까지 실행하며 최종 보고서 작성·검증 노드 연결은 별도 작업이다.
+조사 역할별 GPT 설정은 유지한다. 주장 추출기의 Qwen 선택과는 독립적이다.
+
+상위 그래프·다중 도구·재조사 연결 테스트(외부 GPT·DB 호출 없이 합성 응답 사용):
+
+```bat
+python -X utf8 -m unittest discover -s tests -t . -p test_research_multi_tool.py
+```
 
 ## 파일과 책임
 
@@ -29,6 +74,15 @@
 | `tools/doc_search_tool.py`의 `XMLDocumentSearchTool` | XML 컬렉션 선택, 연도·범위·형식·선택적 섹션 필터, XPath 보존 |
 
 ## 숫자 조회 정책
+
+조회 지표는 `configs/account_aliases.yaml`의 모든 항목(현재 12개)을 사용한다.
+YAML의 `statements`는 IS/CIS/BS/CF 중 실제 조회할 표를 제한하며, 잘못된 표에서 같은 이름을 가져오지 않는다.
+`financial_catalog.py`가 별칭·표시 이름·구조화 출력 지표 목록과 Brief/Planner 지원 안내를 연결한다.
+YAML 변경 후 프로세스를 재시작해야 한다. DB에 값이 없으면 생성하지 않고 누락으로 남긴다.
+
+지원·미지원 요구가 섞이면 `unsupported_items`에 미지원 요구만 기록하고 지원 지표는 실행한다.
+완료하지 못한 요구가 있으면 전체 완료 대신 `partial` 또는 `insufficient_evidence`다.
+현재 현금및현금성자산(BS), 영업·투자·재무활동현금흐름(CF)도 조회할 수 있다.
 
 이 모드의 숫자는 새로 적재한 `fin.dart_financial_accounts`를 읽는다. 기존 Text-to-SQL
 도구(`run_sql.py`)의 자유 SELECT를 새 테이블에 그대로 허용하지 않는다.
@@ -97,7 +151,23 @@ GPT의 계획·검색 정확도 100%를 의미하지 않는다.
 
 ## XML 재검색 및 v2 청크 사용
 
-첫 검색은 벡터 검색이다. 두 번째부터는 재무제표 주석을 우선 검색하고 같은 필터의 BM25 결과와 RRF로 결합한다. 후보 안에서는 이전에 확보하지 않은 청크를 우선한다. 섹션을 명시했다면 필터를 완화하지 않는다. 키워드 검색은 최대 5천 청크까지만 준비하며, 초과하면 벡터 검색만 사용한다. 문서가 색인 범위에 없으면 이 방식도 근거를 만들 수 없다.
+첫 검색부터 벡터·제목·핵심어·BM25를 결합한다. 같은 원문 문서·제목·XML 파일 안에서 앞뒤 청크를
+추가하며, 반환량은 최대 `2 * top_k`다. 이전 청크보다 새 근거를 우선한다. 원인·감사·경영진 질문은
+재검색에서도 주석으로 범위를 좁히지 않는다. 섹션을 명시했다면 필터를 완화하지 않는다.
+키워드 및 인접 검색은 최대 5천 청크까지이며, 초과 시 벡터 검색만 사용한다.
+
+XML 문서 생성은 기존 재무제표·주석 뒤에 선택 기준 감사보고서의 감사의견과 사업보고서의
+경영진 분석·회계감사 의견 절을 추가한다. 기존 문서 ID는 유지한다. 공통 사업보고서 절은
+`scope_basis=report_context`로 구분하므로 실제 문장에서 연결/별도를 확인해야 한다.
+`*_xml_pipeline.json`의 `research_coverage`에 실제 추출된 감사·경영진 분석 문서 수가 기록된다.
+원본 ZIP에 없는 내용은 추가하지 않으며 외부 웹 검색은 수행하지 않는다.
+
+다른 기업의 기존 색인에도 추가 범위를 반영하려면 해당 기업 XML 파이프라인을 다시 실행한다.
+검수한 평가셋은 유지되며 다음 명령은 해당 기업의 로컬 XML 컬렉션을 다시 만든다.
+
+```bat
+python -X utf8 scripts\pipelines\run_pipeline_xml.py --company "서진시스템" --corp-code 00838005 --fiscal-year 2025 --rcept-no 20260323001543 --statement-scope consolidated --rebuild-index
+```
 
 `document_research.history[].search_info`에서 전략, 컬렉션, 필터와 청크 버전을 확인한다. XML 로그에는 페이지 대신 XPath가 표시된다.
 

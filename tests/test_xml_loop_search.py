@@ -52,7 +52,8 @@ class XMLRetrySearchTests(unittest.TestCase):
         self.assertEqual(hits[0]["chunk_id"], new.metadata["chunk_id"])
         self.assertEqual(hits[0]["source_xpath"], "/DOCUMENT/P[2]")
         self.assertEqual(self.tool.last_search_info["strategy"], "hybrid_notes")
-        self.assertIn({"section": "연결재무제표 주석"}, self.store.similarity_search_with_score.call_args.kwargs["filter"]["$and"])
+        # 원인·경영진 분석은 주석 밖에도 있으므로 전체 공시 범위를 유지한다.
+        self.assertNotIn({"section": "연결재무제표 주석"}, self.store.similarity_search_with_score.call_args.kwargs["filter"]["$and"])
 
     def test_lexical_cache_filters_zero_overlap_and_reuses_collection(self):
         """필터별 BM25를 재사용하고 질문 토큰이 전혀 없는 후보는 추가하지 않는다."""

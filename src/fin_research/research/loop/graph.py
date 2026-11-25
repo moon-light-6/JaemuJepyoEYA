@@ -7,6 +7,7 @@ from collections.abc import Callable
 from typing import TYPE_CHECKING
 
 from fin_research.progress import ProgressCallback, report_progress
+from fin_research.llm.budget import BudgetExceeded
 from fin_research.research.loop.evaluator import evaluate_evidence
 from fin_research.research.loop.executor import execute_search
 from fin_research.research.loop.findings import GroundedAnswer, generate_findings
@@ -97,6 +98,7 @@ def run_research_loop(
     budget: Budget | None = None,
     target: SearchTarget | None = None,
     progress: ProgressCallback | None = None,
+    previous_result: dict | None = None,
 ) -> dict:
     """검색·평가를 제한 횟수만큼 반복하고 근거와 조사 이력을 반환합니다.
 
@@ -132,8 +134,15 @@ def run_research_loop(
             "round": state["rounds"] + 1, "query": query,
             "new_evidence_count": 0, "evaluation": None,
         }
+        if " ".join(query.split()).casefold() in {" ".join(q.split()).casefold() for q in state["queries"]}:
+            # 상위 재조사에서도 이미 사용한 검색어로 동일 도구를 다시 호출하지 않는다.
+            history["skipped"] = True
+            return {"history": state["history"] + [history], "stop_reason": "repeated_query"}
         try:
             hits = search_function(query, top_k)
+        except BudgetExceeded:
+            # 상위 조사도 같은 예산으로 중단할 수 있도록 예외를 전달한다.
+            raise
         except (OSError, ValueError, RuntimeError) as exc:
             report_progress(progress, "문서 검색 실패 · 도구 오류로 조사를 종료합니다.")
             history["error"] = str(exc)
@@ -160,7 +169,7 @@ def run_research_loop(
                 history["new_evidence_count"] += 1
                 report_progress(progress, f"새 근거 S{len(evidences)} · {hit['source_file']} "
                                 f"{evidence_location(hit)} · 청크 {hit['chunk_id']}")
-        no_new_evidence = state["rounds"] > 0 and history["new_evidence_count"] == 0
+        no_new_evidence = bool(state["queries"]) and history["new_evidence_count"] == 0
         report_progress(progress, f"검색 완료 · 반환 {len(hits)}개 · 신규 "
                         f"{history['new_evidence_count']}개 · 누적 {len(evidences)}개")
         if no_new_evidence:
@@ -285,6 +294,15 @@ def run_research_loop(
         "rounds": 0, "llm_calls": 0, "stop_reason": "",
         "generation_errors": [],
     }
+    if previous_result:
+        # 청크 원문은 실행 중 메모리로만 넘기고 상위 Finding에는 검색어·청크 ID만 기록한다.
+        old_evidences = previous_result.get("evidences", [])
+        if target and any(not str(e.get("source_file", "")).startswith(target.rcept_no)
+                          for e in old_evidences):
+            raise ValueError("이전 검색 근거의 접수번호가 다릅니다.")
+        initial_state.update(evidences=old_evidences,
+            queries=list(previous_result.get("queries", [])),
+            history=list(previous_result.get("history", [])), evaluation=previous_result.get("evaluation"))
     state = graph.compile().invoke(initial_state, {"recursion_limit": 2 * max_rounds + 5})
     report_progress(progress, f"조사 종료 · {state['stop_reason']} · 검색 {state['rounds']}회 · "
                     f"LLM 호출 {state['llm_calls']}회 · 누적 근거 {len(state['evidences'])}개")
@@ -296,6 +314,8 @@ def run_research_loop(
         "max_rounds": max_rounds, "llm_calls": state["llm_calls"],
         "evidence_count": len(state["evidences"]), "evidences": state["evidences"],
         "evaluation": state["evaluation"], "history": state["history"],
+        "history_start": len((previous_result or {}).get("history", [])),
+        "queries": state["queries"],
         "generation_errors": state["generation_errors"],
         "findings": state["findings"], "numeric_verification": "not_performed",
         "collection": getattr(getattr(search_function, "__self__", None), "collection_name", selected_collection),

@@ -6,10 +6,10 @@ from typing import Literal
 from pydantic import BaseModel, ConfigDict, Field
 
 
-Metric = Literal[
-    "revenue", "operating_profit", "net_income", "total_assets", "total_equity",
-    "total_liabilities", "current_assets", "current_liabilities",
-]
+# YAML 변경 후 재시작하면 구조화 출력에도 모든 지표가 반영된다.
+from fin_research.tools.financial_catalog import CATALOG
+
+Metric = Literal[tuple(CATALOG)]
 RatioName = Literal["debt_ratio", "current_ratio", "roe", "operating_margin"]
 
 

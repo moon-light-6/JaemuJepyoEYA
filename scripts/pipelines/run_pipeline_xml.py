@@ -198,6 +198,7 @@ def main() -> int:
     print(f"XML 문서 / 청크: {len(documents)}개 / {len(chunks)}개")
     print(f"XML 문서: {target.xml_documents_path(PROJECT_ROOT)}")
     print(f"XML 청크: {target.xml_chunks_path(PROJECT_ROOT)}")
+    print(f"추가 원문 범위: {metadata.get('research_coverage', {})}")
     if args.prepare_only:
         return 0
 

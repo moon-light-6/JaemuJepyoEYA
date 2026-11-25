@@ -255,6 +255,40 @@ def _record(
     }
 
 
+def _research_context(zip_path, scope, selected_filename, selected_root):
+    """동일 접수 ZIP의 감사의견·내부통제·경영진 분석 절과 실제 XPath를 추가 확보한다."""
+    roots = [(selected_filename, selected_root)]
+    with zipfile.ZipFile(zip_path) as archive:
+        for filename in archive.namelist():
+            if filename == selected_filename or not filename.lower().endswith(".xml"):
+                continue
+            try:
+                prepared, _ = normalize_xml_text(archive.read(filename).decode("utf-8"))
+                prepared, _ = repair_broken_attributes(prepared)
+                root = ElementTree.fromstring(prepared)
+                name = root.find("DOCUMENT-NAME")
+                if name is not None and normalized_label(compact_text(name)) == BUSINESS_REPORT_NAME:
+                    roots.append((filename, root))
+            except (UnicodeDecodeError, ElementTree.ParseError):
+                continue
+    for filename, root in roots:
+        _, locations = build_locations(root)
+        for element in root.iter("SECTION-1"):
+            title_node = element.find("TITLE")
+            title = compact_text(title_node) if title_node is not None else ""
+            label = normalized_label(title)
+            if "경영진단" in label or "경영진의분석" in label:
+                section, kind = "경영진 분석", "xml_management_analysis"
+            elif any(word in label for word in ("독립된감사인", "회계감사인의감사의견", "내부회계관리제도")):
+                section, kind = "감사의견 및 내부통제", "xml_audit_opinion"
+            else:
+                continue
+            # 절 안의 표·문단 순서를 유지한다. 다른 기준의 첨부 감사보고서는 합치지 않는다.
+            text = "\n".join(element_text(child) for child in element if child.tag != "TITLE")
+            if text.strip():
+                yield filename, element, locations, section, kind, title, text
+
+
 def build_xml_documents(
     zip_path: Path,
     corp_code: str,
@@ -368,6 +402,15 @@ def build_xml_documents(
     if not records:
         raise XmlDocumentError("검색용으로 추출된 재무제표 표·주석이 없습니다.")
 
+    # 기존 재무제표·주석의 문서 번호는 유지하고 추가 절은 맨 뒤에 붙인다.
+    for source, element, positions, section, kind, title, text in _research_context(zip_path, scope, filename, root):
+        sequence += 1
+        record = _record(sequence=sequence, corp_code=corp_code, fiscal_year=fiscal_year,
+            scope=scope, company=company, filename=source, element=element, locations=positions,
+            section=section, document_type=kind, title=title, text=text)
+        record["scope_basis"] = "selected_audit" if source == filename and source_document == "감사보고서" else "report_context"
+        records.append(record)
+
     metadata = {
         "source_format": "xml",
         "source_xml": filename,
@@ -379,5 +422,7 @@ def build_xml_documents(
             item["document_type"] == "xml_financial_statement" for item in records
         ),
         "note_documents": sum(item["document_type"] == "xml_note" for item in records),
+        "research_coverage": {kind: sum(item["document_type"] == kind for item in records)
+                              for kind in ("xml_audit_opinion", "xml_management_analysis")},
     }
     return records, metadata

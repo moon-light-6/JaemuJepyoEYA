@@ -22,7 +22,8 @@ class ResearchToolExecutor:
     """계획에서 허용된 SQL·계산·문서 조사만 실행한다."""
 
     def __init__(self, context, persist_directory, target, *, account_tool=None, search_function=None,
-                 model=None, model_name=None, budget=None, max_rounds=3, top_k=5, progress=None, source_format="xml", xml_version=1):
+                 model=None, model_name=None, budget=None, max_rounds=3, top_k=5, progress=None, source_format="xml", xml_version=1,
+                 document_memory=None):
         """도구와 모델을 주입하고 실제 DB·임베딩은 필요한 단계에서만 준비한다."""
         self.context, self.persist_directory, self.target = context, persist_directory, target
         self.account_tool, self.search_function = account_tool, search_function
@@ -30,6 +31,8 @@ class ResearchToolExecutor:
         self.max_rounds, self.top_k, self.progress = max_rounds, top_k, progress
         self.source_format = source_format
         self.xml_version = xml_version
+        self.document_memory = document_memory
+        self.lookup_limitations = []
 
     def lookup(self, route):
         """필요 지표를 조회한 뒤 회사·기간·공시가 맞고 입력이 모두 있는지 확인한다."""
@@ -50,7 +53,11 @@ class ResearchToolExecutor:
         for metric in route.lookup_metrics:
             matches = [fact for fact in facts if fact.metric == metric and fact.context.year == self.context.year]
             if len(matches) != 1:
-                raise FinancialDataError(f"{self.context.year}년 {metric}을 하나로 확정하지 못했습니다.")
+                if len(matches) > 1:
+                    raise FinancialDataError(f"{self.context.year}년 {metric}이 중복됩니다.", "ambiguous_data")
+                self.lookup_limitations.append(f"{self.context.year}년 {metric} 자료가 없습니다.")
+        if not facts:
+            raise FinancialDataError("요청한 지표의 자료가 없습니다.")
         return facts
 
     def calculate(self, names, facts):
@@ -72,4 +79,5 @@ class ResearchToolExecutor:
             question, self.persist_directory, self.top_k, self.model_name, self.max_rounds,
             model=self.model, search_function=self.search_function, target=self.target,
             budget=self.budget, progress=self.progress,
+            previous_result=self.document_memory,
         )
