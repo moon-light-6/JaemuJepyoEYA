@@ -39,6 +39,9 @@ class ClarifyExtraction(BaseModel):
     focus: list[str] = Field(
         description="사용자가 특히 요청한 분석 영역. 예: 수익성, 부채, 현금흐름. 없으면 빈 목록"
     )
+    scopes: list[Literal["consolidated", "separate"]] = Field(
+        default_factory=list, description="요청한 연결/별도 기준. 미지정은 빈 목록, 둘 다 요구하면 두 기준"
+    )
 
 
 # ─────────────────────────── 검증 (순수 함수) ───────────────────────────
@@ -113,11 +116,19 @@ def validate_request(extraction: ClarifyExtraction) -> ClarifyResult:
     if question:
         return _ask(question)
 
+    scopes = list(dict.fromkeys(extraction.scopes))
+    if len(scopes) > 1:
+        return _ask("한 번에 연결 또는 별도 기준 하나만 조사할 수 있습니다. 어느 기준으로 분석할까요?")
+    scope = scopes[0] if scopes else "consolidated"
+    if not scopes:
+        notes.append("연결/별도 기준을 지정하지 않아 연결 기준으로 조사합니다.")
+
     return ClarifyResult(
         need_clarification=False,
         company=company["name"],
         corp_code=company["corp_code"],
         years=years,
+        scope=scope,
         focus=extraction.focus,
         notes=notes,
     )

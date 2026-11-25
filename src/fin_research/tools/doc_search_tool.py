@@ -116,3 +116,160 @@ def shared_chroma_client(host: str | None = None):
         return client
     except Exception:  # 꺼져 있음·Tailscale 미연결·주소 오류: 공용 색인 없이 진행
         return None
+
+    return DocumentSearchTool(persist_directory, target).search(question, top_k)
+
+
+class XMLDocumentSearchTool(DocumentSearchTool):
+    """XML 원문의 출처를 유지하고 재검색에서는 키워드 검색을 함께 수행한다."""
+
+    def __init__(self, persist_directory: Path, target: SearchTarget, *, section: str | None = None,
+                 chunk_version: int = 1, project_root: Path | None = None, client=None):
+        """선택한 버전의 기존 색인을 열며 v2는 청크 내용의 해시로 저장소를 찾는다."""
+        if chunk_version not in (1, 2):
+            raise ValueError("XML 청크 버전은 1 또는 2여야 합니다.")
+        directory = Path(persist_directory)
+        if chunk_version == 2:
+            import hashlib
+            root = project_root or Path(__file__).resolve().parents[3]
+            chunks = target.xml_scope_dir(root) / f"{target.rcept_no}_xml_chunks_v2.json"
+            if not chunks.is_file():
+                raise FileNotFoundError(f"v2 청크가 없습니다: {chunks}")
+            directory /= hashlib.sha256(chunks.read_bytes()).hexdigest()
+        # client: 팀 공용 ChromaDB(shared_chroma_client). 있으면 로컬 대신 공용 서버 컬렉션을 연다
+        super().__init__(directory, target, client=client)
+        self.section, self.chunk_version = section, chunk_version
+        self._calls, self._seen, self._lexical_cache = 0, set(), {}
+        self.last_search_info = {}
+
+    @property
+    def collection_name(self) -> str:
+        """PDF와 분리된 XML 전용 컬렉션 이름을 반환한다."""
+        return self.target.xml_collection_name
+
+    def _filter(self, section=None):
+        """사업연도·연결 기준·문서 형식을 고정하고 선택한 섹션만 검색한다."""
+        conditions = [{"source_format": "xml"}, {"fiscal_year": self.target.fiscal_year},
+                      {"statement_scope": self.target.statement_scope}]
+        if section:
+            conditions.append({"section": section})
+        return {"$and": conditions}
+
+    def _documents(self, where):
+        """필터가 일치하는 최대 5천 청크를 캐시하고 과다한 원문 로딩은 생략한다."""
+        import json
+        from langchain_core.documents import Document
+        key = json.dumps(where, sort_keys=True, ensure_ascii=False)
+        if key not in self._lexical_cache:
+            rows = self._vectorstore._collection.get(where=where, include=["documents", "metadatas"], limit=5001)
+            texts = rows.get("documents") if isinstance(rows, dict) else []
+            metadata = rows.get("metadatas") if isinstance(rows, dict) else []
+            documents = [Document(page_content=text, metadata=meta)
+                         for text, meta in zip(texts or [], metadata or []) if text and meta]
+            self._lexical_cache[key] = documents if len(documents) <= 5000 else []
+        return self._lexical_cache[key]
+
+    def _lexical_hits(self, question, where, top_k):
+        """제목·핵심어를 우선하고 BM25도 결합해 조사·공시 공통어의 영향을 줄인다."""
+        from fin_research.retrieval.bm25_retriever import build_bm25_retriever, simple_tokens
+        documents = self._documents(where)
+        if not documents:
+            return []
+        tokens = set(simple_tokens(question)) - {"기준", "연결", "별도", "관련", "대한", "내용", "설명", "현황"}
+        topics = [word for word in ("소송", "우발", "약정", "감사의견", "내부통제", "경영진", "매출", "원인", "차입", "현금흐름") if word in question]
+        if "우발" in topics:
+            tokens.update(["우발채무", "우발부채"])
+        def score(doc):
+            """제목과 본문에서 질문의 주요 용어가 실제 등장하는 후보를 우선한다."""
+            title, text = doc.metadata.get("title", ""), doc.page_content
+            return sum(5 * (word in title) + 3 * (word in text) for word in topics) + sum(word in text for word in tokens)
+        focused = sorted(documents, key=score, reverse=True)
+        focused = [doc for doc in focused if score(doc) > 0][:top_k]
+        bm25 = build_bm25_retriever(documents, k=top_k).invoke(question)
+        combined = focused + [doc for doc in bm25 if tokens.intersection(simple_tokens(doc.page_content))]
+        return list({doc.metadata["chunk_id"]: doc for doc in combined}.values())[:top_k]
+
+    def _expand_neighbors(self, seeds, where, limit):
+        """같은 XML·동일 원문 문서의 바로 앞뒤 청크만 제한적으로 확장한다."""
+        documents = self._documents(where)
+        by_id = {doc.metadata["chunk_id"]: doc for doc in documents}
+        expanded, known = [], {doc.metadata["chunk_id"] for doc in seeds}
+        for seed in seeds:
+            identifier = seed.metadata["chunk_id"]
+            group, _, suffix = identifier.rpartition("_")
+            if not suffix.isdigit():
+                continue
+            for number in (int(suffix) - 1, int(suffix) + 1):
+                key = f"{group}_{number:0{len(suffix)}d}"
+                neighbor = by_id.get(key)
+                if (neighbor and key not in known
+                        and neighbor.metadata.get("source_file") == seed.metadata.get("source_file")
+                        and neighbor.metadata.get("title") == seed.metadata.get("title")):
+                    expanded.append(neighbor); known.add(key)
+                if len(expanded) >= limit:
+                    return expanded
+        return expanded
+
+    def search(self, question: str, top_k: int = 5) -> list[dict]:
+        """첫 검색은 벡터, 이후 검색은 주석 우선 벡터·BM25 결합으로 새 근거를 찾는다."""
+        if not question.strip() or not 1 <= top_k <= 10:
+            raise ValueError("검색 질문과 1~10 범위의 top_k가 필요합니다.")
+        if not (self.persist_directory / "chroma.sqlite3").is_file():
+            raise FileNotFoundError("선택한 버전의 XML Chroma 색인이 없습니다. XML 파이프라인으로 먼저 색인하세요.")
+        from fin_research.retrieval.chroma_retriever import create_chroma
+        from fin_research.retrieval.xml_retrieval import result_from_document
+        if self._vectorstore is None:
+            self._vectorstore = create_chroma(self.persist_directory, self.collection_name)
+        if self._vectorstore._collection.count() == 0:
+            raise ValueError("선택한 XML 컬렉션에 청크가 없습니다.")
+        retry = self._calls > 0
+        section = self.section
+        if retry and not section and not any(word in question for word in ("감사", "내부통제", "내부회계", "경영진", "원인", "분석")):
+            section = "연결재무제표 주석" if self.target.statement_scope == "consolidated" else "재무제표 주석"
+        where = self._filter(section)
+        count = min(top_k * 2, 20)
+        hits = self._vectorstore.similarity_search_with_score(question, k=count, filter=where)
+        if retry and not hits and not self.section:
+            where = self._filter()
+            hits = self._vectorstore.similarity_search_with_score(question, k=count, filter=where)
+        ranked = [[(document, float(distance)) for document, distance in hits]]
+        lexical = self._lexical_hits(question, where, count)
+        ranked.append([(document, None) for document in lexical])
+        scores, candidates = {}, {}
+        prefix = f"{self.target.corp_code}_{self.target.fiscal_year}_{self.target.statement_scope}_xml_"
+        for ranking in ranked:
+            seen = set()
+            for rank, (document, distance) in enumerate(ranking, 1):
+                result = result_from_document(document, rank, distance=distance)
+                identifier = result["chunk_id"]
+                if not identifier.startswith(prefix) or not result["source_file"].startswith(self.target.rcept_no):
+                    raise ValueError("XML 검색 결과의 기업 또는 접수번호가 다릅니다.")
+                if identifier in seen:
+                    continue
+                seen.add(identifier)
+                scores[identifier] = scores.get(identifier, 0) + (2 if ranking is ranked[-1] else 1) / (60 + rank)
+                candidates.setdefault(identifier, result)
+        identifiers = sorted(candidates, key=lambda key: (key in self._seen, -scores[key], key))[:top_k]
+        # 검색 상위 근거는 유지하고 최대 top_k개의 인접 청크를 추가한다(총 2*top_k 한도).
+        seed_docs = [doc for ranking in ranked for doc, _ in ranking
+                     if doc.metadata["chunk_id"] in identifiers]
+        neighbors = self._expand_neighbors(seed_docs, where, top_k)
+        for doc in neighbors:
+            key = doc.metadata["chunk_id"]
+            if key not in candidates:
+                candidates[key] = result_from_document(doc, 0)
+            if key not in identifiers:
+                identifiers.append(key)
+        if any(not key.startswith(prefix) or not candidates[key]["source_file"].startswith(self.target.rcept_no)
+               for key in identifiers):
+            raise ValueError("XML 검색 결과의 기업 또는 접수번호가 다릅니다.")
+        results = [{**candidates[key], "rank": rank, "pdf_page": None, "evidence_id": f"S{rank}",
+                    "rrf_score": scores.get(key, 0), "neighbor_expansion": key not in scores}
+                   for rank, key in enumerate(identifiers, 1)]
+        self._seen.update(identifiers)
+        self._calls += 1
+        self.last_search_info = {"strategy": "hybrid_notes" if retry else "hybrid_title",
+                                 "collection": self.collection_name, "chunk_version": self.chunk_version,
+                                 "persist_directory": str(self.persist_directory), "filter": where,
+                                 "candidate_count": len(candidates), "neighbor_count": len(neighbors)}
+        return results

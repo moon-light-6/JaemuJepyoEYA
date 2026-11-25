@@ -56,6 +56,10 @@ def main() -> int:
         help="생략하면 models.yaml roles(loop_evaluator·loop_findings) 설정을 따름",
     )
     parser.add_argument("--search-only", action="store_true")
+    parser.add_argument("--multi-tool", action="store_true", help="SQL·계산·문서 검색을 선택하는 다중 도구 조사")
+    parser.add_argument("--xml-version", type=int, choices=[1, 2], default=1, help="다중 도구 XML 검색의 청크 버전")
+    parser.add_argument("--source-format", choices=["xml", "pdf"], default="xml",
+                        help="다중 도구 설명 검색에서 사용할 색인 형식 (기본 xml)")
     parser.add_argument(
         "--max-rounds", type=int, choices=range(1, 6),
         help="지정하면 근거 평가·재검색 실행. 최대 검색 횟수 1~5회",
@@ -79,13 +83,34 @@ def main() -> int:
     args = parser.parse_args()
     if args.search_only and args.max_rounds is not None:
         parser.error("--search-only와 --max-rounds는 함께 사용할 수 없습니다.")
+    if args.multi_tool and args.search_only:
+        parser.error("--multi-tool과 --search-only는 함께 사용할 수 없습니다.")
+    if args.xml_version == 2 and (not args.multi_tool or args.source_format != "xml"):
+        parser.error("--xml-version 2는 --multi-tool --source-format xml에서만 사용할 수 있습니다.")
     target = resolve_target(args, parser)
+    if args.multi_tool and target is None:
+        parser.error("다중 도구 조사에는 --company 또는 --corp-code와 공시 기준이 필요합니다.")
     persist_directory = args.persist_directory or (
+        PROJECT_ROOT / "data/chroma_xml_v2" if args.xml_version == 2 else
         MULTI_PERSIST_DIRECTORY if target else LEGACY_PERSIST_DIRECTORY
     )
     progress = None if args.quiet else TerminalProgress()
     try:
-        if args.max_rounds is not None:
+        if args.multi_tool:
+            from dotenv import load_dotenv
+            from fin_research.companies import load_companies
+            from fin_research.research.loop.tool_graph import run_tool_research
+            from fin_research.tools.financial_models import FinancialContext
+
+            load_dotenv(PROJECT_ROOT / ".env")
+            company = next(c["name"] for c in load_companies() if c["corp_code"] == target.corp_code)
+            context = FinancialContext(company=company, corp_code=target.corp_code, year=target.fiscal_year,
+                                       scope=target.statement_scope, rcept_no=target.rcept_no)
+            result = run_tool_research(
+                args.question, context, persist_directory, model_name=args.model,
+                max_rounds=args.max_rounds or 3, top_k=args.top_k, progress=progress, source_format=args.source_format, xml_version=args.xml_version,
+            )
+        elif args.max_rounds is not None:
             result = run_research_loop(
                 args.question, persist_directory, args.top_k,
                 args.model, args.max_rounds, target=target,

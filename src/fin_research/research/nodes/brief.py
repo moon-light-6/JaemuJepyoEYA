@@ -9,6 +9,7 @@
 from __future__ import annotations
 
 import json
+import re
 from functools import lru_cache
 from pathlib import Path
 from typing import Literal, get_args
@@ -25,6 +26,7 @@ from fin_research.llm.router import get_llm_for_role
 from fin_research.research.nodes.common import get_budget, load_prompt
 from fin_research.research.nodes.supervisor import dispatch
 from fin_research.research.state import Brief, ClarifyResult, ResearchState, SubTopic
+from fin_research.tools.financial_catalog import capabilities
 
 TEMPLATE_PATH = PROJECT_ROOT / "configs" / "report_template.yaml"
 
@@ -111,6 +113,7 @@ def build_brief(
     """LLM 초안을 템플릿 순서·제목·필수 지표에 맞춰 조립. draft가 None이면 기본 질문만 사용."""
     company = clarify.company or ""
     years_text = format_years(clarify.years)
+    notes = list(clarify.notes)
 
     drafted: dict[str, SubTopicDraft] = {}
     for item in (draft.subtopics if draft else []):
@@ -123,9 +126,18 @@ def build_brief(
         if item and not fixed:
             questions = item.questions
             extra_metrics = item.metrics
-        else:  # LLM 초안이 없거나, 템플릿 질문을 그대로 써야 하는 주제
-            questions = [q.format(company=company, years=years_text) for q in spec["default_questions"]]
+        else:
+            scope_text = "연결" if clarify.scope == "consolidated" else "별도"
+            questions = [q.format(company=company, years=years_text, scope=scope_text) for q in spec["default_questions"]]
             extra_metrics = []
+        # 업계 비교·부문별 계산·미구현 금액 조회를 초기 조사 질문으로 생성하지 않는다.
+        blocked = re.compile(r"동종|업계|부문별.*(?:이익률|수익성)|순이익률|(?:CAPEX|설비투자).*규모|차입금.*(?:규모|얼마|구성|만기)", re.I)
+        accepted = [q for q in questions if not blocked.search(q)]
+        if len(accepted) != len(questions):
+            notes.append(f"{spec['title']}: 현재 지원 범위 밖의 질문을 기본 조사 질문으로 대체했습니다.")
+        scope_text = "연결" if clarify.scope == "consolidated" else "별도"
+        defaults = [q.format(company=company, years=years_text, scope=scope_text) for q in spec["default_questions"]]
+        questions = _unique(accepted + [q for q in defaults if not blocked.search(q)]) if len(accepted) < 2 else accepted
         subtopics.append(SubTopic(
             id=spec["id"],
             title=spec["title"],
@@ -144,10 +156,11 @@ def build_brief(
         company=company,
         corp_code=clarify.corp_code,
         years=clarify.years,
+        scope=clarify.scope,
         objective=objective,
         subtopics=subtopics,
         focus=clarify.focus,
-        notes=clarify.notes,
+        notes=notes,
     )
 
 
@@ -169,6 +182,8 @@ def _brief_input(clarify: ClarifyResult, template: tuple[dict, ...]) -> str:
     return json.dumps({
         "company": clarify.company,
         "years": clarify.years,
+        "scope": clarify.scope,
+        "capabilities": capabilities(),
         "focus": clarify.focus,
         "notes": clarify.notes,
         "subtopics": [

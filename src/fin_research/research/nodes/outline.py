@@ -27,7 +27,9 @@ def build_outline(state: ResearchState) -> Outline:
     body: list[OutlineSection] = []
     for subtopic in brief.subtopics:  # 템플릿 순서 그대로
         finding = latest.get(subtopic.id)
-        ids = finding.evidence_ids if finding and finding.status == "draft" else []
+        # partial(다중 도구 조사: 숫자는 확인, 설명은 미확인)도 확인된 근거가 있으면 쓴다
+        usable = finding is not None and finding.status in ("draft", "partial")
+        ids = finding.evidence_ids if usable else []
         body.append(OutlineSection(title=subtopic.title, subtopic_ids=[subtopic.id], evidence_ids=list(ids)))
 
     done_ids = [section.subtopic_ids[0] for section in body if section.evidence_ids]

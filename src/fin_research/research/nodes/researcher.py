@@ -1,11 +1,13 @@
 """researcher 노드: 하위 주제 하나를 조사해 Finding 하나를 돌려준다.
 
 - mock_researcher: 검색·LLM 없이 고정 결과 (supervisor·그래프 테스트용)
-- make_loop_researcher(): 루프 담당의 run_research_loop를 고치지 않고 감싸는 어댑터
+- make_loop_researcher(): SQL·계산·문서 다중 도구 루프를 상위 조사에 연결하는 어댑터
   · 질문마다 루프를 한 번씩 돌리고 결과를 Finding 하나로 합친다
+  · 근거 ID에 '{하위주제}.r{라운드}.q{질문}.' 접두어를 붙여 researcher 간 충돌을 막는다
+  · 임베딩 저장소는 공유하고 질문별 재검색 이력은 분리한다
+- make_document_researcher(): 기존 문서 전용 조사 어댑터
   · 근거는 실행 전체가 함께 쓰는 EvidenceRegistry(장부)에 등록해 전역 S#로 바꾼다
     (같은 청크는 어느 researcher가 찾아도 같은 S#). 장부가 없으면 '{하위주제}.r{라운드}.q{질문}.' 임시 번호
-  · 검색 도구(KURE 2.3GB)는 기업별로 한 번만 만들어 공유한다
   · 색인은 로컬 XML(fin_xml_...) → 로컬 PDF(fin_...) → 팀 공용 ChromaDB(XML) 순서로 찾는다
 - Hybrid RAG: config에 account_store가 있으면 템플릿의 db_items·db_ratios 숫자를
   DART DB에서 코드가 가져와(research/db_facts.py) Finding 맨 앞에 둔다. 문서 검색은 원인·구조를 찾는다.
@@ -63,7 +65,7 @@ def search_target_for(brief: Brief) -> SearchTarget:
         raise ValueError(f"{company['name']} {year}년 접수번호(rcept_no)가 없어 검색 색인을 찾을 수 없습니다.")
     return SearchTarget(
         corp_code=brief.corp_code, fiscal_year=year,
-        statement_scope="consolidated", rcept_no=rcept_no,
+        statement_scope=brief.scope, rcept_no=rcept_no,
     )
 
 
@@ -91,6 +93,7 @@ class SearchToolCache:
         self._tools: dict[SearchTarget, Callable[[str, int], list[dict]]] = {}
         self._sources: dict[SearchTarget, str] = {}
         self._lock = threading.Lock()
+        self._vectorstores: dict[tuple, object] = {}  # 다중 도구 조사: 질문별 세션이 공유하는 벡터 저장소
         self._collection_counts = collection_counts or self._read_collection_counts
         self._counts: dict[str, int] | None = None
         self._shared_client = shared_client
@@ -145,6 +148,11 @@ class SearchToolCache:
         """search_function으로 이미 정해진 색인 종류 (진행 표시·테스트용)."""
         return self._sources.get(target)
 
+
+    def session(self, target: SearchTarget, *, source_format: str = "xml", xml_version: int = 1):
+        """임베딩 저장소만 공유하고 재검색 이력은 질문별로 분리한 검색 함수를 만든다."""
+        return ResearchSearchSession(self, target, source_format, xml_version).search
+
     def search_function(self, target: SearchTarget) -> Callable[[str, int], list[dict]]:
         with self._lock:
             if target not in self._tools:
@@ -164,6 +172,49 @@ class SearchToolCache:
 
                 self._tools[target] = search
             return self._tools[target]
+
+
+class ResearchSearchSession:
+    """질문마다 별도의 XML 재검색 상태를 두고 GPU 검색은 공용 잠금으로 직렬화한다."""
+
+    def __init__(self, cache: SearchToolCache, target: SearchTarget, source_format: str, xml_version: int):
+        """저장소나 모델은 실제 문서 검색이 필요할 때까지 불러오지 않는다."""
+        self.cache, self.target = cache, target
+        self.source_format, self.xml_version = source_format, xml_version
+        self.tool = None
+
+    @property
+    def collection_name(self):
+        """검색 이력에 실제 PDF 또는 XML 컬렉션 이름을 기록한다."""
+        return self.target.xml_collection_name if self.source_format == "xml" else self.target.collection_name
+
+    @property
+    def last_search_info(self):
+        """질문별 도구가 마지막으로 실행한 검색 전략을 반환한다."""
+        return dict(getattr(self.tool, "last_search_info", {}))
+
+    def search(self, question: str, top_k: int = 5):
+        """질문별 이력을 유지하면서 이미 로드된 벡터 저장소와 임베딩 모델을 재사용한다."""
+        from fin_research.tools.doc_search_tool import DocumentSearchTool, XMLDocumentSearchTool
+
+        with self.cache._lock:
+            if self.tool is None:
+                if self.source_format == "xml":
+                    # 로컬 색인이 없으면 팀 공용 ChromaDB로 (source_for: 로컬 XML → 로컬 PDF → 공용)
+                    shared = self.xml_version == 1 and self.cache.source_for(self.target) == "shared"
+                    self.tool = XMLDocumentSearchTool(self.cache.persist_directory, self.target,
+                                                       chunk_version=self.xml_version,
+                                                       client=self.cache._shared_client if shared else None)
+                else:
+                    self.tool = DocumentSearchTool(self.cache.persist_directory, self.target)
+            key = (self.target, self.source_format, self.xml_version)
+            if key in self.cache._vectorstores:
+                self.tool._vectorstore = self.cache._vectorstores[key]
+            try:
+                return self.tool.search(question, top_k)
+            finally:
+                if self.tool._vectorstore is not None:
+                    self.cache._vectorstores[key] = self.tool._vectorstore
 
 
 # ─────────────────────────── 결과 합치기 (순수 함수) ───────────────────────────
@@ -390,7 +441,7 @@ async def mock_researcher(inp: ResearcherInput, config: RunnableConfig) -> Resea
     )]}
 
 
-def make_loop_researcher(
+def make_document_researcher(
     *,
     search_tools: SearchToolCache | None = None,
     questions_per_subtopic: int | None = None,
@@ -434,3 +485,18 @@ def make_loop_researcher(
         return {"findings": [with_db_facts(finding, db, db_sources)]}
 
     return loop_researcher
+
+
+def make_loop_researcher(*, search_tools=None, questions_per_subtopic=None, loop_rounds=None,
+                         top_k=5, loop_fn=None, tool_loop_fn=None, account_tool=None, model=None,
+                         source_format="xml", xml_version=1, progress=None):
+    """기본은 다중 도구 조사로 연결하고 loop_fn을 명시한 기존 문서 어댑터도 보존한다."""
+    if loop_fn is not None:
+        # 기존 문서 전용 루프와 테스트 주입 방식은 명시적으로 선택할 수 있게 보존한다.
+        return make_document_researcher(search_tools=search_tools, questions_per_subtopic=questions_per_subtopic,
+                                        loop_rounds=loop_rounds, top_k=top_k, loop_fn=loop_fn)
+    from fin_research.research.multi_tool_adapter import make_tool_researcher
+    return make_tool_researcher(search_tools=search_tools, questions_per_subtopic=questions_per_subtopic,
+                                loop_rounds=loop_rounds, top_k=top_k, loop_fn=tool_loop_fn,
+                                account_tool=account_tool, model=model, source_format=source_format,
+                                xml_version=xml_version, progress=progress)

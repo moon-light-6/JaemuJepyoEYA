@@ -9,7 +9,8 @@ import re
 # 영문자 바로 뒤 숫자('갤럭시 S25', 'Q3', 'S1')는 이름·번호라 금액으로 보지 않는다
 _NUMBER = re.compile(r"(?<![A-Za-z\d])\d[\d,]*(?:\.\d+)?")
 _CITATION = re.compile(r"\[([^\[\]]*?\bS\d+\b[^\[\]]*?)\]")
-_SOURCE_ID = re.compile(r"\bS\d+\b")
+# 장부 번호(S3)와 다중 도구 조사의 임시 번호(profitability.r1.q1.S3)를 통째로 읽는다
+_SOURCE_ID = re.compile(r"(?<![\w.])(?:[a-z_]+\.r\d+\.q\d+\.)?S\d+\b")
 # 문장 끝(. ! ? 또는 인용 ']') 뒤 공백에서 나눈다. '입니다. [S1]'처럼 뒤따르는 인용은 앞 문장에 붙인다.
 _SENTENCE_BREAK = re.compile(r"(?<=[.!?\]])\s+(?!\[)")
 

@@ -13,8 +13,9 @@ import operator
 from typing import Annotated, Any, Literal
 
 from pydantic import BaseModel, Field
-from typing_extensions import TypedDict
+from typing_extensions import NotRequired, TypedDict
 from fin_research.evidence.models import Evidence
+from fin_research.tools.financial_models import FinancialContext
 
 
 # ─────────────────────────────────────────────
@@ -44,6 +45,7 @@ class ClarifyResult(BaseModel):
     company: str | None = Field(None, description="정규화된 기업명 (companies.yaml 기준)")
     corp_code: str | None = Field(None, description="DART 기업 고유번호 8자리")
     years: list[int] = Field(default_factory=list, description="분석 대상 사업연도")
+    scope: Literal["consolidated", "separate"] = "consolidated"
     focus: list[str] = Field(default_factory=list, description="사용자가 특히 요청한 관심 영역")
     notes:list[str]=Field(default_factory=list, description='진행은 하지만 알려야 할 사항. 예: 일부 연도 자료 없음')
 
@@ -64,6 +66,7 @@ class Brief(BaseModel):
     company: str
     corp_code: str | None = None
     years: list[int]
+    scope: Literal["consolidated", "separate"] = "consolidated"
     objective: str = Field(description="보고서 목적 한두 문장")
     subtopics: list[SubTopic] = Field(min_length=1)
     focus: list[str] = Field(default_factory=list, description="사용자가 특히 요청한 관심 영역")
@@ -71,18 +74,24 @@ class Brief(BaseModel):
 
 
 class EvidenceRef(BaseModel):
-    """Finding이 인용한 근거의 위치. 원문(text)은 EvidenceRegistry(장부)에만 있고 여기에는 위치만 둔다.
+    """Finding이 인용한 근거의 위치. 원문은 EvidenceRegistry(장부)에만 두고 여기에는 위치만 둔다.
 
-    장부를 쓰는 실행이면 id는 실행 전체에서 유일한 S#, 장부가 없으면(mock·테스트) 임시 번호.
+    id: 장부를 쓰면 실행 전체에서 유일한 S#, 다중 도구 조사·mock은 '{하위주제}.r{라운드}.q{질문}.S#' 임시 번호.
+    rcept_no·account_*: DART DB 계정 근거(다중 도구 조사)일 때.
     """
-    id:str=Field(description="근거 ID 장부 번호 S# 또는 임시번호")
-    source_file:str|None=None
-    pdf_page:int|None=None
-    chunk_id: str| None=None
-    source_xpath:str|None=Field(default=None, description="XML 근거의 원본 요소 위치")
-    title: str | None = Field(default=None, description="원본 표·섹션 제목 (화면 표시용)")
+
+    id: str = Field(description="전역 근거 ID. 예: profitability.r1.q1.S1")
+    source_file: str | None = None
+    pdf_page: int | None = None
+    chunk_id: str | None = None
+    source_xpath: str | None = None
+    title: str | None = None
+    rcept_no: str | None = None
+    account_id: str | None = None
+    account_name: str | None = None
     quote: str | None = Field(
         default=None, description="청크 안에서 질문·답변에 맞는 짧은 원문 조각 (청크가 짧으면 없음)")
+
     @classmethod
     def from_evidence(cls, evidence: Evidence) -> EvidenceRef:
         """장부에 등록된 근거 → state에 남길 위치 정보 (원문 text는 버린다)."""
@@ -95,6 +104,36 @@ class EvidenceRef(BaseModel):
             title=evidence.title,
         )
 
+
+class ResearchNumber(BaseModel):
+    """확인된 숫자와 기준·출처를 상위 조사 결과에서도 정확히 보존한다."""
+
+    metric: str
+    value: str
+    unit: str
+    context: FinancialContext
+    source_ids: list[str] = Field(default_factory=list)
+
+
+class QuestionFinding(BaseModel):
+    """질문 하나의 완료 상태와 재조사할 내용, 기존 확인 결과를 보관한다."""
+
+    question: str
+    status: Literal["draft", "partial", "insufficient_evidence"] = "insufficient_evidence"
+    summary: str = ""
+    numbers: list[ResearchNumber] = Field(default_factory=list)
+    evidence_ids: list[str] = Field(default_factory=list)
+    sources: list[EvidenceRef] = Field(default_factory=list)
+    limitations: list[str] = Field(default_factory=list)
+    retry_question: str | None = None
+    retryable: bool = True
+    stop_reason: str = "pending"
+    component_status: dict[str, str] = Field(default_factory=dict)
+    attempts: list[dict[str, Any]] = Field(default_factory=list)
+    unsupported_items: list[str] = Field(default_factory=list)
+    search_memory: dict[str, Any] = Field(default_factory=dict)
+
+
 class Finding(BaseModel):
     """researcher 1회 결과 (researcher 안에서 압축 완료된 것).
 
@@ -102,12 +141,15 @@ class Finding(BaseModel):
     """
 
     subtopic_id: str
-    status: Literal["draft", "insufficient_evidence"]
+    status: Literal["draft", "partial", "insufficient_evidence"]
     summary: str = Field(description="한국어 조사 결과. 근거를 쓴 문장마다 [S#] 표기")
     evidence_ids: list[str] = Field(default_factory=list, description="summary에서 인용한 근거 ID")
     limitations: list[str] = Field(default_factory=list, description="누락·미검증 내용")
     sources: list[EvidenceRef] = Field(default_factory=list, description="evidence_ids의 출처 위치")
     round: int = 1
+    question_results: list[QuestionFinding] = Field(default_factory=list)
+    context: FinancialContext | None = None
+    retryable: bool = True
 
 
 class SupervisorDecision(BaseModel):
@@ -194,6 +236,7 @@ class ResearcherInput(TypedDict):
     subtopic: SubTopic
     brief: Brief
     round: int
+    previous_finding: NotRequired[Finding | None]
 
 
 class ResearcherOutput(TypedDict):
@@ -245,8 +288,3 @@ if __name__ == "__main__":
     # override_reducer 단독 확인
     print(override_reducer([1, 2], [3]))                                # [1, 2, 3]
     print(override_reducer([1, 2], {"type": "override", "value": []}))  # []
-
-
-
-
-   

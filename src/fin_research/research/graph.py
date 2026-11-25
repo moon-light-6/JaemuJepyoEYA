@@ -16,6 +16,7 @@
 from __future__ import annotations
 
 from collections.abc import Callable
+from uuid import uuid4
 
 from langgraph.graph import START, StateGraph
 
@@ -60,6 +61,8 @@ def run_config(
         "max_concurrency": research.get("max_concurrent_researchers") or 3,
         "configurable": {
             "budget": budget,
+            "research_session_id": uuid4().hex,
+            # 문서 전용 조사(make_document_researcher)·출처 목록이 쓰는 장부. 다중 도구 조사는 쓰지 않는다
             "evidence_registry": evidence_registry if evidence_registry is not None else EvidenceRegistry(),
             **configurable,
         },

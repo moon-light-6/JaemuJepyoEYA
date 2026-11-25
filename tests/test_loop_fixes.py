@@ -13,7 +13,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from test_loop_iterative import answer, evaluation, model_responses
 
 from fin_research.research.loop.evaluator import EvidenceEvaluation, normalize_evaluation
-from fin_research.research.loop.graph import _location, run_research_loop
+from fin_research.research.loop.graph import evidence_location, run_research_loop
 from fin_research.retrieval.search_target import SearchTarget
 from fin_research.tools.doc_search_tool import DocumentSearchTool
 
@@ -75,13 +75,14 @@ class TestXmlEvidenceInLoop(unittest.TestCase):
                                    search_function=Mock(side_effect=[[xml_hit(1)], [xml_hit(2)]]),
                                    progress=messages.append)
         self.assertEqual(result["findings"]["status"], "draft")
-        self.assertTrue(any("연결 현금흐름표 · 청크 xml_2" in m for m in messages))
+        # loop/gunhee 병합: 진행 메시지는 표 제목 대신 XPath로 위치를 보여 준다
+        self.assertTrue(any("XPath" in m and "· 청크 xml_2" in m for m in messages))
 
     def test_location(self):
-        self.assertEqual(_location({"pdf_page": 84}), "84쪽")
-        self.assertEqual(_location({"pdf_page": None, "title": "연결 재무상태표"}), "연결 재무상태표")
-        self.assertEqual(_location({"source_xpath": "/D[1]"}), "/D[1]")
-        self.assertEqual(_location({}), "위치 정보 없음")
+        # loop/gunhee 병합: 진행 메시지 위치는 건희의 evidence_location (XPath 우선)
+        self.assertEqual(evidence_location({"pdf_page": 84}), "84쪽")
+        self.assertEqual(evidence_location({"source_xpath": "/D[1]"}), "XPath /D[1]")
+        self.assertEqual(evidence_location({}), "위치 미확인")
 
 
 class TestDocumentSearchToolSource(unittest.TestCase):

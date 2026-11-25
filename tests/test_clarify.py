@@ -143,7 +143,8 @@ class TestValidateRequest(FixtureCompaniesTestCase):
         result = validate_request(extraction(["에코프로비엠"], recent=3))
         self.assertFalse(result.need_clarification)
         self.assertEqual(result.years, [2025])
-        self.assertEqual(len(result.notes), 1)
+        self.assertTrue(any("자료가 없어" in note for note in result.notes))
+        self.assertTrue(any("연결 기준" in note for note in result.notes))
 
     def test_same_company_written_twice_is_one_company(self):
         result = validate_request(extraction(["삼성전자", "삼성전자㈜"]))
