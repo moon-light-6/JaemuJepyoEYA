@@ -1,4 +1,4 @@
-"""XML 문서를 v2로 청킹하고 검증된 평가셋으로 검색 성능을 평가한다."""
+"""XML v2 청크를 검증된 문항으로 평가한다."""
 
 from __future__ import annotations
 
@@ -9,7 +9,6 @@ import re
 import sys
 from pathlib import Path
 
-import yaml
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(PROJECT_ROOT))
@@ -21,139 +20,75 @@ from fin_research.ingestion.auto_resolve import (
     fetch_financial_accounts,
     find_corp,
     load_corp_codes,
+    normalize_corp_name,
 )
 from fin_research.ingestion.dart_client import DartClient
+from fin_research.ingestion.industry_codes import industry_division_name
 from fin_research.ingestion.xml_documents import build_xml_documents
 from fin_research.retrieval.search_target import SearchTarget
 from fin_research.retrieval.xml_retrieval import build_xml_chroma, load_xml_eval_dataset
 from scripts.processing.build_xml_chunks_v2 import build_xml_chunks
-from scripts.ingestion.collect import load_target
 from scripts.pipelines.run_pipeline_xml import evaluate_xml, load_questions, make_draft_dataset_v2, write_json
 
 
-CONFIG_PATH = PROJECT_ROOT / "configs" / "companies.yaml"
 CORP_CODE_CACHE = PROJECT_ROOT / "data" / "raw" / "dart" / "CORPCODE.xml"
 
 
-def fiscal_month(report_name: str) -> int:
-    """사업보고서 제목의 결산월을 읽는다. 알 수 없으면 통상 결산월인 12월을 쓴다."""
-
-    match = re.search(r"\(\d{4}\.(\d{2})\)", report_name)
-    return int(match.group(1)) if match else 12
 
 
-def sync_company_config(
-    config_path: Path,
-    *,
-    name: str,
-    corp_code: str,
-    fiscal_year: int,
-    rcept_no: str,
-    report_name: str,
-) -> bool:
-    """새 기업만 companies.yaml 맨 아래에 추가한다.
+def select_company(query, corps, client):
+    """동명 후보 전체를 표시하고 사용자에게 번호 선택을 요청한다."""
+    if re.fullmatch(r"\d{8}", query) or (re.fullmatch(r"[0-9A-Z]{6}", query.upper()) and any(c.isdigit() for c in query)):
+        return find_corp(query, corps)
+    matches = [corp for corp in corps if corp.corp_name == query]
+    if not matches:
+        key = normalize_corp_name(query)
+        matches = [corp for corp in corps if normalize_corp_name(corp.corp_name) == key]
+    if not matches:
+        raise ValueError(f"'{query}'에 해당하는 기업이 없습니다.")
+    if len(matches) == 1:
+        return matches[0]
+    print(f"'{query}'와 일치하는 기업이 {len(matches)}개입니다. 번호로 선택하세요.")
+    for index, corp in enumerate(matches, start=1):
+        info = client._get_json("https://opendart.fss.or.kr/api/company.json", {"crtfc_key": client.api_key, "corp_code": corp.corp_code})
+        code = str(info.get("induty_code") or "").strip()
+        name = industry_division_name(code)
+        print(f"  {index}. {corp.corp_name} | 고유번호: {corp.corp_code} | 종목코드: {corp.stock_code or '-'} | 대표자: {info.get('ceo_nm') or '확인 불가'} | 업종 중분류: {name} | 업종코드: {code or '확인 불가'}")
+    while True:
+        try:
+            selected = input(f"선택할 번호 (1~{len(matches)}, 취소: Enter): ").strip()
+        except EOFError:
+            raise ValueError("기업 선택이 필요합니다. --corp-code에 고유번호를 지정해 다시 실행하세요.") from None
+        if not selected:
+            raise ValueError("기업 선택이 취소되었습니다.")
+        if selected.isascii() and selected.isdigit() and 1 <= int(selected) <= len(matches):
+            return matches[int(selected) - 1]
+        print(f"1부터 {len(matches)}까지의 번호를 입력하세요.")
 
-    기존 설정의 주석·정렬·수기 값이 바뀌지 않게 전체 YAML을 다시 쓰지 않는다.
-    같은 기업명 또는 corp_code가 이미 있으면 그 항목은 수정하지 않고 건너뛴다.
-    """
-
-    original = config_path.read_text(encoding="utf-8") if config_path.exists() else ""
-    try:
-        config = yaml.safe_load(original) or {}
-    except yaml.YAMLError as error:
-        raise SystemExit(f"companies.yaml을 읽지 못했습니다: {error}") from error
-    companies = config.setdefault("companies", [])
-    if not isinstance(companies, list):
-        raise SystemExit("companies.yaml의 companies는 목록이어야 합니다.")
-
-    existing = next(
-        (
-            item for item in companies
-            if item.get("corp_code") == corp_code or item.get("name") == name
-        ),
-        None,
-    )
-    if existing is not None:
-        print(
-            f"기업 설정 유지: {existing.get('name', name)}는 이미 companies.yaml에 있습니다.",
-            flush=True,
-        )
-        return False
-
-    # corp_code·rcept_no는 앞의 0이 식별값의 일부다. YAML serializer가 무따옴표
-    # scalar로 출력하면 다른 YAML 구현에서 숫자로 취급될 수 있으므로 모든 문자열을
-    # 명시적으로 큰따옴표로 쓴다.
-    quote = lambda value: json.dumps(str(value), ensure_ascii=False)
-    entry = (
-        f"  - name: {quote(name)}\n"
-        f"    corp_code: {quote(corp_code)}\n"
-        "    reports:\n"
-        f"      {quote(fiscal_year)}:\n"
-        f"        report_type: {quote('business')}\n"
-        f"        fiscal_year: {fiscal_year}\n"
-        f"        fiscal_month: {fiscal_month(report_name)}\n"
-        f"        disclosure_start: {quote(f'{fiscal_year + 1}-01-01')}\n"
-        f"        disclosure_end: {quote(f'{fiscal_year + 1}-12-31')}\n"
-        f"        rcept_no: {quote(rcept_no)}\n"
-    )
-    if not original:
-        config_path.write_text("companies:\n" + entry, encoding="utf-8")
-        return True
-    separator = "" if not original or original.endswith("\n\n") else "\n"
-    config_path.write_text(original + separator + entry, encoding="utf-8")
-    return True
 
 
 def resolve_target_from_company(args: argparse.Namespace, parser: argparse.ArgumentParser) -> str | None:
-    """입력 식별자를 확정하고 새 기업이면 설정 맨 아래에 추가한다."""
-
-    if not args.company:
-        if not args.corp_code or not args.rcept_no:
-            parser.error("--company 또는 --corp-code와 --rcept-no를 함께 지정해야 합니다.")
-        if not args.sync_config:
-            return None
-        client = DartClient.from_environment()
-        corp = find_corp(
-            args.corp_code,
-            load_corp_codes(client, CORP_CODE_CACHE, refresh=args.refresh_corp_codes),
-        )
-        added = sync_company_config(
-            CONFIG_PATH, name=corp.corp_name, corp_code=corp.corp_code,
-            fiscal_year=args.fiscal_year, rcept_no=args.rcept_no,
-            report_name=f"사업보고서 ({args.fiscal_year}.12)",
-        )
-        if added:
-            print(f"기업 설정 추가: {CONFIG_PATH}", flush=True)
-        return corp.corp_name
-
+    """기업을 확정하고 필요한 사업보고서 접수번호를 조회한다."""
+    if not args.company and not args.corp_code:
+        parser.error("--company 또는 --corp-code를 지정해야 합니다.")
+    if args.corp_code and args.rcept_no and not args.company:
+        return None
     client = DartClient.from_environment()
     corps = load_corp_codes(client, CORP_CODE_CACHE, refresh=args.refresh_corp_codes)
-    corp = find_corp(args.company, corps)
-    if args.corp_code and args.corp_code != corp.corp_code:
-        parser.error(f"--corp-code {args.corp_code}가 {args.company}의 OpenDART 고유번호 {corp.corp_code}와 다릅니다.")
-    candidates = client.search_business_reports(
-        corp.corp_code,
-        args.fiscal_year,
-        f"{args.fiscal_year + 1}-01-01",
-        f"{args.fiscal_year + 1}-12-31",
-    )
-    report, reason = choose_report(candidates, args.rcept_no, args.report_choice)
-    args.corp_code = corp.corp_code
-    args.rcept_no = report.rcept_no
-    args.company = corp.corp_name
-    print(
-        f"OpenDART 식별자: {corp.corp_name} / corp_code={corp.corp_code} / "
-        f"rcept_no={report.rcept_no} ({reason})",
-        flush=True,
-    )
-    if args.sync_config:
-        added = sync_company_config(
-            CONFIG_PATH, name=corp.corp_name, corp_code=corp.corp_code,
-            fiscal_year=args.fiscal_year, rcept_no=report.rcept_no,
-            report_name=report.report_name,
+    corp = select_company(args.corp_code or args.company.strip(), corps, client)
+    if args.company and args.corp_code and normalize_corp_name(args.company) != normalize_corp_name(corp.corp_name):
+        parser.error(f"기업명 {args.company}과 고유번호 {args.corp_code}의 기업 {corp.corp_name}이 다릅니다.")
+    candidates = client.search_business_reports(corp.corp_code, args.fiscal_year, f"{args.fiscal_year + 1}-01-01", f"{args.fiscal_year + 1}-12-31")
+    if not candidates:
+        raise ValueError(
+            f"요청하신 {corp.corp_name} (고유번호 {corp.corp_code})의 "
+            f"{args.fiscal_year}년 사업보고서가 조회되지 않았습니다. "
+            f"조회 범위: {args.fiscal_year + 1}년 공시 목록. "
+            "아직 공시되지 않았거나 해당 기간에 사업보고서가 없을 수 있습니다."
         )
-        if added:
-            print(f"기업 설정 추가: {CONFIG_PATH}", flush=True)
+    report, reason = choose_report(candidates, args.rcept_no, args.report_choice)
+    args.corp_code, args.rcept_no, args.company = corp.corp_code, report.rcept_no, corp.corp_name
+    print(f"OpenDART 식별자: {corp.corp_name} / corp_code={corp.corp_code} / rcept_no={report.rcept_no} ({reason})", flush=True)
     return corp.corp_name
 
 
@@ -167,8 +102,6 @@ def main() -> None:
     parser.add_argument("--report-choice", choices=("latest", "original"), default="latest",
                         help="정정공시가 여럿일 때 최신본(기본) 또는 최초본 선택")
     parser.add_argument("--refresh-corp-codes", action="store_true", help="OpenDART 고유번호 캐시를 새로 받음")
-    parser.add_argument("--sync-config", action=argparse.BooleanOptionalAction, default=True,
-                        help="자동 조회한 corp_code·rcept_no를 companies.yaml에 반영 (기본: 반영)")
     parser.add_argument("--chunks-path", type=Path, help="이미 생성된 청크 JSON 경로")
     parser.add_argument("--chunk-size", type=int, default=600, help="v2 청크 크기")
     parser.add_argument("--chunk-overlap", type=int, default=100, help="v2 청크 겹침")
@@ -201,6 +134,7 @@ def main() -> None:
     output_path = args.output_path or target.xml_result_path(PROJECT_ROOT).with_name(
         f"{target.rcept_no}_retrieval_v2.json"
     )
+
     chroma_root = args.chroma_dir or PROJECT_ROOT / "data" / "chroma_xml_v2"
 
     make_draft = args.make_draft_dataset or args.make_draft_dataset_v2
@@ -230,8 +164,10 @@ def main() -> None:
                 DartClient.from_environment().download_original_zip(target.rcept_no, zip_path)
             company = resolved_company or args.company
             if company is None:
-                company, _ = load_target(target.corp_code, target.fiscal_year)
-                company = company["name"]
+                client = DartClient.from_environment()
+                company = find_corp(
+                    target.corp_code, load_corp_codes(client, CORP_CODE_CACHE, refresh=args.refresh_corp_codes)
+                ).corp_name
             print(f"원본 ZIP에서 XML 문서 생성: {zip_path}", flush=True)
             documents, _ = build_xml_documents(
                 zip_path, target.corp_code, target.fiscal_year,
@@ -340,4 +276,8 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except Exception as error:
+        print(f"실패: {error}", file=sys.stderr)
+        sys.exit(1)
