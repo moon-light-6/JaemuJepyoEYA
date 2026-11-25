@@ -8,6 +8,7 @@ from uuid import UUID, uuid4
 import pymupdf
 from fastapi import FastAPI, File, Form, HTTPException, Query, UploadFile
 
+from fin_research.api.research_routes import ResearchJobs, create_router
 from fin_research.api.schemas import (
     JobUploadResponse,
     JobStatusResponse,
@@ -25,6 +26,9 @@ app = FastAPI(
     description="재무제표 Deep Research 검증 시스템",
     version="0.1.0",
 )
+
+# 자연어 요청 하나로 조사·보고서·검증을 실행하는 API
+app.include_router(create_router(ResearchJobs()))
 
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
 
