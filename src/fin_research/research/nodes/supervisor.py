@@ -14,7 +14,6 @@ from typing import Literal
 
 from langchain_core.messages import HumanMessage, SystemMessage
 from langchain_core.runnables import RunnableConfig
-from langgraph.graph import END
 from langgraph.types import Command, Send
 from pydantic import BaseModel, Field
 
@@ -145,7 +144,7 @@ async def rewrite_questions(
 
 async def supervisor_review(
     state: ResearchState, config: RunnableConfig
-) -> Command[Literal["researcher", "__end__"]]:
+) -> Command[Literal["researcher", "outline"]]:
     brief = state["brief"]
     round_ = state.get("round", 1)
     latest = latest_by_subtopic(state.get("findings") or [])
@@ -155,13 +154,13 @@ async def supervisor_review(
     ]
 
     def stop(complete: bool, reason: str) -> Command:
-        # 3주차: 종료 대신 compress로
+        # 조사를 끝내고 보고서 작성(outline → writer)으로
         return Command(
             update={
                 "supervisor_decision": SupervisorDecision(complete=complete, reason=reason),
                 "step": f"supervisor_review:round{round_}",
             },
-            goto=END,
+            goto="outline",
         )
 
     if not lacking:

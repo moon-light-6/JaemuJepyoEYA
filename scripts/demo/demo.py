@@ -61,8 +61,20 @@ def print_usage(budget: Budget, started: float) -> None:
 
 # ─────────────────────────── 1. 보고서 생성 ───────────────────────────
 
+def writer_body(state: dict) -> str | None:
+    """writer가 쓴 보고서에서 맨 위 '# 제목' 줄을 뺀 본문 (요약 · 주제 · 결론). 없으면 None."""
+    report = (state.get("report") or "").strip()
+    if not report:
+        return None
+    lines = report.splitlines()
+    return "\n".join(lines[1:] if lines and lines[0].startswith("# ") else lines).strip()
+
+
 def report_markdown(state: dict, registry: EvidenceRegistry) -> str:
-    """리서치 결과 → Markdown 보고서. 본문 [S#]는 맨 아래 출처 목록과 번호가 같다."""
+    """리서치 결과 → Markdown 보고서. 본문 [S#]는 맨 아래 출처 목록과 번호가 같다.
+
+    writer가 쓴 보고서(state["report"])가 있으면 그 본문을 쓰고, 없으면 조사 결과를 주제별로 붙인다.
+    """
     brief = state["brief"]
     titles = {s.id: s.title for s in brief.subtopics}
     findings = sorted(state.get("findings", []), key=lambda f: list(titles).index(f.subtopic_id))
@@ -78,14 +90,15 @@ def report_markdown(state: dict, registry: EvidenceRegistry) -> str:
     ]
     for note in brief.notes:
         lines.append(f"> {note}")
-    for f in findings:
-        lines += ["", f"## {titles[f.subtopic_id]}", ""]
-        if f.status == "draft":
-            lines.append(f.summary)
-        else:
-            lines.append("_확보한 근거로 답할 수 없었습니다._")
-        if f.limitations:
-            lines += ["", "**한계**"] + [f"- {note}" for note in f.limitations]
+    body = writer_body(state)
+    if body:  # writer가 쓴 요약 · 수익성 · 재무 안정성 · 현금흐름 · 리스크 · 결론
+        lines += ["", body]
+    else:  # writer 결과가 없으면 조사 결과를 그대로
+        for f in findings:
+            lines += ["", f"## {titles[f.subtopic_id]}", ""]
+            lines.append(f.summary if f.status == "draft" else "_확보한 근거로 답할 수 없었습니다._")
+            if f.limitations:
+                lines += ["", "**한계**"] + [f"- {note}" for note in f.limitations]
     lines += ["", "## 출처", ""]
     evidences = registry.values()
     if not evidences:
@@ -120,8 +133,13 @@ async def run_generate(request: str, mock: bool, questions: int | None) -> int:
         print_usage(budget, started)
         return 1
     demo_research.print_sources(registry, demo_research.quotes_by_id(state))
+    body = writer_body(state)
+    if body:
+        print(f"\n{LINE}\n작성된 보고서 (writer)\n{LINE}\n{body}")
 
-    path = PROJECT_ROOT / f"생성보고서_{state['brief'].company}.md"
+    # --mock 결과가 실제 보고서를 덮어쓰지 않게 이름을 나눈다
+    suffix = "_mock" if mock else ""
+    path = PROJECT_ROOT / f"생성보고서_{state['brief'].company}{suffix}.md"
     path.write_text(report_markdown(state, registry), encoding="utf-8")
     print_usage(budget, started)
     print(f"\n보고서 저장: {path.relative_to(PROJECT_ROOT)}")
