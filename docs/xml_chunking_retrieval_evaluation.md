@@ -39,7 +39,7 @@ evaluation/results/xml/{corp_code}/{fiscal_year}/{scope}/
 원본 ZIP이 `data/raw/dart/00126380/2025/20260310002820.zip`에 있어야 한다.
 
 ```zsh
-python scripts/run_pipeline_xml.py \
+python scripts/pipelines/run_pipeline_xml.py \
   --company "삼성전자" \
   --corp-code 00126380 \
   --fiscal-year 2025 \
@@ -53,7 +53,7 @@ python scripts/run_pipeline_xml.py \
 문서와 청크만 만들고 싶을 때는 다음처럼 실행한다. `--prepare-only`와 `--make-draft-dataset`은 함께 쓸 수 없다.
 
 ```zsh
-python scripts/run_pipeline_xml.py \
+python scripts/pipelines/run_pipeline_xml.py \
   --company "삼성전자" \
   --corp-code 00126380 \
   --fiscal-year 2025 \
@@ -77,7 +77,7 @@ python scripts/run_pipeline_xml.py \
 하나 이상의 문항을 `verified`로 바꾼 뒤, 같은 명령에서 `--make-draft-dataset`만 뺀 채 실행한다.
 
 ```zsh
-python scripts/run_pipeline_xml.py \
+python scripts/pipelines/run_pipeline_xml.py \
   --company "삼성전자" \
   --corp-code 00126380 \
   --fiscal-year 2025 \
@@ -88,7 +88,7 @@ python scripts/run_pipeline_xml.py \
 청킹 규칙을 바꾼 뒤에는 기존 XML Chroma 컬렉션만 다시 만들도록 `--rebuild-index`를 추가한다. 원본 ZIP과 평가셋은 삭제하지 않는다.
 
 ```zsh
-python scripts/run_pipeline_xml.py \
+python scripts/pipelines/run_pipeline_xml.py \
   --company "삼성전자" \
   --corp-code 00126380 \
   --fiscal-year 2025 \
@@ -112,7 +112,7 @@ python scripts/run_pipeline_xml.py \
 `--make-draft-dataset` 실행 때 `제외: ...`로 빠진 문항은 v1 파일을 고치지 않고 v2 파일로 보충한다. v2는 v1에 없는 질문만 담으며, 문항 ID는 v1 다음 번호(`X15`…)부터 이어진다.
 
 ```zsh
-python scripts/run_pipeline_xml.py ^
+python scripts/pipelines/run_pipeline_xml.py ^
   --company "현대자동차" ^
   --corp-code 00164742 ^
   --fiscal-year 2025 ^

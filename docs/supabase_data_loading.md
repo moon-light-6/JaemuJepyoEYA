@@ -4,7 +4,7 @@
 
 ## 0. 실행 준비
 
-- 프로젝트 루트에서 **Windows CMD**와 `.venv`를 사용합니다. `scripts/fetch_dart_accounts.py`, `scripts/load_dart_accounts.py`와 XML 파이프라인의 `auto_resolve.py`가 있어야 합니다.
+- 프로젝트 루트에서 **Windows CMD**와 `.venv`를 사용합니다. `scripts/ingestion/fetch_dart_accounts.py`, `scripts/storage/load_dart_accounts.py`와 XML 파이프라인의 `auto_resolve.py`가 있어야 합니다.
 - `.env`에는 `DART_API_KEY`, Supabase의 `DATABASE_URL`이 설정되어 있어야 하며, **`.env`는 Git에 커밋하지 않습니다.**
 
 ```cmd
@@ -20,7 +20,7 @@ set RCEPT_NO=20260317000641
 ## 1. 수치용 JSON 생성
 
 ```cmd
-python scripts\fetch_dart_accounts.py --corp-code %CORP_CODE% --year %YEAR% --scope %SCOPE% --expected-rcept-no %RCEPT_NO%
+python scripts\ingestion\fetch_dart_accounts.py --corp-code %CORP_CODE% --year %YEAR% --scope %SCOPE% --expected-rcept-no %RCEPT_NO%
 ```
 
 - **명령 설명:** OpenDART 재무계정 API에서 해당 기업의 수치를 조회하고 `data/processed/financial/` 아래 JSON으로 저장합니다.
@@ -29,7 +29,7 @@ python scripts\fetch_dart_accounts.py --corp-code %CORP_CODE% --year %YEAR% --sc
 ## 2. 적재 전 검증 (DB 변경 없음)
 
 ```cmd
-python scripts\load_dart_accounts.py --corp-code %CORP_CODE% --year %YEAR% --scope %SCOPE% --expected-rcept-no %RCEPT_NO%
+python scripts\storage\load_dart_accounts.py --corp-code %CORP_CODE% --year %YEAR% --scope %SCOPE% --expected-rcept-no %RCEPT_NO%
 ```
 
 - **명령 설명:** JSON의 기업·연도·연결/별도·접수번호·금액 형식을 검사하는 **DRY-RUN**입니다.
@@ -38,7 +38,7 @@ python scripts\load_dart_accounts.py --corp-code %CORP_CODE% --year %YEAR% --sco
 ## 3. Supabase에 실제 적재
 
 ```cmd
-python scripts\load_dart_accounts.py --corp-code %CORP_CODE% --year %YEAR% --scope %SCOPE% --expected-rcept-no %RCEPT_NO% --apply
+python scripts\storage\load_dart_accounts.py --corp-code %CORP_CODE% --year %YEAR% --scope %SCOPE% --expected-rcept-no %RCEPT_NO% --apply
 ```
 
 - **명령 설명:** 검증한 수치 데이터를 Supabase의 `fin.dart_financial_accounts` 테이블에 INSERT/UPSERT합니다.

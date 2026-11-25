@@ -68,7 +68,7 @@ python -X utf8 scripts\run_sql.py --question "에코프로비엠의 2025년 연�
 단위 테스트(API 호출·DB 접속 없음):
 
 ```bat
-python -X utf8 -m unittest discover -s tests -p test_sql_tool.py -v
+python -X utf8 -m unittest discover -s tests -t . -p test_sql_tool.py -v
 ```
 
 ## 실행 정책과 한계

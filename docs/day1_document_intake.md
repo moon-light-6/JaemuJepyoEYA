@@ -40,7 +40,7 @@ API 키와 원본 공시 데이터는 Git에 커밋하지 않는다.
 ### 2. OpenDART XML 수집
 
 ```powershell
-python scripts/collect.py --corp-code 00126380 --fiscal-year 2025
+python scripts/ingestion/collect.py --corp-code 00126380 --fiscal-year 2025
 ```
 
 ### 3. XML 구조 분석
@@ -72,7 +72,7 @@ python src/fin_research/ingestion/notes_parser.py `
 ### 6. XML 최종 점검
 
 ```powershell
-python scripts/check_documents.py `
+python scripts/processing/check_documents.py `
   --zip-path data/raw/dart/00126380/2025/20260310002820.zip `
   --structure-path data/processed/dart/00126380/2025/20260310002820_structure.json `
   --tables-path data/processed/dart/00126380/2025/20260310002820_consolidated_tables.json `
@@ -83,7 +83,7 @@ python scripts/check_documents.py `
 ### 7. 공식 PDF 수집 및 페이지별 텍스트 추출
 
 ```powershell
-python scripts/collect_pdf.py `
+python scripts/ingestion/collect_pdf.py `
   --corp-code 00126380 `
   --fiscal-year 2025
 ```
@@ -91,7 +91,7 @@ python scripts/collect_pdf.py `
 ### 8. 전체 테스트
 
 ```powershell
-python -m unittest discover -s tests -v
+python -m unittest discover -s tests -t . -v
 ```
 
 테스트 결과는 통과·실패·건너뜀을 구분해서 확인한다.
@@ -142,7 +142,7 @@ python -m unittest discover -s tests -v
 ## 최종 회귀 테스트
 
 ```powershell
-.\.venv\Scripts\python.exe -m unittest discover -s tests -v
+.\.venv\Scripts\python.exe -m unittest discover -s tests -t . -v
 ```
 
 ## 다음 담당자 참고

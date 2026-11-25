@@ -19,7 +19,7 @@
 
 ## 1. 검색 대상 페이지 표준화
 
-`scripts/prepare_pages.py`는 `*_pdf_pages.json`에서 필요한 페이지 범위만 골라 검색용 페이지 JSON을 만든다. 회사명·연도·접수번호·페이지 범위는 실행 인자로 받으므로 다른 기업에도 그대로 쓸 수 있다.
+`scripts/processing/prepare_pages.py`는 `*_pdf_pages.json`에서 필요한 페이지 범위만 골라 검색용 페이지 JSON을 만든다. 회사명·연도·접수번호·페이지 범위는 실행 인자로 받으므로 다른 기업에도 그대로 쓸 수 있다.
 
 페이지 하나에는 아래 정보가 들어간다.
 
@@ -48,7 +48,7 @@ document_type, source_file, pdf_page, section
 ```bash
 source venv/bin/activate
 
-python scripts/prepare_pages.py \
+python scripts/processing/prepare_pages.py \
   --company "삼성전자" \
   --corp-code 00126380 \
   --fiscal-year 2025 \
@@ -73,7 +73,7 @@ Windows의 **명령 프롬프트(CMD)** 에서는 가상환경을 아래처럼 �
 ```cmd
 venv\Scripts\activate.bat
 
-python scripts\prepare_pages.py ^
+python scripts\processing\prepare_pages.py ^
   --company "삼성전자" ^
   --corp-code 00126380 ^
   --fiscal-year 2025 ^
@@ -85,7 +85,7 @@ python scripts\prepare_pages.py ^
 
 ## 2. 청킹
 
-`scripts/build_chunks.py`는 페이지 JSON을 읽어 긴 본문을 검색용 청크로 나눈다. 수업 코드와 같은 `RecursiveCharacterTextSplitter`를 사용한다.
+`scripts/processing/build_chunks.py`는 페이지 JSON을 읽어 긴 본문을 검색용 청크로 나눈다. 수업 코드와 같은 `RecursiveCharacterTextSplitter`를 사용한다.
 
 - 기본 청크 크기: 600자
 - 기본 청크 중복: 100자
@@ -93,7 +93,7 @@ python scripts\prepare_pages.py ^
 - 청크는 원래 페이지의 회사·연도·연결 기준·PDF 페이지·섹션 메타데이터를 유지함
 
 ```bash
-python scripts/build_chunks.py \
+python scripts/processing/build_chunks.py \
   --input-path data/processed/dart/00126380/2025/20260310002820_pages.json \
   --output-path data/processed/dart/00126380/2025/20260310002820_chunks.json
 ```
@@ -111,7 +111,7 @@ python scripts/build_chunks.py \
 Windows CMD에서는 아래 명령을 사용한다.
 
 ```cmd
-python scripts\build_chunks.py ^
+python scripts\processing\build_chunks.py ^
   --input-path data\processed\dart\00126380\2025\20260310002820_pages.json ^
   --output-path data\processed\dart\00126380\2025\20260310002820_chunks.json
 ```
@@ -133,10 +133,10 @@ python scripts\build_chunks.py ^
 
 ## 3. 청크 품질 점검
 
-`scripts/check_chunks.py`는 원래 페이지 JSON과 청크 JSON을 비교한다. 데이터를 수정하지 않고 검증 결과만 저장한다.
+`scripts/processing/check_chunks.py`는 원래 페이지 JSON과 청크 JSON을 비교한다. 데이터를 수정하지 않고 검증 결과만 저장한다.
 
 ```bash
-python scripts/check_chunks.py \
+python scripts/processing/check_chunks.py \
   --pages-path data/processed/dart/00126380/2025/20260310002820_pages.json \
   --chunks-path data/processed/dart/00126380/2025/20260310002820_chunks.json \
   --output-path data/processed/dart/00126380/2025/20260310002820_chunks_validation.json
@@ -162,7 +162,7 @@ python scripts/check_chunks.py \
 Windows CMD에서는 아래 명령을 사용한다.
 
 ```cmd
-python scripts\check_chunks.py ^
+python scripts\processing\check_chunks.py ^
   --pages-path data\processed\dart\00126380\2025\20260310002820_pages.json ^
   --chunks-path data\processed\dart\00126380\2025\20260310002820_chunks.json ^
   --output-path data\processed\dart\00126380\2025\20260310002820_chunks_validation.json
@@ -195,13 +195,13 @@ python scripts\check_chunks.py ^
 전체 회귀 테스트:
 
 ```bash
-python -m unittest discover -s tests -v
+python -m unittest discover -s tests -t . -v
 ```
 
 Windows CMD에서는 같은 명령을 그대로 실행하면 된다.
 
 ```cmd
-python -m unittest discover -s tests -v
+python -m unittest discover -s tests -t . -v
 ```
 
 현재는 청크 검증 테스트까지 포함해 18개 테스트가 통과해야 한다.

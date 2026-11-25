@@ -102,7 +102,7 @@ python -X utf8 evaluation\run_eval.py --mode predictions --dataset evaluation\da
 ## 단위 테스트
 
 ```bat
-python -X utf8 -m unittest discover -s tests -p test_loop_qa.py -v
+python -X utf8 -m unittest discover -s tests -t . -p test_loop_qa.py -v
 ```
 
 정상 사례 외에 금액·단위·연도·범위·출처·도구 순서·검색 횟수를 일부러 바꿔 평가가 실패하는지 확인한다.

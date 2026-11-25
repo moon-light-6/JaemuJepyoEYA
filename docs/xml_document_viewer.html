@@ -77,13 +77,13 @@
           <li><code>rcept_no</code>: DART 접수번호</li>
         </ul>
         <p><strong>2. 원본 XML ZIP이 없다면 먼저 수집</strong></p>
-        <span class="guide-command">python scripts/collect.py \\
+        <span class="guide-command">python scripts/ingestion/collect.py \\
   --corp-code {corp_code} \\
   --fiscal-year {fiscal_year}</span>
         <p>줄을 나눌 때는 각 줄 끝에 <code>\</code>를 <strong>하나만</strong> 쓰고, 그 뒤에 공백 없이 Enter를 누릅니다. 한 줄로 실행하려면 <code>\</code>를 모두 빼고 명령어를 이어 씁니다.</p>
         <p>수집이 끝나면 원본은 <code>data/raw/dart/{corp_code}/{fiscal_year}/{rcept_no}.zip</code>에 생깁니다. 출력된 접수번호를 다음 명령의 <code>{rcept_no}</code> 자리에 넣습니다.</p>
         <p><strong>3. XML 문서 JSON만 생성</strong></p>
-        <span class="guide-command">python scripts/run_pipeline_xml.py \\
+        <span class="guide-command">python scripts/pipelines/run_pipeline_xml.py \\
   --company "회사명" \\
   --corp-code {corp_code} \\
   --fiscal-year {fiscal_year} \\
