@@ -136,6 +136,8 @@ async def run_generate(request: str, mock: bool, questions: int | None) -> int:
     body = writer_body(state)
     if body:
         print(f"\n{LINE}\n작성된 보고서 (writer)\n{LINE}\n{body}")
+        for warning in (e for e in state.get("errors") or [] if e.startswith("writer ")):
+            print(f"  ⚠️ {warning}")
 
     # --mock 결과가 실제 보고서를 덮어쓰지 않게 이름을 나눈다
     suffix = "_mock" if mock else ""

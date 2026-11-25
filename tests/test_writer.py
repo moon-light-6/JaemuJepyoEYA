@@ -155,11 +155,38 @@ class TestWriterNode(unittest.TestCase):
         self.assertNotIn("[S9]", out.update["report"])
         self.assertTrue(any("S9" in e for e in out.update["errors"]))
 
+    def test_conclusion_with_numbers_falls_back_to_plain_text(self):
+        out, _ = run_writer({**GOOD, "결론": "매출액은 12,035,007,218,975원으로 양호합니다. [S2]"})
+        conclusion = section(out.update["report"], "결론")
+        self.assertEqual(numbers_in(conclusion), set())
+        self.assertIn("재무 안정성 항목은 확인하지 못했습니다", conclusion)
+        self.assertTrue(any("결론에 숫자 사용" in e for e in out.update["errors"]))
+
+    def test_summary_may_use_numbers(self):
+        out, _ = run_writer(GOOD)
+        self.assertEqual(section(out.update["report"], "요약"), GOOD["요약"])
+
     def test_summary_cannot_use_numbers_rejected_in_body(self):
         # 본문에서 걸러진 '3.1'은 요약 입력에도 없으므로 요약에 쓰면 걸린다
         answers = {**GOOD, "현금흐름": "약 3.1조원 [S4]", "요약": "현금흐름 약 3.1조원 [S4]."}
         out, _ = run_writer(answers)
         self.assertNotIn("3.1조", section(out.update["report"], "요약"))
+
+    def test_conclusion_input_lists_missing_topics(self):
+        inputs = {}
+
+        class Recorder:
+            async def ainvoke(self, messages):
+                title = messages[-1].content.split("섹션: ")[1].split("\n")[0]
+                inputs[title] = messages[-1].content
+                return AIMessage(GOOD[title])
+
+        with patch.object(writer, "get_llm_for_role", return_value=Recorder()), \
+                patch.object(writer, "load_prompt", return_value="SYSTEM"):
+            asyncio.run(writer_node(state(), {}))
+        self.assertIn("[확인하지 못한 주제]\n재무 안정성", inputs["결론"])
+        self.assertIn("[확인하지 못한 주제]\n재무 안정성", inputs["요약"])
+        self.assertNotIn("확인하지 못한 주제", inputs["수익성"])
 
     def test_budget_exceeded_keeps_report(self):
         out, _ = run_writer(GOOD, error=BudgetExceeded("한도 초과"))

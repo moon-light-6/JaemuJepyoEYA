@@ -35,9 +35,11 @@ def numbers_in(text:str)->set[str]:
 def citations_in(text:str)-> set[str]:
     return {i for group in _CITATION.findall(text) for i in _SOURCE_ID.findall(group)}
 
-def check_section(written: str, source_text:str, allowed_ids: set[str])->list[str]:
-    """쓴 문장의 문제 목록. 비어 있으면 통과"""
+def check_section(written: str, source_text:str, allowed_ids: set[str], allow_numbers: bool = True)->list[str]:
+    """쓴 문장의 문제 목록. 비어 있으면 통과. allow_numbers=False면(결론) 숫자를 쓰면 안 된다."""
     problems=[]
+    if not allow_numbers and numbers_in(written):
+        problems.append(f"결론에 숫자 사용:{','.join(sorted(numbers_in(written)))}")
     new_numbers=numbers_in(written)- numbers_in(source_text)
     if new_numbers:
         problems.append(f"입력에 없는 숫자:{','.join(sorted(new_numbers))}")
@@ -71,6 +73,13 @@ def insufficient_text(findings: list[Finding])->str:
     detail=f" ({'; '.join(notes)})" if notes else ""
     return f"확보한 공시 근거로 이 항목을 확인하지 못했습니다.{detail}"
 
+def conclusion_fallback(done_titles: list[str], missing_titles: list[str]) -> str:
+    """결론 검사 실패 시 코드가 쓰는 숫자 없는 결론."""
+    text = f"{', '.join(done_titles)} 항목은 공시 근거로 확인했으며, 세부 수치는 각 섹션에 정리했습니다."
+    if missing_titles:
+        text += f" {', '.join(missing_titles)} 항목은 확인하지 못했습니다."
+    return text
+
 # LLM 호출
 
 async def write_one(llm,system:str,title: str, source: str, company: str, years: str)-> str:
@@ -81,15 +90,16 @@ async def write_one(llm,system:str,title: str, source: str, company: str, years:
     response=await llm.ainvoke(messages)
     return str(response.content).strip()
 
-async def write_checked(llm, system,title,source, allowed_ids,fallback,company,years):
+async def write_checked(llm, system,title,source, allowed_ids,fallback,company,years, allow_numbers=True):
     """(본문, 경고). LLM 실패·검사 실패면 fallback 문장을 쓴다."""
     try:
         written=await write_one(llm,system,title,source,company,years)
     except BudgetExceeded as e:
         return  fallback, f"writer {title}: [예산 초과] 조사 결과 문장을 그대로 사용 ({e})"
-    problems=check_section(written,source,allowed_ids)
+    problems=check_section(written,source,allowed_ids,allow_numbers)
     if problems:
-        return fallback,f"writer {title}: {'; '.join(problems)} → 조사 결과 문장을 그대로 사용"
+        excerpt = " ".join(written.split())[:120]
+        return fallback,f"writer {title}: {'; '.join(problems)} → 대체 문장 사용 (LLM 답변: {excerpt})"
     return written,None
 
 
@@ -127,14 +137,20 @@ async def writer_node(state:ResearchState,config:RunnableConfig)->Command[Litera
     # ② 요약·결론: 검사를 통과한 섹션 문장만 입력으로
     done = [s for s in body if s.evidence_ids]
     body_text = "\n\n".join(f"[{s.title}]\n{written[s.title]}" for s in done)
+    missing = [s.title for s in body if not s.evidence_ids]
+    if missing:  # 근거 없는 주제를 알려 줘야 결론에서 '안정적' 같은 평가를 지어내지 않는다
+        body_text += "\n\n[확인하지 못한 주제]\n" + ", ".join(missing)
     allowed = {e for s in done for e in s.evidence_ids}
     for title in (SUMMARY_TITLE, CONCLUSION_TITLE):
         if not done:
             written[title] = "확보한 공시 근거가 없어 작성하지 못했습니다."
             continue
-        fallback = " ".join(written[s.title].split(". ")[0].rstrip(".") + "." for s in done)
+        if title == CONCLUSION_TITLE:
+            fallback = conclusion_fallback([s.title for s in done], missing)
+        else:
+            fallback = " ".join(written[s.title].split(". ")[0].rstrip(".") + "." for s in done)
         text, warning = await write_checked(llm, system, title, body_text, allowed, fallback,
-                                            brief.company, years)
+                                            brief.company, years, allow_numbers=title != CONCLUSION_TITLE)
         written[title] = text
         if warning:
             warnings.append(warning)
