@@ -44,12 +44,13 @@ class FirstPassTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "없는 출처"):
             generate_findings("질문", [EVIDENCE], fake_model(answer))
 
-    def test_unlisted_inline_citation_is_rejected(self):
+    def test_unlisted_inline_citation_is_listed(self):
+        # 본문에 유효한 [S1]이 있으면 evidence_ids를 본문에 맞춘다 (형식만 어긋난 맞는 답은 버리지 않는다)
         answer = GroundedAnswer(
             status="draft", answer="답변 [S1]", evidence_ids=[], limitations=[],
         )
-        with self.assertRaisesRegex(ValueError, "일치하지"):
-            generate_findings("질문", [EVIDENCE], fake_model(answer))
+        result = generate_findings("질문", [EVIDENCE], fake_model(answer))
+        self.assertEqual(result.evidence_ids, ["S1"])
 
     def test_uncited_draft_is_rejected(self):
         answer = GroundedAnswer(

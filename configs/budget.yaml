@@ -19,3 +19,7 @@ verify:
   max_concurrent_extract: 4    # claim_extract가 동시에 보내는 LLM 호출 수 (페이지 묶음 단위)
   batch_max_chars: 6000        # LLM 한 번에 넣을 페이지 텍스트 글자 수
   max_concurrent_verify: 8     # 동시에 실행할 verify_claim 수 (DB 조회는 기업당 1번, 나머지는 캐시)
+  # Qwen 공개 모델은 GPU 메모리와 첫 실험의 응답 시간을 고려해 작은 묶음을 직렬 처리한다.
+  # 위의 max_concurrent_extract/batch_max_chars는 기존 GPT 비교 실행용 설정으로 보존한다.
+  qwen_max_concurrent_extract: 1
+  qwen_batch_max_chars: 3000

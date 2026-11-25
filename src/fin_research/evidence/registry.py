@@ -65,6 +65,18 @@ class EvidenceRegistry:
         with self._lock:
             return len(self._by_id)
 
+    def related(self, context_key: str, question: str, limit: int = 5):
+        """동일 조사 기준에서 확보한 문서만 제목·핵심어로 골라 다른 질문에 재사용한다."""
+        from fin_research.retrieval.bm25_retriever import simple_tokens
+        topics = [w for w in ("매출", "영업이익", "순이익", "원인", "소송", "우발", "감사", "현금", "자본") if w in question]
+        tokens = set(simple_tokens(question)) - {"연결", "별도", "기준", "설명", "관련", "대한"}
+        def score(item):
+            """같은 기준의 근거 안에서 질문과 겹치는 실제 문구를 점수화한다."""
+            text = (item.title or "") + " " + item.text
+            return 3 * sum(w in text for w in topics) + sum(t in text for t in tokens)
+        candidates = [e for e in self.values() if e.context_key == context_key and e.source_format not in ("db", "calc")]
+        return tuple(e for e in sorted(candidates, key=score, reverse=True) if score(e) > 0)[:limit]
+
     @staticmethod
     def _parse_candidate(candidate: EvidenceCandidate | Mapping[str, Any]) -> EvidenceCandidate:
         if isinstance(candidate, EvidenceCandidate):

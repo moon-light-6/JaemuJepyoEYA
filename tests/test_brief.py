@@ -99,7 +99,8 @@ class TestBuildBrief(unittest.TestCase):
 
     def test_company_name_added_when_missing(self):
         result = self.build(draft(sub("cashflow", ["설비투자 규모는?", f"{COMPANY}의 재고는?"])))
-        self.assertEqual(result.subtopics[2].questions, [f"{COMPANY} 설비투자 규모는?", f"{COMPANY}의 재고는?"])
+        self.assertTrue(all(COMPANY in q for q in result.subtopics[2].questions))
+        self.assertFalse(any("설비투자 규모" in q for q in result.subtopics[2].questions))
 
     def test_duplicate_questions_removed(self):
         q = f"{COMPANY}의 2025년 부채비율은?"
@@ -214,7 +215,7 @@ class TestRealTemplate(unittest.TestCase):
         for t in template:
             self.assertTrue(t["required_metrics"], t["id"])
             for q in t["default_questions"]:
-                q.format(company=COMPANY, years="2025년")  # 치환 자리 오타가 있으면 KeyError
+                q.format(company=COMPANY, years="2025년", scope="연결")  # 치환 자리 오타가 있으면 KeyError
 
     def test_template_id_mismatch_detected_at_load(self):
         broken = {"subtopics": [dict(t) for t in TEMPLATE]}
