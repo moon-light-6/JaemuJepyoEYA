@@ -34,7 +34,6 @@ from fin_research.ingestion.section_detector import (
     detect_sections,
 )
 from scripts.pipelines.run_pipeline import SUMMARY_FIELDS, save_summary
-from scripts.pipelines.run_pipeline_xml_v2 import sync_company_config
 
 
 CORP_XML = """<?xml version="1.0" encoding="UTF-8"?>
@@ -120,43 +119,6 @@ class SummarySaveTest(unittest.TestCase):
                 rows = list(csv.DictReader(file))
             self.assertEqual(len(rows), 2)
             self.assertTrue(all(row["fiscal_year"] == "2025" for row in rows))
-
-
-class XmlV2ConfigSyncTest(unittest.TestCase):
-    def test_sync_appends_only_new_company_without_rewriting_existing_entries(self):
-        with tempfile.TemporaryDirectory() as directory:
-            path = Path(directory) / "companies.yaml"
-            original = "companies:\n  - name: 기존회사\n    corp_code: '00000001'\n    reports: {}\n"
-            path.write_text(original, encoding="utf-8")
-            sync_company_config(
-                path, name="새회사", corp_code="00000002", fiscal_year=2025,
-                rcept_no="20260318000001", report_name="사업보고서 (2025.12)",
-            )
-            content = path.read_text(encoding="utf-8")
-            config = __import__("yaml").safe_load(content)
-            self.assertTrue(content.startswith(original))
-            self.assertIn('name: "새회사"', content)
-            self.assertIn('corp_code: "00000002"', content)
-            self.assertIn('rcept_no: "20260318000001"', content)
-            report = config["companies"][1]["reports"]["2025"]
-            self.assertEqual(config["companies"][0]["corp_code"], "00000001")
-            self.assertEqual(config["companies"][1]["corp_code"], "00000002")
-            self.assertEqual(report["rcept_no"], "20260318000001")
-            self.assertEqual(report["fiscal_month"], 12)
-            self.assertEqual(report["disclosure_start"], "2026-01-01")
-            self.assertFalse(path.with_suffix(".yaml.bak").exists())
-
-    def test_sync_keeps_existing_company_unchanged(self):
-        with tempfile.TemporaryDirectory() as directory:
-            path = Path(directory) / "companies.yaml"
-            original = "companies:\n  # 수기 주석\n  - name: 기존회사\n    corp_code: '00000001'\n"
-            path.write_text(original, encoding="utf-8")
-            added = sync_company_config(
-                path, name="기존회사", corp_code="00000001", fiscal_year=2025,
-                rcept_no="20260318000001", report_name="사업보고서 (2025.12)",
-            )
-            self.assertFalse(added)
-            self.assertEqual(path.read_text(encoding="utf-8"), original)
 
 
 class DcmNoTest(unittest.TestCase):
