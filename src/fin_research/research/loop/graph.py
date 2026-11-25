@@ -37,6 +37,13 @@ def evidence_location(evidence: dict) -> str:
     return f"{page}쪽" if page is not None else "위치 미확인"
 
 
+def _location(item):
+    """팀원 표시 함수와 XML XPath 중심 진행 로그의 호환을 유지한다."""
+    if item.get("pdf_page") is not None:
+        return f"{item['pdf_page']}쪽"
+    return item.get("title") or item.get("source_xpath") or "위치 정보 없음"
+
+
 def run_once(
     question: str,
     persist_directory: Path,
@@ -168,7 +175,7 @@ def run_research_loop(
                 known.add(key)
                 history["new_evidence_count"] += 1
                 report_progress(progress, f"새 근거 S{len(evidences)} · {hit['source_file']} "
-                                f"{evidence_location(hit)} · 청크 {hit['chunk_id']}")
+                                f"{_location(hit)} · 청크 {hit['chunk_id']} · {evidence_location(hit)}")
         no_new_evidence = bool(state["queries"]) and history["new_evidence_count"] == 0
         report_progress(progress, f"검색 완료 · 반환 {len(hits)}개 · 신규 "
                         f"{history['new_evidence_count']}개 · 누적 {len(evidences)}개")

@@ -166,15 +166,19 @@ class IterativeLoopTests(unittest.TestCase):
         self.assertEqual(result["findings"]["status"], "insufficient_evidence")
         self.assertEqual(result["llm_calls"], 3)
 
-    def test_evaluator_rejects_unknown_source(self):
+    def test_evaluator_drops_unknown_source(self):
+        # 검색되지 않은 S99만 있으면 쓸 출처가 없으므로 '부족'으로 보정한다 (예외로 질문 전체를 죽이지 않는다)
         model = model_responses(evaluation(True, ids=["S99"]))
-        with self.assertRaisesRegex(ValueError, "검색되지 않은"):
-            evaluate_evidence("질문", [{**evidence(1), "evidence_id": "S1"}], [], model)
+        result = evaluate_evidence("질문", [{**evidence(1), "evidence_id": "S1"}], [], model)
+        self.assertFalse(result.sufficient)
+        self.assertEqual(result.evidence_ids, [])
+        self.assertIn("S99 제외", result.reason)
 
-    def test_evaluator_rejects_sufficient_without_source(self):
+    def test_evaluator_downgrades_sufficient_without_source(self):
         model = model_responses(evaluation(True))
-        with self.assertRaisesRegex(ValueError, "유효한 출처"):
-            evaluate_evidence("질문", [], [], model)
+        result = evaluate_evidence("질문", [], [], model)
+        self.assertFalse(result.sufficient)
+        self.assertTrue(result.missing_items)
 
     def test_invalid_budget_fails_before_model_call(self):
         with self.assertRaisesRegex(ValueError, "max_rounds"):

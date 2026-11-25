@@ -58,7 +58,7 @@
     "annotation_method": "auto_opendart_xml_xpath_candidate"
   },
   {
-    "question": "2025년 연결 기준 매출액은 얼마인가?",
+    "question": "2025년 연결 기준 영업수익은 얼마인가?",
     "answer_type": "numeric",
     "expected_value": "41,635,622,271",
     "unit": "원",
@@ -167,7 +167,7 @@
     "opendart_account": {
       "sj_div": "CF",
       "account_id": "ifrs-full_CashFlowsFromUsedInOperatingActivities",
-      "account_nm": "영업활동으로 인한 현금흐름"
+      "account_nm": "영업활동으로인한현금흐름"
     },
     "id": "X06",
     "annotation_status": "verified",
@@ -264,7 +264,7 @@
     "annotation_method": "auto_opendart_xml_xpath_candidate"
   },
   {
-    "question": "2025년과 2024년 연결 기준 매출액은 각각 얼마인가?",
+    "question": "2025년과 2024년 연결 기준 영업수익은 각각 얼마인가?",
     "answer_type": "comparison",
     "expected_value": {
       "2025": "41,635,622,271",
@@ -449,7 +449,7 @@
     "opendart_account": {
       "sj_div": "CF",
       "account_id": "ifrs-full_CashFlowsFromUsedInOperatingActivities",
-      "account_nm": "영업활동으로 인한 현금흐름"
+      "account_nm": "영업활동으로인한현금흐름"
     },
     "id": "X15",
     "annotation_status": "verified",

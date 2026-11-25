@@ -11,7 +11,7 @@ from langchain_core.runnables import RunnableConfig
 from fin_research.llm.budget import BudgetExceeded, load_budget_config
 from fin_research.llm.client import PROJECT_ROOT
 from fin_research.progress import report_progress
-from fin_research.research.nodes.common import get_budget
+from fin_research.research.nodes.common import get_budget, get_evidence_registry
 from fin_research.research.state import EvidenceRef, Finding, QuestionFinding, ResearchNumber
 from fin_research.tools.financial_models import FinancialContext
 
@@ -65,7 +65,7 @@ def remap_citations(text: str, mapping: dict[str, str]) -> str:
     return _GROUP.sub(replace, text)
 
 
-def convert_result(question: str, result: dict, context: FinancialContext, prefix: str, round_: int) -> QuestionFinding:
+def convert_result(question: str, result: dict, context: FinancialContext, prefix: str, round_: int, registry=None) -> QuestionFinding:
     """원문을 복제하지 않고 숫자·위치·실행 이력·부분 상태를 상위 자료형으로 변환한다."""
     if FinancialContext.model_validate(result.get("context")) != context:
         raise ValueError("조사 결과의 기업·기간·기준·접수번호가 요청과 다릅니다.")
@@ -74,7 +74,8 @@ def convert_result(question: str, result: dict, context: FinancialContext, prefi
     if status not in ("draft", "partial", "insufficient_evidence"):
         raise ValueError("알 수 없는 조사 결과 상태입니다.")
     by_id = {e["evidence_id"]: e for e in result.get("evidences", [])}
-    mapping = {key: f"{prefix}.{key}" for key in by_id}
+    mapping = {key: registry.register(evidence_candidate(evidence, context)) if registry is not None else f"{prefix}.{key}"
+               for key, evidence in by_id.items()}
     cited = list(dict.fromkeys(answer.get("evidence_ids", [])))
     if not set(cited) <= by_id.keys():
         raise ValueError("인용 목록에 확보하지 않은 출처가 있습니다.")
@@ -95,7 +96,20 @@ def convert_result(question: str, result: dict, context: FinancialContext, prefi
             pdf_page=evidence.get("pdf_page"), source_xpath=evidence.get("source_xpath"),
             title=evidence.get("title"), chunk_id=evidence.get("chunk_id"),
             rcept_no=metadata.get("rcept_no"), account_id=metadata.get("account_id"),
-            account_name=metadata.get("account_name")))
+            account_name=metadata.get("account_name"),
+            quote=evidence_quote(evidence, question, answer["answer"])))
+    if registry is not None:
+        for calculation in result.get("calculations", []):
+            identifier = registry.register({"source_file": "코드 계산 (tools/ratios.py)",
+                "chunk_id": f"calc:{context.model_dump_json()}:{calculation['metric']}",
+                "text": json.dumps(calculation, ensure_ascii=False), "source_format": "calc",
+                "title": calculation["metric"], "context_key": context.model_dump_json()})
+            sources.append(EvidenceRef(id=identifier, source_file="코드 계산 (tools/ratios.py)",
+                chunk_id=registry.require(identifier).chunk_id, quote=registry.require(identifier).text))
+            for number in numbers:
+                if number.metric == calculation["metric"]:
+                    number.source_ids.append(identifier)
+            summary += f"\n계산 근거: [{identifier}]"
     retry = question
     components = result.get("component_status") or {}
     if (status == "partial" and components.get("explanation") == "unavailable"
@@ -103,9 +117,10 @@ def convert_result(question: str, result: dict, context: FinancialContext, prefi
         document = result.get("document_research") or {}
         retry = (document.get("evaluation") or {}).get("next_query") or (result.get("plan") or {}).get("document_question") or question
     return QuestionFinding(question=question, status=status, summary=summary, numbers=numbers,
-        evidence_ids=[mapping[s] for s in cited], sources=sources,
+        evidence_ids=list(dict.fromkeys([mapping[s] for s in cited] + [s.id for s in sources])), sources=sources,
         limitations=list(answer.get("limitations", [])), component_status=components,
         unsupported_items=result.get("unsupported_items", []),
+        explanation=remap_citations(result.get("document_summary", ""), mapping),
         retry_question=retry if status != "draft" else None,
         retryable=(result.get("stop_reason") not in ("needs_clarification", "invalid_denominator", "context_mismatch", "budget_exceeded", "no_new_evidence", "repeated_query", "no_next_query")
             and not (result.get("unsupported_items") and components.get("explanation") != "unavailable")),
@@ -117,7 +132,7 @@ def convert_result(question: str, result: dict, context: FinancialContext, prefi
 def number_summary(numbers: list[ResearchNumber]) -> str:
     """이미 확인한 숫자를 다시 모델에 맡기지 않고 출처와 함께 재작성한다."""
     from fin_research.research.loop.tool_graph import LABELS
-    return "\n".join(f"{LABELS.get(n.metric, n.metric)}: {Decimal(n.value):,f}{n.unit} "
+    return "\n".join(f"{LABELS.get(n.metric, n.metric)}: {format(Decimal(n.value), ',.4f').rstrip('0').rstrip('.') if n.unit == '%' else format(Decimal(n.value), ',f')}{n.unit} "
                      + " ".join(f"[{s}]" for s in n.source_ids) for n in numbers)
 
 
@@ -132,6 +147,9 @@ def merge_question(previous: QuestionFinding, current: QuestionFinding) -> Quest
             raise ValueError("재조사에서 동일 기준의 숫자가 충돌했습니다.")
         numbers[number.metric] = number
     merged.numbers = list(numbers.values())
+    merged.explanation = current.explanation or previous.explanation
+    merged.component_status = {**previous.component_status, **{
+        k: v for k, v in current.component_status.items() if v != "not_requested"}}
     sources = {s.id: s for s in previous.sources}
     sources.update({s.id: s for s in current.sources})
     merged.sources = list(sources.values())
@@ -152,7 +170,53 @@ def merge_question(previous: QuestionFinding, current: QuestionFinding) -> Quest
                                if f"미지원 요구: {item}" not in merged.limitations]
         if current.status == "draft":
             merged.retryable = False
+    # 새 설명을 얻지 못한 재조사에서도 기존 숫자를 중복해서 붙이지 않는다.
+    merged.summary = "\n".join(s for s in (number_summary(merged.numbers), merged.explanation,
+        "설명 부분은 필요한 근거를 확보하지 못해 확정하지 못했습니다."
+        if merged.component_status.get("explanation") == "unavailable" and merged.numbers else "") if s) or merged.summary
     return merged
+
+
+def evidence_candidate(evidence, context):
+    """SQL·문서의 실제 위치와 정확한 조사 기준을 공통 근거 장부에 전달한다."""
+    metadata = evidence.get("metadata") or {}
+    source_format = "db" if evidence.get("source_file") == "fin.dart_financial_accounts" else metadata.get("source_format") or ("xml" if evidence.get("source_xpath") or metadata.get("source_xpath") else "pdf")
+    return {**evidence, "source_xpath": evidence.get("source_xpath") or metadata.get("source_xpath"),
+            "title": evidence.get("title") or metadata.get("title"),
+            "source_format": source_format, "context_key": context.model_dump_json()}
+
+
+def evidence_quote(evidence, question, answer):
+    """팀원의 짧은 인용 조각 선택기를 사용하되 DB 숫자는 원문을 보존한다."""
+    from fin_research.retrieval.span_select import select_quote
+    text = evidence.get("text", "")
+    return text if evidence.get("source_file") == "fin.dart_financial_accounts" else select_quote(text, question, answer)
+
+
+class SharedEvidenceSearch:
+    """질문별 검색 상태를 유지하면서 다른 Researcher도 원문 근거를 재사용하게 한다."""
+
+    def __init__(self, search, registry, context):
+        """저장소 함수와 실행 단위 장부·기준을 고정한다."""
+        self.function, self.registry, self.context = search, registry, context
+
+    @property
+    def last_search_info(self):
+        """기존 로컬·공용 검색기의 전략 기록을 그대로 전달한다."""
+        return getattr(getattr(self.function, "__self__", None), "last_search_info", {})
+
+    @property
+    def collection_name(self):
+        """선택된 실제 컬렉션 이름을 조사 결과에 전달한다."""
+        return getattr(getattr(self.function, "__self__", None), "collection_name", None)
+
+    def search(self, question, top_k):
+        """찾은 문서를 즉시 등록해 동시·후속 질문의 관련 근거 후보로 제공한다."""
+        hits = self.function(question, top_k)
+        if self.registry is not None:
+            for hit in hits:
+                self.registry.register(evidence_candidate(hit, self.context))
+        return hits
 
 
 def aggregate_questions(subtopic, context, records: list[QuestionFinding], round_: int) -> Finding:
@@ -197,6 +261,7 @@ def make_tool_researcher(*, search_tools=None, questions_per_subtopic=None, loop
         """미완료 질문만 실행하고 숫자·설명·출처를 다음 Supervisor 라운드에도 유지한다."""
         subtopic, brief, round_ = inp["subtopic"], inp["brief"], inp["round"]
         previous = inp.get("previous_finding")
+        registry = get_evidence_registry(config)
         try:
             context = resolve_context(brief, rcept_no=((config or {}).get("configurable") or {}).get("research_rcept_no"))
             if previous and previous.context != context:
@@ -206,8 +271,15 @@ def make_tool_researcher(*, search_tools=None, questions_per_subtopic=None, loop
                         summary="조사 조건을 확인하지 못했습니다.", limitations=[str(exc)], retryable=False)]}
         records = [r.model_copy(deep=True) for r in previous.question_results] if previous else [
             QuestionFinding(question=q, retry_question=q) for q in subtopic.questions]
+        if not previous and (subtopic.db_items or subtopic.db_ratios):
+            records.insert(0, QuestionFinding(question=f"{brief.company} {context.year}년 {context.scope} 템플릿 숫자 조회",
+                                              task_kind="numeric"))
         pending = [i for i, r in enumerate(records) if r.status != "draft" and r.retryable]
-        for index in pending[:limit]:
+        numeric = [i for i in pending if records[i].task_kind == "numeric"]
+        questions = [i for i in pending if records[i].task_kind != "numeric"]
+        # 앞선 미완료 질문의 재시도 때문에 감사의견 등 미실행 질문이 계속 밀리지 않게 한다.
+        questions.sort(key=lambda index: bool(records[index].attempts))
+        for index in numeric + questions[:limit]:
             old = records[index]
             question = old.retry_question or old.question
             report_progress(progress, f"[{subtopic.id} / 라운드 {round_}] 다중 도구 조사: {question}")
@@ -217,17 +289,37 @@ def make_tool_researcher(*, search_tools=None, questions_per_subtopic=None, loop
                     budget.check()
                 key = (((config or {}).get("configurable") or {}).get("research_session_id", id(brief)), context.model_dump_json(), subtopic.id, index)
                 if key not in sessions:
-                    sessions[key] = tools.session(type_context_target(context), source_format=source_format, xml_version=xml_version)
+                    sessions[key] = SharedEvidenceSearch(tools.session(type_context_target(context), source_format=source_format, xml_version=xml_version), registry, context).search
                 memory = document_memories.get(key)
+                if registry is not None:
+                    related = registry.related(context.model_dump_json(), question)
+                    if related:
+                        memory = dict(memory or {})
+                        seeds = list(memory.get("evidences", [])); known = {(e["source_file"], e["chunk_id"]) for e in seeds}
+                        for item in related:
+                            if (item.source_file, item.chunk_id) not in known:
+                                seeds.append({**item.model_dump(), "evidence_id": f"S{len(seeds)+1}"})
+                        memory["evidences"] = seeds
+                override = None
+                if old.task_kind == "numeric":
+                    override = {"status": "ready", "metrics": subtopic.db_items, "ratios": subtopic.db_ratios,
+                                "document_question": None, "reason": "템플릿에 지정된 숫자를 공통 도구로 조회"}
+                elif subtopic.db_items or subtopic.db_ratios or subtopic.fixed_questions or (old.attempts and old.numbers):
+                    override = {"status": "ready", "metrics": [], "ratios": [],
+                                "document_question": question, "reason": "숫자는 유지하고 설명만 조사"}
+                options = {"plan_override": override} if override is not None else {}
                 result = await asyncio.to_thread(run_loop, question, context, tools.persist_directory,
                     max_rounds=rounds, top_k=top_k, budget=budget, account_tool=account_tool, model=model,
                     search_function=sessions[key],
                     source_format=source_format, xml_version=xml_version, progress=progress,
-                    **({"document_memory": memory} if memory else {}))
+                    **({"document_memory": memory} if memory else {}), **options)
                 document = result.get("document_research")
                 if document:
                     document_memories[key] = document
-                current = convert_result(question, result, context, f"{subtopic.id}.r{round_}.q{index + 1}", round_)
+                current = convert_result(question, result, context, f"{subtopic.id}.r{round_}.q{index + 1}", round_, registry)
+                current.task_kind = old.task_kind
+                if old.task_kind == "numeric":
+                    current.retryable = False
                 if document:
                     current.search_memory = {"queries": document.get("queries", []),
                         "chunk_ids": [e["chunk_id"] for e in document.get("evidences", [])],
@@ -249,7 +341,16 @@ def make_tool_researcher(*, search_tools=None, questions_per_subtopic=None, loop
                 records[index] = record
                 if budget_stop:
                     break
-        return {"findings": [aggregate_questions(subtopic, context, records, round_)]}
+        finding = aggregate_questions(subtopic, context, records, round_)
+        max_outer_rounds = (((config or {}).get("configurable") or {}).get("max_rounds")
+                            or (load_budget_config().get("research") or {}).get("max_rounds", 2))
+        if finding.status == "draft" or not finding.retryable or round_ >= max_outer_rounds:
+            # 완료한 실행의 원문·장부 참조를 서버 노드의 클로저에 계속 쌓아두지 않는다.
+            run_key = (((config or {}).get("configurable") or {}).get("research_session_id", id(brief)), context.model_dump_json(), subtopic.id)
+            for key in list(sessions):
+                if key[:3] == run_key:
+                    sessions.pop(key, None); document_memories.pop(key, None)
+        return {"findings": [finding]}
     return researcher
 
 

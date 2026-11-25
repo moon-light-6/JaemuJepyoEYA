@@ -1,9 +1,9 @@
 """clarify → brief 시연: 요청 문장을 넣으면 되묻기 또는 하위 주제별 조사 계획을 출력한다.
 
 실행 (프로젝트 루트, .env에 OPENAI_API_KEY 필요):
-    python scripts/demo_brief.py
-    python scripts/demo_brief.py "삼성전자 수익성 위주로 분석해줘"
-    python scripts/demo_brief.py "SK 재무 분석해줘" "에코프로비엠 최근 3년 현금흐름 위주로 분석해줘"
+    python scripts/demo/demo_brief.py
+    python scripts/demo/demo_brief.py "삼성전자 수익성 위주로 분석해줘"
+    python scripts/demo/demo_brief.py "SK 재무 분석해줘" "에코프로비엠 최근 3년 현금흐름 위주로 분석해줘"
 """
 
 from __future__ import annotations
@@ -14,7 +14,7 @@ import sys
 from pathlib import Path
 
 # 패키지를 별도 설치하지 않아도 프로젝트 루트에서 실행할 수 있도록 한다.
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
+PROJECT_ROOT = Path(__file__).resolve().parents[2]  # scripts/demo/ → 프로젝트 루트
 sys.path.insert(0, str(PROJECT_ROOT / "src"))
 
 from fin_research.llm.budget import Budget, BudgetExceeded

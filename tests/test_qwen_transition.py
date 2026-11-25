@@ -24,7 +24,8 @@ from fin_research.llm.output_parser import invoke_structured
 from fin_research.llm.router import get_llm_for_role, validate_roles
 from fin_research.verify.nodes.claim_extract import extraction_limits
 from fin_research.verify.state import ClaimExtraction
-from scripts import check_qwen, demo_verify
+from scripts import check_qwen
+from scripts.demo import demo_verify
 
 
 class QwenTransitionTests(unittest.TestCase):

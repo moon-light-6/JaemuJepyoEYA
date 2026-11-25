@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import os
 from pathlib import Path
 from typing import TYPE_CHECKING
 
@@ -16,14 +17,18 @@ class DocumentSearchTool:
     (scripts/storage/build_chroma.py가 만드는 기업별 컬렉션). 주지 않으면 기존 단일 컬렉션을 씁니다.
     """
 
-    def __init__(self, persist_directory: Path, target: SearchTarget | None = None):
+    def __init__(self, persist_directory: Path, target: SearchTarget | None = None, source: str = "pdf", client=None):
+        """선택한 형식과 대상 컬렉션을 고정하고 임베딩 로딩을 지연한다."""
+        if source not in ("pdf", "xml") or (source == "xml" and target is None):
+            raise ValueError("검색 형식과 XML 대상 기업·공시를 확인하세요.")
         self.persist_directory = Path(persist_directory)
         self.target = target
+        self.source, self.client = source, client
         self._vectorstore = None
 
     @property
     def collection_name(self) -> str | None:
-        return self.target.collection_name if self.target else None
+        return (self.target.xml_collection_name if self.source == "xml" else self.target.collection_name) if self.target else None
 
     def _collection_kwargs(self) -> dict:
         # target이 없으면 retriever의 기본 컬렉션을 그대로 쓰도록 인자를 넘기지 않는다
@@ -34,7 +39,7 @@ class DocumentSearchTool:
             raise ValueError("검색 질문이 비어 있습니다.")
         if not 1 <= top_k <= 10:
             raise ValueError("top_k는 1~10 사이여야 합니다.")
-        if not (self.persist_directory / "chroma.sqlite3").is_file():
+        if self.client is None and not (self.persist_directory / "chroma.sqlite3").is_file():
             raise FileNotFoundError(
                 f"Chroma 저장소가 없습니다: {self.persist_directory}. "
                 "scripts/storage/build_chroma.py를 먼저 실행하세요."
@@ -44,7 +49,7 @@ class DocumentSearchTool:
         from fin_research.retrieval.chroma_retriever import create_chroma, search_chroma
 
         if self._vectorstore is None:
-            self._vectorstore = create_chroma(self.persist_directory, **self._collection_kwargs())
+            self._vectorstore = (_remote_chroma(self.client, self.collection_name) if self.client is not None else create_chroma(self.persist_directory, **self._collection_kwargs()))
         results = search_chroma(
             self.persist_directory, question, k=top_k, vectorstore=self._vectorstore,
             **self._collection_kwargs(),
@@ -60,16 +65,17 @@ def search_documents(
     persist_directory: Path,
     top_k: int = 5,
     target: SearchTarget | None = None,
+    source: str = "pdf",
 ) -> list[dict]:
     """기존 색인을 사용해 검색하고, 각 청크에 출처 ID를 붙여 반환합니다."""
-    return DocumentSearchTool(persist_directory, target).search(question, top_k)
+    return DocumentSearchTool(persist_directory, target, source).search(question, top_k)
 
 
 class XMLDocumentSearchTool(DocumentSearchTool):
     """XML 원문의 출처를 유지하고 재검색에서는 키워드 검색을 함께 수행한다."""
 
     def __init__(self, persist_directory: Path, target: SearchTarget, *, section: str | None = None,
-                 chunk_version: int = 1, project_root: Path | None = None):
+                 chunk_version: int = 1, project_root: Path | None = None, client=None, client_provider=None):
         """선택한 버전의 기존 색인을 열며 v2는 청크 내용의 해시로 저장소를 찾는다."""
         if chunk_version not in (1, 2):
             raise ValueError("XML 청크 버전은 1 또는 2여야 합니다.")
@@ -81,8 +87,9 @@ class XMLDocumentSearchTool(DocumentSearchTool):
             if not chunks.is_file():
                 raise FileNotFoundError(f"v2 청크가 없습니다: {chunks}")
             directory /= hashlib.sha256(chunks.read_bytes()).hexdigest()
-        super().__init__(directory, target)
+        super().__init__(directory, target, "xml", client=client)
         self.section, self.chunk_version = section, chunk_version
+        self.client_provider = client_provider
         self._calls, self._seen, self._lexical_cache = 0, set(), {}
         self.last_search_info = {}
 
@@ -158,12 +165,18 @@ class XMLDocumentSearchTool(DocumentSearchTool):
         """첫 검색은 벡터, 이후 검색은 주석 우선 벡터·BM25 결합으로 새 근거를 찾는다."""
         if not question.strip() or not 1 <= top_k <= 10:
             raise ValueError("검색 질문과 1~10 범위의 top_k가 필요합니다.")
-        if not (self.persist_directory / "chroma.sqlite3").is_file():
+        if self.client is None and not (self.persist_directory / "chroma.sqlite3").is_file() and self.client_provider:
+            self.client = self.client_provider()
+        if self.client is None and not (self.persist_directory / "chroma.sqlite3").is_file():
             raise FileNotFoundError("선택한 버전의 XML Chroma 색인이 없습니다. XML 파이프라인으로 먼저 색인하세요.")
         from fin_research.retrieval.chroma_retriever import create_chroma
         from fin_research.retrieval.xml_retrieval import result_from_document
         if self._vectorstore is None:
-            self._vectorstore = create_chroma(self.persist_directory, self.collection_name)
+            self._vectorstore = (_remote_chroma(self.client, self.collection_name) if self.client is not None else create_chroma(self.persist_directory, self.collection_name))
+        if self._vectorstore._collection.count() == 0 and self.client is None and self.client_provider:
+            self.client = self.client_provider()
+            if self.client is not None:
+                self._vectorstore = _remote_chroma(self.client, self.collection_name)
         if self._vectorstore._collection.count() == 0:
             raise ValueError("선택한 XML 컬렉션에 청크가 없습니다.")
         retry = self._calls > 0
@@ -217,3 +230,40 @@ class XMLDocumentSearchTool(DocumentSearchTool):
                                  "persist_directory": str(self.persist_directory), "filter": where,
                                  "candidate_count": len(candidates), "neighbor_count": len(neighbors)}
         return results
+
+
+def _remote_chroma(client, collection_name: str | None):
+    """원격 Chroma 서버의 컬렉션을 LangChain Chroma로 연다. 질문 임베딩은 로컬 KURE-v1로 만든다."""
+    if not collection_name:
+        raise ValueError("원격 Chroma를 검색하려면 target(컬렉션 이름)이 필요합니다.")
+    from langchain_chroma import Chroma
+
+    from fin_research.retrieval.chroma_retriever import create_embedding_model
+
+    return Chroma(client=client, collection_name=collection_name, embedding_function=create_embedding_model())
+
+
+def shared_chroma_client(host: str | None = None):
+    """팀 공용 ChromaDB(.env의 CHROMA_SHARED_HOST, Tailscale Serve HTTPS 443) 클라이언트.
+
+    주소가 없거나 서버가 꺼져 있으면 None. 호출하는 쪽은 로컬 색인만으로 계속 진행한다.
+    """
+    if host is None:
+        from dotenv import load_dotenv
+
+        from fin_research.llm.client import PROJECT_ROOT
+
+        load_dotenv(PROJECT_ROOT / ".env")
+        host = os.getenv("CHROMA_SHARED_HOST")
+    if not host:
+        return None
+    try:
+        import chromadb
+        from chromadb.config import Settings
+
+        client = chromadb.HttpClient(host=host, port=443, ssl=True,
+                                     settings=Settings(anonymized_telemetry=False))
+        client.heartbeat()
+        return client
+    except Exception:  # 꺼져 있음·Tailscale 미연결·주소 오류: 공용 색인 없이 진행
+        return None

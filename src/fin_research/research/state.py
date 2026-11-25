@@ -55,6 +55,9 @@ class SubTopic(BaseModel):
     title: str = Field(description="보고서 섹션 제목. 예: 수익성")
     questions: list[str] = Field(description="researcher가 답해야 할 구체 질문 2~4개")
     metrics: list[str] = Field(default_factory=list, description="확인할 지표. 예: 매출액, 영업이익률")
+    fixed_questions: bool = False
+    db_items: list[str] = Field(default_factory=list)
+    db_ratios: list[str] = Field(default_factory=list)
 
 
 class Brief(BaseModel):
@@ -82,6 +85,14 @@ class EvidenceRef(BaseModel):
     rcept_no: str | None = None
     account_id: str | None = None
     account_name: str | None = None
+    quote: str | None = None
+
+    @classmethod
+    def from_evidence(cls, evidence):
+        """공통 장부 근거를 원문 전체 대신 위치 정보로 변환한다."""
+        return cls(id=evidence.evidence_id, source_file=evidence.source_file,
+                   pdf_page=evidence.pdf_page, chunk_id=evidence.chunk_id,
+                   source_xpath=evidence.source_xpath, title=evidence.title)
 
 
 class ResearchNumber(BaseModel):
@@ -111,6 +122,8 @@ class QuestionFinding(BaseModel):
     attempts: list[dict[str, Any]] = Field(default_factory=list)
     unsupported_items: list[str] = Field(default_factory=list)
     search_memory: dict[str, Any] = Field(default_factory=dict)
+    task_kind: Literal["question", "numeric"] = "question"
+    explanation: str = ""
 
 
 class Finding(BaseModel):

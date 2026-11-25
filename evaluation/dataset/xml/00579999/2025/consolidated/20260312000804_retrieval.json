@@ -22,7 +22,7 @@
     "opendart_account": {
       "sj_div": "BS",
       "account_id": "ifrs-full_Assets",
-      "account_nm": "자산 총계"
+      "account_nm": "자산총계"
     },
     "id": "X01",
     "annotation_status": "verified",
@@ -138,7 +138,7 @@
     "opendart_account": {
       "sj_div": "CF",
       "account_id": "ifrs-full_CashFlowsFromUsedInOperatingActivities",
-      "account_nm": "영업활동으로 인한 현금흐름"
+      "account_nm": "영업활동으로인한현금흐름"
     },
     "id": "X05",
     "annotation_status": "verified",
@@ -147,7 +147,7 @@
   {
     "question": "2025년 연결 기준 배당금 지급액은 얼마인가?",
     "answer_type": "numeric",
-    "expected_value": "9,237,228,000",
+    "expected_value": "(9,237,228,000)",
     "unit": "원",
     "gold_sources": [
       {
@@ -167,7 +167,7 @@
     "opendart_account": {
       "sj_div": "CF",
       "account_id": "ifrs-full_DividendsPaidClassifiedAsFinancingActivities",
-      "account_nm": "배당금 지급"
+      "account_nm": "배당금의지급"
     },
     "id": "X06",
     "annotation_status": "verified",
@@ -199,7 +199,7 @@
     "opendart_account": {
       "sj_div": "BS",
       "account_id": "ifrs-full_Assets",
-      "account_nm": "자산 총계"
+      "account_nm": "자산총계"
     },
     "id": "X07",
     "annotation_status": "verified",

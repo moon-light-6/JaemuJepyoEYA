@@ -83,7 +83,8 @@ def compose_tool_result(question: str, context: FinancialContext, state: ToolRes
             cited.extend(ids)
         findings = document.get("findings") or {}
         if findings.get("status") == "draft":
-            text = re.sub(r"\[(S\d+)\]", lambda match: f"[{document_ids[match.group(1)]}]", findings["answer"])
+            from fin_research.research.multi_tool_adapter import remap_citations
+            text = remap_citations(findings["answer"], document_ids)
             lines.append(text)
             cited.extend(document_ids[source] for source in findings["evidence_ids"])
     cited = list(dict.fromkeys(cited))
@@ -121,6 +122,7 @@ def compose_tool_result(question: str, context: FinancialContext, state: ToolRes
         "document_research": document or None,
         "component_status": components,
         "unsupported_items": plan.unsupported_items if plan else [],
+        "document_summary": text if plan and (document.get("findings") or {}).get("status") == "draft" else "",
         "findings": {"status": "draft" if answered else "partial" if partial else "insufficient_evidence",
                      "answer": answer, "evidence_ids": cited, "limitations": limitations},
         "numeric_verification": "structured_inputs_checked" if state["facts"] else "not_performed",
@@ -132,7 +134,7 @@ def compose_tool_result(question: str, context: FinancialContext, state: ToolRes
 def run_tool_research(question: str, context: FinancialContext, persist_directory: Path, *,
                       model=None, model_name=None, account_tool=None, search_function=None,
                       budget=None, max_rounds: int = 3, top_k: int = 5, progress=None, source_format="xml", xml_version=1,
-                      document_memory=None) -> dict:
+                      document_memory=None, plan_override=None) -> dict:
     """계획·라우팅·도구 실행·검증을 LangGraph로 수행하고 기존 문서 루프는 재사용한다."""
     if not question.strip() or len(question) > 10000 or not 1 <= max_rounds <= 5 or not 1 <= top_k <= 10:
         raise ValueError("질문과 최대 검색 횟수(1~5), top_k(1~10)를 확인하세요.")
@@ -144,7 +146,7 @@ def run_tool_research(question: str, context: FinancialContext, persist_director
     from fin_research.retrieval.search_target import SearchTarget
     from fin_research.research.loop.graph import _role_model
 
-    planner_model = model if model is not None else _role_model("loop_planner", model_name, budget)
+    planner_model = (model if model is not None else _role_model("loop_planner", model_name, budget)) if plan_override is None else None
     target = SearchTarget(context.corp_code, context.year, context.scope, context.rcept_no)
     executor = ResearchToolExecutor(
         context, persist_directory, target, account_tool=account_tool, search_function=search_function,
@@ -157,7 +159,7 @@ def run_tool_research(question: str, context: FinancialContext, persist_director
         """질문을 구조화하고 허용된 도구 순서를 결정한다."""
         report_progress(progress, f"조사 계획 생성 중 · {context.company} {context.year}년 {context.scope}")
         try:
-            plan = create_plan(question, context, planner_model)
+            plan = ResearchPlan.model_validate(plan_override) if plan_override is not None else create_plan(question, context, planner_model)
             route = route_plan(plan)
         except ValueError as exc:
             return {"stop_reason": "planning_failed", "limitations": [str(exc)]}
@@ -180,6 +182,9 @@ def run_tool_research(question: str, context: FinancialContext, persist_director
                 trace.append({"tool": "sql", "status": "ok", "detail": f"동일 공시의 금액 {len(facts)}개 확보"})
             elif action == "calc":
                 update["calculations"] = executor.calculate(state["plan"].ratios, state["facts"])
+                update["limitations"] = list(state["limitations"]) + executor.calculation_limitations
+                if not update["calculations"] and executor.calculation_stop_reason:
+                    update["stop_reason"] = executor.calculation_stop_reason
                 trace.append({"tool": "calc", "status": "ok", "detail": "허용된 비율과 입력 기준 검사 완료"})
             else:
                 result = executor.research_documents(state["plan"].document_question)
@@ -230,4 +235,6 @@ def run_tool_research(question: str, context: FinancialContext, persist_director
         "document_result": None, "trace": [], "stop_reason": "", "limitations": [],
     }, {"recursion_limit": 12})
     report_progress(progress, f"다중 도구 조사 종료 · {state['stop_reason']}")
-    return compose_tool_result(question, context, state)
+    result = compose_tool_result(question, context, state)
+    result["llm_calls"] -= int(plan_override is not None)
+    return result

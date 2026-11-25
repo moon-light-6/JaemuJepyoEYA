@@ -33,6 +33,8 @@ class ResearchToolExecutor:
         self.xml_version = xml_version
         self.document_memory = document_memory
         self.lookup_limitations = []
+        self.calculation_limitations = []
+        self.calculation_stop_reason = ""
 
     def lookup(self, route):
         """필요 지표를 조회한 뒤 회사·기간·공시가 맞고 입력이 모두 있는지 확인한다."""
@@ -63,8 +65,18 @@ class ResearchToolExecutor:
     def calculate(self, names, facts):
         """코드에 정의된 재무비율만 계산하고 입력 출처를 유지한다."""
         from fin_research.tools.calc_tool import calculate_ratio
-
-        return [calculate_ratio(name, facts, self.context) for name in names]
+        from fin_research.tools.financial_models import FinancialDataError
+        from fin_research.tools.ratios import UndefinedRatioError
+        results = []
+        for name in names:
+            try:
+                results.append(calculate_ratio(name, facts, self.context))
+            except (FinancialDataError, UndefinedRatioError) as exc:
+                if isinstance(exc, FinancialDataError) and exc.reason != "missing_data":
+                    raise
+                self.calculation_limitations.append(f"{name}: {exc}")
+                self.calculation_stop_reason = "invalid_denominator" if isinstance(exc, UndefinedRatioError) else "missing_data"
+        return results
 
     def research_documents(self, question):
         """기존 LangGraph 재검색 루프를 설명 질문에 연결한다."""

@@ -22,6 +22,16 @@ def load_catalog(path=ALIASES_PATH):
 CATALOG = load_catalog()
 
 
+def canonical_metric(key):
+    """팀원 템플릿의 별칭 키를 다중 도구의 지표 키로 통일한다."""
+    return "operating_profit" if key == "operating_income" else key
+
+
+def canonical_ratio(key):
+    """기존 비율 키를 동일한 계산 도구의 이름으로 변환한다."""
+    return {"operating_profit_margin": "operating_margin", "return_on_equity": "roe"}.get(key, key)
+
+
 def capabilities():
     """Brief와 Planner가 같은 조회·계산 지원 목록을 확인하도록 안내문을 만든다."""
     return {"metrics": {key: item["label"] for key, item in CATALOG.items()},
