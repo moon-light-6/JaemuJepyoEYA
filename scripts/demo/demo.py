@@ -32,6 +32,7 @@ import demo_research  # noqa: E402  (같은 폴더의 데모 출력 함수 재�
 import demo_verify  # noqa: E402
 
 from fin_research.evidence.registry import EvidenceRegistry  # noqa: E402
+from fin_research.verify.accounts import AccountStore  # noqa: E402
 from fin_research.llm.budget import Budget, BudgetExceeded  # noqa: E402
 
 REPORT_PDF = PROJECT_ROOT / "보고서.pdf"  # 검증은 이 파일만 받는다
@@ -122,7 +123,8 @@ async def run_generate(request: str, mock: bool, questions: int | None) -> int:
     print(f"\n{LINE}\n보고서 생성 중… (기업당 1~2분, 처음에는 임베딩 모델을 불러와 더 걸립니다)\n{LINE}")
     try:
         state = await build_graph(researcher).ainvoke(
-            {"request": request, "findings": []}, run_config(budget, registry),
+            {"request": request, "findings": []},
+            run_config(budget, registry, account_store=None if mock else AccountStore()),
         )
     except BudgetExceeded as e:
         print(f"예산 초과로 중단: {e}")

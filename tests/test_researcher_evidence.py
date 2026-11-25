@@ -62,7 +62,7 @@ class TestMergeWithRegistry(unittest.TestCase):
 
     def test_local_ids_become_global(self):
         result = loop_result("영업이익은 2.2조원이다 [S1]. 순이익은 1.8조원 [S2].", ["S1", "S2"],
-                             [hit("S1", "is-1"), hit("S2", "is-2", text="당기순이익 | 1,818,746")])
+                             [hit("S1", "is-1", text="영업이익 2.2조원"), hit("S2", "is-2", text="당기순이익 1.8조원")])
         finding = merge_loop_results(subtopic(), 1, [("질문1", result, None)], self.registry)
         self.assertEqual(finding.summary, "영업이익은 2.2조원이다 [S1]. 순이익은 1.8조원 [S2].")
         self.assertEqual(finding.evidence_ids, ["S1", "S2"])
@@ -88,7 +88,7 @@ class TestMergeWithRegistry(unittest.TestCase):
         self.assertEqual(len(finding.sources), 1)
 
     def test_fabricated_citation_is_dropped(self):
-        result = loop_result("자본총계는 100,000,000원이다 [S9].", ["S9"], [hit("S1", "is-1")])
+        result = loop_result("자본총계는 100,000,000원이다 [S9].", ["S9"], [hit("S1", "is-1", text="자본총계 100,000,000")])
         finding = merge_loop_results(subtopic(), 1, [("q", result, None)], self.registry)
         self.assertEqual(finding.summary, "자본총계는 100,000,000원이다.")
         self.assertEqual(finding.evidence_ids, [])

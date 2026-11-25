@@ -7,6 +7,8 @@
     (같은 청크는 어느 researcher가 찾아도 같은 S#). 장부가 없으면 '{하위주제}.r{라운드}.q{질문}.' 임시 번호
   · 검색 도구(KURE 2.3GB)는 기업별로 한 번만 만들어 공유한다
   · 색인은 로컬 XML(fin_xml_...) → 로컬 PDF(fin_...) → 팀 공용 ChromaDB(XML) 순서로 찾는다
+- Hybrid RAG: config에 account_store가 있으면 템플릿의 db_items·db_ratios 숫자를
+  DART DB에서 코드가 가져와(research/db_facts.py) Finding 맨 앞에 둔다. 문서 검색은 원인·구조를 찾는다.
 """
 
 from __future__ import annotations
@@ -24,8 +26,10 @@ from fin_research.companies import load_companies
 from fin_research.llm.budget import BudgetExceeded, load_budget_config
 from fin_research.llm.client import PROJECT_ROOT
 from fin_research.evidence.registry import EvidenceRegistry
-from fin_research.research.nodes.common import get_budget, get_evidence_registry
+from fin_research.research.db_facts import DbFacts, build_db_facts
+from fin_research.research.nodes.common import get_account_store, get_budget, get_evidence_registry
 from fin_research.retrieval.span_select import select_quote
+from fin_research.research.text_checks import drop_unsupported_numbers
 from fin_research.research.state import (
     Brief,
     EvidenceRef,
@@ -240,6 +244,15 @@ def merge_loop_results(
             continue
 
         evidences = (result or {}).get("evidences", [])
+        # 근거 원문에 없는 숫자(LLM이 더하거나 단위를 바꾼 값)가 든 문장은 뺀다
+        kept, dropped = drop_unsupported_numbers(
+            answer.get("answer") or "", [question, *(str(e.get("text") or "") for e in evidences)])
+        if dropped:
+            limitations.append(f"{question} — 근거 원문에 없는 숫자({', '.join(dropped)})를 쓴 문장을 제외")
+        if not kept.strip():
+            limitations.append(f"{question} — 답변 불가: 근거로 확인되는 문장이 없음")
+            continue
+        answer = {**answer, "answer": kept}
         if registry is not None:
             mapping, notes = register_citations(answer, evidences, registry)
             parts.append(rewrite_citations(answer["answer"], mapping))
@@ -274,6 +287,87 @@ def merge_loop_results(
         limitations=limitations,
         round=round_,
     )
+
+
+# ─────────────────────────── DB 숫자 (Hybrid RAG) ───────────────────────────
+
+
+def db_spec(subtopic_id: str) -> tuple[list[str], list[str]]:
+    """템플릿의 (db_items, db_ratios). 템플릿에 없는 주제(리스크 등)는 빈 목록."""
+    from fin_research.research.nodes.brief import load_template  # brief → supervisor → researcher 순환 import 방지
+
+    for spec in load_template():
+        if spec["id"] == subtopic_id:
+            return list(spec.get("db_items") or []), list(spec.get("db_ratios") or [])
+    return [], []
+
+
+def fetch_db_rows(store, corp_code: str, year: int) -> tuple[list[dict], str]:
+    """연결(CFS)을 먼저, 없으면 별도(OFS). (행, fs_div)."""
+    for fs_div in ("CFS", "OFS"):
+        rows = store.rows(corp_code, year, fs_div)
+        if rows:
+            return rows, fs_div
+    return [], "CFS"
+
+
+async def collect_db_facts(
+    store, brief: Brief, subtopic: SubTopic, round_: int, registry: EvidenceRegistry | None,
+) -> tuple[DbFacts, list[EvidenceRef]]:
+    """DB 문장·출처. DB가 없거나 실패하면 limitations에 이유만 남긴다 (문서 검색은 계속)."""
+    items, ratio_keys = db_spec(subtopic.id)
+    if store is None or not (items or ratio_keys) or not brief.corp_code:
+        return DbFacts(), []
+    year = max(brief.years)
+    try:
+        rows, fs_div = await asyncio.to_thread(fetch_db_rows, store, brief.corp_code, year)
+    except Exception as e:  # DB 연결 실패가 조사를 멈추지 않게
+        return DbFacts(limitations=[f"DART DB 조회 실패: {type(e).__name__}: {e}"]), []
+    if not rows:
+        return DbFacts(limitations=[f"DART DB에 {brief.company} {year}년 재무제표가 없음"]), []
+
+    local: dict[str, dict] = {}  # 장부가 없을 때(테스트) 임시 번호와 근거
+
+    def register(candidate: dict) -> str:
+        if registry is not None:
+            return registry.register(candidate)
+        local_id = f"{subtopic.id}.r{round_}.db.S{len(local) + 1}"
+        local[local_id] = candidate
+        return local_id
+
+    facts = build_db_facts(
+        rows, items=items, ratio_keys=ratio_keys, company=brief.company, corp_code=brief.corp_code,
+        year=year, fs_div=fs_div, subtopic_id=subtopic.id, register=register,
+    )
+    sources = []
+    for evidence_id in facts.evidence_ids:
+        if registry is not None:
+            evidence = registry.require(evidence_id)
+            # DB·계산 근거는 짧아서 원문 전체를 조각으로 보여 준다 (writer 입력·출처 목록)
+            sources.append(EvidenceRef.from_evidence(evidence).model_copy(update={"quote": evidence.text}))
+        else:
+            c = local[evidence_id]
+            sources.append(EvidenceRef(id=evidence_id, source_file=c["source_file"], chunk_id=c["chunk_id"],
+                                       title=c["title"], quote=c["text"]))
+    return facts, sources
+
+
+def with_db_facts(finding: Finding, facts: DbFacts, sources: list[EvidenceRef]) -> Finding:
+    """DB 문장을 Finding 맨 앞에 붙인다. DB 숫자가 있으면 문서 검색이 실패해도 draft."""
+    if not facts.summary:
+        return finding.model_copy(update={"limitations": [*facts.limitations, *finding.limitations]})
+    summary = facts.summary if finding.status != "draft" else f"{facts.summary}\n{finding.summary}"
+    rag_ids = finding.evidence_ids if finding.status == "draft" else []
+    rag_sources = finding.sources if finding.status == "draft" else []
+    ids = list(dict.fromkeys([*facts.evidence_ids, *rag_ids]))
+    seen = set(facts.evidence_ids)
+    return finding.model_copy(update={
+        "status": "draft",
+        "summary": summary,
+        "evidence_ids": ids,
+        "sources": [*sources, *(s for s in rag_sources if s.id not in seen)],
+        "limitations": [*facts.limitations, *finding.limitations],
+    })
 
 
 def failed_finding(subtopic: SubTopic, round_: int, reason: str) -> Finding:
@@ -314,11 +408,13 @@ def make_loop_researcher(
 
     async def loop_researcher(inp: ResearcherInput, config: RunnableConfig) -> ResearcherOutput:
         subtopic, brief, round_ = inp["subtopic"], inp["brief"], inp["round"]
+        registry = get_evidence_registry(config)
+        db, db_sources = await collect_db_facts(get_account_store(config), brief, subtopic, round_, registry)
         try:
             target = search_target_for(brief)
             search = tools.search_function(target)  # 색인이 없으면 여기서 ValueError
         except ValueError as e:
-            return {"findings": [failed_finding(subtopic, round_, str(e))]}
+            return {"findings": [with_db_facts(failed_finding(subtopic, round_, str(e)), db, db_sources)]}
         budget = get_budget(config)
         results: list[tuple[str, dict | None, str | None]] = []
         for question in subtopic.questions[:n_questions]:
@@ -334,6 +430,7 @@ def make_loop_researcher(
                 break
             except Exception as e:  # 한 질문 실패가 하위 주제 전체를 죽이지 않게
                 results.append((question, None, f"조사 실패: {type(e).__name__}: {e}"))
-        return {"findings": [merge_loop_results(subtopic, round_, results, get_evidence_registry(config))]}
+        finding = merge_loop_results(subtopic, round_, results, registry)
+        return {"findings": [with_db_facts(finding, db, db_sources)]}
 
     return loop_researcher

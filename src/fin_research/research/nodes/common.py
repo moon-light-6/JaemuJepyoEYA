@@ -35,6 +35,15 @@ def get_evidence_registry(config: RunnableConfig | None) -> EvidenceRegistry | N
     return _configurable(config).get("evidence_registry")
 
 
+def get_account_store(config: RunnableConfig | None):
+    """config["configurable"]["account_store"] (verify/accounts.AccountStore, 없으면 None).
+
+    있으면 researcher가 재무제표 숫자를 DART DB에서 가져온다 (Hybrid RAG). 없으면 문서 검색만 쓴다.
+    병렬 researcher가 같은 캐시를 써서 기업·연도마다 DB 조회는 한 번이다.
+    """
+    return _configurable(config).get("account_store")
+
+
 def load_prompt(name: str, folder: str = "research") -> str:
     """configs/prompts/{folder}/{name}.md 내용. 비어 있으면 에러 (프롬프트 누락을 바로 알기 위해).
 

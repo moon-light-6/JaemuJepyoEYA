@@ -2,7 +2,6 @@
 from __future__ import annotations
 
 import asyncio
-import re
 from typing import Literal
 
 from langchain_core.messages import HumanMessage, SystemMessage
@@ -16,24 +15,10 @@ from fin_research.research.nodes.common import get_budget, load_prompt
 from fin_research.research.nodes.outline import CONCLUSION_TITLE, SUMMARY_TITLE
 from fin_research.research.nodes.supervisor import latest_by_subtopic
 from fin_research.research.state import Finding, OutlineSection, ResearchState
+from fin_research.research.text_checks import citations_in, numbers_in
 
-
-_NUMBER = re.compile(r"\d[\d,]*(?:\.\d+)?")
-_CITATION = re.compile(r"\[([^\[\]]*?\bS\d+\b[^\[\]]*?)\]")
-_SOURCE_ID = re.compile(r"\bS\d+\b")
 
 # 검사
-
-def numbers_in(text:str)->set[str]:
-    """비교용 숫자: 쉼표를 빼고 한 자리숫자('2문장','3개')는 제외한다"""
-    found=set()
-    for raw in _NUMBER.findall(text):
-        number=raw.replace(',','').rstrip('.')
-        if len(number.replace('.',''))>=2:
-            found.add(number)
-    return found
-def citations_in(text:str)-> set[str]:
-    return {i for group in _CITATION.findall(text) for i in _SOURCE_ID.findall(group)}
 
 def check_section(written: str, source_text:str, allowed_ids: set[str], allow_numbers: bool = True)->list[str]:
     """쓴 문장의 문제 목록. 비어 있으면 통과. allow_numbers=False면(결론) 숫자를 쓰면 안 된다."""

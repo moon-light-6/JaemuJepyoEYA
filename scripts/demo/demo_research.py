@@ -40,6 +40,8 @@ def describe_location(source) -> str:
     if source.source_xpath:
         title = f"{short_title(source.title)} · " if source.title else ""
         return f"{title}{source.source_file} {source.source_xpath}"
+    if source.title or source.source_file:  # DART DB 값·코드 계산 (문서 위치 없음)
+        return " · ".join(x for x in (source.title, source.source_file) if x)
     return "위치 정보 없음"
 
 

@@ -154,6 +154,17 @@ def build_brief(
 # ─────────────────────────── 노드 ───────────────────────────
 
 
+def _db_labels(spec: dict) -> list[str]:
+    """DART DB에서 코드가 가져오는 숫자 이름 (brief LLM이 이 숫자는 묻지 않게)."""
+    from fin_research.research.db_facts import ROE_NAME, SIMPLE_RATIOS
+    from fin_research.verify.accounts import load_aliases
+
+    aliases = load_aliases()
+    ratio_names = {**{k: v[0] for k, v in SIMPLE_RATIOS.items()}, "return_on_equity": ROE_NAME}
+    return ([aliases[k].label for k in spec.get("db_items") or []]
+            + [ratio_names[k] for k in spec.get("db_ratios") or []])
+
+
 def _brief_input(clarify: ClarifyResult, template: tuple[dict, ...]) -> str:
     return json.dumps({
         "company": clarify.company,
@@ -161,7 +172,8 @@ def _brief_input(clarify: ClarifyResult, template: tuple[dict, ...]) -> str:
         "focus": clarify.focus,
         "notes": clarify.notes,
         "subtopics": [
-            {"id": s["id"], "title": s["title"], "required_metrics": s["required_metrics"]}
+            {"id": s["id"], "title": s["title"], "required_metrics": s["required_metrics"],
+             "db_metrics": _db_labels(s)}
             for s in template
         ],
     }, ensure_ascii=False, indent=2)

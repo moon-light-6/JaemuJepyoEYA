@@ -12,6 +12,7 @@ from pydantic import BaseModel, ConfigDict, Field, field_validator, model_valida
 
 
 _EVIDENCE_ID_PATTERN = re.compile(r"S[1-9]\d*")
+NON_DOCUMENT_FORMATS = frozenset({"db", "calc"})  # 문서 위치(XPath·쪽) 없이 등록할 수 있는 근거
 
 
 class EvidenceCandidate(BaseModel):
@@ -50,6 +51,9 @@ class EvidenceCandidate(BaseModel):
 
     @model_validator(mode="after")
     def require_source_location(self) -> EvidenceCandidate:
+        # DART 재무제표 DB 값(db)과 코드 계산(calc)은 문서 위치가 없다. chunk_id가 조회 조건을 담는다.
+        if self.source_format in NON_DOCUMENT_FORMATS:
+            return self
         if self.source_xpath is None and self.pdf_page is None:
             raise ValueError("XML XPath 또는 PDF 페이지 중 하나는 필요합니다.")
         return self

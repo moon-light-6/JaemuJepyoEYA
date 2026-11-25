@@ -3,28 +3,37 @@
 # - required_metrics: 평가의 "필수 항목 포함률" 기준. evaluation/dataset/report_tasks.jsonl과 맞출 것
 # - default_questions: LLM이 질문 생성에 실패했을 때 쓰는 예비 질문. {company}, {years}가 치환됨
 # - id를 바꾸거나 추가하면 research/nodes/brief.py의 SubtopicId도 같이 바꿀 것
+# - db_items: DART 재무제표 DB(fin.dart_financial_accounts)에서 코드가 가져올 계정 (account_aliases.yaml의 키)
+#   db_ratios: 그 계정으로 코드가 계산할 비율 (tools/ratios.py). LLM은 이 숫자를 찾거나 계산하지 않는다.
+#   DB에 값이 있으면 brief는 이 숫자를 묻지 않고 원인·구성·구조를 묻는 질문을 쓴다 (Hybrid RAG)
 
 subtopics:
   - id: profitability
     title: 수익성
     required_metrics: [매출액, 영업이익, 영업이익률, 당기순이익]
+    db_items: [revenue, operating_income, net_income]
+    db_ratios: [operating_profit_margin, return_on_equity]
     default_questions:
-      - "{company}의 {years} 연결 기준 매출액, 영업이익, 당기순이익은 얼마인가?"
-      - "{company}의 {years} 영업이익률 수준과 변동 원인은 무엇인가?"
+      - "{company}의 {years} 연결 기준 매출의 부문별 구성은 어떠한가?"
+      - "{company}의 {years} 영업이익 변동의 주요 원인은 무엇인가?"
 
   - id: stability
     title: 재무 안정성
     required_metrics: [부채비율, 유동비율, 자본총계, 차입금]
+    db_items: [total_assets, total_liabilities, total_equity, current_assets, current_liabilities]
+    db_ratios: [debt_ratio, current_ratio]
     default_questions:
-      - "{company}의 {years} 연결 기준 부채총계, 자본총계, 유동자산, 유동부채는 얼마인가?"
-      - "{company}의 {years} 차입금 규모와 만기 구조는 어떠한가?"
+      - "{company}의 {years} 연결재무제표 주석에 공시된 차입금(단기·장기차입금, 사채)의 규모와 만기 구조는 어떠한가?"
+      - "{company}의 {years} 연결 기준 부채의 주요 구성 항목은 무엇인가?"
 
   - id: cashflow
     title: 현금흐름
     required_metrics: [영업활동현금흐름, 투자활동현금흐름, 재무활동현금흐름, 현금및현금성자산]
+    db_items: [operating_cash_flow, investing_cash_flow, financing_cash_flow, cash_and_equivalents]
+    db_ratios: []
     default_questions:
-      - "{company}의 {years} 연결 기준 영업·투자·재무활동 현금흐름은 얼마인가?"
-      - "{company}의 {years} 기말 현금및현금성자산과 주요 현금 사용처는 무엇인가?"
+      - "{company}의 {years} 연결 현금흐름표에서 투자활동의 주요 현금 사용처는 무엇인가?"
+      - "{company}의 {years} 연결 현금흐름표에서 재무활동의 주요 항목(차입·상환·배당)은 무엇인가?"
 
   - id: risk
     title: 리스크
