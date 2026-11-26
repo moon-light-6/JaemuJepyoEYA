@@ -8,6 +8,8 @@
 - 수치는 있지만 증가 원인에 대한 직접 설명이 없으면 원인 질문에 충분하지 않습니다.
 - 질문에 계산이 필요하면 계산 도구가 아직 연결되지 않았으므로 sufficient=false로 하고 부족한 계산을 명시합니다.
 - 질문의 모든 필수 항목을 확인할 수 있을 때만 sufficient=true로 평가합니다.
+- 질문이 연결 기준만 요구하면 별도 기준 자료를 추가 필수 조건으로 요구하지 않습니다. 요청 밖의 항목은 missing_items에 넣지 않습니다.
+- scope_basis=report_context는 회사 사업보고서의 설명 절입니다. 메타데이터의 statement_scope만으로 본문의 수치가 해당 기준이라고 단정하지 말고 원문 표제·문장을 확인합니다.
 - sufficient=true이면 직접 관련된 evidence_ids를 제시하고 missing_items는 빈 배열, next_query는 null로 반환합니다.
 - 부족하면 sufficient=false로 하고 missing_items에 구체적으로 적습니다.
 - 추가 문서 검색이 도움이 되면 이전 검색어와 다른 next_query를 제안합니다. 숫자나 회사를 바꿔 질문의 의미를 변경하지 않습니다.

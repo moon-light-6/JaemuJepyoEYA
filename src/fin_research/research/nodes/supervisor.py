@@ -14,8 +14,8 @@ from typing import Literal
 
 from langchain_core.messages import HumanMessage, SystemMessage
 from langchain_core.runnables import RunnableConfig
-from langgraph.graph import END
 from langgraph.types import Command, Send
+from langgraph.graph import END
 from pydantic import BaseModel, Field
 
 from fin_research.llm.budget import BudgetExceeded, load_budget_config
@@ -54,10 +54,12 @@ def max_rounds(config: RunnableConfig | None) -> int:
 # ─────────────────────────── 분배 ───────────────────────────
 
 
-def dispatch(brief: Brief, subtopics: list[SubTopic], round_: int) -> list[Send]:
+def dispatch(brief: Brief, subtopics: list[SubTopic], round_: int,
+             previous: dict[str, Finding] | None = None) -> list[Send]:
     """하위 주제마다 researcher로 Send. Command(goto=...)에 그대로 넣는다."""
     return [
-        Send("researcher", ResearcherInput(subtopic=s, brief=brief, round=round_))
+        Send("researcher", ResearcherInput(subtopic=s, brief=brief, round=round_,
+                                           previous_finding=(previous or {}).get(s.id)))
         for s in subtopics
     ]
 
@@ -89,10 +91,27 @@ def _with_company(question: str, company: str) -> str:
     return question if company in question else f"{company} {question}"
 
 
+def rotate_questions(subtopic: SubTopic) -> SubTopic:
+    """질문을 바꿀 수 없는 주제: 순서만 한 칸 돌려 재조사 때 아직 안 쓴 질문이 먼저 오게 한다.
+
+    researcher는 앞에서부터 questions_per_subtopic개만 쓰므로, ['Q1','Q2'] → ['Q2','Q1'].
+    """
+    q = subtopic.questions
+    return subtopic.model_copy(update={"questions": q[1:] + q[:1]}) if len(q) > 1 else subtopic
+
+
 async def rewrite_questions(
     lacking: list[SubTopic], latest: dict[str, Finding], brief: Brief, config: RunnableConfig
 ) -> tuple[list[SubTopic], list[str]]:
-    """부족한 하위 주제의 질문을 LLM으로 다시 쓴다. 실패하거나 빠진 주제는 기존 질문 그대로."""
+    """부족한 하위 주제의 질문을 LLM으로 다시 쓴다. 실패하거나 빠진 주제는 기존 질문 그대로.
+
+    fixed_questions 주제는 LLM에 넘기지 않고 순서만 돌린다 (공시 용어가 흐려지지 않게).
+    """
+    rewritable = [s for s in lacking if not s.fixed_questions]
+    errors: list[str] = []
+    rewritten: dict[str, list[str]] = {}
+    if not rewritable:  # 모두 고정 질문이면 LLM을 부르지 않는다
+        return [rotate_questions(s) for s in lacking], errors
     payload = {
         "company": brief.company,
         "years": brief.years,
@@ -102,18 +121,16 @@ async def rewrite_questions(
                 "previous_questions": s.questions,
                 "previous_limitations": latest[s.id].limitations if s.id in latest else ["결과 없음"],
             }
-            for s in lacking
+            for s in rewritable
         ],
     }
-    errors: list[str] = []
-    rewritten: dict[str, list[str]] = {}
     try:
         llm = get_llm_for_role("supervisor", budget=get_budget(config))
         result = await ainvoke_structured(llm, [
             SystemMessage(load_prompt("supervisor")),
             HumanMessage(f"재조사할 하위 주제:\n{json.dumps(payload, ensure_ascii=False, indent=2)}"),
         ], RetryQuestions)
-        allowed = {s.id for s in lacking}
+        allowed = {s.id for s in rewritable}
         for item in result.subtopics:
             if item.id in allowed and item.id not in rewritten:
                 rewritten[item.id] = [_with_company(q, brief.company) for q in item.questions]
@@ -121,42 +138,54 @@ async def rewrite_questions(
         errors.append(f"supervisor: 질문 재작성 실패, 기존 질문으로 재조사 — {e}")
 
     return [
-        s.model_copy(update={"questions": rewritten[s.id]}) if s.id in rewritten else s
+        rotate_questions(s) if s.fixed_questions
+        else s.model_copy(update={"questions": rewritten[s.id]}) if s.id in rewritten
+        else s
         for s in lacking
     ], errors
 
 
 async def supervisor_review(
     state: ResearchState, config: RunnableConfig
-) -> Command[Literal["researcher", "__end__"]]:
+) -> Command[Literal["researcher", "outline", "__end__"]]:
     brief = state["brief"]
     round_ = state.get("round", 1)
     latest = latest_by_subtopic(state.get("findings") or [])
-    lacking = [
+    unresolved = [
         s for s in brief.subtopics
-        if s.id not in latest or latest[s.id].status == "insufficient_evidence"
+        if s.id not in latest or latest[s.id].status != "draft"
     ]
+    lacking = [s for s in unresolved if s.id not in latest or latest[s.id].retryable]
 
     def stop(complete: bool, reason: str) -> Command:
-        # 3주차: 종료 대신 compress로
+        # 조사를 끝내고 보고서 작성(outline → writer)으로
         return Command(
             update={
                 "supervisor_decision": SupervisorDecision(complete=complete, reason=reason),
                 "step": f"supervisor_review:round{round_}",
             },
-            goto=END,
+            goto="outline" if ((config or {}).get("configurable") or {}).get("write_report", True) else END,
         )
 
-    if not lacking:
+    if not unresolved:
         return stop(True, f"{round_}라운드에서 모든 하위 주제 조사 완료")
+    if _budget_exhausted(latest, get_budget(config)):
+        return stop(False, "예산 소진으로 재조사를 중단합니다.")
+    if not lacking:
+        return stop(False, "조사 조건 또는 지원 범위 확인이 필요하여 자동 재조사를 중단합니다.")
     lacking_ids = [s.id for s in lacking]
     if round_ >= max_rounds(config):
         return stop(False, f"최대 {round_}라운드 도달, 부족한 주제: {', '.join(lacking_ids)}")
-    if _budget_exhausted(latest, get_budget(config)):
-        return stop(False, f"예산 소진으로 재조사 중단, 부족한 주제: {', '.join(lacking_ids)}")
 
-    retry_subtopics, errors = await rewrite_questions(lacking, latest, brief, config)
-    kept = [f for f in latest.values() if f.status == "draft"]
+    # 구조화된 질문 결과가 있으면 루프가 남긴 미해결 질문만 재배정한다.
+    # 이미 확인한 숫자를 다시 묻거나 LLM이 재조사 대상을 임의로 바꾸지 않도록 한다.
+    structured = [s for s in lacking if s.id in latest and latest[s.id].question_results]
+    legacy = [s for s in lacking if s not in structured]
+    retry_subtopics, errors = await rewrite_questions(legacy, latest, brief, config) if legacy else ([], [])
+    retry_subtopics += [s.model_copy(update={"questions": [
+        r.retry_question or r.question for r in latest[s.id].question_results
+        if r.status != "draft" and r.retryable]}) for s in structured]
+    kept = [f for f in latest.values() if f.subtopic_id not in lacking_ids]
     update: dict = {
         "supervisor_decision": SupervisorDecision(
             complete=False,
@@ -172,4 +201,5 @@ async def supervisor_review(
     if errors:
         update["errors"] = errors
     # 재조사 대상만 다음 라운드 번호로 다시 보낸다
-    return Command(update=update, goto=dispatch(brief, retry_subtopics, round_ + 1))
+    return Command(update=update, goto=dispatch(brief, retry_subtopics, round_ + 1,
+        previous={s.id: latest[s.id] for s in structured}))

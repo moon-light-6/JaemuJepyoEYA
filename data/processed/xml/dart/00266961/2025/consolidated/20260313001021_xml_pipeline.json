@@ -1,0 +1,18 @@
+{
+  "source_format": "xml",
+  "source_xml": "20260313001021_00761.xml",
+  "source_document": "감사보고서",
+  "statement_scope": "consolidated",
+  "normalization": {
+    "escaped_ampersands": 10,
+    "escaped_bare_less_than": 48,
+    "removed_invalid_control_characters": 0,
+    "repaired_broken_attributes": 0
+  },
+  "financial_statement_documents": 4,
+  "note_documents": 36,
+  "chunk_size": 600,
+  "chunk_overlap": 100,
+  "documents": 40,
+  "chunks": 327
+}

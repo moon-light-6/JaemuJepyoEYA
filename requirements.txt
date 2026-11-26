@@ -15,3 +15,6 @@ pydantic
 langgraph
 psycopg2-binary
 sqlglot>=28,<29
+fastapi
+python-multipart
+uvicorn

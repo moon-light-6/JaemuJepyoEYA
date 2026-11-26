@@ -94,13 +94,13 @@
     "gold_sources": [
       {
         "source_file": "20260323001541_00761.xml",
-        "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[70]"
+        "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]"
       }
     ],
     "candidate_sources": [
       {
         "source_file": "20260323001541_00761.xml",
-        "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/SECTION-2[1]/P[70]",
+        "source_xpath": "/DOCUMENT[1]/BODY[1]/SECTION-1[1]/TABLE[8]",
         "title": "5. 부문정보",
         "match_reason": "계정명과 당기 금액이 같은 XML 문서"
       }
@@ -176,7 +176,7 @@
   {
     "question": "2025년 연결 기준 배당금 지급액은 얼마인가?",
     "answer_type": "numeric",
-    "expected_value": "16,833,843,352",
+    "expected_value": "(16,833,843,352)",
     "unit": "원",
     "gold_sources": [
       {

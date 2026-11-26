@@ -119,7 +119,7 @@
     "question": "2025년 별도 기준 당기순이익은 얼마인가?",
     "answer_type": "numeric",
     "expected_value": "151,960,670,406",
-    "unit": "천원",
+    "unit": "원",
     "gold_sources": [
       {
         "source_file": "20260318000182_00760.xml",
@@ -196,7 +196,7 @@
     "opendart_account": {
       "sj_div": "CF",
       "account_id": "ifrs-full_DividendsPaidClassifiedAsFinancingActivities",
-      "account_nm": "배당금의 지급"
+      "account_nm": "배당금의지급"
     },
     "id": "X07",
     "annotation_status": "verified",
@@ -257,7 +257,7 @@
     "opendart_account": {
       "sj_div": "CF",
       "account_id": "ifrs-full_DividendsPaidClassifiedAsFinancingActivities",
-      "account_nm": "배당금의 지급"
+      "account_nm": "배당금의지급"
     },
     "id": "X09",
     "annotation_status": "verified",

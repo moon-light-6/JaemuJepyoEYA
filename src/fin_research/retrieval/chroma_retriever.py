@@ -157,7 +157,7 @@ def search_chroma(
     if count == 0:
         raise ValueError(
             "Chroma에 저장된 청크가 없습니다. "
-            "먼저 python scripts/build_chroma.py를 실행하세요."
+            "먼저 python scripts/storage/build_chroma.py를 실행하세요."
         )
 
     # 수업의 similarity_search_with_score 활용
@@ -178,7 +178,9 @@ def search_chroma(
             "chunk_id": metadata["chunk_id"],
             "text": document.page_content,
             "source_file": metadata["source_file"],
-            "pdf_page": metadata["pdf_page"],
+            "pdf_page": metadata.get("pdf_page"),  # XML 청크는 pdf_page 대신 source_xpath
+            "source_xpath": metadata.get("source_xpath"),
+            "title": metadata.get("title"),
             "distance": float(distance),
             "metadata": metadata,
         })
@@ -216,7 +218,7 @@ def search_mmr(
     if vectorstore._collection.count() == 0:
         raise ValueError(
             "Chroma에 저장된 청크가 없습니다. "
-            "먼저 python scripts/build_chroma.py를 실행하세요."
+            "먼저 python scripts/storage/build_chroma.py를 실행하세요."
         )
 
     # 수업에서 사용한 MMR Retriever 방식
@@ -241,7 +243,9 @@ def search_mmr(
             "chunk_id": metadata["chunk_id"],
             "text": document.page_content,
             "source_file": metadata["source_file"],
-            "pdf_page": metadata["pdf_page"],
+            "pdf_page": metadata.get("pdf_page"),  # XML 청크는 pdf_page 대신 source_xpath
+            "source_xpath": metadata.get("source_xpath"),
+            "title": metadata.get("title"),
             "metadata": metadata,
         })
 

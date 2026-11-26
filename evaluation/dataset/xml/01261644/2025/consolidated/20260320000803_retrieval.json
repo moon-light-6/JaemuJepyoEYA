@@ -54,7 +54,7 @@
       "account_nm": "매출액"
     },
     "id": "X02",
-    "annotation_status": "draft",
+    "annotation_status": "verified",
     "annotation_method": "auto_opendart_xml_xpath_candidate"
   }
 ]

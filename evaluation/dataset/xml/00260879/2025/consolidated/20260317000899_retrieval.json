@@ -167,7 +167,7 @@
     "opendart_account": {
       "sj_div": "CF",
       "account_id": "ifrs-full_CashFlowsFromUsedInOperatingActivities",
-      "account_nm": "영업활동으로 인한 현금흐름"
+      "account_nm": "영업활동으로인한현금흐름"
     },
     "id": "X06",
     "annotation_status": "verified",
@@ -292,7 +292,7 @@
       "account_nm": "영업이익"
     },
     "id": "X10",
-    "annotation_status": "draft",
+    "annotation_status": "verified",
     "annotation_method": "auto_opendart_xml_xpath_candidate"
   },
   {

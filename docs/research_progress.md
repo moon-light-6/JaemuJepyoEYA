@@ -39,7 +39,8 @@ python -X utf8 scripts\run_loop.py --question "삼성전자 2025년 연결 기�
 | answer_insufficient | 답변 생성 단계에서도 근거 부족으로 판단 |
 | generation_validation_failed | 답변 출처·형식 검사 재실패 |
 
-이 루프는 현재 문서 검색용이다. PostgreSQL SQL 도구의 자동 선택·호출은 아직 연결하지 않았다.
+위 기본 명령은 문서 검색용이다. SQL·계산·설명을 선택하는 새 모드는 `--multi-tool`이며
+사용법은 `docs/multi_tool_research.md`를 참고한다.
 근거 충분성 평가와 공식 수치 일치 검증도 구분해야 한다.
 
 ## SQL 조회 과정 확인

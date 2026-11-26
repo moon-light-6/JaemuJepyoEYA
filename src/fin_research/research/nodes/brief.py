@@ -9,6 +9,7 @@
 from __future__ import annotations
 
 import json
+import re
 from functools import lru_cache
 from pathlib import Path
 from typing import Literal, get_args
@@ -25,6 +26,7 @@ from fin_research.llm.router import get_llm_for_role
 from fin_research.research.nodes.common import get_budget, load_prompt
 from fin_research.research.nodes.supervisor import dispatch
 from fin_research.research.state import Brief, ClarifyResult, ResearchState, SubTopic
+from fin_research.tools.financial_catalog import capabilities, canonical_metric, canonical_ratio, CATALOG
 
 TEMPLATE_PATH = PROJECT_ROOT / "configs" / "report_template.yaml"
 
@@ -70,6 +72,14 @@ def load_template(path: Path = TEMPLATE_PATH) -> tuple[dict, ...]:
             raise ValueError(f"템플릿 항목에 {sorted(missing)}가 없습니다: {item}")
         if len(item["default_questions"]) < 2:
             raise ValueError(f"default_questions는 2개 이상이어야 합니다: {item['id']}")
+        if not isinstance(item.get("fixed_questions", False), bool):
+            raise ValueError(f"fixed_questions는 true/false여야 합니다: {item['id']}")
+        for key in item.get("db_items", []):
+            if canonical_metric(key) not in CATALOG:
+                raise ValueError(f"템플릿의 미지원 DB 지표: {key}")
+        for key in item.get("db_ratios", []):
+            if canonical_ratio(key) not in capabilities()["ratios"]:
+                raise ValueError(f"템플릿의 미지원 계산: {key}")
 
     ids = [item["id"] for item in subtopics]
     if sorted(ids) != sorted(get_args(SubtopicId)):
@@ -109,6 +119,7 @@ def build_brief(
     """LLM 초안을 템플릿 순서·제목·필수 지표에 맞춰 조립. draft가 None이면 기본 질문만 사용."""
     company = clarify.company or ""
     years_text = format_years(clarify.years)
+    notes = list(clarify.notes)
 
     drafted: dict[str, SubTopicDraft] = {}
     for item in (draft.subtopics if draft else []):
@@ -117,17 +128,30 @@ def build_brief(
     subtopics = []
     for spec in template:
         item = drafted.get(spec["id"])
-        if item:
+        fixed = spec.get("fixed_questions", False)
+        if item and not fixed:
             questions = item.questions
             extra_metrics = item.metrics
         else:
-            questions = [q.format(company=company, years=years_text) for q in spec["default_questions"]]
+            scope_text = "연결" if clarify.scope == "consolidated" else "별도"
+            questions = [q.format(company=company, years=years_text, scope=scope_text) for q in spec["default_questions"]]
             extra_metrics = []
+        # 업계 비교·부문별 계산·미구현 금액 조회를 초기 조사 질문으로 생성하지 않는다.
+        blocked = re.compile(r"동종|업계|부문별.*(?:이익률|수익성)|순이익률|(?:CAPEX|설비투자).*규모", re.I)
+        accepted = [q for q in questions if not blocked.search(q)]
+        if len(accepted) != len(questions):
+            notes.append(f"{spec['title']}: 현재 지원 범위 밖의 질문을 기본 조사 질문으로 대체했습니다.")
+        scope_text = "연결" if clarify.scope == "consolidated" else "별도"
+        defaults = [q.format(company=company, years=years_text, scope=scope_text) for q in spec["default_questions"]]
+        questions = _unique(accepted + [q for q in defaults if not blocked.search(q)]) if len(accepted) < 2 else accepted
         subtopics.append(SubTopic(
             id=spec["id"],
             title=spec["title"],
             questions=[_with_company(q, company) for q in _unique(questions)],
             metrics=_unique(list(spec["required_metrics"]) + list(extra_metrics)),
+            fixed_questions=fixed,
+            db_items=[canonical_metric(key) for key in spec.get("db_items", [])],
+            db_ratios=[canonical_ratio(key) for key in spec.get("db_ratios", [])],
         ))
 
     focus_text = f" ({', '.join(clarify.focus)} 중점)" if clarify.focus else ""
@@ -140,10 +164,11 @@ def build_brief(
         company=company,
         corp_code=clarify.corp_code,
         years=clarify.years,
+        scope=clarify.scope,
         objective=objective,
         subtopics=subtopics,
         focus=clarify.focus,
-        notes=clarify.notes,
+        notes=notes,
     )
 
 
@@ -154,13 +179,22 @@ def _brief_input(clarify: ClarifyResult, template: tuple[dict, ...]) -> str:
     return json.dumps({
         "company": clarify.company,
         "years": clarify.years,
+        "scope": clarify.scope,
+        "capabilities": capabilities(),
         "focus": clarify.focus,
         "notes": clarify.notes,
         "subtopics": [
-            {"id": s["id"], "title": s["title"], "required_metrics": s["required_metrics"]}
+            {"id": s["id"], "title": s["title"], "required_metrics": s["required_metrics"],
+             "db_metrics": _db_labels(s), "fixed_questions": s.get("fixed_questions", False)}
             for s in template
         ],
     }, ensure_ascii=False, indent=2)
+
+
+def _db_labels(spec):
+    """고정 조회할 항목을 전달해 Brief는 숫자를 다시 질문하지 않게 한다."""
+    return [CATALOG[canonical_metric(key)]["label"] for key in spec.get("db_items", [])] + [
+        capabilities()["ratios"][canonical_ratio(key)] for key in spec.get("db_ratios", [])]
 
 
 async def brief_node(state: ResearchState, config: RunnableConfig) -> Command[Literal["researcher"]]:
