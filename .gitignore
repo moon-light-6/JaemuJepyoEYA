@@ -33,3 +33,6 @@ tempCodeRunnerFile.py
 .venv
 *.nosync
 .DS_Store
+보고서.pdf
+결과.json
+생성보고서_*.md

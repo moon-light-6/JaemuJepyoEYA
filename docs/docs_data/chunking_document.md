@@ -195,13 +195,13 @@ python scripts\processing\check_chunks.py ^
 전체 회귀 테스트:
 
 ```bash
-python -m unittest discover -s tests -v
+python -m unittest discover -s tests -t . -v
 ```
 
 Windows CMD에서는 같은 명령을 그대로 실행하면 된다.
 
 ```cmd
-python -m unittest discover -s tests -v
+python -m unittest discover -s tests -t . -v
 ```
 
 현재는 청크 검증 테스트까지 포함해 18개 테스트가 통과해야 한다.

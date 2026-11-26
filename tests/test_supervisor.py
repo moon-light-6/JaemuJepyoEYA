@@ -91,7 +91,7 @@ def run_graph(researcher, budget=None, rewrite_response=None, max_rounds=None):
         app = graph_module.build_graph(researcher)
         return asyncio.run(app.ainvoke(
             {"request": "삼성전자 분석", "findings": []},
-            graph_module.run_config(budget, **configurable),
+            graph_module.run_config(budget, write_report=False, **configurable),
         ))
 
 
@@ -207,9 +207,19 @@ class TestMergeAndPrefix(unittest.TestCase):
         self.assertEqual(len(set(f.evidence_ids)), 2)
 
 
+# 색인 존재 확인을 건너뛰도록 "어떤 컬렉션이든 청크 1개 있음"으로 둔다 (실제 Chroma 없이 어댑터만 검사)
+class _AnyIndex(dict):
+    def get(self, key, default=None):
+        return 1
+
+
+def ANY_INDEX():
+    return _AnyIndex()
+
+
 class TestLoopResearcherAdapter(unittest.TestCase):
     def run_adapter(self, loop_fn, subtopic=SUBTOPICS[0], budget=None, n=2):
-        cache = SearchToolCache(Path("unused"))
+        cache = SearchToolCache(Path("unused"), collection_counts=ANY_INDEX)
         node = make_loop_researcher(search_tools=cache, questions_per_subtopic=n, loop_fn=loop_fn)
         inp = {"subtopic": subtopic, "brief": BRIEF, "round": 1}
         return asyncio.run(node(inp, {"configurable": {"budget": budget}})), cache
@@ -242,13 +252,17 @@ class TestLoopResearcherAdapter(unittest.TestCase):
         self.assertIn(BUDGET_EXCEEDED_MARK, f.limitations[0])
 
     def test_missing_report_number_returns_failed_finding(self):
-        brief = BRIEF.model_copy(update={"corp_code": "00164779"})  # SK하이닉스: rcept_no 없음
-        node = make_loop_researcher(search_tools=SearchToolCache(Path("unused")), loop_fn=lambda *a, **k: {})
-        out = asyncio.run(node({"subtopic": SUBTOPICS[0], "brief": brief, "round": 1}, {}))
+        # companies.yaml 내용과 무관하게, 접수번호가 없는 기업을 fixture로 둔다
+        no_rcept = ({"name": "접수번호없음", "corp_code": "99999999",
+                     "reports": {"2025": {"fiscal_year": 2025}}},)
+        brief = BRIEF.model_copy(update={"corp_code": "99999999"})
+        node = make_loop_researcher(search_tools=SearchToolCache(Path("unused"), collection_counts=ANY_INDEX), loop_fn=lambda *a, **k: {})
+        with patch.object(researcher_module, "load_companies", return_value=no_rcept):
+            out = asyncio.run(node({"subtopic": SUBTOPICS[0], "brief": brief, "round": 1}, {}))
         self.assertIn("접수번호", out["findings"][0].limitations[0])
 
     def test_search_tool_created_once_per_target_across_threads(self):
-        cache = SearchToolCache(Path("unused"))
+        cache = SearchToolCache(Path("unused"), collection_counts=ANY_INDEX)
         target = researcher_module.search_target_for(BRIEF)
         created = []
         with patch("fin_research.tools.doc_search_tool.DocumentSearchTool",

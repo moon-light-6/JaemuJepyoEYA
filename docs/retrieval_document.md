@@ -116,13 +116,13 @@ python scripts/retrieval/search_bm25.py --question "2025년 연결 기준 매출
 BM25 단위 테스트만 실행:
 
 ```powershell
-python -m unittest discover -s tests -p "test_bm25_retriever.py" -v
+python -m unittest discover -s tests -t . -p "test_bm25_retriever.py" -v
 ```
 
 전체 회귀 테스트:
 
 ```powershell
-python -m unittest discover -s tests -v
+python -m unittest discover -s tests -t . -v
 ```
 
 **로컬 실행 확인 결과**
@@ -269,7 +269,7 @@ python scripts/retrieval/search_chroma.py --question "2025년 연결 기준 매�
 Chroma 단위 테스트:
 
 ```powershell
-python -m unittest discover -s tests -p "test_chroma_retriever.py" -v
+python -m unittest discover -s tests -t . -p "test_chroma_retriever.py" -v
 ```
 
 ```text
@@ -281,7 +281,7 @@ OK
 전체 회귀 테스트:
 
 ```powershell
-python -m unittest discover -s tests -v
+python -m unittest discover -s tests -t . -v
 ```
 
 ```text
@@ -351,7 +351,7 @@ python scripts/retrieval/search_mmr.py --question "2025년 연결 기준 매출�
 `tests/retrieval/test_mmr_retriever.py`에서는 `MagicMock`으로 실제 Chroma와 임베딩 모델 로드를 대체한다. MMR 옵션 전달, 반환 필드, 빈 질문·잘못된 `k`·`fetch_k`·`lambda_mult`, 미색인 컬렉션 처리를 확인한다.
 
 ```powershell
-python -m unittest discover -s tests -p "test_mmr_retriever.py" -v
+python -m unittest discover -s tests -t . -p "test_mmr_retriever.py" -v
 ```
 
 ```text
@@ -416,7 +416,7 @@ python scripts/retrieval/search_hybrid.py --question "2025년 연결 기준 매�
 - BM25·Chroma 검색기 호출과 결과 병합
 
 ```powershell
-python -m unittest discover -s tests -p "test_hybrid_retriever.py" -v
+python -m unittest discover -s tests -t . -p "test_hybrid_retriever.py" -v
 ```
 
 ```text
@@ -442,7 +442,7 @@ Gold page는 **PDF 물리 페이지 85쪽**이다. 이 질문에서는 BM25가 H
 MMR·Hybrid 테스트 추가 후 전체 회귀 테스트를 실행했다.
 
 ```powershell
-python -m unittest discover -s tests -v
+python -m unittest discover -s tests -t . -v
 ```
 
 ```text
@@ -489,7 +489,7 @@ OK
 평가 지표 단위 테스트:
 
 ```powershell
-python -m unittest discover -s tests -p "test_retrieval_metrics.py" -v
+python -m unittest discover -s tests -t . -p "test_retrieval_metrics.py" -v
 ```
 
 로컬 검증 결과 **7개 통과**. 평가셋 원본에서도 `verified` 질문 **20개를 정상 로드**했다. 해당 단계까지 전체 회귀 테스트는 **59개 통과**했다.
@@ -544,8 +544,8 @@ python scripts/evaluation/evaluate_retrieval.py
 - 결과 JSON이 지정 경로에 저장되고 내용이 유지되는지
 
 ```powershell
-python -m unittest discover -s tests -p "test_evaluate_retrieval.py" -v
-python -m unittest discover -s tests -v
+python -m unittest discover -s tests -t . -p "test_evaluate_retrieval.py" -v
+python -m unittest discover -s tests -t . -v
 ```
 
 로컬 실행 결과:
@@ -596,8 +596,8 @@ python -m unittest discover -s tests -v
 | `summarize_value_hits()` | 질문별 값 지표를 요약 (`expected_value` 없는 질문 제외) |
 
 ```powershell
-python -m unittest discover -s tests -p "test_value_metrics.py" -v
-python -m unittest discover -s tests -p "test_evaluate_retrieval.py" -v
+python -m unittest discover -s tests -t . -p "test_value_metrics.py" -v
+python -m unittest discover -s tests -t . -p "test_evaluate_retrieval.py" -v
 ```
 
 **실행 명령과 결과 필드**

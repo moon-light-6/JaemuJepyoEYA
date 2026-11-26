@@ -13,7 +13,8 @@ import operator
 from typing import Annotated, Any, Literal
 
 from pydantic import BaseModel, Field
-from typing_extensions import TypedDict
+from typing_extensions import NotRequired, TypedDict
+from fin_research.tools.financial_models import FinancialContext
 
 
 # ─────────────────────────────────────────────
@@ -43,6 +44,7 @@ class ClarifyResult(BaseModel):
     company: str | None = Field(None, description="정규화된 기업명 (companies.yaml 기준)")
     corp_code: str | None = Field(None, description="DART 기업 고유번호 8자리")
     years: list[int] = Field(default_factory=list, description="분석 대상 사업연도")
+    scope: Literal["consolidated", "separate"] = "consolidated"
     focus: list[str] = Field(default_factory=list, description="사용자가 특히 요청한 관심 영역")
     notes:list[str]=Field(default_factory=list, description='진행은 하지만 알려야 할 사항. 예: 일부 연도 자료 없음')
 
@@ -53,6 +55,9 @@ class SubTopic(BaseModel):
     title: str = Field(description="보고서 섹션 제목. 예: 수익성")
     questions: list[str] = Field(description="researcher가 답해야 할 구체 질문 2~4개")
     metrics: list[str] = Field(default_factory=list, description="확인할 지표. 예: 매출액, 영업이익률")
+    fixed_questions: bool = False
+    db_items: list[str] = Field(default_factory=list)
+    db_ratios: list[str] = Field(default_factory=list)
 
 
 class Brief(BaseModel):
@@ -61,6 +66,7 @@ class Brief(BaseModel):
     company: str
     corp_code: str | None = None
     years: list[int]
+    scope: Literal["consolidated", "separate"] = "consolidated"
     objective: str = Field(description="보고서 목적 한두 문장")
     subtopics: list[SubTopic] = Field(min_length=1)
     focus: list[str] = Field(default_factory=list, description="사용자가 특히 요청한 관심 영역")
@@ -74,6 +80,50 @@ class EvidenceRef(BaseModel):
     source_file: str | None = None
     pdf_page: int | None = None
     chunk_id: str | None = None
+    source_xpath: str | None = None
+    title: str | None = None
+    rcept_no: str | None = None
+    account_id: str | None = None
+    account_name: str | None = None
+    quote: str | None = None
+
+    @classmethod
+    def from_evidence(cls, evidence):
+        """공통 장부 근거를 원문 전체 대신 위치 정보로 변환한다."""
+        return cls(id=evidence.evidence_id, source_file=evidence.source_file,
+                   pdf_page=evidence.pdf_page, chunk_id=evidence.chunk_id,
+                   source_xpath=evidence.source_xpath, title=evidence.title)
+
+
+class ResearchNumber(BaseModel):
+    """확인된 숫자와 기준·출처를 상위 조사 결과에서도 정확히 보존한다."""
+
+    metric: str
+    value: str
+    unit: str
+    context: FinancialContext
+    source_ids: list[str] = Field(default_factory=list)
+
+
+class QuestionFinding(BaseModel):
+    """질문 하나의 완료 상태와 재조사할 내용, 기존 확인 결과를 보관한다."""
+
+    question: str
+    status: Literal["draft", "partial", "insufficient_evidence"] = "insufficient_evidence"
+    summary: str = ""
+    numbers: list[ResearchNumber] = Field(default_factory=list)
+    evidence_ids: list[str] = Field(default_factory=list)
+    sources: list[EvidenceRef] = Field(default_factory=list)
+    limitations: list[str] = Field(default_factory=list)
+    retry_question: str | None = None
+    retryable: bool = True
+    stop_reason: str = "pending"
+    component_status: dict[str, str] = Field(default_factory=dict)
+    attempts: list[dict[str, Any]] = Field(default_factory=list)
+    unsupported_items: list[str] = Field(default_factory=list)
+    search_memory: dict[str, Any] = Field(default_factory=dict)
+    task_kind: Literal["question", "numeric"] = "question"
+    explanation: str = ""
 
 
 class Finding(BaseModel):
@@ -83,12 +133,15 @@ class Finding(BaseModel):
     """
 
     subtopic_id: str
-    status: Literal["draft", "insufficient_evidence"]
+    status: Literal["draft", "partial", "insufficient_evidence"]
     summary: str = Field(description="한국어 조사 결과. 근거를 쓴 문장마다 [S#] 표기")
     evidence_ids: list[str] = Field(default_factory=list, description="summary에서 인용한 근거 ID")
     limitations: list[str] = Field(default_factory=list, description="누락·미검증 내용")
     sources: list[EvidenceRef] = Field(default_factory=list, description="evidence_ids의 출처 위치")
     round: int = 1
+    question_results: list[QuestionFinding] = Field(default_factory=list)
+    context: FinancialContext | None = None
+    retryable: bool = True
 
 
 class SupervisorDecision(BaseModel):
@@ -175,6 +228,7 @@ class ResearcherInput(TypedDict):
     subtopic: SubTopic
     brief: Brief
     round: int
+    previous_finding: NotRequired[Finding | None]
 
 
 class ResearcherOutput(TypedDict):

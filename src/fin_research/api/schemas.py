@@ -1,6 +1,6 @@
 
 from typing import Literal
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 # API 응답 스키마 정의
 class JobUploadResponse(BaseModel):
@@ -33,3 +33,25 @@ class JobStatusResponse(BaseModel):
     status: Literal["uploaded", "extracted"]
     file_size: int
     page_count: int
+
+# 전체 실행(조사·보고서·검증) 요청 스키마
+class ResearchRequest(BaseModel):
+    request: str = Field(min_length=1, max_length=2000)
+    # 동명 기업 후보 중 하나를 고를 때만 지정 (DART 고유번호 8자리)
+    corp_code: str | None = Field(default=None, pattern=r"^\d{8}$")
+
+# 전체 실행 접수 응답 스키마
+class ResearchAcceptedResponse(BaseModel):
+    id: str
+    status: Literal["queued"]
+
+# 전체 실행 상태·결과 응답 스키마
+class ResearchJobResponse(BaseModel):
+    id: str
+    status: Literal[
+        "queued", "running", "success", "partial_success", "failed", "needs_clarification"
+    ]
+    stage: str | None = None
+    result: dict | None = None
+    created_at: str
+    finished_at: str | None = None

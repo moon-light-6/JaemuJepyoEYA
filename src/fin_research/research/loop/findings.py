@@ -48,12 +48,38 @@ def generate_findings(question: str, evidences: list[dict], model) -> GroundedAn
     result = GroundedAnswer.model_validate(result)
 
     available = {item["evidence_id"] for item in evidences}
-    listed = set(result.evidence_ids)
-    inline = set(re.findall(r"\[(S\d+)\]", result.answer))
-    if not listed.issubset(available) or not inline.issubset(available):
-        raise ValueError("모델이 검색 결과에 없는 출처 ID를 인용했습니다.")
-    if listed != inline:
-        raise ValueError("답변의 출처 표기와 evidence_ids 목록이 일치하지 않습니다.")
-    if result.status == "draft" and not listed:
+    return normalize_citations(result, available)
+
+
+_CITATION = re.compile(r"\[([^\[\]]*?\bS\d+\b[^\[\]]*?)\]")  # [S1], [S1, S3], [S1·S3]
+_SOURCE_ID = re.compile(r"\bS\d+\b")
+
+
+def inline_citations(answer: str) -> list[str]:
+    """답변 본문의 대괄호 안 출처 번호 (등장 순서, 중복 제거). '갤럭시 S25' 같은 본문 단어는 제외."""
+    ids = [i for group in _CITATION.findall(answer) for i in _SOURCE_ID.findall(group)]
+    return list(dict.fromkeys(ids))
+
+
+def normalize_citations(result: GroundedAnswer, available: set[str]) -> GroundedAnswer:
+    """출처 표기를 검사하되, 형식만 어긋난 맞는 답은 버리지 않고 바로잡는다.
+
+    오류로 처리 (findings_node가 한 번 다시 요청):
+      - 검색 결과에 없는 출처 ID를 쓴 경우 (지어낸 인용)
+      - draft인데 출처가 하나도 없는 경우
+    바로잡음:
+      - 본문에 [S#]가 없고 evidence_ids만 있으면 → 답변 끝에 [S1, S2]를 붙인다
+      - 둘 다 있는데 목록이 다르면 → 본문 표기를 기준으로 evidence_ids를 맞춘다
+    """
+    listed = list(dict.fromkeys(result.evidence_ids))
+    inline = inline_citations(result.answer)
+    unknown = sorted({*listed, *inline} - available)
+    if unknown:
+        raise ValueError(f"모델이 검색 결과에 없는 출처 ID를 인용했습니다: {', '.join(unknown)}")
+    if result.status == "draft" and not listed and not inline:
         raise ValueError("답변 초안에 출처가 없습니다.")
+    if listed and not inline:
+        return result.model_copy(update={"answer": f"{result.answer.rstrip()} [{', '.join(listed)}]"})
+    if inline != listed:
+        return result.model_copy(update={"evidence_ids": inline})
     return result

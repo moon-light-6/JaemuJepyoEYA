@@ -91,7 +91,7 @@ python scripts/ingestion/collect_pdf.py `
 ### 8. 전체 테스트
 
 ```powershell
-python -m unittest discover -s tests -v
+python -m unittest discover -s tests -t . -v
 ```
 
 테스트 결과는 통과·실패·건너뜀을 구분해서 확인한다.
@@ -142,7 +142,7 @@ python -m unittest discover -s tests -v
 ## 최종 회귀 테스트
 
 ```powershell
-.\.venv\Scripts\python.exe -m unittest discover -s tests -v
+.\.venv\Scripts\python.exe -m unittest discover -s tests -t . -v
 ```
 
 ## 다음 담당자 참고

@@ -44,6 +44,21 @@ def verify_settings() -> dict:
     return {**DEFAULTS, **(load_budget_config().get("verify") or {})}
 
 
+def extraction_limits(llm, settings: dict, model_key: str | None = None) -> tuple[int, int]:
+    """Qwen과 기존 GPT의 입력 묶음 크기·동시 추출 수를 구분한다."""
+    is_qwen = model_key == "qwen" or str(getattr(llm, "model_name", "")).startswith("Qwen/")
+    if is_qwen:
+        # Qwen3.5-4B는 단일 GPU의 첫 실험에서 묶음 하나씩 처리한다.
+        size = settings.get("qwen_batch_max_chars", 3000)
+        concurrency = settings.get("qwen_max_concurrent_extract", 1)
+    else:
+        # 기존 GPT 모델의 처리 크기·동시 호출 수를 보존한다.
+        size, concurrency = settings["batch_max_chars"], settings["max_concurrent_extract"]
+    if type(size) is not int or size <= 0 or type(concurrency) is not int or concurrency <= 0:
+        raise ValueError("추출 묶음 크기와 동시 호출 수는 양의 정수여야 합니다.")
+    return size, concurrency
+
+
 # ─────────────────────────── 입력 준비 (순수 함수) ───────────────────────────
 
 def load_pages(path: str | Path) -> list[Page]:
@@ -272,10 +287,16 @@ async def claim_extract_node(
         return _stop(["claim_extract: 텍스트가 있는 쪽이 없습니다 (스캔 PDF일 수 있습니다)."], **target)
 
     settings = verify_settings()
-    llm = get_llm_for_role("claim_extractor", budget=get_budget(config))
+    # 기존 GPT 모델 호출 보존: 이전에는 이 역할이 models.yaml의 small(GPT)을 가리켰다.
+    # llm = get_llm_for_role("claim_extractor", budget=get_budget(config))
+    # 새 Qwen 모델 호출: 기본 역할 설정을 따르며 CLI에서 small을 지정하면 GPT 비교가 가능하다.
+    model_key = ((config or {}).get("configurable") or {}).get("claim_model_key")
+    options = {"model_key": model_key} if model_key is not None else {}
+    llm = get_llm_for_role("claim_extractor", budget=get_budget(config), **options)
+    batch_size, concurrency = extraction_limits(llm, settings, model_key)
     results = await _extract_batches(
         llm, load_prompt("claim_extract", folder="verify"), company["name"],
-        batch_pages(pages, settings["batch_max_chars"]), settings["max_concurrent_extract"],
+        batch_pages(pages, batch_size), concurrency,
     )
 
     drafts: list[ClaimDraft] = []
