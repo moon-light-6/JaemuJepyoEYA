@@ -112,11 +112,23 @@ def report_markdown(state: dict, registry: EvidenceRegistry) -> str:
     return "\n".join(lines) + "\n"
 
 
-async def run_generate(request: str, mock: bool, questions: int | None) -> int:
-    from fin_research.research.graph import build_graph, run_config
-    from fin_research.research.nodes.researcher import make_loop_researcher, mock_researcher
+def make_researcher(kind: str, mock: bool, questions: int | None):
+    """hybrid(기본): DB 숫자는 코드(db_facts) + 문서 검색 루프 + 근거 장부 S#.
+    tool: 건희 다중 도구 조사(LLM이 SQL·계산·문서 도구를 고름, 비교용)."""
+    from fin_research.research.nodes.researcher import (
+        make_document_researcher, make_loop_researcher, mock_researcher)
 
-    researcher = mock_researcher if mock else make_loop_researcher(questions_per_subtopic=questions)
+    if mock:
+        return mock_researcher
+    if kind == "tool":
+        return make_loop_researcher(questions_per_subtopic=questions)
+    return make_document_researcher(questions_per_subtopic=questions)
+
+
+async def run_generate(request: str, mock: bool, questions: int | None, kind: str = "hybrid") -> int:
+    from fin_research.research.graph import build_graph, run_config
+
+    researcher = make_researcher(kind, mock, questions)
     budget = Budget.from_config()
     registry = EvidenceRegistry()
     started = time.monotonic()
@@ -193,7 +205,7 @@ MENU = f"""
 async def run_mode(mode: str, args: argparse.Namespace) -> int:
     if mode == "1":
         request = args.request or ask("분석 요청", "NAVER 2025년 재무 분석해줘")
-        return await run_generate(request, args.mock, args.questions)
+        return await run_generate(request, args.mock, args.questions, args.researcher)
     if mode == "2":
         company = args.company or ask("보고서의 기업명", "NAVER")
         return await run_verify(company)
@@ -207,6 +219,8 @@ async def main() -> int:
     parser.add_argument("--request", help="보고서 생성 요청 문장 (mode 1)")
     parser.add_argument("--company", help="검증할 보고서의 기업명 (mode 2)")
     parser.add_argument("--mock", action="store_true", help="보고서 생성 시 검색·루프 없이 흐름만")
+    parser.add_argument("--researcher", choices=("hybrid", "tool"), default="hybrid",
+                        help="보고서 생성 조사 방식. hybrid(기본): DB 숫자+문서 검색, tool: 건희 다중 도구 조사")
     parser.add_argument("--questions", type=int, default=1,
                         help="보고서 생성 시 하위 주제당 질문 수 (기본 1, 비용 절약)")
     args = parser.parse_args()

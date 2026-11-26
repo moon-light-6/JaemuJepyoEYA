@@ -108,9 +108,12 @@ async def main() -> int:
     parser.add_argument("request", help="분석 요청 문장")
     parser.add_argument("--mock", action="store_true", help="researcher를 mock으로 (검색·루프 없음)")
     parser.add_argument("--questions", type=int, help="하위 주제당 질문 수 (기본: budget.yaml)")
+    parser.add_argument("--researcher", choices=("hybrid", "tool"), default="hybrid",
+                        help="hybrid(기본): DB 숫자+문서 검색, tool: 건희 다중 도구 조사")
     args = parser.parse_args()
 
-    researcher = mock_researcher if args.mock else make_loop_researcher(questions_per_subtopic=args.questions)
+    from demo import make_researcher  # demo.py와 같은 선택 (hybrid 기본, --researcher tool)
+    researcher = make_researcher(args.researcher, args.mock, args.questions)
     budget = Budget.from_config()
     registry = EvidenceRegistry()  # 실행 하나에 장부 하나. 끝난 뒤 출처 목록을 읽으려고 직접 만든다
     started = time.monotonic()
