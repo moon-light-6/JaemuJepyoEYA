@@ -15,7 +15,7 @@ from fin_research.research.nodes.common import get_budget, load_prompt
 from fin_research.research.nodes.outline import CONCLUSION_TITLE, SUMMARY_TITLE
 from fin_research.research.nodes.supervisor import latest_by_subtopic
 from fin_research.research.state import Finding, OutlineSection, ResearchState
-from fin_research.research.text_checks import citations_in, numbers_in
+from fin_research.research.text_checks import citations_in, numbers_in, split_sentences
 
 
 # 검사
@@ -81,10 +81,19 @@ async def write_checked(llm, system,title,source, allowed_ids,fallback,company,y
         written=await write_one(llm,system,title,source,company,years)
     except BudgetExceeded as e:
         return  fallback, f"writer {title}: [예산 초과] 조사 결과 문장을 그대로 사용 ({e})"
+    removed: list[str] = []
+    if not allow_numbers:
+        # 결론: 숫자가 든 문장만 빼고 나머지 평가 문장은 살린다 (전체를 대체 문장으로 바꾸지 않게)
+        sentences = split_sentences(written)
+        removed = [x for x in sentences if numbers_in(x)]
+        written = " ".join(x for x in sentences if not numbers_in(x))
     problems=check_section(written,source,allowed_ids,allow_numbers)
     if problems:
-        excerpt = " ".join(written.split())[:120]
+        excerpt = " ".join((written or " ".join(removed)).split())[:120]
         return fallback,f"writer {title}: {'; '.join(problems)} → 대체 문장 사용 (LLM 답변: {excerpt})"
+    if removed:
+        excerpt = " ".join(" ".join(removed).split())[:120]
+        return written, f"writer {title}: 숫자가 든 문장 {len(removed)}개 제외 ({excerpt})"
     return written,None
 
 

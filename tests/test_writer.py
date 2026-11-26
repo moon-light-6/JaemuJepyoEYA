@@ -155,12 +155,20 @@ class TestWriterNode(unittest.TestCase):
         self.assertNotIn("[S9]", out.update["report"])
         self.assertTrue(any("S9" in e for e in out.update["errors"]))
 
-    def test_conclusion_with_numbers_falls_back_to_plain_text(self):
+    def test_conclusion_only_numbers_falls_back_to_plain_text(self):
         out, _ = run_writer({**GOOD, "결론": "매출액은 12,035,007,218,975원으로 양호합니다. [S2]"})
         conclusion = section(out.update["report"], "결론")
         self.assertEqual(numbers_in(conclusion), set())
         self.assertIn("재무 안정성 항목은 확인하지 못했습니다", conclusion)
-        self.assertTrue(any("결론에 숫자 사용" in e for e in out.update["errors"]))
+        self.assertTrue(any("빈 답변" in e for e in out.update["errors"]))
+
+    def test_conclusion_keeps_sentences_without_numbers(self):
+        answer = ("매출과 영업이익이 모두 증가했습니다. 영업이익률은 13.1%입니다. [S2] "
+                  "계류 중인 소송은 지켜볼 필요가 있습니다.")
+        out, _ = run_writer({**GOOD, "결론": answer})
+        self.assertEqual(section(out.update["report"], "결론"),
+                         "매출과 영업이익이 모두 증가했습니다. 계류 중인 소송은 지켜볼 필요가 있습니다.")
+        self.assertTrue(any("숫자가 든 문장 1개 제외" in e for e in out.update["errors"]))
 
     def test_summary_may_use_numbers(self):
         out, _ = run_writer(GOOD)
