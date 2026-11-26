@@ -3,6 +3,10 @@
 from __future__ import annotations
 
 import re
+from collections.abc import Iterator, Sequence
+from contextlib import contextmanager
+from contextvars import ContextVar
+from copy import deepcopy
 from functools import lru_cache
 from pathlib import Path
 
@@ -16,8 +20,28 @@ _LEGAL_SUFFIX = re.compile(r"\(주\)|㈜|주식회사")
 _PUNCT = re.compile(r"[\s.,·\-_/]")
 
 
-@lru_cache(maxsize=1)
+# 실행 하나에서만 쓰는 기업 목록. None이면 companies.yaml을 쓴다 (요청마다 격리, YAML 캐시와 분리).
+_RUN_COMPANIES: ContextVar[tuple[dict, ...] | None] = ContextVar("run_companies", default=None)
+
+
+@contextmanager
+def use_run_companies(companies: Sequence[dict]) -> Iterator[None]:
+    """with 구간(과 그 안에서 만든 비동기 작업·to_thread)에서만 load_companies()가 이 목록을 반환한다."""
+    token = _RUN_COMPANIES.set(tuple(deepcopy(list(companies))))
+    try:
+        yield
+    finally:
+        _RUN_COMPANIES.reset(token)
+
+
 def load_companies(path: Path = COMPANIES_PATH) -> tuple[dict, ...]:
+    """실행 단위 기업 목록이 있으면 그 목록, 없으면 companies.yaml의 companies 목록."""
+    run = _RUN_COMPANIES.get()
+    return run if run is not None else _load_yaml_companies(path)
+
+
+@lru_cache(maxsize=1)
+def _load_yaml_companies(path: Path) -> tuple[dict, ...]:
     """companies.yaml의 companies 목록 (캐시)."""
     if not path.is_file():
         raise FileNotFoundError(f"기업 설정 파일이 없습니다: {path}")
