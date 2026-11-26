@@ -1,5 +1,29 @@
 # 다중 도구 조사: SQL·계산·문서 재검색 연결
 
+## feat/langchain 통합 후 실행
+
+기본 상위 그래프는 `clarify → brief → Researcher → Supervisor → outline → writer`다.
+조사가 미완료여도 확인한 결과와 누락 사항을 보고서에 남긴다. Writer 예산이 소진되면
+추가 LLM 호출 없이 기존 결과를 정리한다. `--research-only`는 보고서 작성을 생략한다.
+
+```bat
+python -X utf8 scripts\demo\demo_research.py "서진시스템의 2025년 연결 기준 수익성과 재무 상태를 조사해줘." --rcept-no 20260323001543 --questions 2 --loop-rounds 2 --out data\runs\seojin_merged_research.json
+```
+
+기존 `scripts/demo_research.py`, `scripts/demo_verify.py` 명령도 호환 진입점으로 유지한다.
+검증 데모의 Qwen/GPT 선택 옵션은 새 `scripts/demo/demo_verify.py`에서도 동일하다.
+
+- 템플릿 `db_items`·`db_ratios`를 YAML 지원 목록과 대조하고 우리 공통 SQL·계산 도구로 먼저 실행한다.
+  숫자 계획은 코드가 만들며, 설명 질문과 재조사는 문서 검색만 사용한다. 설명 질문 수 한도에 숫자 작업은 포함하지 않는다.
+- 별도 `db_facts.py`는 기존 문서 전용 호출 호환용이다. 기본 다중 도구 경로와 병렬로 실행하지 않는다.
+- 숫자·설명 요구가 남으면 `partial`이다. 숫자가 있다는 이유로 `draft`로 올리지 않는다.
+- `EvidenceRegistry`에 DB·계산·문서 근거를 전역 S 번호로 등록한다. 같은 근거는 같은 번호를 사용한다.
+  동일 기업·연도·연결/별도·접수번호의 관련 문서만 다른 질문에 재사용하며 장부 원문은 실행 메모리에 둔다.
+- 팀 공용 Chroma가 선택되어도 동일 `XMLDocumentSearchTool`의 제목·핵심어·인접 확장과 메타 필터를 사용한다.
+  로컬 XML이 없을 때만 공용 서버를 확인한다. XML v2는 로컬 해시 색인을 유지한다.
+- 리스크 질문의 목적은 고정하며 재검색어는 구체화할 수 있다. 감사의견 질문은 유지하고 원문이 없으면 보류한다.
+- 원문 내용의 연도·개념 해석 정확도와 실제 모델 성능은 별도 평가 대상이다.
+
 ## 실행 흐름
 
 ```text
@@ -51,7 +75,7 @@ python -X utf8 scripts\demo_research.py "서진시스템의 2025년 연결 기�
 
 진행 과정은 터미널에 출력된다. XML v2 색인은 `--xml-version 2`, 별도 저장소는
 `--persist-directory "저장소 경로"`로 지정한다. `--questions`는 하위 주제당 **한 라운드에 실행할 질문 수**다.
-현재 그래프는 Supervisor의 조사 결과 확인까지 실행하며 최종 보고서 작성·검증 노드 연결은 별도 작업이다.
+현재 그래프는 Supervisor 이후 목차·보고서 작성까지 실행한다. 원문 의미 대조를 포함한 최종 검증은 별도 평가 대상이다.
 조사 역할별 GPT 설정은 유지한다. 주장 추출기의 Qwen 선택과는 독립적이다.
 
 상위 그래프·다중 도구·재조사 연결 테스트(외부 GPT·DB 호출 없이 합성 응답 사용):

@@ -56,8 +56,9 @@ class SubTopic(BaseModel):
     title: str = Field(description="보고서 섹션 제목. 예: 수익성")
     questions: list[str] = Field(description="researcher가 답해야 할 구체 질문 2~4개")
     metrics: list[str] = Field(default_factory=list, description="확인할 지표. 예: 매출액, 영업이익률")
-    fixed_questions: bool = Field(
-        default=False, description="true면 brief·supervisor가 질문을 바꾸지 않는다 (공시 용어가 중요한 주제)")
+    fixed_questions: bool = False
+    db_items: list[str] = Field(default_factory=list)
+    db_ratios: list[str] = Field(default_factory=list)
 
 
 class Brief(BaseModel):
@@ -132,6 +133,8 @@ class QuestionFinding(BaseModel):
     attempts: list[dict[str, Any]] = Field(default_factory=list)
     unsupported_items: list[str] = Field(default_factory=list)
     search_memory: dict[str, Any] = Field(default_factory=dict)
+    task_kind: Literal["question", "numeric"] = "question"
+    explanation: str = ""
 
 
 class Finding(BaseModel):

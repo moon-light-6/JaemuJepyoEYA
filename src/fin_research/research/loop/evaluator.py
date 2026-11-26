@@ -47,8 +47,8 @@ def normalize_evaluation(result: EvidenceEvaluation, available: set[str]) -> Evi
 
     - 검색되지 않은 출처 ID는 빼고, reason에 뺀 ID를 남긴다
     - '충분'인데 쓸 출처가 하나도 없으면 '부족'으로 바꾼다 (다음 검색어가 있으면 재검색)
-    - '충분'인데 missing_items가 남아 있으면 '충분'을 유지한다 (부분 답변).
-      찾은 근거로 답하고, 남은 항목은 findings_node가 limitations에 붙인다
+    - '충분'인데 missing_items가 남아 있으면 부족으로 정정한다.
+      원문 근거와 기존 숫자는 보존하고, 상위 결과는 전체 완료로 승격하지 않는다.
     """
     known = [evidence_id for evidence_id in result.evidence_ids if evidence_id in available]
     dropped = [evidence_id for evidence_id in result.evidence_ids if evidence_id not in available]
@@ -59,4 +59,7 @@ def normalize_evaluation(result: EvidenceEvaluation, available: set[str]) -> Evi
     if result.sufficient and not known:
         updates["sufficient"] = False
         updates["missing_items"] = result.missing_items or ["답변에 사용할 출처가 지정되지 않았습니다."]
+    elif result.sufficient and result.missing_items:
+        # 부분 근거는 보존하되 필수 요구가 남은 상태를 전체 완료로 승격하지 않는다.
+        updates["sufficient"] = False
     return result.model_copy(update=updates) if updates else result

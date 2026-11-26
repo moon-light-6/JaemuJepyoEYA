@@ -91,7 +91,7 @@ def run_graph(researcher, budget=None, rewrite_response=None, max_rounds=None):
         app = graph_module.build_graph(researcher)
         return asyncio.run(app.ainvoke(
             {"request": "삼성전자 분석", "findings": []},
-            graph_module.run_config(budget, **configurable),
+            graph_module.run_config(budget, write_report=False, **configurable),
         ))
 
 

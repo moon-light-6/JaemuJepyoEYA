@@ -41,13 +41,14 @@ def section_source(findings:list[Finding])-> str:
 
     parts=[]
     for finding in findings:
+        parts.append(f"[조사 상태] {'부분 확인: 미해결 요구가 남아 있음' if finding.status == 'partial' else finding.status}")
         parts.append(f"[조사 결과]\n{finding.summary}")
         quotes=[f"{s.id}: {s.quote}" for s in finding.sources if s.quote]
         if quotes:
             parts.append("[근거 조각]\n"+"\n".join(quotes))
         if finding.limitations:
             parts.append("[한계]\n" + "\n".join(f"- {note}" for note in finding.limitations))
-        
+
     return "\n\n".join(parts)
 
 def insufficient_text(findings: list[Finding])->str:
@@ -60,7 +61,8 @@ def insufficient_text(findings: list[Finding])->str:
 
 def conclusion_fallback(done_titles: list[str], missing_titles: list[str]) -> str:
     """결론 검사 실패 시 코드가 쓰는 숫자 없는 결론."""
-    text = f"{', '.join(done_titles)} 항목은 공시 근거로 확인했으며, 세부 수치는 각 섹션에 정리했습니다."
+    text = (f"{', '.join(done_titles)} 항목은 공시 근거로 확인했으며, 세부 수치는 각 섹션에 정리했습니다."
+            if done_titles else "확보한 공시 근거만으로 전체 결론을 확정하지 못했습니다.")
     if missing_titles:
         text += f" {', '.join(missing_titles)} 항목은 확인하지 못했습니다."
     return text
@@ -104,14 +106,23 @@ async def writer_node(state:ResearchState,config:RunnableConfig)->Command[Litera
     outline=state['outline']
     latest=latest_by_subtopic(state.get('findings') or [])
     years=",".join(f'{y}년' for y in brief.years)
-    llm=get_llm_for_role("writer",budget=get_budget(config))
+    budget = get_budget(config)
+    llm = None
+    budget_warning = None
+    try:
+        if budget is not None:
+            budget.check()
+        if any(s.evidence_ids for s in outline.sections):
+            llm = get_llm_for_role("writer", budget=budget)
+    except BudgetExceeded:
+        budget_warning = "writer: 예산 초과로 추가 LLM 호출 없이 확인된 조사 결과와 한계를 출력합니다."
 
     system=load_prompt("writer")
     def findings_of(section: OutlineSection)->list[Finding]:
         return [latest[i] for i in section.subtopic_ids if i in latest]
     body=[s for s in outline.sections if s.title not in (SUMMARY_TITLE,CONCLUSION_TITLE)]
     written:dict[str,str]={}
-    warnings:list[str]=[]
+    warnings:list[str]=[budget_warning] if budget_warning else []
 # ① 주제 섹션: 근거가 있는 섹션만 동시에 LLM
     async def body_section(section: OutlineSection)-> tuple[str,str,str | None]:
         findings = findings_of(section)
@@ -120,7 +131,12 @@ async def writer_node(state:ResearchState,config:RunnableConfig)->Command[Litera
         source = section_source(findings)
         fallback = "\n".join(f.summary for f in findings)
         text, warning = await write_checked(llm, system, section.title, source, set(section.evidence_ids),
-                                            fallback, brief.company, years)
+                                            fallback, brief.company, years) if llm is not None else (fallback, None)
+        notes = list(dict.fromkeys(note for f in findings for note in f.limitations))
+        if any(f.status == "partial" for f in findings):
+            text = "부분 확인된 결과입니다.\n\n" + text
+        if notes:
+            text += "\n\n확인하지 못한 내용:\n" + "\n".join(f"- {note}" for note in notes)
         return section.title, text, warning
 
     for title, text, warning in await asyncio.gather(*(body_section(s) for s in body)):
@@ -132,19 +148,26 @@ async def writer_node(state:ResearchState,config:RunnableConfig)->Command[Litera
     done = [s for s in body if s.evidence_ids]
     body_text = "\n\n".join(f"[{s.title}]\n{written[s.title]}" for s in done)
     missing = [s.title for s in body if not s.evidence_ids]
+    partial = [s.title for s in done if any(f.status == "partial" for f in findings_of(s))]
     if missing:  # 근거 없는 주제를 알려 줘야 결론에서 '안정적' 같은 평가를 지어내지 않는다
         body_text += "\n\n[확인하지 못한 주제]\n" + ", ".join(missing)
+    if partial:
+        body_text += "\n\n[일부만 확인한 주제: 전체 검증 완료가 아님]\n" + ", ".join(partial)
     allowed = {e for s in done for e in s.evidence_ids}
     for title in (SUMMARY_TITLE, CONCLUSION_TITLE):
         if not done:
             written[title] = "확보한 공시 근거가 없어 작성하지 못했습니다."
             continue
         if title == CONCLUSION_TITLE:
-            fallback = conclusion_fallback([s.title for s in done], missing)
+            fallback = conclusion_fallback([s.title for s in done if s.title not in partial], missing)
+            if partial:
+                fallback += f" {', '.join(partial)} 항목은 일부만 확인했으며 미확인 내용을 추가 검토해야 합니다."
         else:
             fallback = " ".join(written[s.title].split(". ")[0].rstrip(".") + "." for s in done)
         text, warning = await write_checked(llm, system, title, body_text, allowed, fallback,
-                                            brief.company, years, allow_numbers=title != CONCLUSION_TITLE)
+                                            brief.company, years, allow_numbers=title != CONCLUSION_TITLE) if llm is not None else (fallback, None)
+        if partial:
+            text += f"\n\n일부만 확인한 주제: {', '.join(partial)}. 전체 조사 완료를 의미하지 않습니다."
         written[title] = text
         if warning:
             warnings.append(warning)

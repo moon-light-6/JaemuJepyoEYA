@@ -69,8 +69,8 @@ class ResearchImprovementsTests(unittest.TestCase):
         draft = BriefDraft(objective="조사", subtopics=[SubTopicDraft(id="profitability",
             questions=["동종 업계와 비교해줘", "사업부문별 영업이익률 변화는?"], metrics=[])])
         brief = build_brief(draft, clarify, load_template())
-        self.assertFalse(any("업계" in q or "부문별" in q for q in brief.subtopics[0].questions))
-        self.assertTrue(any("매출액" in q for q in brief.subtopics[0].questions))
+        self.assertFalse(any("업계" in q or "영업이익률 변화" in q for q in brief.subtopics[0].questions))
+        self.assertIn("revenue", brief.subtopics[0].db_items)
 
     def test_title_keyword_and_adjacent_chunk_recover_litigation(self):
         """벡터 검색이 표를 반환해도 제목 검색과 동일 주석 확장으로 소송 문단을 찾는다."""

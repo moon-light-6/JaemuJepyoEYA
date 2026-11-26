@@ -32,6 +32,7 @@ class EvidenceCandidate(BaseModel):
     pdf_page: int | None = Field(default=None, ge=1, description="PDF 원본 페이지 번호")
     source_format: str | None = Field(default=None, description="xml 또는 pdf 등 원본 형식")
     title: str | None = Field(default=None, description="원본 표 또는 섹션 제목")
+    context_key: str | None = Field(default=None, description="근거 재사용을 허용할 동일 기업·기간·기준·공시 키")
 
     @field_validator("source_file", "chunk_id", "text")
     @classmethod

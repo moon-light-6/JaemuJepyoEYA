@@ -1,4 +1,4 @@
-"""researcher 노드: 하위 주제 하나를 조사해 Finding 하나를 돌려준다.
+"""상위 조사 노드: 기본은 템플릿 숫자·설명 분리와 다중 도구 루프를 사용한다.
 
 - mock_researcher: 검색·LLM 없이 고정 결과 (supervisor·그래프 테스트용)
 - make_loop_researcher(): SQL·계산·문서 다중 도구 루프를 상위 조사에 연결하는 어댑터
@@ -93,12 +93,22 @@ class SearchToolCache:
         self._tools: dict[SearchTarget, Callable[[str, int], list[dict]]] = {}
         self._sources: dict[SearchTarget, str] = {}
         self._lock = threading.Lock()
-        self._vectorstores: dict[tuple, object] = {}  # 다중 도구 조사: 질문별 세션이 공유하는 벡터 저장소
         self._collection_counts = collection_counts or self._read_collection_counts
         self._counts: dict[str, int] | None = None
+        self._vectorstores = {}
         self._shared_client = shared_client
         self._shared_counts_fn = shared_counts or self._read_shared_counts
         self._shared_counts: dict[str, int] | None = None
+
+    def session(self, target, *, source_format="xml", xml_version=1):
+        """동일 검색 정책으로 로컬·공용 저장소를 열고 질문별 상태를 분리한다."""
+        return ResearchSearchSession(self, target, source_format, xml_version).search
+
+    def shared_xml_client(self, target):
+        """로컬 XML이 없을 때만 선택 공시의 공용 컬렉션 존재 여부를 확인한다."""
+        if self._shared_counts is None:
+            self._shared_counts = self._shared_counts_fn()
+        return self._shared_client if self._shared_counts.get(target.xml_collection_name, 0) else None
 
     def _read_shared_counts(self) -> dict[str, int]:
         """공용 ChromaDB 컬렉션 → 청크 수. 주소가 없거나 서버가 꺼져 있으면 빈 dict."""
@@ -147,11 +157,6 @@ class SearchToolCache:
     def source_used(self, target: SearchTarget) -> str | None:
         """search_function으로 이미 정해진 색인 종류 (진행 표시·테스트용)."""
         return self._sources.get(target)
-
-
-    def session(self, target: SearchTarget, *, source_format: str = "xml", xml_version: int = 1):
-        """임베딩 저장소만 공유하고 재검색 이력은 질문별로 분리한 검색 함수를 만든다."""
-        return ResearchSearchSession(self, target, source_format, xml_version).search
 
     def search_function(self, target: SearchTarget) -> Callable[[str, int], list[dict]]:
         with self._lock:
@@ -203,8 +208,8 @@ class ResearchSearchSession:
                     # 로컬 색인이 없으면 팀 공용 ChromaDB로 (source_for: 로컬 XML → 로컬 PDF → 공용)
                     shared = self.xml_version == 1 and self.cache.source_for(self.target) == "shared"
                     self.tool = XMLDocumentSearchTool(self.cache.persist_directory, self.target,
-                                                       chunk_version=self.xml_version,
-                                                       client=self.cache._shared_client if shared else None)
+                        chunk_version=self.xml_version,
+                        client_provider=(lambda: self.cache.shared_xml_client(self.target)) if self.xml_version == 1 else None)
                 else:
                     self.tool = DocumentSearchTool(self.cache.persist_directory, self.target)
             key = (self.target, self.source_format, self.xml_version)
@@ -215,6 +220,7 @@ class ResearchSearchSession:
             finally:
                 if self.tool._vectorstore is not None:
                     self.cache._vectorstores[key] = self.tool._vectorstore
+
 
 
 # ─────────────────────────── 결과 합치기 (순수 함수) ───────────────────────────
@@ -232,7 +238,7 @@ def rewrite_citations(text:str, mapping:dict[str,str])->str:
     한 번의 re.sub로 바꿔서 S1→S12, S12→S3처럼 연쇄로 바뀌지 않는다.
     """
     def bracket(match:re.Match)->str:
-        ids=[mapping[i] for i in _LOCAL_ID.findall(match.group(1)) if i in mapping] 
+        ids=[mapping[i] for i in _LOCAL_ID.findall(match.group(1)) if i in mapping]
         return f"[{', '.join(dict.fromkeys(ids))}]" if ids else ""
 
     return re.sub(r" +([.,])", r"\1", _CITATION.sub(bracket, text)).strip()
@@ -353,13 +359,9 @@ def db_spec(subtopic_id: str) -> tuple[list[str], list[str]]:
     return [], []
 
 
-def fetch_db_rows(store, corp_code: str, year: int) -> tuple[list[dict], str]:
-    """연결(CFS)을 먼저, 없으면 별도(OFS). (행, fs_div)."""
-    for fs_div in ("CFS", "OFS"):
-        rows = store.rows(corp_code, year, fs_div)
-        if rows:
-            return rows, fs_div
-    return [], "CFS"
+def fetch_db_rows(store, corp_code: str, year: int, fs_div="CFS") -> tuple[list[dict], str]:
+    """구형 호출도 지정한 기준만 읽으며 연결 부재를 별도로 대체하지 않는다."""
+    return store.rows(corp_code, year, fs_div), fs_div
 
 
 async def collect_db_facts(
@@ -371,7 +373,8 @@ async def collect_db_facts(
         return DbFacts(), []
     year = max(brief.years)
     try:
-        rows, fs_div = await asyncio.to_thread(fetch_db_rows, store, brief.corp_code, year)
+        rows, fs_div = await asyncio.to_thread(fetch_db_rows, store, brief.corp_code, year,
+                                             "CFS" if brief.scope == "consolidated" else "OFS")
     except Exception as e:  # DB 연결 실패가 조사를 멈추지 않게
         return DbFacts(limitations=[f"DART DB 조회 실패: {type(e).__name__}: {e}"]), []
     if not rows:
@@ -404,7 +407,7 @@ async def collect_db_facts(
 
 
 def with_db_facts(finding: Finding, facts: DbFacts, sources: list[EvidenceRef]) -> Finding:
-    """DB 문장을 Finding 맨 앞에 붙인다. DB 숫자가 있으면 문서 검색이 실패해도 draft."""
+    """구형 호출의 DB 문장도 보존하되 설명이 실패했다면 부분 성공으로 남긴다."""
     if not facts.summary:
         return finding.model_copy(update={"limitations": [*facts.limitations, *finding.limitations]})
     summary = facts.summary if finding.status != "draft" else f"{facts.summary}\n{finding.summary}"
@@ -413,7 +416,7 @@ def with_db_facts(finding: Finding, facts: DbFacts, sources: list[EvidenceRef]) 
     ids = list(dict.fromkeys([*facts.evidence_ids, *rag_ids]))
     seen = set(facts.evidence_ids)
     return finding.model_copy(update={
-        "status": "draft",
+        "status": "draft" if finding.status == "draft" and not facts.limitations else "partial",
         "summary": summary,
         "evidence_ids": ids,
         "sources": [*sources, *(s for s in rag_sources if s.id not in seen)],

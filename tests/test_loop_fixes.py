@@ -37,10 +37,10 @@ class TestNormalizeEvaluation(unittest.TestCase):
         result = ev(True, ["S1"], [])
         self.assertIs(normalize_evaluation(result, {"S1"}), result)
 
-    def test_sufficient_with_missing_items_stays_sufficient(self):
+    def test_sufficient_with_missing_items_remains_unfinished(self):
         # 어제 현금흐름 사례: 현금흐름표는 찾았지만 '재무활동 현금흐름'을 못 찾았다고 함께 답함
         result = normalize_evaluation(ev(True, ["S1"], ["재무활동 현금흐름"]), {"S1"})
-        self.assertTrue(result.sufficient)
+        self.assertFalse(result.sufficient)
         self.assertEqual(result.missing_items, ["재무활동 현금흐름"])
 
     def test_unknown_ids_dropped_but_known_kept(self):
@@ -62,9 +62,9 @@ class TestPartialAnswerInLoop(unittest.TestCase):
         result = run_research_loop("현금흐름 각각 얼마인가?", Path("unused"), max_rounds=2,
                                    model=model_responses(partial, answer("S1")),
                                    search_function=Mock(return_value=[xml_hit(1)]))
-        self.assertEqual(result["stop_reason"], "sufficient_evidence")
-        self.assertEqual(result["findings"]["status"], "draft")
-        self.assertIn("근거 미확보: 재무활동 현금흐름", result["findings"]["limitations"])
+        self.assertEqual(result["findings"]["status"], "insufficient_evidence")
+        self.assertEqual(len(result["evidences"]), 1)
+        self.assertIn("재무활동 현금흐름", result["findings"]["limitations"])
 
 
 class TestXmlEvidenceInLoop(unittest.TestCase):

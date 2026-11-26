@@ -136,14 +136,14 @@ class TestResearcherMerge(unittest.TestCase):
         self.assertIn("debt_ratio", db_spec("stability")[1])
         self.assertEqual(db_spec("risk"), ([], []))
 
-    def test_db_facts_make_failed_rag_a_draft(self):
+    def test_db_facts_keep_failed_rag_partial(self):
         subtopic = SubTopic(id="stability", title="재무 안정성", questions=["q1"])
         facts, registry = build(["total_liabilities", "total_equity"], ["debt_ratio"])
         failed = failed_finding(subtopic, 1, "부채총계 근거 없음")
         sources = [registry.require(i) for i in facts.evidence_ids]
         from fin_research.research.state import EvidenceRef
         merged = with_db_facts(failed, facts, [EvidenceRef.from_evidence(e) for e in sources])
-        self.assertEqual(merged.status, "draft")
+        self.assertEqual(merged.status, "partial")
         self.assertIn("부채비율은 40.0%(전기 40.0%)", merged.summary)
         self.assertEqual(merged.evidence_ids, ["S1", "S2"])
         self.assertIn("부채총계 근거 없음", merged.limitations)

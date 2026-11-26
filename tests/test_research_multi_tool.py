@@ -104,7 +104,7 @@ def run_outer(node, *, brief=BRIEF, max_rounds=2, budget=None):
     with patch.object(outer_graph, "clarify_node", clarify), patch.object(outer_graph, "brief_node", make_brief), \
             patch("fin_research.research.nodes.writer.get_llm_for_role", return_value=NoWriter()):
         return asyncio.run(outer_graph.build_graph(node).ainvoke({"request": "합성 테스트", "findings": []},
-            outer_graph.run_config(budget, max_rounds=max_rounds, research_rcept_no=CONTEXT.rcept_no)))
+            outer_graph.run_config(budget, max_rounds=max_rounds, research_rcept_no=CONTEXT.rcept_no, write_report=False)))
 
 
 class ResearchMultiToolTests(unittest.TestCase):

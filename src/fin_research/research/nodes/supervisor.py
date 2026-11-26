@@ -15,6 +15,7 @@ from typing import Literal
 from langchain_core.messages import HumanMessage, SystemMessage
 from langchain_core.runnables import RunnableConfig
 from langgraph.types import Command, Send
+from langgraph.graph import END
 from pydantic import BaseModel, Field
 
 from fin_research.llm.budget import BudgetExceeded, load_budget_config
@@ -146,7 +147,7 @@ async def rewrite_questions(
 
 async def supervisor_review(
     state: ResearchState, config: RunnableConfig
-) -> Command[Literal["researcher", "outline"]]:
+) -> Command[Literal["researcher", "outline", "__end__"]]:
     brief = state["brief"]
     round_ = state.get("round", 1)
     latest = latest_by_subtopic(state.get("findings") or [])
@@ -163,7 +164,7 @@ async def supervisor_review(
                 "supervisor_decision": SupervisorDecision(complete=complete, reason=reason),
                 "step": f"supervisor_review:round{round_}",
             },
-            goto="outline",
+            goto="outline" if ((config or {}).get("configurable") or {}).get("write_report", True) else END,
         )
 
     if not unresolved:
